@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <p><font color="#3f7f5f" size="2">//This example&nbsp;is from &quot;Fit for Developing Software: Framework for Integrated Tests&quot; by Rick Mugridge and Ward Cunninham. New Jersey: Pearson Education, 2005.//</font></p>
+        <p><strong>Business rule: A 5% discount is provided on a total purchase greater than 1000.</strong></p>
+        <p>We have used a column fixture here, which is good for testing calculations.</p>
+        <p>Associated Fit test table:</p>
+        <p>
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                    <p>CalculateDiscount</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>amount</td>
+                    <td>discount()</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>100</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1000</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1010</td>
+                    <td>50.50</td>
+                </tr>
+            </tbody>
+        </table>
+        </p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+    </body>
+</html>
