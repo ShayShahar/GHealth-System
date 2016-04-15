@@ -76,7 +76,8 @@ public class GHealthServer extends AbstractServer {
 			System.out.println("Insert Complete");
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Value already exists.");
+		  
 		}
 	}
 		
