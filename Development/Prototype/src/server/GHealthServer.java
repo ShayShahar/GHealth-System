@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class GHealthServer extends AbstractServer {
 
-	final public static int DEFAULT_PORT = 5555;	
+	final public static int DEFAULT_PORT = 5551;	
 	private static String DB_UserName;
 	private static String DB_Password;
 	
@@ -24,11 +24,11 @@ public class GHealthServer extends AbstractServer {
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();		
-			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/protodb", DB_UserName ,DB_Password);
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/protodb?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
 			System.out.println("SQL connection succeed");
 			
 			if (msg instanceof ArrayList) {
-				if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("display") == 0) {
+				if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("show") == 0) {
 					this.readFromDataBase(myConn,client);
 				} else if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("insert") == 0) {
 					this.InsertToDataBase(myConn, client, ((ArrayList<String>) msg));
@@ -52,7 +52,7 @@ public class GHealthServer extends AbstractServer {
 			ResultSet results = statement.executeQuery("SELECT * FROM protodb.file");
 		
 			while (results.next())
-				table+=results.getString(1) + " " + results.getString(2);
+				table+=results.getString(1) + " " + results.getString(2)+"\n";
 				
 			results.close();
 			clientConection.sendToClient(table);
@@ -70,9 +70,8 @@ public class GHealthServer extends AbstractServer {
 		
 		try{
 			Statement statement = connection.createStatement();
-			String sql = "insert into file " 
-					   + " (filePath, fileName)"
-					   + "values ('"+list.get(0)+"',"+list.get(1)+"')";
+			String values = "("+list.get(1)+", "+list.get(2)+")";
+			String sql = "INSERT INTO file VALUES ('"+list.get(1)+"', '"+list.get(2)+"')";
 			statement.executeUpdate(sql);
 			
 			System.out.println("Insert Complete");
