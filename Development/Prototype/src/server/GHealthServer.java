@@ -1,6 +1,8 @@
 package server;
 
 import ocsf.server.*;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -28,8 +30,8 @@ public class GHealthServer extends AbstractServer {
 			if (msg instanceof ArrayList) {
 				if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("display") == 0) {
 					this.readFromDataBase(myConn,client);
-				} else if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("update") == 0) {
-					this.updateDataBase(myConn, client, ((ArrayList<String>) msg));
+				} else if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("insert") == 0) {
+					this.InsertToDataBase(myConn, client, ((ArrayList<String>) msg));
 				}
 			}
 			myConn.close();
@@ -43,15 +45,43 @@ public class GHealthServer extends AbstractServer {
 	}
 	
 	private void readFromDataBase(Connection connection, ConnectionToClient clientConection) throws SQLException{
+		String table = "File Table:\n";
+		
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet results = statement.executeQuery("SELECT * FROM protodb.file");
+		
+			while (results.next())
+				table+=results.getString(1) + " " + results.getString(2);
+				
+			results.close();
+			clientConection.sendToClient(table);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
-	private void updateDataBase(Connection connection, ConnectionToClient clientConection, ArrayList<String> list) throws SQLException{
+	private void InsertToDataBase(Connection connection, ConnectionToClient clientConection, ArrayList<String> list) throws SQLException{
 		
-		
-	
+		try{
+			Statement statement = connection.createStatement();
+			String sql = "insert into file " 
+					   + " (filePath, fileName)"
+					   + "values ('"+list.get(0)+"',"+list.get(1)+"')";
+			statement.executeUpdate(sql);
+			
+			System.out.println("Insert Complete");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
+		
 	@Override
 	protected void serverStarted() {
 		System.out.println("Server listening for connections on port "
