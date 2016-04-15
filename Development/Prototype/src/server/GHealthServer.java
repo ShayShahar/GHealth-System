@@ -70,7 +70,6 @@ public class GHealthServer extends AbstractServer {
 		
 		try{
 			Statement statement = connection.createStatement();
-			String values = "("+list.get(1)+", "+list.get(2)+")";
 			String sql = "INSERT INTO file VALUES ('"+list.get(1)+"', '"+list.get(2)+"')";
 			statement.executeUpdate(sql);
 			
