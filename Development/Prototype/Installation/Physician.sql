@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: localhost    Database: protodb
+-- Host: localhost    Database: test
 -- ------------------------------------------------------
 -- Server version	5.7.12-log
 
@@ -16,27 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `file`
+-- Table structure for table `physician`
 --
 
-DROP TABLE IF EXISTS `file`;
+DROP TABLE IF EXISTS `physician`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `file` (
-  `filePath` varchar(45) NOT NULL,
-  `fileName` varchar(45) NOT NULL,
-  PRIMARY KEY (`filePath`,`fileName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `physician` (
+  `pscName` varchar(45) NOT NULL,
+  `pscSpecialization` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`pscName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='test table for prototype';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `file`
+-- Dumping data for table `physician`
 --
 
-LOCK TABLES `file` WRITE;
-/*!40000 ALTER TABLE `file` DISABLE KEYS */;
-INSERT INTO `file` VALUES ('c:/folder1','file1.xml'),('c:/folder2','file2.doc');
-/*!40000 ALTER TABLE `file` ENABLE KEYS */;
+LOCK TABLES `physician` WRITE;
+/*!40000 ALTER TABLE `physician` DISABLE KEYS */;
+INSERT INTO `physician` VALUES ('Shay Shahar','something'),('Yakir Karandian','Gynecology');
+/*!40000 ALTER TABLE `physician` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-15 14:17:31
+-- Dump completed on 2016-04-19 23:25:03

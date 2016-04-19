@@ -24,14 +24,14 @@ public class GHealthServer extends AbstractServer {
 		
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();		
-			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/protodb?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
 			System.out.println("SQL connection succeed");
 			
 			if (msg instanceof ArrayList) {
 				if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("show") == 0) {
 					this.readFromDataBase(myConn,client);
-				} else if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("insert") == 0) {
-					this.InsertToDataBase(myConn, client, ((ArrayList<String>) msg));
+				} else if (((ArrayList<String>) msg).get(0).compareToIgnoreCase("update") == 0) {
+					this.updateValueInDB(myConn, client, ((ArrayList<String>) msg));
 				}
 			}
 			myConn.close();
@@ -45,14 +45,14 @@ public class GHealthServer extends AbstractServer {
 	}
 	
 	private void readFromDataBase(Connection connection, ConnectionToClient clientConection) throws SQLException{
-		String table = "File Table:\n";
+		String table = "Physician Table:\n";
 		
 		try{
 			Statement statement = connection.createStatement();
-			ResultSet results = statement.executeQuery("SELECT * FROM protodb.file");
+			ResultSet results = statement.executeQuery("SELECT * FROM test.physician;");
 		
 			while (results.next())
-				table+=results.getString(1) + " " + results.getString(2)+"\n";
+				table+=results.getString(1) + ", " + results.getString(2)+"\n";
 				
 			results.close();
 			clientConection.sendToClient(table);
@@ -66,7 +66,33 @@ public class GHealthServer extends AbstractServer {
 		
 	}
 	
-	private void InsertToDataBase(Connection connection, ConnectionToClient clientConection, ArrayList<String> list) throws SQLException{
+	private void updateValueInDB(Connection connection, ConnectionToClient clientConection, ArrayList<String> list) throws SQLException{
+		
+		try{
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("UPDATE test.physician SET pscSpecialization='"
+					+ list.get(3) + "'where pscName='" + list.get(1)+" " + list.get(2) + "';");
+			try{
+				clientConection.sendToClient("Update Complete");
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		catch (SQLException e) {
+			try{
+				clientConection.sendToClient("Update Error");
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}		  
+		}
+	}
+		
+	
+/*	not in use due to requirements changes/
+ * saved for future implementation
+ * private void insertValue(Connection connection, ConnectionToClient clientConection, ArrayList<String> list) throws SQLException{
 		
 		try{
 			Statement statement = connection.createStatement();
@@ -79,8 +105,7 @@ public class GHealthServer extends AbstractServer {
 			System.out.println("Value already exists.");
 		  
 		}
-	}
-		
+	}*/
 	@Override
 	protected void serverStarted() {
 		System.out.println("Server listening for connections on port "
