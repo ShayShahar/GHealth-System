@@ -79,6 +79,15 @@ public class GHealthServer extends AbstractServer {
 				e.printStackTrace();
 			}
 		}
+		catch (IndexOutOfBoundsException exp) {
+			try{
+				clientConection.sendToClient("Invalid Format. please follow the instructions.");
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}		
+		}
+		
 		catch (SQLException e) {
 			try{
 				clientConection.sendToClient("Update Error");

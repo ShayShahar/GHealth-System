@@ -36,7 +36,7 @@ public class GHealthMain {
 				ArrayList input = new ArrayList(Arrays.asList(message.split(" ")));
 				if (((String) input.get(0)).compareToIgnoreCase("update") == 0
 						|| ((String) input.get(0)).compareToIgnoreCase("show") == 0) {
-					clientConnect.handleMessageFromClient(input);
+					clientConnect.handleMessageFromClientMain(input);
 				} else if (((String) input.get(0)).compareToIgnoreCase("exit") == 0) {
 					JOptionPane
 					.showMessageDialog(null,"You are out of the system.","GHealth System", JOptionPane.INFORMATION_MESSAGE);
@@ -66,8 +66,8 @@ public class GHealthMain {
 			JOptionPane
 					.showMessageDialog(
 							null,
-							"Enter \"Show\" to view File table.\nEnter \"Update Physician_Name Physician_Family NEW_SPECIALIZATION\" "
-							+ "for insert new data to Physician table.\nEnter \"Exit\" for termineting.",
+							"Enter \"Show\" to view Physician table.\nEnter \"Update Physician_Name Physician_Family NEW_SPECIALIZATION\" "
+							+ "for update specialization of a specialist.\nEnter \"Exit\" for termineting.",
 							"GHealth System", JOptionPane.INFORMATION_MESSAGE);
 
 			gHealthSystem.readData(); // Wait for console data.

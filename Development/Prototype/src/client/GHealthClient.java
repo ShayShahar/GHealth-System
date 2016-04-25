@@ -16,7 +16,7 @@ public class GHealthClient extends AbstractClient{
 		displayMessage(msg.toString());
 	}
 	
-	public void handleMessageFromClient(Object msg){
+	public void handleMessageFromClientMain(Object msg){
 		try{
 			sendToServer(msg);
 		}
