@@ -1,15 +1,20 @@
 package server;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 
+import client.ClientConnectionController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
+import javafx.util.Pair;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.PasswordField;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
@@ -35,6 +40,25 @@ public class ServerController extends AbstractServer{
 		DB_UserName = usernameTextbox.getText();
 		DB_Password = passField.getText();
 		
+		usernameTextbox.setStyle("-fx-prompt-text-fill: gray");
+		passField.setStyle("-fx-prompt-text-fill: gray");
+		
+		if (usernameTextbox.getText() == null || usernameTextbox.getText().trim().isEmpty() || passField.getText() == null || passField.getText().trim().isEmpty()){
+			displayErrorMessage("Update Error", "Some required fields are missing.");
+			if ((usernameTextbox.getText() == "" || usernameTextbox.getText().trim().isEmpty()) && (passField.getText() == "" || passField.getText().trim().isEmpty()) ){
+				usernameTextbox.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				passField.setStyle("-fx-prompt-text-fill: #ffa0a0");
+			}
+			else if ((usernameTextbox.getText() == "" || usernameTextbox.getText().trim().isEmpty()) && !(passField.getText() == "" || passField.getText().trim().isEmpty())){
+				usernameTextbox.setStyle("-fx-prompt-text-fill: #ffa0a0");
+			}
+			else if (!(usernameTextbox.getText() == "" || usernameTextbox.getText().trim().isEmpty()) && (passField.getText() == "" || passField.getText().trim().isEmpty())){
+				passField.setStyle("-fx-prompt-text-fill: #ffa0a0");
+			}
+			
+			return;
+		}
+		
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();		
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
@@ -43,38 +67,18 @@ public class ServerController extends AbstractServer{
 			try {
 				this.listen();
 			} catch (Exception ex) {
-				
-				Alert alert2 = new Alert(AlertType.ERROR);
-				alert2.setTitle("Server Error");
-				alert2.setHeaderText("Unknown server error");
-				alert2.setContentText("Try re-connect to server");
-				alert2.showAndWait();
-				
+				displayErrorMessage("Unknown server error","Try re-connect to server");
 				return;
 			}
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Connection Succeed");
-			alert.setHeaderText("MySQL Connected Successfully");
-			alert.setContentText("View server information on console.");
-			alert.showAndWait();
-			
+			displayMessage("MySQL Connected Successfully","View server information on console.");
+
 	    Stage stage = (Stage) usernameTextbox.getScene().getWindow();
 	    stage.close();
-			
-			
-
-
-	   
 
 		}	
 		catch(SQLException e){
-			
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Connection Error");
-			alert.setHeaderText("Invalid Username / Password");
-			alert.setContentText("Try again...");
-			alert.showAndWait();
+			displayErrorMessage("Connection Error","Invalid Username / Password");
 		}
 		
 		catch(Exception e){
@@ -186,6 +190,40 @@ public class ServerController extends AbstractServer{
 	@Override
 	protected void serverStopped() {
 		System.out.println("Server has stopped listening for connections.");
+	}
+
+	private void displayMessage (String title, String information){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				URL url = ClientConnectionController.class.getResource("/img/info.png");
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("INFORMATION");
+				dialog.setHeaderText(title);
+				dialog.setContentText(information);
+				dialog.setGraphic(new ImageView(url.toString()));
+				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+				dialog.showAndWait();
+				}
+		});
+	}
+	
+	private void displayErrorMessage (String title, String information){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				URL url = ClientConnectionController.class.getResource("/img/error.png");
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("ERROR");
+				dialog.setHeaderText(title);
+				dialog.setContentText(information);
+				dialog.setGraphic(new ImageView(url.toString()));
+				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+				dialog.showAndWait();
+			}
+		});
 	}
 
 }

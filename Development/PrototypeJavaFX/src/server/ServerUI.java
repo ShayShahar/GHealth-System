@@ -16,6 +16,7 @@ public class ServerUI extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("ServerUI.fxml"));
 		Scene scene = new Scene(root);
+		scene.getStylesheets().add("server/Style.css");
     primaryStage.setTitle("GHealth Server Prototype");
 		primaryStage.setScene(scene);
 		primaryStage.show();		

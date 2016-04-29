@@ -11,13 +11,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.util.Pair;
 import ocsf.client.*;
 
 public class ClientController extends AbstractClient implements Initializable{
@@ -84,11 +86,15 @@ public class ClientController extends AbstractClient implements Initializable{
 
 			@Override
 			public void run() {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("INFORMATION");
-				alert.setHeaderText(title);
-				alert.setContentText(information);
-				alert.showAndWait();					}
+				URL url = ClientConnectionController.class.getResource("/img/info.png");
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("INFORMATION");
+				dialog.setHeaderText(title);
+				dialog.setContentText(information);
+				dialog.setGraphic(new ImageView(url.toString()));
+				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+				dialog.showAndWait();
+				}
 		});
 	}
 	
@@ -97,13 +103,18 @@ public class ClientController extends AbstractClient implements Initializable{
 
 			@Override
 			public void run() {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("ERROR");
-				alert.setHeaderText(title);
-				alert.setContentText(information);
-				alert.showAndWait();					}
+				URL url = ClientConnectionController.class.getResource("/img/error.png");
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("ERROR");
+				dialog.setHeaderText(title);
+				dialog.setContentText(information);
+				dialog.setGraphic(new ImageView(url.toString()));
+				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+				dialog.showAndWait();
+			}
 		});
 	}
+
 	
 	public void onUpdateValueClick(ActionEvent event){
 		
@@ -118,14 +129,14 @@ public class ClientController extends AbstractClient implements Initializable{
 		if (physcNameTxt.getText() == null || physcNameTxt.getText().trim().isEmpty() || newSpeTxt.getText() == null || newSpeTxt.getText().trim().isEmpty()){
 			displayErrorMessage("Update Error", "Some required fields are missing.");
 			if ((physcNameTxt.getText() == "" || physcNameTxt.getText().trim().isEmpty()) && (newSpeTxt.getText() == "" || newSpeTxt.getText().trim().isEmpty()) ){
-				physcNameTxt.setStyle("-fx-prompt-text-fill: red");
-				newSpeTxt.setStyle("-fx-prompt-text-fill: red");
+				physcNameTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				newSpeTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
 			}
 			else if ((physcNameTxt.getText() == "" || physcNameTxt.getText().trim().isEmpty()) && !(newSpeTxt.getText() == "" || newSpeTxt.getText().trim().isEmpty())){
-				physcNameTxt.setStyle("-fx-prompt-text-fill: red");
+				physcNameTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
 			}
 			else if (!(physcNameTxt.getText() == "" || physcNameTxt.getText().trim().isEmpty()) && (newSpeTxt.getText() == "" || newSpeTxt.getText().trim().isEmpty())){
-				newSpeTxt.setStyle("-fx-prompt-text-fill: red");
+				newSpeTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
 			}
 		}
 		else{
@@ -176,7 +187,6 @@ public class ClientController extends AbstractClient implements Initializable{
 			}});
 	}
 
-	
 }
 	
 	

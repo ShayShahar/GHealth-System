@@ -17,6 +17,7 @@ public class ClientConnectionUI extends Application{
 		public void start(Stage primaryStage) throws Exception {
 			Parent root = FXMLLoader.load(getClass().getResource("ClientConnectionUI.fxml"));
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add("client/Style.css");
 	    primaryStage.setTitle("GHealth Client Prototype");
 			primaryStage.setScene(scene);
 			primaryStage.show();		
