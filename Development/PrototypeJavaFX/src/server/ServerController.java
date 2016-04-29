@@ -5,7 +5,6 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 
-import client.ClientConnectionController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -197,7 +196,7 @@ public class ServerController extends AbstractServer{
 
 			@Override
 			public void run() {
-				URL url = ClientConnectionController.class.getResource("/img/info.png");
+				URL url = ServerController.class.getResource("/img/info.png");
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("INFORMATION");
 				dialog.setHeaderText(title);
@@ -214,7 +213,7 @@ public class ServerController extends AbstractServer{
 
 			@Override
 			public void run() {
-				URL url = ClientConnectionController.class.getResource("/img/error.png");
+				URL url = ServerController.class.getResource("/img/error.png");
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("ERROR");
 				dialog.setHeaderText(title);

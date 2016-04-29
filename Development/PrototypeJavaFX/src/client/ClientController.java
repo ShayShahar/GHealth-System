@@ -86,7 +86,7 @@ public class ClientController extends AbstractClient implements Initializable{
 
 			@Override
 			public void run() {
-				URL url = ClientConnectionController.class.getResource("/img/info.png");
+				URL url = ClientController.class.getResource("/img/info.png");
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("INFORMATION");
 				dialog.setHeaderText(title);
@@ -103,7 +103,7 @@ public class ClientController extends AbstractClient implements Initializable{
 
 			@Override
 			public void run() {
-				URL url = ClientConnectionController.class.getResource("/img/error.png");
+				URL url = ClientController.class.getResource("/img/error.png");
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("ERROR");
 				dialog.setHeaderText(title);
