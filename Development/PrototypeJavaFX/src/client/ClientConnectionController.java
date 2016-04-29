@@ -1,6 +1,5 @@
 package client;
 
-import java.net.ConnectException;
 import java.net.URL;
 
 import javafx.application.Platform;
