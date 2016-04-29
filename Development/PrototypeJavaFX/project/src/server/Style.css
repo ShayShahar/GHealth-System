@@ -1,0 +1,13 @@
+.button:hover{
+	 -fx-focus-color: #000000;
+}
+
+.button {
+	 -fx-focus-color: #FFFFFF;
+}
+
+.text-field:focused:hover {
+    -fx-background-color:
+        #e6eac0,
+        #FFFFFF;
+}

@@ -32,7 +32,7 @@ public class ClientController extends AbstractClient implements Initializable{
 	@FXML private TableColumn<Physician, String>  pscSpec;
 
 	public ClientController() throws IOException{
-		super(ClientConnectionController.IP_ADDR, ClientConnectionController.DEFAULT_PORT);
+		super("localhost", 5551);
 		openConnection();
 	}
 

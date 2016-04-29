@@ -23,8 +23,6 @@ public class ClientConnectionController{
 
 	@FXML private TextField ipAddress;
 	final public static int DEFAULT_PORT = 5551;
-	public static String IP_ADDR;
-
 	public static ClientController clientConnect;
 	
 	public void onConnectButtonClick(ActionEvent event)
@@ -41,12 +39,11 @@ public class ClientConnectionController{
 			
 			
 				clientConnect = new ClientController(ipAddress.getText(),DEFAULT_PORT);
-				IP_ADDR = ipAddress.getText();
+
 				displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
 
 		    try {
-		    		URL url_fxml = getClass().getResource("ClientUI.fxml");
-		        FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
+		        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/client/ClientUI.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
 		        stage.setTitle("GHealth Client Prototype");
@@ -64,6 +61,9 @@ public class ClientConnectionController{
 		            ex.printStackTrace();
 		    }
 			
+		}
+		catch (ConnectException e){
+			displayErrorMessage("Connection Failed","Error occured while trying to connect to " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
 		}
 		catch (Exception e){
 			displayErrorMessage("Connection Failed","Error occured while trying to connect to " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
