@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="379.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.ServerController">
+   <children>
+      <TabPane fx:id="tabPane" prefHeight="440.0" prefWidth="486.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="connectionTab" text="Connection">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="486.0">
+                     <children>
+                        <TextField fx:id="usernameTextbox" layoutX="149.0" layoutY="144.0" prefHeight="42.0" prefWidth="200.0" promptText="DB Username" />
+                        <ImageView fx:id="header_img" fitHeight="145.0" fitWidth="375.0" layoutX="100.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="img/header.png" />
+                           </image>
+                        </ImageView>
+                        <PasswordField fx:id="passField" layoutX="149.0" layoutY="206.0" prefHeight="42.0" prefWidth="200.0" promptText="DB Password" />
+                        <Button fx:id="loginBtn" layoutX="201.0" layoutY="271.0" mnemonicParsing="false" onAction="#loginHandler" prefHeight="42.0" prefWidth="95.0" text="Connect">
+                           <effect>
+                              <Glow />
+                           </effect>
+                           <font>
+                              <Font name="Segoe UI" size="12.0" />
+                           </font>
+                        </Button>
+                        <ImageView fx:id="footer_img" fitHeight="150.0" fitWidth="200.0" layoutX="286.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="img/server_footer.png" />
+                           </image>
+                        </ImageView>
+                        <Separator layoutX="149.0" layoutY="331.0" prefWidth="200.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="notificationsTab" text="Notifications">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="header_img1" fitHeight="95.0" fitWidth="227.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="img/header.png" />
+                           </image>
+                        </ImageView>
+                        <TextArea fx:id="notificationsFTxt" editable="false" layoutX="11.0" layoutY="95.0" prefHeight="244.0" prefWidth="466.0" />
+                        <Separator layoutX="143.0" layoutY="368.0" prefWidth="200.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

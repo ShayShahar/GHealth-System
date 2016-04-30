@@ -44,7 +44,7 @@ public class ClientConnectionController{
 				displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
 
 		    try {
-		    		URL url_fxml = getClass().getResource("ClientUI.fxml");
+		    	/*	URL url_fxml = getClass().getResource("ClientUI.fxml");
 		        FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -56,7 +56,8 @@ public class ClientConnectionController{
 		        Scene scene = new Scene(root);
 		        scene.getStylesheets().add("client/Style.css");
             stage.setScene(scene);  
-            stage.show();
+            stage.show();*/
+		    	ClientUI.displayClientWindow();
 		        ((Node)(event.getSource())).getScene().getWindow().hide();
 		      
 		    }catch (Exception ex) {

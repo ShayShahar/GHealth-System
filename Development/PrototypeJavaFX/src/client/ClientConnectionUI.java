@@ -18,9 +18,14 @@ public class ClientConnectionUI extends Application{
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			URL url_32 = getClass().getResource("/img/icon_32.png");
-			URL url_64 = getClass().getResource("/img/icon_64.png");
-			Parent root = FXMLLoader.load(getClass().getResource("/client/ClientConnectionUI.fxml"));
+			displayLoginWindow(primaryStage);
+		}
+		
+		public static void displayLoginWindow(Stage primaryStage) throws Exception{
+			
+			URL url_32 = ClientConnectionUI.class.getResource("/img/icon_32.png");
+			URL url_64 =  ClientConnectionUI.class.getResource("/img/icon_64.png");
+			Parent root = FXMLLoader.load(ClientConnectionUI.class.getResource("/client/ClientConnectionUI.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add("client/Style.css");
 			primaryStage.getIcons().add(new Image(url_32.toString()));
@@ -28,6 +33,7 @@ public class ClientConnectionUI extends Application{
 	    primaryStage.setTitle("GHealth Client Prototype");
 			primaryStage.setScene(scene);
 			primaryStage.show();		
+			
 		}
 
 }

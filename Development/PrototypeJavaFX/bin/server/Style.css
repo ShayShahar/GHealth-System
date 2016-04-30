@@ -1,0 +1,22 @@
+.button:hover{
+	 -fx-focus-color: #000000;
+}
+
+.button {
+	 -fx-focus-color: #FFFFFF;
+}
+
+.text-field:focused:hover {
+    -fx-background-color:
+        #e6eac0,
+        #FFFFFF;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.text-area:focused:hover{
+    -fx-background-color:
+        transparent,
+        transparent;}
