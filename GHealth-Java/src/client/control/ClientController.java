@@ -1,12 +1,14 @@
 package client.control;
 
+import java.io.IOException;
+
 import ocsf.client.AbstractClient;
 
 public class ClientController extends AbstractClient{
 
-	public ClientController(String host, int port) {
+	public ClientController(String host, int port) throws IOException {
 		super(host, port);
-		// TODO Auto-generated constructor stub
+		openConnection();
 	}
 
 	@Override

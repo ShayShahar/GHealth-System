@@ -1,6 +1,7 @@
-package client.boundry;
+package server.boundry;
 
 import java.net.URL;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +13,26 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import server.control.ServerController;
 
-public class LoginUI extends Application{
-	
-	public static void main (String[] args){
-		displayLoginWindow();
+public class ServerUI extends Application{
+		
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		URL url_32 = getClass().getResource("/img/icon_32.png");
+		URL url_64 = getClass().getResource("/img/icon_64.png");
+		Parent root = FXMLLoader.load(getClass().getResource("ServerUI.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage.getIcons().add(new Image(url_32.toString()));
+		primaryStage.getIcons().add(new Image(url_64.toString()));
+		scene.getStylesheets().add("server/boundry/Style.css");
+    primaryStage.setTitle("GHealth Server Prototype");
+		primaryStage.setScene(scene);
+		primaryStage.show();		
 	}
 	
 	public static void displayMessage (String title, String information){
@@ -24,7 +40,7 @@ public class LoginUI extends Application{
 
 			@Override
 			public void run() {
-				URL url = LoginUI.class.getResource("/img/info.png");
+				URL url = ServerController.class.getResource("/img/info.png");
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("INFORMATION");
 				dialog.setHeaderText(title);
@@ -36,13 +52,12 @@ public class LoginUI extends Application{
 		});
 	}
 	
-
 	public static void displayErrorMessage (String title, String information){
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				URL url = LoginUI.class.getResource("/img/error.png");
+				URL url = ServerController.class.getResource("/img/error.png");
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("ERROR");
 				dialog.setHeaderText(title);
@@ -54,23 +69,5 @@ public class LoginUI extends Application{
 		});
 	}
 
-	
-	public static void displayLoginWindow(){
-			launch();
-	}
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		URL url_32 = getClass().getResource("/img/icon_32.png");
-		URL url_64 = getClass().getResource("/img/icon_64.png");
-		Parent root = FXMLLoader.load(getClass().getResource("LoginUI.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add("client/boundry/Style.css");
-		primaryStage.getIcons().add(new Image(url_32.toString()));
-		primaryStage.getIcons().add(new Image(url_64.toString()));
-    primaryStage.setTitle("GHealth Client Connection Setup");
-		primaryStage.setScene(scene);
-		primaryStage.show();				
-	}
-	
 }
