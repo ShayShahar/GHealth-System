@@ -28,7 +28,7 @@
                            </image>
                         </ImageView>
                         <PasswordField fx:id="passField" layoutX="149.0" layoutY="206.0" prefHeight="42.0" prefWidth="200.0" promptText="DB Password" />
-                        <Button fx:id="loginBtn" layoutX="201.0" layoutY="271.0" mnemonicParsing="false" onAction="#loginHandler" prefHeight="42.0" prefWidth="95.0" text="Connect">
+                        <Button fx:id="loginBtn" layoutX="201.0" layoutY="271.0" mnemonicParsing="false" onAction="#onClickConnectButton" prefHeight="42.0" prefWidth="95.0" text="Connect">
                            <effect>
                               <Glow />
                            </effect>

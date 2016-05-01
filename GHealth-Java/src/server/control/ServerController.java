@@ -2,7 +2,6 @@ package server.control;
 
 import java.io.IOException;
 import java.sql.*;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,7 +37,7 @@ public class ServerController extends AbstractServer{
 		super(port);
 	}
 
-	public void loginHandler(ActionEvent event){
+	public void onClickConnectButton(ActionEvent event){
 		
 	if (loginBtn.getText().equals("Connect")){
 		
@@ -119,18 +118,19 @@ public class ServerController extends AbstractServer{
 		Reply reply = null;
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver").newInstance();		
-			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ghealth?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
-			notificationsFTxt.appendText("SQL connection succeed\n");
 			
+				Class.forName("com.mysql.jdbc.Driver").newInstance();		
+				Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ghealth?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
+				notificationsFTxt.appendText("SQL connection succeed\n");
 			
-			myConn.close();
+		    reply = new Reply(DBController.processRequest(requset, myConn), requset.getCommand());
+		    
+				myConn.close();
 
+		}catch(SQLException e){
+			 e.printStackTrace();
 		}
-		catch(SQLException e){
-		 e.printStackTrace();
-		}
-		catch(Exception e){
+		 catch(Exception e){
 			e.printStackTrace();
 		}
 	}
