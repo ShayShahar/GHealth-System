@@ -20,18 +20,12 @@
          </font></Button>
       <ImageView fx:id="footer_img" fitHeight="173.0" fitWidth="294.0" layoutX="106.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../img/header.png" />
+            <Image url="@../../../img/header.png" />
          </image>
       </ImageView>
       <Separator layoutX="153.0" layoutY="312.0" prefWidth="200.0" />
       <TextField fx:id="userNameTxt" layoutX="178.0" layoutY="167.0" prefHeight="31.0" prefWidth="149.0" promptText="Username" />
       <TextField fx:id="passwordTxt" layoutX="178.0" layoutY="209.0" prefHeight="31.0" prefWidth="149.0" promptText="Password" />
       <Separator layoutX="153.0" layoutY="143.0" prefWidth="200.0" />
-      <Button fx:id="settingsBtn" layoutX="423.0" layoutY="333.0" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="36.0" />
-      <ImageView fx:id="settingsImg" fitHeight="25.0" fitWidth="21.0" focusTraversable="true" layoutX="431.0" layoutY="335.0" opacity="0.37" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/settings_icon.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

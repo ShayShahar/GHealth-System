@@ -2,6 +2,7 @@ package client.control;
 
 import java.io.IOException;
 
+import client.boundry.GeneralUI;
 import ocsf.client.AbstractClient;
 
 public class ClientController extends AbstractClient{
@@ -17,4 +18,9 @@ public class ClientController extends AbstractClient{
 		
 	}
 	
+	private GeneralUI uiSelector(Object msg){
+		
+		
+		return null;
+	}
 }

@@ -1,11 +1,14 @@
 package client.boundry;
 
-public class DispatcherUI extends GeneralUI{
+import common.entity.Reply;
+
+public class DispatcherUI implements GeneralUI{
 
 	@Override
-	protected void displayUserWindow() {
+	public void handleReplyMessage(Reply reply) {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

@@ -1,8 +1,8 @@
 package client.control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import client.boundry.ClientConnectionUI;
 import client.boundry.LoginUI;
 import common.entity.*;
 import common.enums.Command;
@@ -15,37 +15,10 @@ public class UserController{
 	
 	
 	//FXML variables
-	@FXML private TextField ipAddress;
-	@FXML private TextField port;
 	@FXML private TextField userNameTxt;
 	@FXML private TextField passwordTxt;
 
-	
-	//Class variables
-	public static int DEFAULT_PORT = 5551;
-	public static String DEFAULT_IP = "localhost";
-	public static ClientController clientConnect;
-	
-	public UserController(){
-		try {
-			clientConnect = new ClientController(DEFAULT_IP, DEFAULT_PORT);
-		} catch (IOException e) {
-			LoginUI.displayErrorMessage("Connection Failed","Error occured while trying to connect to " + DEFAULT_IP + " on PORT " + DEFAULT_PORT);
-			e.printStackTrace();
-		}
-	}
-	
 
-	//open connection settings UI
-	public void onSettingsButtonClick(ActionEvent event){
-
-		try {
-			ClientConnectionUI.displayWindow();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 	public void onLoginButtonClick(ActionEvent event){
 		
@@ -53,7 +26,7 @@ public class UserController{
 		passwordTxt.setStyle("-fx-prompt-text-fill: gray");
 
 		if (userNameTxt.getText() == null || userNameTxt.getText().trim().isEmpty() || passwordTxt.getText() == null || passwordTxt.getText().trim().isEmpty() ){
-			LoginUI.displayErrorMessage("Login Failed", "Some required fields are missing.");
+		//	LoginUI.displayErrorMessage("Login Failed", "Some required fields are missing.");
 			
 			if (userNameTxt.getText() == null || userNameTxt.getText().trim().isEmpty()){
 				userNameTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
@@ -66,24 +39,23 @@ public class UserController{
 			return;
 		}
 		
-		
 		validateUser(userNameTxt.getText(),passwordTxt.getText());
 		
 	}
 	
-	private boolean validateUser(String username, String password) {
+	private void validateUser(String username, String password) {
 		
-		Request request = new Request(Command.LOGIN, username, password);
+		ArrayList<String> userDetails = new ArrayList<String>();
+		userDetails.add(username);
+		userDetails.add(password);
+		Request request = new Request(Command.LOGIN, userDetails);
 
 		try {
 			clientConnect.sendToServer(request);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return false;
-	}
+			}
 	
 	
 	public void onConnectButtonClick(ActionEvent event) {
@@ -93,7 +65,7 @@ public class UserController{
 			port.setStyle("-fx-prompt-text-fill: gray");
 
 			if (ipAddress.getText() == null || ipAddress.getText().trim().isEmpty() || port.getText() == null || port.getText().trim().isEmpty() ){
-				LoginUI.displayErrorMessage("Connection Error", "Some required fields are missing.");
+		//		LoginUI.displayErrorMessage("Connection Error", "Some required fields are missing.");
 				
 				if (ipAddress.getText() == null || ipAddress.getText().trim().isEmpty()){
 					ipAddress.setStyle("-fx-prompt-text-fill: #ffa0a0");
@@ -107,7 +79,7 @@ public class UserController{
 			}
 
 				clientConnect = new ClientController(ipAddress.getText(),Integer.parseInt(port.getText()));
-				LoginUI.displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + port.getText());
+		//		LoginUI.displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + port.getText());
 
 		    try {
 		    		LoginUI.displayLoginWindow();
@@ -119,7 +91,7 @@ public class UserController{
 			
 		}
 		catch (Exception e){
-			LoginUI.displayErrorMessage("Connection Failed","Error occured while trying to connect to " + ipAddress.getText() + " on PORT " + port);
+			//LoginUI.displayErrorMessage("Connection Failed","Error occured while trying to connect to " + ipAddress.getText() + " on PORT " + port);
 		}
 	  
 	}

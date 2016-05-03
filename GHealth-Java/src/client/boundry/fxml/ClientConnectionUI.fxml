@@ -11,21 +11,20 @@
 
 <AnchorPane prefHeight="379.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ClientConnectionController">
    <children>
-      <Button fx:id="connectBtn" layoutX="189.0" layoutY="261.0" mnemonicParsing="false" onAction="#onConnectButtonClick" prefHeight="42.0" prefWidth="95.0" text="Connect">
+      <Button fx:id="connectBtn" layoutX="196.0" layoutY="233.0" mnemonicParsing="false" onAction="#onConnectButtonClick" prefHeight="42.0" prefWidth="95.0" text="Connect">
          <effect>
             <Glow />
          </effect>
          <font>
             <Font name="Segoe UI" size="12.0" />
          </font></Button>
-      <TextField fx:id="ipAddress" layoutX="154.0" layoutY="160.0" prefHeight="30.0" prefWidth="180.0" promptText="IP Address" />
-      <Separator layoutX="144.0" layoutY="322.0" prefWidth="200.0" />
-      <ImageView fitHeight="148.0" fitWidth="263.0" layoutX="112.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="ipAddress" layoutX="143.0" layoutY="169.0" prefHeight="42.0" prefWidth="200.0" promptText="IP Address" />
+      <Separator layoutX="143.0" layoutY="309.0" prefWidth="200.0" />
+      <ImageView fitHeight="130.0" fitWidth="250.0" layoutX="124.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../img/header.png" />
+            <Image url="@../../../img/header.png" />
          </image>
       </ImageView>
-      <Separator layoutX="143.0" layoutY="134.0" prefWidth="200.0" />
-      <TextField fx:id="port" layoutX="153.0" layoutY="212.0" prefHeight="30.0" prefWidth="180.0" promptText="Port" />
+      <Separator layoutX="143.0" layoutY="129.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

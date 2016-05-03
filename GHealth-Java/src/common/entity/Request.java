@@ -1,30 +1,31 @@
 package common.entity;
 
+import java.util.ArrayList;
+
 import common.enums.*;
 
 public class Request{
 
     private final Command command; 
 
-    private  String userID; 
-
+    private ArrayList<String> list = null;
     private Object entity = null, entity2 = null; 
 
-    public Request(Command command, String userID, Object entity, Object entity2) {
+    public Request(Command command, ArrayList<String> list, Object entity, Object entity2) {
 				this.command = command;
-				this.userID = userID;
+				this.list = list;
 				this.entity = entity;
 				this.entity2 = entity2;
     }
 
-    public Request(Command command, String userID) {
+    public Request(Command command, ArrayList<String> list) {
 	    	this.command = command;
-	    	this.userID = userID;
+	    	this.list = list;
     }
 
-    public Request(Command command, String userID, Object entity) {
+    public Request(Command command, ArrayList<String> list, Object entity) {
 				this.command = command;
-				this.userID = userID;
+				this.list = list;
 				this.entity = entity;
 		}
 
@@ -49,13 +50,12 @@ public class Request{
     public void setEntity2(Object entity2) {
     		this.entity2 = entity2;
     }
-
+    
+    public ArrayList<String> getList(){
+    	return list;
+    }
+   
     public Command getCommand() {
     		return command;
     }
-
-    public String getUserID() {
-    		return userID;
-    }
-
 }

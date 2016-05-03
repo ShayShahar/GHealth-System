@@ -4,8 +4,8 @@ import common.enums.*;
 
 public class Reply {
 
-    private Object result;
-    private Command command;
+    private final Object result;
+    private final Command command;
 
 
     public Reply(Object result, Command command) {

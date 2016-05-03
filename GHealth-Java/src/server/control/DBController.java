@@ -2,7 +2,7 @@ package server.control;
 
 import java.sql.Connection;
 import common.entity.Request;
-import server.control.database.LoginDB;
+import server.control.database.*;
 
 public class DBController {
 
@@ -16,7 +16,7 @@ public class DBController {
 		}
 		
 		case LOGOUT:{
-		//	return LogoutDB.handleMessage(request, connection) ;
+			return LogoutDB.handleMessage(request, connection) ;
 		}
 		
 		}

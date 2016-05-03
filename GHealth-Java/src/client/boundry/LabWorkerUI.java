@@ -1,9 +1,11 @@
 package client.boundry;
 
-public class LabWorkerUI extends GeneralUI{
+import common.entity.Reply;
+
+public class LabWorkerUI implements GeneralUI{
 
 	@Override
-	protected void displayUserWindow() {
+	public void handleReplyMessage(Reply reply) {
 		// TODO Auto-generated method stub
 		
 	}
