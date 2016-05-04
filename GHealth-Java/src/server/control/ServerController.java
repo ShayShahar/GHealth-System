@@ -111,10 +111,9 @@ public class ServerController extends AbstractServer{
  }
 
 	@Override
-	@SuppressWarnings("unchecked")
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
 		
-		Request requset = (Request) msg;
+		Request request = (Request) msg;
 		Reply reply = null;
 		
 		try{
@@ -123,9 +122,14 @@ public class ServerController extends AbstractServer{
 				Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ghealth?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
 				notificationsFTxt.appendText("SQL connection succeed\n");
 			
-		    reply = new Reply(DBController.processRequest(requset, myConn), requset.getCommand());
+		    reply = new Reply(DBController.processRequest(request, myConn), request.getCommand(),request.getUser());
 		    
-				myConn.close();
+			try {
+			    client.sendToClient(reply);
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}				
+			myConn.close();
 
 		}catch(SQLException e){
 			 e.printStackTrace();

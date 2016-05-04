@@ -11,15 +11,16 @@ public class LoginDB {
     	
     	try{
     		Statement stmnt = connection.createStatement();
-    		ResultSet result = stmnt.executeQuery("SELECT * FROM ghealth.users WHERE username=" + request.getList().get(0));
+    		ResultSet result = stmnt.executeQuery("SELECT * FROM ghealth.users WHERE username='" + request.getList().get(0) + "'");
     		
     		if (!result.next())
     			return Result.WRONG_USER;
     		
     		String password = result.getString(2);
     		int status = result.getInt(3);
+    		String privilege = result.getString(4);
     		
-    		if (password != request.getList().get(1))
+    		if (password.equals(request.getList().get(1)) == false)
     			return Result.WRONG_PASSWORD;
     		
     		if (status == 1)
@@ -27,8 +28,9 @@ public class LoginDB {
     		
 			  stmnt.executeUpdate("UPDATE ghealth.users SET status=1 WHERE username='"+request.getList().get(0)+"'");
 			  result.close();
-			 
-			  return Result.OK;
+
+			  
+			  return privilege;
 			  
     	} catch (SQLException e) {
 					e.printStackTrace();

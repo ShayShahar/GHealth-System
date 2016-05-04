@@ -35,8 +35,9 @@ public class ClientConnectionController{
 				ClientConnectionUI.displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
 
 		    try {
-		    		LoginUI.displayUserWindow();
-		        ((Node)(event.getSource())).getScene().getWindow().hide();
+		    	LoginUI login = new LoginUI();
+		    	login.displayLoginWindow();
+		    	((Node)(event.getSource())).getScene().getWindow().hide();
 		      
 		    }catch (Exception ex) {
 		            ex.printStackTrace();

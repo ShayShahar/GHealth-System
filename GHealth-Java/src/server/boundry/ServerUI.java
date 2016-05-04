@@ -30,7 +30,7 @@ public class ServerUI extends Application{
 		primaryStage.getIcons().add(new Image(url_32.toString()));
 		primaryStage.getIcons().add(new Image(url_64.toString()));
 		scene.getStylesheets().add("server/boundry/Style.css");
-    primaryStage.setTitle("GHealth Server Prototype");
+    primaryStage.setTitle("GHealth Server Connection");
 		primaryStage.setScene(scene);
 		primaryStage.show();		
 	}

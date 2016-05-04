@@ -46,6 +46,5 @@ public interface GeneralUI {
 		});
 	}
 	
-	void handleReplyMessage(Reply reply);
 
 }

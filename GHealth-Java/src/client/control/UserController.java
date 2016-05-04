@@ -1,45 +1,52 @@
 package client.control;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
-
-import client.boundry.LoginUI;
+import client.boundry.*;
 import common.entity.*;
 import common.enums.Command;
+import common.enums.Result;
+import common.enums.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.util.Pair;
+
+
 
 public class UserController{
-	
-	
+		
 	//FXML variables
 	@FXML private TextField userNameTxt;
-	@FXML private TextField passwordTxt;
-
+	@FXML private PasswordField passwordFld;
 
 	
 	public void onLoginButtonClick(ActionEvent event){
 		
 		userNameTxt.setStyle("-fx-prompt-text-fill: gray");
-		passwordTxt.setStyle("-fx-prompt-text-fill: gray");
+		passwordFld.setStyle("-fx-prompt-text-fill: gray");
 
-		if (userNameTxt.getText() == null || userNameTxt.getText().trim().isEmpty() || passwordTxt.getText() == null || passwordTxt.getText().trim().isEmpty() ){
-		//	LoginUI.displayErrorMessage("Login Failed", "Some required fields are missing.");
+		if (userNameTxt.getText() == null || userNameTxt.getText().trim().isEmpty() || passwordFld.getText() == null || passwordFld.getText().trim().isEmpty() ){
+				displayErrorMessage("Login Failed", "Some required fields are missing.");
 			
 			if (userNameTxt.getText() == null || userNameTxt.getText().trim().isEmpty()){
 				userNameTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
 			}
 			
-			if (passwordTxt.getText() == null || passwordTxt.getText().trim().isEmpty()){
-				passwordTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
+			if (passwordFld.getText() == null || passwordFld.getText().trim().isEmpty()){
+				passwordFld.setStyle("-fx-prompt-text-fill: #ffa0a0");
 			}
 			
 			return;
 		}
 		
-		validateUser(userNameTxt.getText(),passwordTxt.getText());
+		validateUser(userNameTxt.getText(),passwordFld.getText());
 		
 	}
 	
@@ -48,52 +55,104 @@ public class UserController{
 		ArrayList<String> userDetails = new ArrayList<String>();
 		userDetails.add(username);
 		userDetails.add(password);
-		Request request = new Request(Command.LOGIN, userDetails);
+		Request request = new Request(Command.LOGIN, userDetails,User.LoginController);
 
 		try {
-			clientConnect.sendToServer(request);
+			ClientConnectionController.clientConnect.sendToServer(request);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-			}
-	
-	
-	public void onConnectButtonClick(ActionEvent event) {
-		try{
-			
-			ipAddress.setStyle("-fx-prompt-text-fill: gray");
-			port.setStyle("-fx-prompt-text-fill: gray");
-
-			if (ipAddress.getText() == null || ipAddress.getText().trim().isEmpty() || port.getText() == null || port.getText().trim().isEmpty() ){
-		//		LoginUI.displayErrorMessage("Connection Error", "Some required fields are missing.");
-				
-				if (ipAddress.getText() == null || ipAddress.getText().trim().isEmpty()){
-					ipAddress.setStyle("-fx-prompt-text-fill: #ffa0a0");
-				}
-				
-				if (port.getText() == null || port.getText().trim().isEmpty()){
-					port.setStyle("-fx-prompt-text-fill: #ffa0a0");
-				}
-				
-				return;
-			}
-
-				clientConnect = new ClientController(ipAddress.getText(),Integer.parseInt(port.getText()));
-		//		LoginUI.displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + port.getText());
-
-		    try {
-		    		LoginUI.displayLoginWindow();
-		        ((Node)(event.getSource())).getScene().getWindow().hide();
-		      
-		    }catch (Exception ex) {
-		            ex.printStackTrace();
-		    }
-			
-		}
-		catch (Exception e){
-			//LoginUI.displayErrorMessage("Connection Failed","Error occured while trying to connect to " + ipAddress.getText() + " on PORT " + port);
-		}
-	  
 	}
+	
+	public static void handleReply(Reply reply){
+		System.out.println("324324");
+		
+		Object result =  reply.getResult();
+		if (result instanceof String){
+			
+			result = (String) result;
+			
+			
+				if (((String) result).equalsIgnoreCase("Dispatcher")){
+					
+					
+						LoginUI.HideWindow();
+						DispatcherUI dispatcher = new DispatcherUI();
+						dispatcher.displayDispatcherWindow();
+						
+						displayMessage("Login success", "Successfuly logged to G-Health System.");
+
+				}
+				
+				else if (((String) result).equalsIgnoreCase("Specialist")){
+					
+					LoginUI.HideWindow();
+					SpecialistUI specialist = new SpecialistUI();
+					specialist.displaySpecialistWindow();
+					
+					displayMessage("Login success", "Successfuly logged to G-Health System.");
+				}
+
+		}
+				
+		else if (result instanceof Result){
+					
+			result = (Result)result;
+					
+			if ((Result)result == Result.WRONG_USER){
+					displayErrorMessage ("Invalid username", "Check your input and try again.");
+					return;
+			}
+			else if ((Result)result == Result.WRONG_PASSWORD){
+					displayErrorMessage ("Wrong password", "You have entered a wrong password, try again.");
+					return;
+			}
+			else if ((Result)result == Result.ALREADY_LOGIN){
+					displayErrorMessage ("Login Error", "User already logged in.");
+					return;
+			}
+			else if ((Result)result  == Result.ERROR){
+					displayErrorMessage ("Login Error", "Error occured while tried to log-in.");
+					return;
+			}
+		}
+							
+	}
+	
+	public static void displayMessage (String title, String information){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				URL url = LoginUI.class.getResource("/img/info.png");
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("INFORMATION");
+				dialog.setHeaderText(title);
+				dialog.setContentText(information);
+				dialog.setGraphic(new ImageView(url.toString()));
+				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+				dialog.showAndWait();
+				}
+		});
+	}
+	
+	public static void displayErrorMessage (String title, String information){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				URL url = LoginUI.class.getResource("/img/error.png");
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("ERROR");
+				dialog.setHeaderText(title);
+				dialog.setContentText(information);
+				dialog.setGraphic(new ImageView(url.toString()));
+				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+				dialog.showAndWait();
+			}
+		});
+	}
+	
+	
 	
 }

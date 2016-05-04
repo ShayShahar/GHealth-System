@@ -35,15 +35,11 @@ public class ClientConnectionUI extends Application implements GeneralUI{
 			primaryStage.getIcons().add(new Image(url_64.toString()));
 	    primaryStage.setTitle("GHealth Client Connection");
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();		
 			
 		}
 
-		@Override
-		public void handleReplyMessage(Reply reply) {
-			// TODO Auto-generated method stub
-			
-		}
 
 		public static void displayErrorMessage(String title, String information) {
 			Platform.runLater(new Runnable() {
