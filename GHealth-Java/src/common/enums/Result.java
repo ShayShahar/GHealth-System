@@ -8,5 +8,6 @@ public enum Result {
     WRONG_USER,
     WRONG_PASSWORD,
     ALREADY_LOGIN,
-    ERROR;
+    ERROR,
+    LOGGEDOUT;
 }

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class SpecialistUI implements GeneralUI{
 	
-	private Stage mainStage;
+	private static Stage mainStage;
 
 
 	public void displaySpecialistWindow(){
@@ -49,7 +49,7 @@ public class SpecialistUI implements GeneralUI{
 	}
 	
 	
-	public void HideWindow(){
+	public static void hideWindow(){
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -59,12 +59,22 @@ public class SpecialistUI implements GeneralUI{
 			});
 	}
 	
-	public void ShowWindow(){
+	public static void showWindow(){
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 					mainStage.show();	
+			}
+			});
+	}
+	
+	public static void closeWindow(){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+					mainStage.close();
 			}
 			});
 	}

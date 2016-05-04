@@ -14,29 +14,20 @@ public class ClientController extends AbstractClient{
 
 	@Override
 	protected void handleMessageFromServer(Object msg) {
-
-		System.out.println("IN handleMessageFromServer ");
-
 		ControllerSelector(msg);
-		
 	}
 	
 	private void ControllerSelector(Object msg){
 		
 		Reply reply = (Reply) msg;
 		
-		System.out.println("IN ControllerSelector ");
-		
 		if (reply.getUser() == User.LoginController){
-			System.out.println("IN FIRST IF");
 				UserController.handleReply(reply);
 		}
-		else if (reply.getUser() == User.LogoutController){
-			//dosomething...
+		else if (reply.getUser() == User.ClientDetailsController){
+			ClientDetailsController.handleReply(reply);
 		}
 		
-		//UserController.handleReply(reply);
-
 
 	}
 }

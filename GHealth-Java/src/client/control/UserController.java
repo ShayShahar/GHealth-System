@@ -25,10 +25,11 @@ public class UserController{
 	//FXML variables
 	@FXML private TextField userNameTxt;
 	@FXML private PasswordField passwordFld;
-
+	private static String username;
+	private static String privilege;
 	
 	public void onLoginButtonClick(ActionEvent event){
-		
+				
 		userNameTxt.setStyle("-fx-prompt-text-fill: gray");
 		passwordFld.setStyle("-fx-prompt-text-fill: gray");
 
@@ -45,7 +46,8 @@ public class UserController{
 			
 			return;
 		}
-		
+
+		username = userNameTxt.getText();
 		validateUser(userNameTxt.getText(),passwordFld.getText());
 		
 	}
@@ -65,18 +67,18 @@ public class UserController{
 	}
 	
 	public static void handleReply(Reply reply){
-		System.out.println("324324");
 		
 		Object result =  reply.getResult();
 		if (result instanceof String){
 			
 			result = (String) result;
 			
+			System.out.println("sdfkljhdsfjkhsdjf");
 			
 				if (((String) result).equalsIgnoreCase("Dispatcher")){
 					
-					
-						LoginUI.HideWindow();
+						privilege = "Dispatcher";
+						LoginUI.hideWindow();
 						DispatcherUI dispatcher = new DispatcherUI();
 						dispatcher.displayDispatcherWindow();
 						
@@ -86,7 +88,8 @@ public class UserController{
 				
 				else if (((String) result).equalsIgnoreCase("Specialist")){
 					
-					LoginUI.HideWindow();
+					privilege = "Specialist";
+					LoginUI.hideWindow();
 					SpecialistUI specialist = new SpecialistUI();
 					specialist.displaySpecialistWindow();
 					
@@ -137,6 +140,7 @@ public class UserController{
 	}
 	
 	public static void displayErrorMessage (String title, String information){
+		
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -153,6 +157,12 @@ public class UserController{
 		});
 	}
 	
+	public static String getUser(){
+		return username;
+	}
 	
+	public static String getPrivilege(){
+		return privilege;
+	}
 	
 }

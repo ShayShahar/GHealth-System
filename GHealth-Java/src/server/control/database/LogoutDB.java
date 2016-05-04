@@ -3,11 +3,24 @@ package server.control.database;
 import java.sql.*;
 
 import common.entity.Request;
+import common.enums.Result;
 
 public class LogoutDB {
 
     public static Object handleMessage (Request request, Connection connection) {
-    	return null;
+
+			Statement stmt;
+			try {
+				stmt = connection.createStatement();
+				stmt.executeUpdate("UPDATE ghealth.users SET status=0 WHERE username='" + request.getList().get(0) + "'");
+				
+				return Result.LOGGEDOUT;
+	
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				return Result.ERROR;
+			}
+	    	
     }
 
 	

@@ -3,7 +3,6 @@ package client.boundry;
 import java.net.URL;
 
 import client.control.ClientConnectionController;
-import common.entity.Reply;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,11 +30,19 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>
-            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Cancel Appointment" />
+            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Cancel Appointment">
+               <effect>
+                  <Reflection topOpacity="0.26" />
+               </effect></Button>
          </children>
          <padding>
             <Insets bottom="5.0" top="5.0" />
          </padding>
       </VBox>
+      <Button fx:id="dispLogoutBtn" layoutX="20.0" layoutY="542.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout">
+         <effect>
+            <Reflection />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

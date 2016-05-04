@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class DispatcherUI implements GeneralUI{
 	
-	private Stage mainStage;
+	private static Stage mainStage;
 
 
 	public void displayDispatcherWindow(){
@@ -38,6 +38,7 @@ public class DispatcherUI implements GeneralUI{
 					      stage.setResizable(false);
 					      stage.show();	
 					      mainStage = stage;
+					    
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -49,7 +50,7 @@ public class DispatcherUI implements GeneralUI{
 	}
 	
 	
-	public void HideWindow(){
+	public static void hideWindow(){
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -59,7 +60,7 @@ public class DispatcherUI implements GeneralUI{
 			});
 	}
 	
-	public void ShowWindow(){
+	public static void showWindow(){
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -69,4 +70,13 @@ public class DispatcherUI implements GeneralUI{
 			});
 	}
 	
+	public static void closeWindow(){
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+					mainStage.close();
+			}
+			});
+	}
 }
