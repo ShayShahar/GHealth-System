@@ -16,19 +16,9 @@ public class ClientController extends AbstractClient{
 
 	@Override
 	protected void handleMessageFromServer(Object msg) {
-		ControllerSelector(msg);
-	}
-	
-	private void ControllerSelector(Object msg){
-		
 		Reply reply = (Reply) msg;
-		
-		if (reply.getUser() == User.LoginController){
-			controller.handleReply(reply);
-		}
-		else if (reply.getUser() == User.ClientDetailsController){			
-			controller.handleReply(reply);
-		}
-
+		controller.handleReply(reply);
 	}
+
+	
 }
