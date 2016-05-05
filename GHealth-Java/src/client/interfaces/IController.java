@@ -1,4 +1,4 @@
-package client.control;
+package client.interfaces;
 
 import common.entity.Reply;
 

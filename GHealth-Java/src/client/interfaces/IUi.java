@@ -1,14 +1,15 @@
-package client.boundry;
+package client.interfaces;
 
 import java.net.URL;
 
+import client.boundry.LoginUI;
 import javafx.application.Platform;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
-public interface GeneralUI {
+public interface IUi {
 
 	//decalre static methods in interface -> JAVA 8 only
 	public static void displayMessage (String title, String information){

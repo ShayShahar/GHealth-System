@@ -3,6 +3,7 @@ package client.boundry;
 import java.io.IOException;
 import java.net.URL;
 
+import client.interfaces.IUi;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class SpecialistUI implements GeneralUI{
+public class SpecialistUI implements IUi{
 	
 	private static Stage mainStage;
 

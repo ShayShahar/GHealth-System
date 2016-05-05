@@ -2,6 +2,7 @@ package client.boundry;
 
 import java.net.URL;
 
+import client.interfaces.IUi;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class LoginUI implements GeneralUI{
+public class LoginUI implements IUi{
 	
 	private static Stage mainStage;
 

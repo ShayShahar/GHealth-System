@@ -1,8 +1,9 @@
 package client.control;
 
 import java.io.IOException;
+
+import client.interfaces.IController;
 import common.entity.Reply;
-import common.enums.User;
 import ocsf.client.AbstractClient;
 
 public class ClientController extends AbstractClient{

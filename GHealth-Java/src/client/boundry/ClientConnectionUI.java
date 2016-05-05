@@ -3,6 +3,7 @@ package client.boundry;
 import java.net.URL;
 
 import client.control.ClientConnectionController;
+import client.interfaces.IUi;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 
 
-public class ClientConnectionUI extends Application implements GeneralUI{
+public class ClientConnectionUI extends Application implements IUi{
 
 		public static void main(String[] args) {
 			launch(args);

@@ -1,6 +1,8 @@
 package client.boundry;
 
-public class BranchManagerUI implements GeneralUI{
+import client.interfaces.IUi;
+
+public class BranchManagerUI implements IUi{
 
 
 	

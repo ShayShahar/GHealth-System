@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import client.boundry.DispatcherUI;
 import client.boundry.LoginUI;
 import client.boundry.SpecialistUI;
+import client.interfaces.IController;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;

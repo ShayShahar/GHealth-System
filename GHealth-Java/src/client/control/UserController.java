@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import client.boundry.*;
+import client.interfaces.IController;
 import common.entity.*;
 import common.enums.Command;
 import common.enums.Result;
