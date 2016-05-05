@@ -122,7 +122,7 @@ public class ServerController extends AbstractServer{
 				Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ghealth?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
 				notificationsFTxt.appendText("SQL connection succeed\n");
 			
-		    reply = new Reply(DBController.processRequest(request, myConn), request.getCommand(),request.getUser());
+		    reply = new Reply(DBController.processRequest(request, myConn), request.getCommand());
 		    
 			try {
 			    client.sendToClient(reply);

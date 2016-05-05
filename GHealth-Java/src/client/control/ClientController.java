@@ -1,14 +1,18 @@
 package client.control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import client.interfaces.IController;
+import client.interfaces.IUi;
 import common.entity.Reply;
 import ocsf.client.AbstractClient;
 
 public class ClientController extends AbstractClient{
 
 	public IController controller;
+	public ArrayList<IUi> userInterface = new ArrayList<IUi>();
+
 	
 	public ClientController(String host, int port) throws IOException {
 		super(host, port);

@@ -11,7 +11,6 @@ import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
 import common.enums.Result;
-import common.enums.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +36,7 @@ public class ClientDetailsController implements IController{
 		ArrayList<String> username = new ArrayList<String>();
 		username.add(UserController.getUser());
 	
-		Request request = new Request(Command.LOGOUT, username, User.ClientDetailsController);
+		Request request = new Request(Command.LOGOUT, username);
 
 		try {
 			ClientConnectionController.clientConnect.controller = this;
@@ -68,7 +67,7 @@ public class ClientDetailsController implements IController{
 
 		client.add(clientID);
 		
-		Request request = new Request(Command.FIND_CLIENT, client, User.ClientDetailsController);
+		Request request = new Request(Command.FIND_CLIENT, client);
 
 		try {
 			ClientConnectionController.clientConnect.controller = this;
@@ -96,15 +95,16 @@ public class ClientDetailsController implements IController{
 				}
 				else if ((Result)result == Result.LOGGEDOUT){
 					if (UserController.getUser().equals("Dispatcher")){
-						DispatcherUI.closeWindow();
+						DispatcherUI.hideWindow();
 					}
 					
 					else if (UserController.getUser().equals("Specialist")){
-						SpecialistUI.closeWindow();
+						SpecialistUI.hideWindow();
 					}
 					
 					displayMessage ("Logged out", "Your user is logged out from Ghealth system.");
 			    	LoginUI login = new LoginUI();
+				   	ClientConnectionController.clientConnect.userInterface = login;
 			    	login.displayLoginWindow();
 			    	return;
 				}

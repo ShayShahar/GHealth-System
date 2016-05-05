@@ -10,12 +10,10 @@ public class Reply implements Serializable{
 		
 		private final Object result;
     private final Command command;
-    private final User user;
 
-    public Reply(Object result, Command command, User user) {
+    public Reply(Object result, Command command) {
     	this.result = result;
     	this.command = command;
-    	this.user = user;
 
     }
     
@@ -27,8 +25,5 @@ public class Reply implements Serializable{
     	return this.command;
     }
     
-    public User getUser(){
-    	return this.user;
-    }
     
 }

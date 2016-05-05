@@ -1,7 +1,6 @@
 package client.control;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import client.boundry.*;
@@ -9,7 +8,6 @@ import client.interfaces.IController;
 import common.entity.*;
 import common.enums.Command;
 import common.enums.Result;
-import common.enums.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,12 +20,9 @@ import javafx.util.Pair;
 
 
 
-public class UserController implements IController, Serializable{
+public class UserController implements IController{
 		
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	//FXML variables
 	@FXML private TextField userNameTxt;
 	@FXML private PasswordField passwordFld;
@@ -63,7 +58,7 @@ public class UserController implements IController, Serializable{
 		ArrayList<String> userDetails = new ArrayList<String>();
 		userDetails.add(username);
 		userDetails.add(password);
-		Request request = new Request(Command.LOGIN, userDetails,User.LoginController);
+		Request request = new Request(Command.LOGIN, userDetails);
 
 		try {
 			ClientConnectionController.clientConnect.controller = this;
@@ -87,7 +82,8 @@ public class UserController implements IController, Serializable{
 						LoginUI.hideWindow();
 						DispatcherUI dispatcher = new DispatcherUI();
 						dispatcher.displayDispatcherWindow();
-						
+					  ClientConnectionController.clientConnect.userInterface = dispatcher;
+
 						displayMessage("Login success", "Successfuly logged to G-Health System.");
 
 				}
@@ -98,16 +94,18 @@ public class UserController implements IController, Serializable{
 					LoginUI.hideWindow();
 					SpecialistUI specialist = new SpecialistUI();
 					specialist.displaySpecialistWindow();
+					ClientConnectionController.clientConnect.userInterface = specialist;
 					
 					displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
 				
-                else if (((String) result).equalsIgnoreCase("LabWorker")){
+        else if (((String) result).equalsIgnoreCase("LabWorker")){
 					
 					privilege = "LabWorker";
 					LoginUI.hideWindow();
 					LabWorkerUI LabWorker = new LabWorkerUI();
 					LabWorker.displayLabWorkerWindow();
+					ClientConnectionController.clientConnect.userInterface = LabWorker;
 					
 					displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
