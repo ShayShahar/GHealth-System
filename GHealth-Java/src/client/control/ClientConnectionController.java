@@ -33,7 +33,8 @@ public class ClientConnectionController{
 			IP_ADDR = ipAddress.getText();
 		  try {
 		    	LoginUI login = new LoginUI();
-		    	login.displayLoginWindow();
+		    	login.displayUserWindow();
+				  ClientConnectionController.clientConnect.userInterface.add(login);
 		    	((Node)(event.getSource())).getScene().getWindow().hide();
 		    	ClientConnectionUI.displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
 		    	

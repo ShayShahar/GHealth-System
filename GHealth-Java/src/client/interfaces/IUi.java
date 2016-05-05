@@ -4,6 +4,7 @@ package client.interfaces;
 
 public interface IUi {
 
+	abstract void displayUserWindow();
 	abstract void hideWindow();
 	abstract void showWindow();
 	abstract void displayErrorMessage();

@@ -14,19 +14,56 @@ import javafx.stage.Stage;
 public class DispatcherUI implements IUi{
 	
 	private static Stage mainStage;
+	
+	@Override
+	public void hideWindow() {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+					mainStage.hide();
+			}
+			});		
+	}
 
 
-	public void displayDispatcherWindow(){
+	@Override
+	public void showWindow() {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+					mainStage.show();	
+			}
+			});		
+	}
+
+
+	@Override
+	public void displayErrorMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void displayMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayUserWindow() {
 					
 			Platform.runLater(new Runnable() {
-
+			
 				@Override
 				public void run() {
 					URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/DispatcherUI.fxml");
-				      FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
-				      Parent root;
+				  FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
+				  Parent root;
 					try {
-						root = (Parent) fxmlLoader.load();
+								root = (Parent) fxmlLoader.load();
 					      Stage stage = new Stage();
 					      stage.setTitle("Dispatcher Menu");
 								URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
@@ -44,40 +81,8 @@ public class DispatcherUI implements IUi{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
+			
 				}
-		});
-
-	}
-	
-	
-	public static void hideWindow(){
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-					mainStage.hide();
-			}
-			});
-	}
-	
-	public static void showWindow(){
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-					mainStage.show();	
-			}
-			});
-	}
-	
-	public static void closeWindow(){
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-					mainStage.close();
-			}
-			});
-	}
+			});		
+		}
 }

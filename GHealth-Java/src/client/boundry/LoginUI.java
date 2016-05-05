@@ -14,9 +14,9 @@ public class LoginUI implements IUi{
 	
 	private static Stage mainStage;
 
-	
-	public void displayLoginWindow(){
-		
+	@Override
+	public void displayUserWindow() {
+
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -46,27 +46,45 @@ public class LoginUI implements IUi{
 			}
 			});
 
-
+		
 	}
 
-	public static void hideWindow(){
+	
+	@Override
+	public void hideWindow() {
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 					mainStage.hide();
 			}
-			});
+			});		
 	}
-	
-	public static void showWindow(){
+
+
+	@Override
+	public void showWindow() {
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 					mainStage.show();	
 			}
-			});
+			});		
+	}
+
+
+
+	@Override
+	public void displayErrorMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayMessage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

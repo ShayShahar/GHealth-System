@@ -79,10 +79,10 @@ public class UserController implements IController{
 				if (((String) result).equalsIgnoreCase("Dispatcher")){
 					
 						privilege = "Dispatcher";
-						LoginUI.hideWindow();
+						ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
 						DispatcherUI dispatcher = new DispatcherUI();
-						dispatcher.displayDispatcherWindow();
-					  ClientConnectionController.clientConnect.userInterface = dispatcher;
+						dispatcher.displayUserWindow();
+					  ClientConnectionController.clientConnect.userInterface.add(dispatcher);
 
 						displayMessage("Login success", "Successfuly logged to G-Health System.");
 
@@ -91,10 +91,10 @@ public class UserController implements IController{
 				else if (((String) result).equalsIgnoreCase("Specialist")){
 					
 					privilege = "Specialist";
-					LoginUI.hideWindow();
+					ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
 					SpecialistUI specialist = new SpecialistUI();
-					specialist.displaySpecialistWindow();
-					ClientConnectionController.clientConnect.userInterface = specialist;
+					specialist.displayUserWindow();
+					ClientConnectionController.clientConnect.userInterface.add(specialist);
 					
 					displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
@@ -102,10 +102,10 @@ public class UserController implements IController{
         else if (((String) result).equalsIgnoreCase("LabWorker")){
 					
 					privilege = "LabWorker";
-					LoginUI.hideWindow();
+					ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
 					LabWorkerUI LabWorker = new LabWorkerUI();
-					LabWorker.displayLabWorkerWindow();
-					ClientConnectionController.clientConnect.userInterface = LabWorker;
+					LabWorker.displayUserWindow();
+					ClientConnectionController.clientConnect.userInterface.add(LabWorker);
 					
 					displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}

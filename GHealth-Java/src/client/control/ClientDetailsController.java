@@ -7,6 +7,7 @@ import client.boundry.DispatcherUI;
 import client.boundry.LoginUI;
 import client.boundry.SpecialistUI;
 import client.interfaces.IController;
+import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
@@ -94,19 +95,34 @@ public class ClientDetailsController implements IController{
 						System.exit(1);
 				}
 				else if ((Result)result == Result.LOGGEDOUT){
+					
 					if (UserController.getUser().equals("Dispatcher")){
-						DispatcherUI.hideWindow();
+						
+						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
+						{
+							if (ui instanceof DispatcherUI){
+								ui.hideWindow();
+							}
+						}
 					}
 					
 					else if (UserController.getUser().equals("Specialist")){
-						SpecialistUI.hideWindow();
+						
+						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
+						{
+							if (ui instanceof SpecialistUI){
+								ui.hideWindow();
+							}
+						}
 					}
 					
 					displayMessage ("Logged out", "Your user is logged out from Ghealth system.");
-			    	LoginUI login = new LoginUI();
-				   	ClientConnectionController.clientConnect.userInterface = login;
-			    	login.displayLoginWindow();
-			    	return;
+					for(IUi ui : ClientConnectionController.clientConnect.userInterface)
+					{
+						if (ui instanceof LoginUI){
+							ui.showWindow();
+						}
+					}
 				}
 			}
 		}

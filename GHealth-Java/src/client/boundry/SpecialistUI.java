@@ -15,11 +15,11 @@ public class SpecialistUI implements IUi{
 	
 	private static Stage mainStage;
 
-
-	public void displaySpecialistWindow(){
-					
+	@Override
+	public void displayUserWindow() {
+		
 			Platform.runLater(new Runnable() {
-
+			
 				@Override
 				public void run() {
 					URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/SpecialistUI.fxml");
@@ -43,41 +43,51 @@ public class SpecialistUI implements IUi{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
+			
 				}
-		});
-
+			});
+		
 	}
+
+
 	
-	
-	public static void hideWindow(){
+	@Override
+	public void hideWindow() {
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 					mainStage.hide();
 			}
-			});
+			});		
 	}
-	
-	public static void showWindow(){
+
+
+	@Override
+	public void showWindow() {
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 					mainStage.show();	
 			}
-			});
+			});		
 	}
-	
-	public static void closeWindow(){
-		Platform.runLater(new Runnable() {
 
-			@Override
-			public void run() {
-					mainStage.close();
-			}
-			});
+
+
+
+	@Override
+	public void displayErrorMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void displayMessage() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
