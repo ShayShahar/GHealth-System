@@ -2,7 +2,6 @@ package client.boundry;
 
 import java.net.URL;
 
-import common.entity.Reply;
 import javafx.application.Platform;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -46,5 +45,4 @@ public interface GeneralUI {
 		});
 	}
 	
-
 }

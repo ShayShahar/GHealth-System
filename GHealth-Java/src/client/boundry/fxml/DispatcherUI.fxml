@@ -19,9 +19,9 @@
             <Image url="@../../../img/header.png" />
          </image>
       </ImageView>
-      <TextField layoutX="47.0" layoutY="60.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
-      <Button layoutX="227.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Find" />
-      <TextArea editable="false" layoutX="47.0" layoutY="101.0" prefHeight="91.0" prefWidth="421.0" promptText="Client Details:" />
+      <TextField fx:id="dispClientIDTxt" layoutX="47.0" layoutY="60.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
+      <Button fx:id="findButton" layoutX="227.0" layoutY="60.0" mnemonicParsing="false" onAction="#onFindClientIDButtonClick" prefHeight="25.0" prefWidth="71.0" text="Find" />
+      <TextArea fx:id="clientDetailsField" editable="false" layoutX="47.0" layoutY="101.0" prefHeight="91.0" prefWidth="421.0" promptText="Client Details:" text="sdfsdfdsf" />
       <Separator layoutX="76.0" layoutY="516.0" prefHeight="2.0" prefWidth="363.0" />
       <Accordion layoutX="25.0" layoutY="232.0" />
       <VBox layoutX="190.0" layoutY="216.0" prefHeight="198.0" prefWidth="129.0" spacing="25.0">

@@ -9,5 +9,6 @@ public enum Result {
     WRONG_PASSWORD,
     ALREADY_LOGIN,
     ERROR,
-    LOGGEDOUT;
+    LOGGEDOUT,
+    CLIENT_NOT_FOUND;
 }

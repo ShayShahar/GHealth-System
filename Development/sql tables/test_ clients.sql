@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.9, for Win32 (AMD64)
 --
--- Host: localhost    Database: test
+-- Host: localhost    Database: ghealth
 -- ------------------------------------------------------
 -- Server version	5.7.9-log
 

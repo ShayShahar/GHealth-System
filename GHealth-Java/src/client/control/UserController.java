@@ -69,12 +69,11 @@ public class UserController{
 	public static void handleReply(Reply reply){
 		
 		Object result =  reply.getResult();
+		
 		if (result instanceof String){
 			
 			result = (String) result;
-			
-			System.out.println("sdfkljhdsfjkhsdjf");
-			
+						
 				if (((String) result).equalsIgnoreCase("Dispatcher")){
 					
 						privilege = "Dispatcher";
@@ -95,6 +94,8 @@ public class UserController{
 					
 					displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
+				
+				//add other users
 
 		}
 				

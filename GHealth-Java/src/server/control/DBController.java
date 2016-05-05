@@ -19,6 +19,10 @@ public class DBController {
 			return LogoutDB.handleMessage(request, connection) ;
 		}
 		
+		case FIND_CLIENT:{
+			return FindClientDB.handleMessage(request, connection) ;
+		}
+		
 		}
 		
 		return null;

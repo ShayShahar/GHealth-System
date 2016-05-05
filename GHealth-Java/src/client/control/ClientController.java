@@ -22,12 +22,11 @@ public class ClientController extends AbstractClient{
 		Reply reply = (Reply) msg;
 		
 		if (reply.getUser() == User.LoginController){
-				UserController.handleReply(reply);
+			UserController.handleReply(reply);
 		}
 		else if (reply.getUser() == User.ClientDetailsController){
-			ClientDetailsController.handleReply(reply);
+			new ClientDetailsController().handleReply(reply);
 		}
-		
 
 	}
 }
