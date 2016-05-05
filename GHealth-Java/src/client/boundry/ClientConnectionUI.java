@@ -29,7 +29,7 @@ public class ClientConnectionUI extends Application{
 			URL url_64 =  ClientConnectionUI.class.getResource("/img/icon_64.png");
 			Parent root = FXMLLoader.load(ClientConnectionUI.class.getResource("/client/boundry/fxml/ClientConnectionUI.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add("client/boundry/css/Style.css");
+		//	scene.getStylesheets().add("client/boundry/css/JMetroLightTheme.css");
 			primaryStage.getIcons().add(new Image(url_32.toString()));
 			primaryStage.getIcons().add(new Image(url_64.toString()));
 	    primaryStage.setTitle("GHealth Client Connection");
@@ -47,8 +47,9 @@ public class ClientConnectionUI extends Application{
 				public void run() {
 					URL url = LoginUI.class.getResource("/img/error.png");
 					Dialog<Pair<String, String>> dialog = new Dialog<>();
-					dialog.setTitle("ERROR");
+					dialog.setTitle("Error Message");
 					dialog.setHeaderText(title);
+					dialog.getDialogPane().getStylesheets().add("client/boundry/css/JMetroLightTheme.css");
 					dialog.setContentText(information);
 					dialog.setGraphic(new ImageView(url.toString()));
 					dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
@@ -65,9 +66,10 @@ public class ClientConnectionUI extends Application{
 				public void run() {
 					URL url = ClientConnectionController.class.getResource("/img/info.png");
 					Dialog<Pair<String, String>> dialog = new Dialog<>();
-					dialog.setTitle("INFORMATION");
+					dialog.setTitle("Information");
 					dialog.setHeaderText(title);
 					dialog.setContentText(information);
+					dialog.getDialogPane().getStylesheets().add("client/boundry/css/JMetroLightTheme.css");
 					dialog.setGraphic(new ImageView(url.toString()));
 					dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
 					dialog.showAndWait();

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="379.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.UserController">
+<AnchorPane prefHeight="379.0" prefWidth="486.0" stylesheets="@../css/JMetroLightTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.UserController">
    <children>
-      <Button fx:id="loginBtn" layoutX="205.0" layoutY="255.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="42.0" prefWidth="95.0" text="Login">
+      <Button fx:id="loginBtn" layoutX="205.0" layoutY="255.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="42.0" prefWidth="95.0" stylesheets="@../css/JMetroLightTheme.css" text="Login">
          <effect>
             <Glow />
          </effect>

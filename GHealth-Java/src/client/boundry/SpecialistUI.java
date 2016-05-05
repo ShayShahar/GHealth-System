@@ -48,8 +48,6 @@ public class SpecialistUI implements IUi{
 			});
 		
 	}
-
-
 	
 	@Override
 	public void hideWindow() {
