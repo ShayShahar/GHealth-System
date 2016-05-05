@@ -102,6 +102,16 @@ public class UserController implements IController, Serializable{
 					displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
 				
+                else if (((String) result).equalsIgnoreCase("LabWorker")){
+					
+					privilege = "LabWorker";
+					LoginUI.hideWindow();
+					LabWorkerUI LabWorker = new LabWorkerUI();
+					LabWorker.displayLabWorkerWindow();
+					
+					displayMessage("Login success", "Successfuly logged to G-Health System.");
+				}
+				
 				//add other users
 
 		}
