@@ -12,7 +12,7 @@ public class ClientController extends AbstractClient{
 
 	public IController controller;
 	public ArrayList<IUi> userInterface = new ArrayList<IUi>();
-
+	public String userPrivilege;
 	
 	public ClientController(String host, int port) throws IOException {
 		super(host, port);

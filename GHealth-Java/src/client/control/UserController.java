@@ -27,7 +27,6 @@ public class UserController implements IController{
 	@FXML private TextField userNameTxt;
 	@FXML private PasswordField passwordFld;
 	private static String username;
-	private static String privilege;
 	
 	public void onLoginButtonClick(ActionEvent event){
 				
@@ -78,7 +77,7 @@ public class UserController implements IController{
 						
 				if (((String) result).equalsIgnoreCase("Dispatcher")){
 					
-						privilege = "Dispatcher";
+						ClientConnectionController.clientConnect.userPrivilege = "Dispatcher";
 						ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
 						DispatcherUI dispatcher = new DispatcherUI();
 						dispatcher.displayUserWindow();
@@ -90,7 +89,7 @@ public class UserController implements IController{
 				
 				else if (((String) result).equalsIgnoreCase("Specialist")){
 					
-					privilege = "Specialist";
+					ClientConnectionController.clientConnect.userPrivilege = "Specialist";
 					ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
 					SpecialistUI specialist = new SpecialistUI();
 					specialist.displayUserWindow();
@@ -101,7 +100,7 @@ public class UserController implements IController{
 				
         else if (((String) result).equalsIgnoreCase("LabWorker")){
 					
-					privilege = "LabWorker";
+					ClientConnectionController.clientConnect.userPrivilege =  "LabWorker";
 					ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
 					LabWorkerUI LabWorker = new LabWorkerUI();
 					LabWorker.displayUserWindow();
@@ -177,9 +176,5 @@ public class UserController implements IController{
 		return username;
 	}
 	
-	public static String getPrivilege(){
-		return privilege;
-	}
-
 	
 }

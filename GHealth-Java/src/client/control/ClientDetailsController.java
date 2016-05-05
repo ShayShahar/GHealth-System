@@ -96,7 +96,7 @@ public class ClientDetailsController implements IController{
 				}
 				else if ((Result)result == Result.LOGGEDOUT){
 					
-					if (UserController.getUser().equals("Dispatcher")){
+					if (ClientConnectionController.clientConnect.userPrivilege.equals("Dispatcher")){
 						
 						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
 						{
@@ -106,7 +106,7 @@ public class ClientDetailsController implements IController{
 						}
 					}
 					
-					else if (UserController.getUser().equals("Specialist")){
+					else if (ClientConnectionController.clientConnect.userPrivilege.equals("Specialist")){
 						
 						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
 						{
@@ -116,13 +116,8 @@ public class ClientDetailsController implements IController{
 						}
 					}
 					
+					ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 					displayMessage ("Logged out", "Your user is logged out from Ghealth system.");
-					for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-					{
-						if (ui instanceof LoginUI){
-							ui.showWindow();
-						}
-					}
 				}
 			}
 		}

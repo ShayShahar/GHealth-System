@@ -40,5 +40,6 @@
             <Insets bottom="5.0" top="5.0" />
          </padding>
       </VBox>
+      <Button layoutX="228.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="46.0" text="Find" />
    </children>
 </AnchorPane>
