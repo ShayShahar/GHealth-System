@@ -29,16 +29,14 @@ public class ClientConnectionController{
 				return;
 			}
 			
-			
-				clientConnect = new ClientController(ipAddress.getText(),DEFAULT_PORT);
-				IP_ADDR = ipAddress.getText();
-				ClientConnectionUI.displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
-
-		    try {
+			clientConnect = new ClientController(ipAddress.getText(),DEFAULT_PORT);
+			IP_ADDR = ipAddress.getText();
+		  try {
 		    	LoginUI login = new LoginUI();
 		    	login.displayLoginWindow();
 		    	((Node)(event.getSource())).getScene().getWindow().hide();
-		      
+		    	ClientConnectionUI.displayMessage("Connection Succeed","Connected to server at " + ipAddress.getText() + " on PORT " + DEFAULT_PORT);
+		    	
 		    }catch (Exception ex) {
 		            ex.printStackTrace();
 		    }

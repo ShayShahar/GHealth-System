@@ -16,8 +16,9 @@ public class Reply implements Serializable{
     	this.result = result;
     	this.command = command;
     	this.user = user;
-    }
 
+    }
+    
     public Object getResult() {
     	return this.result;
     }

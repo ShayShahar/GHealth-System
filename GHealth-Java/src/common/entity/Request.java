@@ -15,7 +15,6 @@ public class Request implements Serializable{
 
 	private final Command command; 
 	private final User user;
-
     private ArrayList<String> list = null;
     private Object entity = null, entity2 = null; 
 
@@ -75,4 +74,5 @@ public class Request implements Serializable{
     public User getUser(){
     	return user;
     }
+
 }

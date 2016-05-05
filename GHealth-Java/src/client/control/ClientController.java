@@ -7,6 +7,8 @@ import ocsf.client.AbstractClient;
 
 public class ClientController extends AbstractClient{
 
+	public IController controller;
+	
 	public ClientController(String host, int port) throws IOException {
 		super(host, port);
 		openConnection();
@@ -22,10 +24,10 @@ public class ClientController extends AbstractClient{
 		Reply reply = (Reply) msg;
 		
 		if (reply.getUser() == User.LoginController){
-			UserController.handleReply(reply);
+			controller.handleReply(reply);
 		}
-		else if (reply.getUser() == User.ClientDetailsController){
-			new ClientDetailsController().handleReply(reply);
+		else if (reply.getUser() == User.ClientDetailsController){			
+			controller.handleReply(reply);
 		}
 
 	}

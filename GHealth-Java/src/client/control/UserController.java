@@ -1,6 +1,7 @@
 package client.control;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import client.boundry.*;
@@ -20,8 +21,12 @@ import javafx.util.Pair;
 
 
 
-public class UserController{
+public class UserController implements IController, Serializable{
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//FXML variables
 	@FXML private TextField userNameTxt;
 	@FXML private PasswordField passwordFld;
@@ -60,13 +65,14 @@ public class UserController{
 		Request request = new Request(Command.LOGIN, userDetails,User.LoginController);
 
 		try {
+			ClientConnectionController.clientConnect.controller = this;
 			ClientConnectionController.clientConnect.sendToServer(request);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void handleReply(Reply reply){
+	public void handleReply(Reply reply){
 		
 		Object result =  reply.getResult();
 		
@@ -165,5 +171,6 @@ public class UserController{
 	public static String getPrivilege(){
 		return privilege;
 	}
+
 	
 }

@@ -3,7 +3,6 @@ package client.control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import client.boundry.DispatcherUI;
 import client.boundry.LoginUI;
 import client.boundry.SpecialistUI;
@@ -23,8 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 
-public class ClientDetailsController{
+public class ClientDetailsController implements IController{
 	
+
 	@FXML private Button dispLogoutBtn;
 	@FXML private TextField dispClientIDTxt;
 	@FXML private TextArea clientDetailsField;
@@ -39,6 +39,7 @@ public class ClientDetailsController{
 		Request request = new Request(Command.LOGOUT, username, User.ClientDetailsController);
 
 		try {
+			ClientConnectionController.clientConnect.controller = this;
 			ClientConnectionController.clientConnect.sendToServer(request);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -69,13 +70,13 @@ public class ClientDetailsController{
 		Request request = new Request(Command.FIND_CLIENT, client, User.ClientDetailsController);
 
 		try {
+			ClientConnectionController.clientConnect.controller = this;
 			ClientConnectionController.clientConnect.sendToServer(request);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
-	
 	
 	
 	public void handleReply(Reply reply){
@@ -115,7 +116,8 @@ public class ClientDetailsController{
 			if (result instanceof ArrayList<?>){
 				
 				result = (ArrayList<?>) result;
-			  ArrayList<String> res = (ArrayList<String>) result;
+			  @SuppressWarnings("unchecked")
+			ArrayList<String> res = (ArrayList<String>) result;
 			  
 			  System.out.println(res.get(0));
 			  System.out.println(res.get(1));
@@ -124,17 +126,18 @@ public class ClientDetailsController{
 			  System.out.println(res.get(4));
 			  System.out.println(res.get(5));
 			  System.out.println(res.get(6));
-
+				
+			  
 				Platform.runLater(new Runnable() {
 
 					@Override
 					public void run() {
-						  
 						clientDetailsField.clear();
 
-					  clientDetailsField.appendText("Client ID: " + res.get(0) + "\n");
+						clientDetailsField.appendText("Client ID: " + res.get(0) + "\n");
 						}
 				});
+						  
 			}
 			
 			else {
