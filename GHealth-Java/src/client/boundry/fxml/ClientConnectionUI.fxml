@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="379.0" prefWidth="486.0" stylesheets="@../css/JMetroLightTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ClientConnectionController">
+<AnchorPane prefHeight="379.0" prefWidth="486.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ClientConnectionController">
    <children>
       <Button fx:id="connectBtn" layoutX="196.0" layoutY="233.0" mnemonicParsing="false" onAction="#onConnectButtonClick" prefHeight="42.0" prefWidth="110.0" text="Connect" textAlignment="JUSTIFY">
          <font>

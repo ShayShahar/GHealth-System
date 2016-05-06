@@ -1,10 +1,8 @@
 package client.control;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import client.boundry.DispatcherUI;
-import client.boundry.LoginUI;
 import client.boundry.SpecialistUI;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -16,12 +14,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.util.Pair;
 
 public class ClientDetailsController implements IController{
 	
@@ -29,6 +23,7 @@ public class ClientDetailsController implements IController{
 	@FXML private Button dispLogoutBtn;
 	@FXML private TextField dispClientIDTxt;
 	@FXML private TextArea clientDetailsField;
+	@FXML private Button dispCreateClientBtn;
 	
 	public static String clientID;
 	
@@ -50,10 +45,13 @@ public class ClientDetailsController implements IController{
 	
 	public void onFindClientIDButtonClick(ActionEvent event){
 		
+		dispCreateClientBtn.setDisable(true);
+
+		
 		dispClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
 
 		if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
-				displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
 			
 			if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
 				dispClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
@@ -79,6 +77,19 @@ public class ClientDetailsController implements IController{
 		
 	}
 	
+	public void onCreateAppointmentButtonClick(ActionEvent event){
+		
+	}
+	
+	public void onCancelAppointmentButtonClick(ActionEvent event){
+		
+	}
+	
+	
+	public void onCreateClientButtonClick(ActionEvent event){
+		
+	}
+	
 	
 	public void handleReply(Reply reply){
 		 
@@ -91,7 +102,7 @@ public class ClientDetailsController implements IController{
 				result = (Result)result;
 						
 				if ((Result)result == Result.ERROR){
-						displayErrorMessage ("Error", "Error occured in system. Exit program.");
+					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
 						System.exit(1);
 				}
 				else if ((Result)result == Result.LOGGEDOUT){
@@ -102,6 +113,7 @@ public class ClientDetailsController implements IController{
 						{
 							if (ui instanceof DispatcherUI){
 								ui.hideWindow();
+								ClientConnectionController.clientConnect.userInterface.remove(ui);
 							}
 						}
 					}
@@ -112,12 +124,24 @@ public class ClientDetailsController implements IController{
 						{
 							if (ui instanceof SpecialistUI){
 								ui.hideWindow();
+								ClientConnectionController.clientConnect.userInterface.remove(ui);
+							}
+						}
+					}
+					
+					else if (ClientConnectionController.clientConnect.userPrivilege.equals("LabWorker")){
+						
+						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
+						{
+							if (ui instanceof SpecialistUI){
+								ui.hideWindow();
+								ClientConnectionController.clientConnect.userInterface.remove(ui);
 							}
 						}
 					}
 					
 					ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-					displayMessage ("Logged out", "Your user is logged out from Ghealth system.");
+					ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 				}
 			}
 		}
@@ -153,48 +177,20 @@ public class ClientDetailsController implements IController{
 			}
 			
 			else {
-				displayErrorMessage ("Error", "Client not found.");
+				ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client not found", "You can add new client from the menu below.");
+				
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+						dispCreateClientBtn.setDisable(false);
+						}
+				});
+				
 			}
 			
 		}
 							
-	}
-	
-
-	
-	public static void displayMessage (String title, String information){
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				URL url = LoginUI.class.getResource("/img/info.png");
-				Dialog<Pair<String, String>> dialog = new Dialog<>();
-				dialog.setTitle("INFORMATION");
-				dialog.setHeaderText(title);
-				dialog.setContentText(information);
-				dialog.setGraphic(new ImageView(url.toString()));
-				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
-				dialog.showAndWait();
-				}
-		});
-	}
-	
-	public static void displayErrorMessage (String title, String information){
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				URL url = LoginUI.class.getResource("/img/error.png");
-				Dialog<Pair<String, String>> dialog = new Dialog<>();
-				dialog.setTitle("ERROR");
-				dialog.setHeaderText(title);
-				dialog.setContentText(information);
-				dialog.setGraphic(new ImageView(url.toString()));
-				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
-				dialog.showAndWait();
-			}
-		});
-	}
-	
+	}	
 	
 }

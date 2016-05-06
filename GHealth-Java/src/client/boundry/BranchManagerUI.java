@@ -17,19 +17,19 @@ public class BranchManagerUI implements IUi{
 	}
 
 	@Override
-	public void displayErrorMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void displayMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void displayUserWindow() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayErrorMessage(String title, String information) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayMessage(String title, String information) {
 		// TODO Auto-generated method stub
 		
 	}

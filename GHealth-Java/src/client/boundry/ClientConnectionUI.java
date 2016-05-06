@@ -29,7 +29,6 @@ public class ClientConnectionUI extends Application{
 			URL url_64 =  ClientConnectionUI.class.getResource("/img/icon_64.png");
 			Parent root = FXMLLoader.load(ClientConnectionUI.class.getResource("/client/boundry/fxml/ClientConnectionUI.fxml"));
 			Scene scene = new Scene(root);
-		//	scene.getStylesheets().add("client/boundry/css/JMetroLightTheme.css");
 			primaryStage.getIcons().add(new Image(url_32.toString()));
 			primaryStage.getIcons().add(new Image(url_64.toString()));
 	    primaryStage.setTitle("GHealth Client Connection");
@@ -38,7 +37,6 @@ public class ClientConnectionUI extends Application{
 			primaryStage.show();		
 			
 		}
-
 
 		public static void displayErrorMessage(String title, String information) {
 			Platform.runLater(new Runnable() {
@@ -49,7 +47,6 @@ public class ClientConnectionUI extends Application{
 					Dialog<Pair<String, String>> dialog = new Dialog<>();
 					dialog.setTitle("Error Message");
 					dialog.setHeaderText(title);
-					dialog.getDialogPane().getStylesheets().add("client/boundry/css/JMetroLightTheme.css");
 					dialog.setContentText(information);
 					dialog.setGraphic(new ImageView(url.toString()));
 					dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
@@ -58,8 +55,7 @@ public class ClientConnectionUI extends Application{
 			});			
 		}
 		
-		
-		public static void displayMessage (String title, String information){
+		public static void displayMessage(String title, String information){
 			Platform.runLater(new Runnable() {
 
 				@Override
@@ -69,14 +65,13 @@ public class ClientConnectionUI extends Application{
 					dialog.setTitle("Information");
 					dialog.setHeaderText(title);
 					dialog.setContentText(information);
-					dialog.getDialogPane().getStylesheets().add("client/boundry/css/JMetroLightTheme.css");
 					dialog.setGraphic(new ImageView(url.toString()));
 					dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
 					dialog.showAndWait();
 					}
 			});
 		}
-			
+
 
 
 }

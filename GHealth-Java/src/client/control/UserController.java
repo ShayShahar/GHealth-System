@@ -1,23 +1,16 @@
 package client.control;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import client.boundry.*;
 import client.interfaces.IController;
 import common.entity.*;
 import common.enums.Command;
 import common.enums.Result;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.util.Pair;
-
 
 
 public class UserController implements IController{
@@ -34,7 +27,7 @@ public class UserController implements IController{
 		passwordFld.setStyle("-fx-prompt-text-fill: gray");
 
 		if (userNameTxt.getText() == null || userNameTxt.getText().trim().isEmpty() || passwordFld.getText() == null || passwordFld.getText().trim().isEmpty() ){
-				displayErrorMessage("Login Failed", "Some required fields are missing.");
+			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Login Failed", "Some required fields are missing.");
 			
 			if (userNameTxt.getText() == null || userNameTxt.getText().trim().isEmpty()){
 				userNameTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
@@ -83,7 +76,7 @@ public class UserController implements IController{
 						dispatcher.displayUserWindow();
 					  ClientConnectionController.clientConnect.userInterface.add(dispatcher);
 
-						displayMessage("Login success", "Successfuly logged to G-Health System.");
+					  ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Login success", "Successfuly logged to G-Health System.");
 
 				}
 				
@@ -95,7 +88,7 @@ public class UserController implements IController{
 					specialist.displayUserWindow();
 					ClientConnectionController.clientConnect.userInterface.add(specialist);
 					
-					displayMessage("Login success", "Successfuly logged to G-Health System.");
+					ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
 				
         else if (((String) result).equalsIgnoreCase("LabWorker")){
@@ -106,7 +99,7 @@ public class UserController implements IController{
 					LabWorker.displayUserWindow();
 					ClientConnectionController.clientConnect.userInterface.add(LabWorker);
 					
-					displayMessage("Login success", "Successfuly logged to G-Health System.");
+					ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
 				
 				//add other users
@@ -118,59 +111,25 @@ public class UserController implements IController{
 			result = (Result)result;
 					
 			if ((Result)result == Result.WRONG_USER){
-					displayErrorMessage ("Invalid username", "Check your input and try again.");
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage ("Invalid username", "Check your input and try again.");
 					return;
 			}
 			else if ((Result)result == Result.WRONG_PASSWORD){
-					displayErrorMessage ("Wrong password", "You have entered a wrong password, try again.");
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage ("Wrong password", "You have entered a wrong password, try again.");
 					return;
 			}
 			else if ((Result)result == Result.ALREADY_LOGIN){
-					displayErrorMessage ("Login Error", "User already logged in.");
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage ("Login Error", "User already logged in.");
 					return;
 			}
 			else if ((Result)result  == Result.ERROR){
-					displayErrorMessage ("Login Error", "Error occured while tried to log-in.");
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage ("Login Error", "Error occured while tried to log-in.");
 					return;
 			}
 		}
 							
 	}
-	
-	public static void displayMessage (String title, String information){
-		Platform.runLater(new Runnable() {
 
-			@Override
-			public void run() {
-				URL url = LoginUI.class.getResource("/img/info.png");
-				Dialog<Pair<String, String>> dialog = new Dialog<>();
-				dialog.setTitle("INFORMATION");
-				dialog.setHeaderText(title);
-				dialog.setContentText(information);
-				dialog.setGraphic(new ImageView(url.toString()));
-				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
-				dialog.showAndWait();
-				}
-		});
-	}
-	
-	public static void displayErrorMessage (String title, String information){
-		
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				URL url = LoginUI.class.getResource("/img/error.png");
-				Dialog<Pair<String, String>> dialog = new Dialog<>();
-				dialog.setTitle("ERROR");
-				dialog.setHeaderText(title);
-				dialog.setContentText(information);
-				dialog.setGraphic(new ImageView(url.toString()));
-				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
-				dialog.showAndWait();
-			}
-		});
-	}
 	
 	public static String getUser(){
 		return username;
