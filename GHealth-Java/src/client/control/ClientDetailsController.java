@@ -14,16 +14,26 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ClientDetailsController implements IController{
 	
-
+//FXML Components
+	
 	@FXML private Button dispLogoutBtn;
-	@FXML private TextField dispClientIDTxt;
-	@FXML private TextArea clientDetailsField;
+	@FXML private Button createAppointmentBtn;
+	@FXML private Button cancelAppointmentBtn;
 	@FXML private Button dispCreateClientBtn;
+	@FXML private TextField dispClientIDTxt;
+	@FXML private TextField fieldClientID;
+	@FXML private TextField fieldPersonID;
+	@FXML private TextField fieldClientName;
+	@FXML private TextField fieldClientFamily;
+	@FXML private TextField fieldClientJoin;
+	@FXML private TextField fieldClientAddress;
+	@FXML private TextField fieldClientPhone;
+	@FXML private TextField fieldClientEmail;
+	
 	
 	public static String clientID;
 	
@@ -155,23 +165,23 @@ public class ClientDetailsController implements IController{
 			  @SuppressWarnings("unchecked")
 			ArrayList<String> res = (ArrayList<String>) result;
 			  
-			  System.out.println(res.get(0));
-			  System.out.println(res.get(1));
-			  System.out.println(res.get(2));
-			  System.out.println(res.get(3));
-			  System.out.println(res.get(4));
-			  System.out.println(res.get(5));
-			  System.out.println(res.get(6));
-				
-			  
 				Platform.runLater(new Runnable() {
 
 					@Override
 					public void run() {
-						clientDetailsField.clear();
-
-						clientDetailsField.appendText("Client ID: " + res.get(0) + "\n");
-						}
+						fieldClientID.setText(res.get(0));
+						fieldPersonID.setText(res.get(1));
+						fieldClientName.setText(res.get(5));
+						fieldClientFamily.setText(res.get(6));
+						String[] date = res.get(3).split("-");
+					  fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
+						fieldClientAddress.setText(res.get(9));
+						fieldClientPhone.setText(res.get(8));
+						fieldClientEmail.setText(res.get(7));
+						createAppointmentBtn.setDisable(false);
+						cancelAppointmentBtn.setDisable(false);
+					}
+						
 				});
 						  
 			}
@@ -184,6 +194,8 @@ public class ClientDetailsController implements IController{
 					@Override
 					public void run() {
 						dispCreateClientBtn.setDisable(false);
+						createAppointmentBtn.setDisable(true);
+						cancelAppointmentBtn.setDisable(true);
 						}
 				});
 				

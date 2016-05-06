@@ -1,5 +1,37 @@
 package client.boundry;
 
-public class CreateClientUI {
+import client.interfaces.IUi;
+
+public class CreateClientUI implements IUi {
+
+	@Override
+	public void displayUserWindow() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hideWindow() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showWindow() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayErrorMessage(String title, String information) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayMessage(String title, String information) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

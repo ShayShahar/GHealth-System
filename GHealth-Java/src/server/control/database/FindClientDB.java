@@ -23,10 +23,14 @@ public class FindClientDB {
     		list.add(Integer.toString(result.getInt(1)));
     		list.add(Integer.toString(result.getInt(2)));
     		list.add(result.getString(3));
-    		list.add(result.getString(4));
+    		list.add((result.getDate(4)).toString());
     		list.add(result.getString(5));
     		list.add(result.getString(6));
     		list.add(result.getString(7));
+      	list.add(result.getString(8));
+      	list.add(result.getString(9));
+      	list.add(result.getString(10));
+
 
     		return list;
 			  
