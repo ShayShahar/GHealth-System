@@ -17,16 +17,16 @@
 
 <AnchorPane prefHeight="599.0" prefWidth="564.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ClientDetailsController">
    <children>
-      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="355.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="407.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/header.png" />
          </image>
       </ImageView>
-      <TextField fx:id="dispClientIDTxt" layoutX="20.0" layoutY="34.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
-      <Button fx:id="findButton" layoutX="205.0" layoutY="32.0" mnemonicParsing="false" onAction="#onFindClientIDButtonClick" prefHeight="29.0" prefWidth="78.0" text="Find" />
-      <Separator layoutX="102.0" layoutY="78.0" prefHeight="2.0" prefWidth="363.0" />
+      <TextField fx:id="dispClientIDTxt" layoutX="35.0" layoutY="38.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
+      <Button fx:id="findButton" layoutX="219.0" layoutY="36.0" mnemonicParsing="false" onAction="#onFindClientIDButtonClick" prefHeight="29.0" prefWidth="78.0" text="Find" />
+      <Separator layoutX="34.0" layoutY="72.0" prefHeight="2.0" prefWidth="500.0" />
       <Accordion layoutX="25.0" layoutY="232.0" />
-      <VBox layoutX="188.0" layoutY="291.0" prefHeight="221.0" prefWidth="181.0" spacing="25.0">
+      <VBox layoutX="194.0" layoutY="265.0" prefHeight="221.0" prefWidth="181.0" spacing="25.0">
          <children>
             <Button fx:id="createAppointmentBtn" disable="true" graphicTextGap="2.0" mnemonicParsing="false" onAction="#onCreateAppointmentButtonClick" prefHeight="45.0" prefWidth="180.0" text="Create Appointment" textAlignment="JUSTIFY" textOverrun="CLIP">
                <VBox.margin>
@@ -44,7 +44,7 @@
             <Reflection />
          </effect>
       </Button>
-      <GridPane layoutX="16.0" layoutY="91.0" prefHeight="145.0" prefWidth="533.0" style="-fx-background-color: #e1e1e1; -fx-border-color: #cddc39;" vgap="10.0">
+      <GridPane layoutX="16.0" layoutY="91.0" prefHeight="145.0" prefWidth="533.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
         <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="172.22222900390625" minWidth="10.0" prefWidth="80.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.77777099609375" minWidth="10.0" prefWidth="150.0" />
@@ -78,11 +78,9 @@
          <padding>
             <Insets bottom="10.0" right="5.0" top="10.0" />
          </padding>
-         <effect>
-            <Reflection fraction="0.49" topOpacity="0.46" />
-         </effect>
       </GridPane>
-      <Separator layoutX="191.0" layoutY="33.0" orientation="VERTICAL" prefHeight="29.0" prefWidth="6.0" />
+      <Separator layoutX="207.0" layoutY="36.0" orientation="VERTICAL" prefHeight="29.0" prefWidth="6.0" />
       <Separator layoutX="86.0" layoutY="526.0" prefHeight="2.0" prefWidth="363.0" />
+      <Separator layoutX="38.0" layoutY="254.0" prefHeight="2.0" prefWidth="500.0" />
    </children>
 </AnchorPane>

@@ -1,22 +1,2 @@
-.button:hover{
-	 -fx-focus-color: #000000;
-}
 
-.button {
-	 -fx-focus-color: #FFFFFF;
-}
 
-.text-field:focused:hover {
-    -fx-background-color:
-        #e6eac0,
-        #FFFFFF;
-}
-
-.table-view:focused {
-	 -fx-focus-color: #f0f0f0;
-}
-
-.table-row-cell:selected {
-   -fx-background-color: #e6eac0; 
-   -fx-text-fill: black; 
-}

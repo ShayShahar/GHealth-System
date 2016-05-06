@@ -8,18 +8,17 @@ public class Specialist extends Person{
 	private static final long serialVersionUID = 1L;
 	//class variables
 	private String speciality;
-	private Branch branch;
 	private String branchName;
 	private String branchAddress;
 
-	public Specialist(String id, String name, String family, String speciality, Branch branch) {
+	public Specialist(String id, String name, String family, String speciality, String branchName, String branchAddress) {
 		this.id = id;
 		this.name = name;
 		this.familyName = family;
 		this.speciality = speciality;
-		this.branch = branch;
-		setBranchName(branch.getName());
-		setBranchAddress(branch.getAddress());
+		this.branchName = branchName;
+		this.branchAddress = branchAddress;
+
 	}
 	
 	//class properties
@@ -30,14 +29,6 @@ public class Specialist extends Person{
 		this.speciality = speciality;
 	}
 	
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-
 	public String getBranchName() {
 		return branchName;
 	}

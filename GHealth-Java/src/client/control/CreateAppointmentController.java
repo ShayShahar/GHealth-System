@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import client.boundry.CreateAppointmentUI;
 import client.boundry.DispatcherUI;
-import client.entity.Branch;
 import client.entity.Specialist;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -20,25 +19,26 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 public class CreateAppointmentController implements IController, Initializable{
 	
 	@FXML private ComboBox<String> listSpecialization;
 	@FXML private TextField fieldPersonID;
-	
-	
 	@FXML private TableView<Specialist> tabelSpecialists;
 	@FXML private TableColumn<Specialist, String> idClmn;
 	@FXML private TableColumn<Specialist, String> nameClmn;
 	@FXML private TableColumn<Specialist, String> familyClmn;
 	@FXML private TableColumn<Specialist, String> branchClmn;
 	@FXML private TableColumn<Specialist, String> addrClmn;
-
+	@FXML private HBox hboxDate;
 	
 	//Members
 	IUi thisUi = null;
@@ -64,6 +64,12 @@ public class CreateAppointmentController implements IController, Initializable{
 				thisUi = ui;
 			}
 		}
+		idClmn.setStyle( "-fx-alignment: CENTER;");
+		nameClmn.setStyle( "-fx-alignment: CENTER;");
+		familyClmn.setStyle( "-fx-alignment: CENTER;");
+		branchClmn.setStyle( "-fx-alignment: CENTER;");
+		addrClmn.setStyle( "-fx-alignment: CENTER;");
+
 		
 		idClmn.setCellValueFactory(new PropertyValueFactory<>("id"));
 		nameClmn.setCellValueFactory(new PropertyValueFactory<>("name"));	
@@ -76,7 +82,7 @@ public class CreateAppointmentController implements IController, Initializable{
 	public ObservableList<Specialist> getSpecialist(ArrayList<Specialist> list){
 		ObservableList<Specialist> specialists = FXCollections.observableArrayList();
 		
-		for (int i=1 ; i < list.size(); i++){
+		for (int i=0 ; i < list.size(); i++){
 			specialists.add(list.get(i));
 		}
 		
@@ -115,6 +121,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	
 	public void onSearchSpecialistButtonClick(ActionEvent event){
 		
+		hboxDate.setDisable(true);
+		
 		if (listSpecialization.getSelectionModel().getSelectedItem().toString().equals("--")){
 			thisUi.displayErrorMessage("Invalid Input", "Please choose a specialization from the list.");
 			return;
@@ -131,33 +139,49 @@ public class CreateAppointmentController implements IController, Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public void onMouseClick(MouseEvent event){
 		
+		try{
+				if (tabelSpecialists.getSelectionModel().getSelectedItem().getId() != null){
+					hboxDate.setDisable(false);
+					System.out.println(tabelSpecialists.getSelectionModel().getSelectedItem().getId());
+				}
+				
+				else{
+					hboxDate.setDisable(true);
+				}	
+		}catch(Exception e){
+			hboxDate.setDisable(true);
+		}
 		
 	}
-
+	
 	@Override
 	public void handleReply(Reply reply) {
 
 		Object result =  reply.getResult();
-	System.out.println("1");
+		
 		if (reply.getCommand() == Command.FIND_SPECIALIST){
-			System.out.println("2");
+						
+			ArrayList<Specialist> specialistList = new ArrayList<Specialist>();
 			if (result instanceof ArrayList<?>){
+				
 				@SuppressWarnings("unchecked")
 				ArrayList<Object> list = (ArrayList<Object>)result;
-				ArrayList<Specialist> specialistList = new ArrayList<Specialist>();
-				System.out.println("3");
+	
 				for (int i = 0 ; i < list.size(); i++){
-					System.out.println("4");
+
 					@SuppressWarnings("unchecked")
 					ArrayList<String> strings = (ArrayList<String>)(list.get(i));
-					Branch branch = new Branch();
-					Specialist specialist = new Specialist(strings.get(0),strings.get(2),strings.get(3),strings.get(1),branch);					
+					Specialist specialist = new Specialist(strings.get(0),strings.get(2),strings.get(3),strings.get(1),strings.get(4),strings.get(5));					
 					specialistList.add(specialist);
-				}		
-				
-				onUpdateTableView(specialistList);
-		 }		
+				}
+		 }
+			
+			onUpdateTableView(specialistList);	
 	 }
 	}
 	

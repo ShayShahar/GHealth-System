@@ -35,39 +35,19 @@
       <TextField fx:id="fieldPersonID" editable="false" layoutX="73.0" layoutY="25.0" />
       <Label layoutX="33.0" layoutY="29.0" text="ID  " />
       <Separator layoutX="59.0" layoutY="25.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
-      <TableView fx:id="tabelSpecialists" layoutX="218.0" layoutY="70.0" prefHeight="230.0" prefWidth="355.0">
+      <TableView fx:id="tabelSpecialists" layoutX="23.0" layoutY="113.0" onMouseClicked="#onMouseClick" prefHeight="187.0" prefWidth="550.0">
         <columns>
-          <TableColumn fx:id="idClmn" prefWidth="52.0" text="ID" />
-            <TableColumn fx:id="nameClmn" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="familyClmn" prefWidth="75.0" text="Family" />
-            <TableColumn fx:id="branchClmn" prefWidth="75.0" text="Branch" />
-            <TableColumn fx:id="addrClmn" prefWidth="75.0" text="Address" />
+          <TableColumn fx:id="idClmn" editable="false" prefWidth="52.0" text="ID" />
+            <TableColumn fx:id="nameClmn" editable="false" prefWidth="106.77777099609375" text="Name" />
+            <TableColumn fx:id="familyClmn" editable="false" prefWidth="136.11114501953125" text="Family" />
+            <TableColumn fx:id="branchClmn" editable="false" prefWidth="107.88885498046875" text="Branch" />
+            <TableColumn fx:id="addrClmn" editable="false" prefWidth="149.77777099609375" text="Address" />
         </columns>
       </TableView>
-      <VBox layoutX="16.0" layoutY="70.0" prefHeight="239.0" prefWidth="170.0">
-         <children>
-            <ComboBox fx:id="listSpecialization" prefHeight="35.0" prefWidth="170.0" promptText="Choose Specialization" style="-fx-background-color: #FFFFFF;">
-               <effect>
-                  <Reflection />
-               </effect>
-            </ComboBox>
-            <Button mnemonicParsing="false" onAction="#onSearchSpecialistButtonClick" prefHeight="35.0" prefWidth="170.0" text="Search Specialists">
-               <VBox.margin>
-                  <Insets top="70.0" />
-               </VBox.margin>
-            </Button>
-            <Button disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Select">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
       <Separator layoutX="21.0" layoutY="313.0" prefHeight="2.0" prefWidth="550.0" />
-      <Separator layoutX="202.0" layoutY="70.0" orientation="VERTICAL" prefHeight="230.0" prefWidth="6.0" />
-      <HBox disable="true" layoutX="21.0" layoutY="328.0" prefHeight="198.0" prefWidth="550.0" spacing="6.0">
+      <HBox fx:id="hboxDate" disable="true" layoutX="21.0" layoutY="328.0" prefHeight="198.0" prefWidth="550.0" spacing="6.0">
          <children>
-            <VBox prefHeight="198.0" prefWidth="174.0" spacing="30.0">
+            <VBox fx:id="dateContainer" prefHeight="198.0" prefWidth="174.0" spacing="30.0">
                <children>
                   <DatePicker prefHeight="35.0" prefWidth="170.0" promptText="Choose Date" />
                   <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Select Date" />
@@ -75,12 +55,21 @@
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TableView prefHeight="198.0" prefWidth="359.0">
+            <TableView prefHeight="198.0" prefWidth="374.0">
               <columns>
                 <TableColumn prefWidth="358.0" text="Time" />
               </columns>
             </TableView>
          </children>
+      </HBox>
+      <HBox layoutX="24.0" layoutY="58.0" prefHeight="49.0" prefWidth="550.0" spacing="207.0" style="-fx-background-color: #BDBDBD;">
+         <children>
+            <ComboBox fx:id="listSpecialization" prefHeight="35.0" prefWidth="229.0" promptText="Choose Specialization" />
+            <Button mnemonicParsing="false" onAction="#onSearchSpecialistButtonClick" prefHeight="35.0" prefWidth="102.0" text="Search " />
+         </children>
+         <padding>
+            <Insets left="5.0" top="7.0" />
+         </padding>
       </HBox>
    </children>
 </AnchorPane>
