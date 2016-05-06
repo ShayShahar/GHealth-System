@@ -62,7 +62,7 @@ public class DispatcherUI implements IUi{
 								stage.getIcons().add(new Image(url_32.toString()));
 								stage.getIcons().add(new Image(url_64.toString()));
 					      Scene scene = new Scene(root);
-					      //scene.getStylesheets().add("client/boundry/css/JMetroLightTheme.css");
+					      scene.getStylesheets().add("client/boundry/css/Style.css");
 					      stage.setScene(scene); 
 					      stage.setResizable(false);
 					      stage.show();	

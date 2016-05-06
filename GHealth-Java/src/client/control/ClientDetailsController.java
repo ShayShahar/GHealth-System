@@ -125,7 +125,16 @@ public class ClientDetailsController implements IController{
 	}
 	
 	public void onCreateAppointmentButtonClick(ActionEvent event){
+		CreateAppointmentUI create = new CreateAppointmentUI(clientID);
+		ClientConnectionController.clientConnect.userInterface.add(create);
 		
+		for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof DispatcherUI){
+				ui.hideWindow();
+			}
+		}
+		
+		create.displayUserWindow();
 	}
 	
 	public void onCancelAppointmentButtonClick(ActionEvent event){

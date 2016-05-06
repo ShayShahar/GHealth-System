@@ -14,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -32,6 +31,10 @@ public class CreateClientController implements IController, Initializable{
 	@FXML private TextField fieldClientClinic;
 	@FXML private TextField fieldClientEmailDomain;
 	@FXML private ComboBox<String> listPhone;
+	
+	
+	//Members
+	IUi thisUi = null;
 
 
 	ObservableList<String> list = FXCollections.observableArrayList("--","050","052","054","058","03","04","08");
@@ -40,12 +43,34 @@ public class CreateClientController implements IController, Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		listPhone.setItems(list);		
 		listPhone.getSelectionModel().selectFirst();
+				
+		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof CreateClientUI){
+				thisUi = ui;
+			}
+		}
+		
 	}
 
 	@Override
 	public void handleReply(Reply reply) {
-		// TODO Auto-generated method stub
+
+		Result result = (Result) reply.getResult();
 		
+		if ((Result)result == Result.ERROR){
+			thisUi.displayErrorMessage ("Create Client Error", "Error occured while tried to create a new client.");
+		}
+		
+		else {
+			thisUi.hideWindow();
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof DispatcherUI){
+					ui.showWindow();
+				}
+			}
+			
+			thisUi.displayMessage("Client Created", "New client registered successfuly to IHealth.");
+		}
 	}
 	
 	
@@ -55,15 +80,7 @@ public class CreateClientController implements IController, Initializable{
 	}
 	
 	public void onCreateClientButtonClick(ActionEvent event){
-		
-		IUi thisUi = ClientConnectionController.clientConnect.userInterface.get(0);
-		
-		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof CreateClientUI){
-				thisUi = ui;
-			}
-		}
-		
+				
 		fieldClientName.setStyle("-fx-prompt-text-fill: gray");
 		fieldClientFamily.setStyle("-fx-prompt-text-fill: gray");
 		fieldClientAddress.setStyle("-fx-prompt-text-fill: gray");
@@ -149,19 +166,16 @@ public class CreateClientController implements IController, Initializable{
 	
 	public void onBackButtonClick(ActionEvent event){
 		
-		for(IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof CreateClientUI){
-				ui.hideWindow();
-			}
-		}
+		thisUi.hideWindow();
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof DispatcherUI){
 				ui.showWindow();
 			}
 		}
-
 		
+		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+
 	} 
 	
 }
