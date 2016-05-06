@@ -2,6 +2,7 @@ package server.control;
 
 import java.sql.Connection;
 import common.entity.Request;
+import common.enums.Result;
 import server.control.database.*;
 
 public class DBController {
@@ -11,26 +12,28 @@ public class DBController {
 
 		switch (request.getCommand()){
 		
-		case LOGIN:{
-			return LoginDB.handleMessage(request, connection) ;
+				case LOGIN:{
+					return LoginDB.handleMessage(request, connection) ;
+				}
+				
+				case LOGOUT:{
+					return LogoutDB.handleMessage(request, connection) ;
+				}
+				
+				case FIND_CLIENT:{
+					return FindClientDB.handleMessage(request, connection) ;
+				}
+				
+				case CREATE_CLIENT:{
+					return CreateClientDB.handleMessage(request, connection) ;
+				}
+				
+				case FIND_SPECIALIST:{
+					return FindSpecialistDB.handleMessage(request, connection) ;
+				}
 		}
 		
-		case LOGOUT:{
-			return LogoutDB.handleMessage(request, connection) ;
-		}
-		
-		case FIND_CLIENT:{
-			return FindClientDB.handleMessage(request, connection) ;
-		}
-		
-		case CREATE_CLIENT:{
-			return CreateClientDB.handleMessage(request, connection) ;
-
-		}
-		
-		}
-		
-		return null;
+		return Result.ERROR;
 		
 	}
 	

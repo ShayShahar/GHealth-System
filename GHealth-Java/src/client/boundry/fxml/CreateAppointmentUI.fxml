@@ -37,10 +37,11 @@
       <Separator layoutX="59.0" layoutY="25.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
       <TableView fx:id="tabelSpecialists" layoutX="218.0" layoutY="70.0" prefHeight="230.0" prefWidth="355.0">
         <columns>
-          <TableColumn prefWidth="52.0" text="ID" />
-          <TableColumn prefWidth="114.0" text="Name" />
-            <TableColumn prefWidth="101.22222900390625" text="Branch" />
-            <TableColumn prefWidth="86.0" text="Address" />
+          <TableColumn fx:id="idClmn" prefWidth="52.0" text="ID" />
+            <TableColumn fx:id="nameClmn" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="familyClmn" prefWidth="75.0" text="Family" />
+            <TableColumn fx:id="branchClmn" prefWidth="75.0" text="Branch" />
+            <TableColumn fx:id="addrClmn" prefWidth="75.0" text="Address" />
         </columns>
       </TableView>
       <VBox layoutX="16.0" layoutY="70.0" prefHeight="239.0" prefWidth="170.0">
@@ -50,12 +51,12 @@
                   <Reflection />
                </effect>
             </ComboBox>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Search Specialists">
+            <Button mnemonicParsing="false" onAction="#onSearchSpecialistButtonClick" prefHeight="35.0" prefWidth="170.0" text="Search Specialists">
                <VBox.margin>
                   <Insets top="70.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="SELECT">
+            <Button disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Select">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

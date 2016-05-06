@@ -11,5 +11,6 @@ public enum Result {
     ERROR,
     LOGGEDOUT,
     CLIENT_NOT_FOUND,
-    PERSON_EXSISTS;
+    PERSON_EXSISTS,
+    SPECIALIST_NOT_FOUND;
 }

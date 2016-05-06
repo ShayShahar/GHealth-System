@@ -26,7 +26,7 @@ public class ClientDetailsController implements IController{
 	@FXML private Button dispCreateClientBtn;
 	@FXML private TextField dispClientIDTxt;
 	@FXML private TextField fieldClientID;
-	@FXML private TextField fieldPersonID;
+	@FXML private TextField fieldClientClinic;
 	@FXML private TextField fieldClientName;
 	@FXML private TextField fieldClientFamily;
 	@FXML private TextField fieldClientJoin;
@@ -77,13 +77,13 @@ public class ClientDetailsController implements IController{
 		
 		
 		fieldClientID.clear();
-		fieldPersonID.clear();
 		fieldClientName.clear();
 		fieldClientFamily.clear();
 		fieldClientJoin.clear();
 		fieldClientAddress.clear();
 		fieldClientPhone.clear();
 		fieldClientEmail.clear();
+		fieldClientClinic.clear();
 		
 		
 		dispCreateClientBtn.setDisable(true);
@@ -224,14 +224,15 @@ public class ClientDetailsController implements IController{
 					@Override
 					public void run() {
 						fieldClientID.setText(res.get(0));
-						fieldPersonID.setText(res.get(1));
+						fieldClientClinic.setText(res.get(1));
+						String[] date = res.get(2).split("-");
+						fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
 						fieldClientName.setText(res.get(3));
 						fieldClientFamily.setText(res.get(4));
-						String[] date = res.get(2).split("-");
-					  fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
 						fieldClientAddress.setText(res.get(7));
 						fieldClientPhone.setText(res.get(6));
 						fieldClientEmail.setText(res.get(5));
+						
 						createAppointmentBtn.setDisable(false);
 						cancelAppointmentBtn.setDisable(false);
 					}

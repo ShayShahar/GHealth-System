@@ -59,7 +59,7 @@
         </rowConstraints>
          <children>
             <TextField fx:id="fieldClientID" editable="false" GridPane.columnIndex="1" />
-            <TextField fx:id="fieldPersonID" editable="false" GridPane.columnIndex="3" />
+            <TextField fx:id="fieldClientClinic" editable="false" GridPane.columnIndex="3" />
             <TextField fx:id="fieldClientName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="fieldClientFamily" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <TextField fx:id="fieldClientJoin" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -67,7 +67,7 @@
             <TextField fx:id="fieldClientPhone" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="fieldClientEmail" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label text="Client Number  " />
-            <Label text="ID  " GridPane.columnIndex="2" />
+            <Label text="Clinic " GridPane.columnIndex="2" />
             <Label text="Join Date " GridPane.rowIndex="2" />
             <Label text="Address " GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="Phone Number " GridPane.rowIndex="3" />
