@@ -11,7 +11,7 @@ public class LoginDB {
     	
     	try{
     		Statement stmnt = connection.createStatement();
-    		ResultSet result = stmnt.executeQuery("SELECT * FROM ghealth.users WHERE username='" + request.getList().get(0) + "'");
+    		ResultSet result = stmnt.executeQuery("SELECT * FROM ghealth.users WHERE userName='" + request.getList().get(0) + "'");
     		
     		if (!result.next())
     			return Result.WRONG_USER;
@@ -26,7 +26,7 @@ public class LoginDB {
     		if (status == 1)
     			return Result.ALREADY_LOGIN;
     		
-			  stmnt.executeUpdate("UPDATE ghealth.users SET status=1 WHERE username='"+request.getList().get(0)+"'");
+			  stmnt.executeUpdate("UPDATE ghealth.users SET userStatus=1 WHERE username='"+request.getList().get(0)+"'");
 			  result.close();
 
 			  

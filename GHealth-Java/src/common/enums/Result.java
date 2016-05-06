@@ -10,5 +10,6 @@ public enum Result {
     ALREADY_LOGIN,
     ERROR,
     LOGGEDOUT,
-    CLIENT_NOT_FOUND;
+    CLIENT_NOT_FOUND,
+    PERSON_EXSISTS;
 }

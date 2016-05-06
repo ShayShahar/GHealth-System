@@ -2,7 +2,6 @@ package client.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Client extends Person implements Serializable{
 	
@@ -20,9 +19,6 @@ public class Client extends Person implements Serializable{
 	
 	
 	//Constructors
-	public Client() {
-		medicalFile = new MedicalFile();
-	}
 	
 	public Client(String name, String family, String id, String address, String phone, String clinic, String email){
 		this.name = name;
@@ -33,7 +29,6 @@ public class Client extends Person implements Serializable{
 		this.phone = phone;
 		this.clinic = clinic;
 		this.joinDate = Calendar.getInstance();
-		medicalFile = new MedicalFile();
 	}
 	
 	//Properties

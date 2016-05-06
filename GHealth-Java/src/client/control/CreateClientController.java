@@ -123,13 +123,19 @@ public class CreateClientController implements IController, Initializable{
 			}
 		}
 		
-		Client client = new Client(fieldClientName.getText(), fieldClientFamily.getText(),
-				fieldPersonID.getText(), fieldClientAddress.getText(),
-				                      fieldClientPhone.getText(), fieldClientClinic.getText(), fieldClientEmail.getText() +"@"+fieldClientEmailDomain.getText());
+		Client client;
 		
-		
-		System.out.println(client.getAddress() +" " + client.getClinic() + " " + client.getEmail() + " " + client.getJoinDate() + " " + client.getId() + " " + client.getName()+ " " + client.getFamilyName() + " " + client.getPhone());
-	
+		if (fieldClientEmailDomain.getText() == null   || fieldClientEmailDomain.getText().trim().isEmpty()){
+			client = new Client(fieldClientName.getText(), fieldClientFamily.getText(),
+					fieldPersonID.getText(), fieldClientAddress.getText(),
+					listPhone.getSelectionModel().getSelectedItem().toString()+"-"+fieldClientPhone.getText(), fieldClientClinic.getText(), "none");
+		}
+		else {
+			client = new Client(fieldClientName.getText(), fieldClientFamily.getText(),
+					fieldPersonID.getText(), fieldClientAddress.getText(),
+					listPhone.getSelectionModel().getSelectedItem().toString()+"-"+fieldClientPhone.getText(), fieldClientClinic.getText(), fieldClientEmail.getText() +"@"+fieldClientEmailDomain.getText());
+		}
+
 		Request request = new Request(Command.CREATE_CLIENT,client);
 		
 		try {

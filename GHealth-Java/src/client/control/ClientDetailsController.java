@@ -216,13 +216,13 @@ public class ClientDetailsController implements IController{
 					public void run() {
 						fieldClientID.setText(res.get(0));
 						fieldPersonID.setText(res.get(1));
-						fieldClientName.setText(res.get(5));
-						fieldClientFamily.setText(res.get(6));
-						String[] date = res.get(3).split("-");
+						fieldClientName.setText(res.get(3));
+						fieldClientFamily.setText(res.get(4));
+						String[] date = res.get(2).split("-");
 					  fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
-						fieldClientAddress.setText(res.get(9));
-						fieldClientPhone.setText(res.get(8));
-						fieldClientEmail.setText(res.get(7));
+						fieldClientAddress.setText(res.get(7));
+						fieldClientPhone.setText(res.get(6));
+						fieldClientEmail.setText(res.get(5));
 						createAppointmentBtn.setDisable(false);
 						cancelAppointmentBtn.setDisable(false);
 					}
