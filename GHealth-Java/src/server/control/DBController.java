@@ -23,6 +23,11 @@ public class DBController {
 			return FindClientDB.handleMessage(request, connection) ;
 		}
 		
+		case CREATE_CLIENT:{
+			return CreateClientDB.handleMessage(request, connection) ;
+
+		}
+		
 		}
 		
 		return null;

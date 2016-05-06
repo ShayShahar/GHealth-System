@@ -1,12 +1,20 @@
 package client.entity;
 
-public class Person{
+import java.io.Serializable;
+
+public class Person implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	
 	//class variables
 	protected String name;
 	protected String familyName;
-	protected long id;
+	protected String id;
 	protected String email;
 	protected String address;
 	protected String phone;
@@ -25,10 +33,10 @@ public class Person{
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getEmail() {

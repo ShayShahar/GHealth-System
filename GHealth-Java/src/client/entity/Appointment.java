@@ -1,8 +1,14 @@
 package client.entity;
 
-public class Appointment{
+import java.io.Serializable;
+
+public class Appointment  implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//class variables
 	private String date;
 	private String time;

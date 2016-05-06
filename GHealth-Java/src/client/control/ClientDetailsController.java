@@ -2,8 +2,8 @@ package client.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import client.boundry.DispatcherUI;
-import client.boundry.SpecialistUI;
+
+import client.boundry.*;
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;
@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 
 public class ClientDetailsController implements IController{
 	
-//FXML Components
+	//FXML Components
 	
 	@FXML private Button dispLogoutBtn;
 	@FXML private Button createAppointmentBtn;
@@ -33,10 +33,13 @@ public class ClientDetailsController implements IController{
 	@FXML private TextField fieldClientAddress;
 	@FXML private TextField fieldClientPhone;
 	@FXML private TextField fieldClientEmail;
+
 	
-	
+	//Members
 	public static String clientID;
 	
+	
+	//Components Handlers
 	public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();
@@ -53,7 +56,35 @@ public class ClientDetailsController implements IController{
 		
 	}
 	
+	private boolean validateID(String id){
+		
+		if (id.length() != 9){
+			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Invalid Input", "ID must contain 9 digits.");
+			return false;
+		}
+		
+		for (int i = 0 ; i < id.length(); i++){
+			if(id.charAt(i) < '0' || id.charAt(i) > '9'){
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Invalid Input", "ID must contain digits only.");
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	public void onFindClientIDButtonClick(ActionEvent event){
+		
+		
+		fieldClientID.clear();
+		fieldPersonID.clear();
+		fieldClientName.clear();
+		fieldClientFamily.clear();
+		fieldClientJoin.clear();
+		fieldClientAddress.clear();
+		fieldClientPhone.clear();
+		fieldClientEmail.clear();
+		
 		
 		dispCreateClientBtn.setDisable(true);
 
@@ -67,6 +98,12 @@ public class ClientDetailsController implements IController{
 				dispClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
 			}
 			
+			return;
+		}
+		
+		boolean check = validateID(dispClientIDTxt.getText());
+		
+		if (check == false){
 			return;
 		}
 
@@ -98,6 +135,10 @@ public class ClientDetailsController implements IController{
 	
 	public void onCreateClientButtonClick(ActionEvent event){
 		
+		CreateClientUI create = new CreateClientUI(dispClientIDTxt.getText());
+		ClientConnectionController.clientConnect.userInterface.get(1).hideWindow();
+		ClientConnectionController.clientConnect.userInterface.add(create);
+		create.displayUserWindow();		
 	}
 	
 	
@@ -123,7 +164,9 @@ public class ClientDetailsController implements IController{
 						{
 							if (ui instanceof DispatcherUI){
 								ui.hideWindow();
-								ClientConnectionController.clientConnect.userInterface.remove(ui);
+								//ClientConnectionController.clientConnect.userInterface.remove(ui);
+								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
+								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 							}
 						}
 					}
@@ -134,7 +177,9 @@ public class ClientDetailsController implements IController{
 						{
 							if (ui instanceof SpecialistUI){
 								ui.hideWindow();
-								ClientConnectionController.clientConnect.userInterface.remove(ui);
+								//ClientConnectionController.clientConnect.userInterface.remove(ui);
+								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
+								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 							}
 						}
 					}
@@ -145,13 +190,13 @@ public class ClientDetailsController implements IController{
 						{
 							if (ui instanceof SpecialistUI){
 								ui.hideWindow();
-								ClientConnectionController.clientConnect.userInterface.remove(ui);
+								//ClientConnectionController.clientConnect.userInterface.remove(ui);
+								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
+								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 							}
 						}
 					}
 					
-					ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-					ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 				}
 			}
 		}

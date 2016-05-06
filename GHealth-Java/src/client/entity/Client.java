@@ -1,35 +1,50 @@
 package client.entity;
 
-public class Client extends Person{
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+
+public class Client extends Person implements Serializable{
 	
-	//class variables
-	private String joinDate;
-	private String leftDate;
-	private Branch clinic;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	//Members
+	private Calendar joinDate;
+	private String clinic;
 	private boolean status;
 	private MedicalFile medicalFile;
 	
+	
+	//Constructors
 	public Client() {
 		medicalFile = new MedicalFile();
 	}
 	
-	//class properties
-	public String getJoinDate() {
+	public Client(String name, String family, String id, String address, String phone, String clinic, String email){
+		this.name = name;
+		this.familyName = family;
+		this.id = id;
+		this.email = email;
+		this.address= address;
+		this.phone = phone;
+		this.clinic = clinic;
+		this.joinDate = Calendar.getInstance();
+		medicalFile = new MedicalFile();
+	}
+	
+	//Properties
+	public Calendar getJoinDate() {
 		return joinDate;
 	}
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
-	}
-	public String getLeftDate() {
-		return leftDate;
-	}
-	public void setLeftDate(String leftDate) {
-		this.leftDate = leftDate;
-	}
-	public Branch getClinic() {
+
+	public String getClinic() {
 		return clinic;
 	}
-	public void setClinic(Branch clinic) {
+	public void setClinic(String clinic) {
 		this.clinic = clinic;
 	}
 	public boolean isStatus() {

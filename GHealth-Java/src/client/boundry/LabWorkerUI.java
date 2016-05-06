@@ -117,5 +117,13 @@ public class LabWorkerUI implements IUi{
 		});
 	}
 
+
+
+	@Override
+	public void closeWindow() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 

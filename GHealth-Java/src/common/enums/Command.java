@@ -4,5 +4,6 @@ public enum Command {
 
     LOGIN,
     LOGOUT,
-    FIND_CLIENT;
+    FIND_CLIENT,
+    CREATE_CLIENT;
 }

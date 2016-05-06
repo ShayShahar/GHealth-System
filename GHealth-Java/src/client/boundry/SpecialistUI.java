@@ -115,6 +115,12 @@ public class SpecialistUI implements IUi{
 		});
 	}
 
+	@Override
+	public void closeWindow() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 }

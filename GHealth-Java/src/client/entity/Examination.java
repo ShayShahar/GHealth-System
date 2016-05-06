@@ -1,11 +1,16 @@
 package client.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javafx.scene.image.Image;
 
-public class Examination{
+public class Examination implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//class variables
 	private int id;
 	private String details;

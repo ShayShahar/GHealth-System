@@ -58,14 +58,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="fieldClientID" GridPane.columnIndex="1" />
-            <TextField fx:id="fieldPersonID" GridPane.columnIndex="3" />
-            <TextField fx:id="fieldClientName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="fieldClientFamily" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="fieldClientJoin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="fieldClientAddress" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField fx:id="fieldClientPhone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="fieldClientEmail" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="fieldClientID" editable="false" GridPane.columnIndex="1" />
+            <TextField fx:id="fieldPersonID" editable="false" GridPane.columnIndex="3" />
+            <TextField fx:id="fieldClientName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="fieldClientFamily" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="fieldClientJoin" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="fieldClientAddress" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="fieldClientPhone" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="fieldClientEmail" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label text="Client Number  " />
             <Label text="ID  " GridPane.columnIndex="2" />
             <Label text="Join Date " GridPane.rowIndex="2" />
