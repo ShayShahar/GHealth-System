@@ -58,9 +58,7 @@ public class DispatcherUI implements IUi{
 					      Stage stage = new Stage();
 					      stage.setTitle("Dispatcher Menu");
 								URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
-								URL url_64 = LoginUI.class.getResource("/img/icon_64.png");
 								stage.getIcons().add(new Image(url_32.toString()));
-								stage.getIcons().add(new Image(url_64.toString()));
 					      Scene scene = new Scene(root);
 					      scene.getStylesheets().add("client/boundry/css/Style.css");
 					      stage.setScene(scene); 
@@ -114,11 +112,6 @@ public class DispatcherUI implements IUi{
 	}
 
 
-	@Override
-	public void closeWindow() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }

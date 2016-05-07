@@ -413,11 +413,6 @@ public class CreateAppointmentController implements IController, Initializable{
 			if (result instanceof ArrayList<?>){
 				
 				blockedDates = (ArrayList<DateChecker>)result;
-				
-				for(int i = 0; i<blockedDates.size(); i++){
-					System.out.println(blockedDates.get(i).getDate());
-				}
-				
 			}
 			
 			else {
