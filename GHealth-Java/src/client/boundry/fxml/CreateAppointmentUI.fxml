@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,11 +25,7 @@
       </ImageView>
       <Separator layoutX="23.0" layoutY="54.0" prefHeight="2.0" prefWidth="550.0" />
       <Accordion layoutX="25.0" layoutY="232.0" />
-      <Button fx:id="createBackBtn" layoutX="24.0" layoutY="575.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;- Back">
-         <effect>
-            <Reflection />
-         </effect>
-      </Button>
+      <Button fx:id="createBackBtn" layoutX="24.0" layoutY="575.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;- Back" />
       <Separator layoutX="23.0" layoutY="548.0" prefHeight="2.0" prefWidth="550.0" />
       <TextField fx:id="fieldPersonID" editable="false" layoutX="73.0" layoutY="25.0" />
       <Label layoutX="33.0" layoutY="29.0" text="ID  " />
@@ -49,15 +44,14 @@
          <children>
             <VBox fx:id="dateContainer" prefHeight="198.0" prefWidth="174.0" spacing="30.0">
                <children>
-                  <DatePicker prefHeight="35.0" prefWidth="170.0" promptText="Choose Date" />
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Select Date" />
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Select Time" />
+                  <DatePicker fx:id="appPicker" onAction="#onSelectDate" prefHeight="35.0" prefWidth="170.0" promptText="Choose Date" />
+                  <Button fx:id="createAppBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Create Appointment" />
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <TableView prefHeight="198.0" prefWidth="374.0">
+            <TableView fx:id="timeTable" onMouseClicked="#onMouseClickChooseHour" prefHeight="198.0" prefWidth="370.0">
               <columns>
-                <TableColumn prefWidth="358.0" text="Time" />
+                <TableColumn fx:id="timeClmn" prefWidth="350.0" text="Time" />
               </columns>
             </TableView>
          </children>

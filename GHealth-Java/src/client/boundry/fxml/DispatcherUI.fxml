@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,11 +38,7 @@
             <Insets bottom="5.0" top="5.0" />
          </padding>
       </VBox>
-      <Button fx:id="dispLogoutBtn" layoutX="20.0" layoutY="542.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout">
-         <effect>
-            <Reflection />
-         </effect>
-      </Button>
+      <Button fx:id="dispLogoutBtn" layoutX="24.0" layoutY="549.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout" />
       <GridPane layoutX="16.0" layoutY="91.0" prefHeight="145.0" prefWidth="533.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
         <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="172.22222900390625" minWidth="10.0" prefWidth="80.0" />

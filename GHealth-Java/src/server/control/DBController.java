@@ -31,6 +31,19 @@ public class DBController {
 				case FIND_SPECIALIST:{
 					return FindSpecialistDB.handleMessage(request, connection) ;
 				}
+				
+				case FIND_FULL_DATES:{
+					return FindDatesDB.handleMessage(request, connection) ;
+				}
+				
+				case FIND_AVAILABLE_HOURS:{
+					return FindHoursDB.handleMessage(request, connection) ;
+				}
+				
+				case CREATE_APPOINTMENT:{
+					return CreateAppointmentDB.handleMessage(request, connection) ;
+				}
+				
 		}
 		
 		return Result.ERROR;
