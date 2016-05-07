@@ -26,11 +26,9 @@ public class ClientConnectionUI extends Application{
 		public void start(Stage primaryStage) throws Exception {
 		
 			URL url_32 = ClientConnectionUI.class.getResource("/img/icon_32.png");
-			URL url_64 =  ClientConnectionUI.class.getResource("/img/icon_64.png");
 			Parent root = FXMLLoader.load(ClientConnectionUI.class.getResource("/client/boundry/fxml/ClientConnectionUI.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.getIcons().add(new Image(url_32.toString()));
-			primaryStage.getIcons().add(new Image(url_64.toString()));
 	    primaryStage.setTitle("GHealth Client Connection");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
