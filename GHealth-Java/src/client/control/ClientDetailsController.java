@@ -33,6 +33,7 @@ public class ClientDetailsController implements IController{
 	@FXML private TextField fieldClientAddress;
 	@FXML private TextField fieldClientPhone;
 	@FXML private TextField fieldClientEmail;
+	@FXML private Button removeBtn;
 
 	
 	//Members
@@ -237,6 +238,8 @@ public class ClientDetailsController implements IController{
 						
 						createAppointmentBtn.setDisable(false);
 						cancelAppointmentBtn.setDisable(false);
+						removeBtn.setDisable(false);
+
 					}
 						
 				});
@@ -253,6 +256,7 @@ public class ClientDetailsController implements IController{
 						dispCreateClientBtn.setDisable(false);
 						createAppointmentBtn.setDisable(true);
 						cancelAppointmentBtn.setDisable(true);
+						removeBtn.setDisable(true);
 						}
 				});
 				
