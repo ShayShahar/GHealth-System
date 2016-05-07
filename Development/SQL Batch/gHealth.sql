@@ -16,6 +16,42 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `appointments`
+--
+
+DROP TABLE IF EXISTS `appointments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `appointments` (
+  `appID` int(11) NOT NULL AUTO_INCREMENT,
+  `appDate` date NOT NULL,
+  `appInviteDate` datetime NOT NULL,
+  `appTime` int(11) NOT NULL,
+  `appReview` varchar(2500) DEFAULT NULL,
+  `appPrice` int(11) DEFAULT NULL,
+  `appMissed` int(11) DEFAULT '0',
+  `specialist` int(11) NOT NULL,
+  `client` int(11) NOT NULL,
+  PRIMARY KEY (`appID`),
+  UNIQUE KEY `appID_UNIQUE` (`appID`),
+  KEY `specialist_idx` (`specialist`),
+  KEY `client_idx` (`client`),
+  CONSTRAINT `client` FOREIGN KEY (`client`) REFERENCES `clients` (`clientID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `specialist` FOREIGN KEY (`specialist`) REFERENCES `specialists` (`specialistID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `appointments`
+--
+
+LOCK TABLES `appointments` WRITE;
+/*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
+INSERT INTO `appointments` VALUES (1,'2016-05-16','2016-05-07 19:49:41',3,NULL,NULL,0,10,1),(2,'2016-05-16','2016-05-07 19:50:46',1,NULL,NULL,0,10,1),(3,'2016-05-17','2016-05-07 19:52:51',1,NULL,NULL,0,10,1),(4,'2016-05-16','2016-05-07 19:53:29',4,NULL,NULL,0,10,1),(5,'2016-05-18','2016-05-07 19:54:47',1,NULL,NULL,0,10,1),(6,'2016-05-16','2016-05-07 19:55:12',15,NULL,NULL,0,1,1),(7,'2016-05-16','2016-05-07 19:57:33',15,NULL,NULL,0,1,1),(8,'2016-05-16','2016-05-07 19:57:58',1,NULL,NULL,0,10,1),(9,'2016-05-16','2016-05-07 19:58:14',18,NULL,NULL,0,10,1),(10,'2016-05-18','2016-05-07 19:59:39',7,NULL,NULL,0,10,1),(11,'2016-05-18','2016-05-07 19:59:58',1,NULL,NULL,0,1,1);
+/*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `branches`
 --
 
@@ -65,6 +101,33 @@ LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` VALUES (1,'123456789','Clalit','2016-05-06 21:41:14');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dates`
+--
+
+DROP TABLE IF EXISTS `dates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dates` (
+  `dateDate` date NOT NULL,
+  `specID` int(11) NOT NULL,
+  `appointments` varchar(18) DEFAULT NULL,
+  PRIMARY KEY (`dateDate`,`specID`),
+  KEY `specialist_idx` (`specID`),
+  CONSTRAINT `specID` FOREIGN KEY (`specID`) REFERENCES `specialists` (`specialistID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dates`
+--
+
+LOCK TABLES `dates` WRITE;
+/*!40000 ALTER TABLE `dates` DISABLE KEYS */;
+INSERT INTO `dates` VALUES ('2016-05-15',1,'111111111111111111'),('2016-05-16',1,'111111111111111111'),('2016-05-16',10,'101000000000000001'),('2016-05-17',1,'111111111111111111'),('2016-05-17',10,'100000000000000000'),('2016-05-18',1,'100000000000000000'),('2016-05-18',10,'100000100000000000');
+/*!40000 ALTER TABLE `dates` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -150,7 +213,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('assaf','1234',0,'Specialist','213245658'),('shay','shahar',1,'Dispatcher','302632195');
+INSERT INTO `users` VALUES ('assaf','1234',0,'Specialist','213245658'),('shay','shahar',0,'Dispatcher','302632195');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-06 23:23:59
+-- Dump completed on 2016-05-07 20:03:47
