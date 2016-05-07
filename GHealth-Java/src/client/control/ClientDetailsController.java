@@ -140,7 +140,10 @@ public class ClientDetailsController implements IController{
 	}
 	
 	public void onCancelAppointmentButtonClick(ActionEvent event){
-		
+		CancelAppointmentUI cancel = new CancelAppointmentUI(dispClientIDTxt.getText());
+		ClientConnectionController.clientConnect.userInterface.get(1).hideWindow();
+		ClientConnectionController.clientConnect.userInterface.add(cancel);
+		cancel.displayUserWindow();	
 	}
 	
 	
@@ -152,6 +155,9 @@ public class ClientDetailsController implements IController{
 		create.displayUserWindow();		
 	}
 	
+	public void onRemoveClientButtonClick(ActionEvent event){
+		
+	}
 	
 	public void handleReply(Reply reply){
 		 

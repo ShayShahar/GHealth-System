@@ -33,7 +33,7 @@
                </VBox.margin></Button>
             <Button fx:id="cancelAppointmentBtn" disable="true" mnemonicParsing="false" onAction="#onCancelAppointmentButtonClick" prefHeight="45.0" prefWidth="180.0" text="Cancel Appointment" />
             <Button fx:id="dispCreateClientBtn" disable="true" mnemonicParsing="false" onAction="#onCreateClientButtonClick" prefHeight="45.0" prefWidth="180.0" text="Create Client" />
-            <Button fx:id="removeBtn" disable="true" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Remove Client" />
+            <Button fx:id="removeBtn" disable="true" mnemonicParsing="false" onAction="#onRemoveClientButtonClick" prefHeight="45.0" prefWidth="180.0" text="Remove Client" />
          </children>
          <padding>
             <Insets bottom="5.0" top="5.0" />
