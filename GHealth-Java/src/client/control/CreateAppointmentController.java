@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.time.LocalDate;
 import client.boundry.CreateAppointmentUI;
 import client.boundry.DispatcherUI;
+import client.entity.Appointment;
 import client.entity.DateChecker;
 import client.entity.Hour;
 import client.entity.Specialist;
@@ -18,6 +19,7 @@ import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
+import common.enums.Result;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,6 +68,7 @@ public class CreateAppointmentController implements IController, Initializable{
 	IUi thisUi = null;
   private int choosedID = 0;
   private int choosedHour = 0;
+  private int userID;
   private ArrayList<DateChecker> blockedDates = new ArrayList<DateChecker>();
   
   HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
@@ -344,13 +347,14 @@ public class CreateAppointmentController implements IController, Initializable{
 	
 	public void onCreateAppointmentButtonClick(ActionEvent event){
 		
-		ArrayList<String> msg = new ArrayList<String>();
+		Appointment appointment = new Appointment();
 		
-		msg.add(Integer.toString(choosedID));
-		msg.add(Integer.toString(choosedHour));
-		msg.add(java.sql.Date.valueOf(appPicker.getValue()).toString());
+		appointment.setDate(java.sql.Date.valueOf(appPicker.getValue()));
+		appointment.setTime(choosedHour);
+		appointment.setSpecialistID(choosedID);
+		appointment.setClientID(userID);
 		
-		Request request = new Request(Command.CREATE_APPOINTMENT,msg);
+		Request request = new Request(Command.CREATE_APPOINTMENT,appointment);
 		
 		try {
 			ClientConnectionController.clientConnect.controller = this;
@@ -450,6 +454,30 @@ public class CreateAppointmentController implements IController, Initializable{
 			
 			onUpdateHoursTableView(list);
 		}
+		
+		else if (reply.getCommand() == Command.CREATE_APPOINTMENT){
+		
+			if ((Result)result == Result.ERROR){
+				thisUi.displayErrorMessage("Cannot Create Appointmnet", "Error occured while tried to create the appoinment, try again.");
+			}
+			else{
+				thisUi.hideWindow();
+				
+				for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+					if (ui instanceof DispatcherUI){
+						ui.showWindow();
+					}
+				}				
+				thisUi.displayMessage("Appointment Created", "The appointment created successfuly");
+			}
+			
+		}
+
+		
+	}
+
+	public void setID(int id) {
+		this.userID = id;
 	}
 	
 	

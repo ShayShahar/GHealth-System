@@ -37,6 +37,7 @@ public class ClientDetailsController implements IController{
 	
 	//Members
 	public static String clientID;
+	public static int id;
 	
 	
 	//Components Handlers
@@ -125,7 +126,7 @@ public class ClientDetailsController implements IController{
 	}
 	
 	public void onCreateAppointmentButtonClick(ActionEvent event){
-		CreateAppointmentUI create = new CreateAppointmentUI(clientID);
+		CreateAppointmentUI create = new CreateAppointmentUI(clientID,id);
 		ClientConnectionController.clientConnect.userInterface.add(create);
 		
 		for(IUi ui : ClientConnectionController.clientConnect.userInterface){
@@ -224,6 +225,7 @@ public class ClientDetailsController implements IController{
 					@Override
 					public void run() {
 						fieldClientID.setText(res.get(0));
+						id = Integer.parseInt(fieldClientID.getText());
 						fieldClientClinic.setText(res.get(1));
 						String[] date = res.get(2).split("-");
 						fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);

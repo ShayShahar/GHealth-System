@@ -1,6 +1,7 @@
 package client.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Appointment  implements Serializable{
 	
@@ -10,31 +11,28 @@ public class Appointment  implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	//class variables
-	private String date;
-	private String time;
+	private Date date;
+	private int time;
 	private String inviteDate;
 	private String startTime;
 	private String reviewDetails;
 	private int price;
 	private boolean missedStatus;
-	
-	
-	//class constructors
-	public Appointment(){}
-	
-	
+	private int specialistID;
+	private int clientID;
+		
 	
 	//class properties
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getTime() {
+	public int getTime() {
 		return time;
 	}
-	public void setTime(String time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 	public String getInviteDate() {
@@ -66,6 +64,30 @@ public class Appointment  implements Serializable{
 	}
 	public void setMissedStatus(boolean missedStatus) {
 		this.missedStatus = missedStatus;
+	}
+
+
+
+	public int getSpecialistID() {
+		return specialistID;
+	}
+
+
+
+	public void setSpecialistID(int specialistID) {
+		this.specialistID = specialistID;
+	}
+
+
+
+	public int getClientID() {
+		return clientID;
+	}
+
+
+
+	public void setClientID(int clientID) {
+		this.clientID = clientID;
 	}
 
 }

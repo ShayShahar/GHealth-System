@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import client.entity.Client;
+import client.entity.Appointment;
 import common.entity.Request;
 import common.enums.Result;
 
@@ -16,43 +15,67 @@ public class CreateAppointmentDB {
     	
 		ResultSet res = null;
 
-		Client client = (Client) request.getEntity();
+		Appointment appointment = (Appointment) request.getEntity();
 	
-		String searchPerson = "SELECT * FROM ghealth.person WHERE personID=?";
-		String createPerson = "INSERT INTO ghealth.person (personID, personName, personFamily, personEmail, personPhone, personAddress ) VALUES (?,?,?,?,?,?)";
-		String createClient = "INSERT INTO ghealth.clients (person, clientClinic, joinDate) VALUES (?,?,NOW())";
+		String searchDate = "SELECT * FROM ghealth.dates WHERE dateDate=? AND specID=?";
+		String insertAppointment = "INSERT INTO ghealth.appointments (appDate, appInviteDate, appTime, specialist, client) VALUES (?,NOW(),?,?,?)";
+		String insertNewDate = "INSERT INTO ghealth.dates (dateDate, specID, appointments) VALUES (?,?,?)";
+		String updateDate ="UPDATE ghealth.dates SET appointments=? WHERE dateDate=? AND specID=?";
 
 		
 		try {
-		    PreparedStatement preparedStatement1 = connection.prepareStatement(searchPerson);
-		    preparedStatement1.setString(1,client.getId());
-		    res = preparedStatement1.executeQuery();
-		    if (res.next()) {
-		    	res.close();
-		    	return Result.PERSON_EXSISTS;
+			
+			//create new appointment in db
+		    PreparedStatement preparedStatement1 = connection.prepareStatement(insertAppointment);
+		    preparedStatement1.setDate(1,appointment.getDate());
+		    preparedStatement1.setInt(2,appointment.getTime());
+		    preparedStatement1.setInt(3,appointment.getSpecialistID());
+		    preparedStatement1.setInt(4,appointment.getClientID());
+
+		    preparedStatement1.executeUpdate();
+		    
+		 //search for date in db
+		    
+		    PreparedStatement preparedStatement2 = connection.prepareStatement(searchDate);
+		    preparedStatement2.setDate(1,appointment.getDate());
+		    preparedStatement2.setInt(2,appointment.getSpecialistID());
+		    
+		    res = preparedStatement2.executeQuery();
+		    
+		  //in case this is the first appointment for the specialist at this date 		    
+		    if (!res.next()) {
+		    	
+			    PreparedStatement preparedStatement3 = connection.prepareStatement(insertNewDate);
+			    preparedStatement3.setDate(1,appointment.getDate());
+			    preparedStatement3.setInt(2,appointment.getSpecialistID());
+			    
+			    StringBuilder appMask = new StringBuilder("000000000000000000");
+			    appMask.setCharAt(appointment.getTime() - 1,'1');
+			    preparedStatement3.setString(3, appMask.toString());
+
+			    preparedStatement3.executeUpdate();
 		    }
+		    
+		  //update existing date value in dates db  
 		    else{
 		    	
-		    	PreparedStatement preparedStatement2 = connection.prepareStatement(createPerson);
-		    	preparedStatement2.setString(1,client.getId());
-		    	preparedStatement2.setString(2,client.getName());
-		    	preparedStatement2.setString(3,client.getFamilyName());
-		    	preparedStatement2.setString(4,client.getEmail());
-		    	preparedStatement2.setString(5,client.getPhone());
-		    	preparedStatement2.setString(6,client.getAddress());
-			    preparedStatement2.executeUpdate();
-			    
-		    	PreparedStatement preparedStatement3 = connection.prepareStatement(createClient);
-		    	preparedStatement3.setString(1,client.getId());
-		    	preparedStatement3.setString(2,client.getClinic());		    	
-			    preparedStatement3.executeUpdate();
-			    
-			    return Result.OK;
+		    	String appStr = res.getString(3);
+		    	StringBuilder addValue = new StringBuilder(appStr);
+		    	addValue.setCharAt(appointment.getTime() - 1,'1');
+		    	
+		    	PreparedStatement preparedStatement4 = connection.prepareStatement(updateDate);
+			    preparedStatement4.setDate(2,appointment.getDate());
+			    preparedStatement4.setInt(3,appointment.getSpecialistID());
+			    preparedStatement4.setString(1,addValue.toString());
+
+			    preparedStatement4.executeUpdate();
 			    
 		    }
 		    
+		    return Result.OK;
+
+		    
 		} catch (SQLException e) {
-		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		    return Result.ERROR;
 		}

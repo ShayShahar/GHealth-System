@@ -45,7 +45,7 @@
             <VBox fx:id="dateContainer" prefHeight="198.0" prefWidth="174.0" spacing="30.0">
                <children>
                   <DatePicker fx:id="appPicker" onAction="#onSelectDate" prefHeight="35.0" prefWidth="170.0" promptText="Choose Date" />
-                  <Button fx:id="createAppBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Create Appointment" />
+                  <Button fx:id="createAppBtn" disable="true" mnemonicParsing="false" onAction="#onCreateAppointmentButtonClick" prefHeight="35.0" prefWidth="170.0" text="Create Appointment" />
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />

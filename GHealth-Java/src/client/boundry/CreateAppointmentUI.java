@@ -21,9 +21,12 @@ public class CreateAppointmentUI implements IUi{
 	
 	private static Stage mainStage;
 	private String user_id;
+	private int id;
+
 	
-	public CreateAppointmentUI(String clientID) {
+	public CreateAppointmentUI(String clientID, int id) {
 		user_id = clientID;
+		this.id = id;
 	}
 
 
@@ -66,6 +69,7 @@ public class CreateAppointmentUI implements IUi{
 					      stage.setTitle("Create Appointment");
 					      CreateAppointmentController controller = fxmlLoader.getController();
 					      controller.setUser(user_id);
+					      controller.setID(id);
 								URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
 								URL url_64 = LoginUI.class.getResource("/img/icon_64.png");
 								stage.getIcons().add(new Image(url_32.toString()));
