@@ -123,7 +123,7 @@ public class ServerController extends AbstractServer{
 				notificationsFTxt.appendText("SQL connection succeed\n");
 			
 		    reply = new Reply(DBController.processRequest(request, myConn), request.getCommand());
-		    
+		    //System.out.println((String)reply.getResult());
 			try {
 			    client.sendToClient(reply);
 			} catch (IOException e) {

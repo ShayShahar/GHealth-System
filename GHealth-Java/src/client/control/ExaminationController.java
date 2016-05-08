@@ -63,9 +63,9 @@ public class ExaminationController implements IController{
         	reference.setDate(date);
         	reference.setCId(Integer.parseInt(Ecid.getText()));
         	reference.setSId(Integer.parseInt(Esid.getText()));
-        	Request request = new Request(Command.FIND_REFERENCE_BY_SID_CID_DATE, reference);
+        	Request request = new Request(Command.FIND_REFERENCE_BY_SID_CID_DATE, (Object)reference);
         	//
-        	
+ 
         	//Send the request to server
         	try {
     			ClientConnectionController.clientConnect.controller = this;
@@ -73,6 +73,7 @@ public class ExaminationController implements IController{
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
+    		
         	
         	
         	
@@ -86,10 +87,27 @@ public class ExaminationController implements IController{
 		@Override
 		public void handleReply(Reply reply) {
 			
+			
 			Object result =  reply.getResult();
 			if (reply.getCommand() == Command.LOGOUT)
 				logoutCheck(result);
+			
 			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE);
+			{
+				//System.out.println("111");
+				/*
+				if ((Result)result == Result.ERROR){
+					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
+						System.exit(1);
+				}
+				*/
+				
+				
+				Reference reference = new Reference();
+				reference = (Reference)reply.getResult();
+				System.out.println(reference.getComments());
+		         
+			}
 				
 			
 			

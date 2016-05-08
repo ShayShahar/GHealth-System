@@ -1,9 +1,14 @@
 package client.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Reference{
+public class Reference implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private enum Urgency {LOW, MEDIUM, HIGH, CRITICAL};
 	
 	//class variables
