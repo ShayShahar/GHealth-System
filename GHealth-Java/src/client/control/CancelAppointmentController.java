@@ -3,6 +3,7 @@ package client.control;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class CancelAppointmentController implements IController, Initializable{
 	
 	@FXML private TableView<Appointment> tabelAppointments;
 	@FXML private TableColumn<Appointment, String> idClmn;
-	@FXML private TableColumn<Appointment, Date> dateClmn;
+	@FXML private TableColumn<Appointment, String> dateClmn;
 	@FXML private TableColumn<Appointment, String> timeClmn;
 	@FXML private TableColumn<Appointment, String> specialistClmn;
 	@FXML private TableColumn<Appointment, String> branchClmn;
@@ -138,8 +139,8 @@ public class CancelAppointmentController implements IController, Initializable{
 
 	
 		idClmn.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-		dateClmn.setCellValueFactory(new PropertyValueFactory<>("date"));	
-		timeClmn.setCellValueFactory(new PropertyValueFactory<>("TimeString"));	
+		dateClmn.setCellValueFactory(new PropertyValueFactory<>("dateString"));	
+		timeClmn.setCellValueFactory(new PropertyValueFactory<>("timeString"));	
 		specialistClmn.setCellValueFactory(new PropertyValueFactory<>("specialistName"));	
 		branchClmn.setCellValueFactory(new PropertyValueFactory<>("branchName"));
 		
@@ -170,16 +171,16 @@ public class CancelAppointmentController implements IController, Initializable{
 					Appointment appointment = new Appointment();
 					appointment.setAppointmentID(Integer.parseInt(strings.get(0)));
 					appointment.setBranchName(strings.get(4));
-					appointment.setTimeString(getHourByInteger.get(strings.get(2)));
+					appointment.setTimeString(getHourByInteger.get(Integer.parseInt(strings.get(2))));
 					appointment.setSpecialistName(strings.get(3));
-			/*		
+									
 					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 					String dateInString = strings.get(1);
 					String[] date = dateInString.split("-");
-					String setDate = date[2]+"-"+date[1]+"-"+date[0];*/
-					
-				//	appointment.setDate(formatter.parse(setDate));
-					
+					String setDate = date[2]+"-"+date[1]+"-"+date[0];					
+
+					appointment.setDateString(setDate);
+
 					appointmnetsList.add(appointment);
 				}
 				

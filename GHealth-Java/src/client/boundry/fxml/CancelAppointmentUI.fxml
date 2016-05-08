@@ -20,7 +20,7 @@
       </ImageView>
       <Separator layoutX="23.0" layoutY="54.0" prefHeight="2.0" prefWidth="550.0" />
       <Accordion layoutX="25.0" layoutY="232.0" />
-      <Button  layoutX="24.0" layoutY="440.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;- Back" />
+      <Button layoutX="24.0" layoutY="440.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;- Back" />
       <Separator layoutX="23.0" layoutY="412.0" prefHeight="2.0" prefWidth="550.0" />
       <TextField fx:id="fieldPersonID" editable="false" layoutX="73.0" layoutY="25.0" />
       <Label layoutX="33.0" layoutY="29.0" text="ID  " />
@@ -31,7 +31,7 @@
             <TableColumn fx:id="dateClmn" editable="false" prefWidth="106.77777099609375" text="Date" />
             <TableColumn fx:id="timeClmn" editable="false" prefWidth="136.11114501953125" text="Time" />
             <TableColumn fx:id="specialistClmn" editable="false" prefWidth="107.88885498046875" text="Specialist" />
-            <TableColumn fx:id="branchClmn" editable="false" prefWidth="149.77777099609375" text="Branch" />
+            <TableColumn fx:id="branchClmn" editable="false" prefWidth="129.11114501953125" text="Branch" />
         </columns>
       </TableView>
       <Button disable="true" layoutX="225.0" layoutY="358.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="142.0" text="Cancel Selected" />

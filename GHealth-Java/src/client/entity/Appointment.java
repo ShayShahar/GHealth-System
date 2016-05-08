@@ -25,8 +25,8 @@ public class Appointment  implements Serializable{
 	private int clientID;
 	private String specialistName;
 	private String branchName;
-	private String TimeString;
-		
+	private String timeString;
+	private String dateString;
 	
 	//class properties
 	public Date getDate() {
@@ -108,10 +108,16 @@ public class Appointment  implements Serializable{
 		this.appointmentID = appointmentID;
 	}
 	public String getTimeString() {
-		return TimeString;
+		return timeString;
 	}
 	public void setTimeString(String timeString) {
-		TimeString = timeString;
+		this.timeString = timeString;
+	}
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
 	}
 
 }
