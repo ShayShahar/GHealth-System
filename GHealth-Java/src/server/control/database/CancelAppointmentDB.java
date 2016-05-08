@@ -12,6 +12,7 @@ public class CancelAppointmentDB {
     public static Object handleMessage (Request request, Connection connection) {
     	
 		ResultSet res = null;
+		return res;
 
 		/*
 		Client client = (Client) request.getEntity();
