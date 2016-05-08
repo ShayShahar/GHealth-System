@@ -48,9 +48,16 @@ public class DBController {
 					return FindAppointmentsDB.handleMessage(request, connection) ;
 				}
 				
+
 				case FIND_REFERENCE_BY_SID_CID_DATE:{
 					return FindReferenceByCidSidDateDB.handleMessage(request, connection) ;
 				}
+
+				case CANCEL_APPOINTMENT:{
+					return CancelAppointmentDB.handleMessage(request, connection) ;
+				}
+				
+
 		default:
 			break;
 				

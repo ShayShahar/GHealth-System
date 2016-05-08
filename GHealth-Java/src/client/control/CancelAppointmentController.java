@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -28,7 +29,7 @@ import javafx.scene.input.MouseEvent;
 public class CancelAppointmentController implements IController, Initializable{
 
 	@FXML private TextField fieldPersonID;
-	
+	@FXML private Button cancelBtn;
 	@FXML private TableView<Appointment> tabelAppointments;
 	@FXML private TableColumn<Appointment, String> idClmn;
 	@FXML private TableColumn<Appointment, String> dateClmn;
@@ -39,7 +40,7 @@ public class CancelAppointmentController implements IController, Initializable{
 	
 	HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 
-	
+	private int choosedID;
 	private String clientID;
 	private IUi thisUi;
 	
@@ -61,7 +62,6 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 	}
 	
-	
 	public ObservableList<Appointment> getAppointments(ArrayList<Appointment> list){
 		ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 		
@@ -81,6 +81,21 @@ public class CancelAppointmentController implements IController, Initializable{
 				tabelAppointments.setItems(getAppointments(list));
 			}});
 	}
+	
+	public void onCancelAppointmentButtonClick(ActionEvent event){
+		
+		ArrayList<String> msg = new ArrayList<String>();
+		msg.add(Integer.toString(choosedID));
+	
+		Request request = new Request(Command.CANCEL_APPOINTMENT,msg);
+		
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}			
+	}
 
 	
 	public void onBackButtonClick(ActionEvent event){
@@ -96,7 +111,22 @@ public class CancelAppointmentController implements IController, Initializable{
 	}
 	
 	public void onMouseClick(MouseEvent event){
-		
+		try{
+			if (tabelAppointments.getSelectionModel().getSelectedItem().getAppointmentID() != 0){
+				
+				cancelBtn.setDisable(false);
+				choosedID = tabelAppointments.getSelectionModel().getSelectedItem().getAppointmentID();
+					
+			}
+			
+			else{
+				choosedID = 0;
+				cancelBtn.setDisable(true);
+			}	
+	}catch(Exception e){
+		choosedID = 0;
+		cancelBtn.setDisable(true);
+	}
 	}
 	
 	@Override
