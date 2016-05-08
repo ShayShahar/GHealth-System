@@ -44,6 +44,12 @@ public class DBController {
 					return CreateAppointmentDB.handleMessage(request, connection) ;
 				}
 				
+				case FIND_APPOINTMENTS:{
+					return FindAppointmentsDB.handleMessage(request, connection) ;
+				}
+		default:
+			break;
+				
 		}
 		
 		return Result.ERROR;

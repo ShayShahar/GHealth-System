@@ -181,7 +181,6 @@ public class ClientDetailsController implements IController{
 						{
 							if (ui instanceof DispatcherUI){
 								ui.hideWindow();
-								//ClientConnectionController.clientConnect.userInterface.remove(ui);
 								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 							}
@@ -194,26 +193,11 @@ public class ClientDetailsController implements IController{
 						{
 							if (ui instanceof SpecialistUI){
 								ui.hideWindow();
-								//ClientConnectionController.clientConnect.userInterface.remove(ui);
 								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 							}
 						}
 					}
-					
-					else if (ClientConnectionController.clientConnect.userPrivilege.equals("LabWorker")){
-						
-						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-						{
-							if (ui instanceof SpecialistUI){
-								ui.hideWindow();
-								//ClientConnectionController.clientConnect.userInterface.remove(ui);
-								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-							}
-						}
-					}
-					
 				}
 			}
 		}

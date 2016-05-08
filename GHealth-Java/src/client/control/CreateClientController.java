@@ -61,6 +61,10 @@ public class CreateClientController implements IController, Initializable{
 			thisUi.displayErrorMessage ("Create Client Error", "Error occured while tried to create a new client.");
 		}
 		
+		else if ((Result)result == Result.PERSON_EXISTS){
+			thisUi.displayErrorMessage ("Create Client Error", "A worker cannot be a client! check the entered id.");
+		}
+		
 		else {
 			thisUi.hideWindow();
 			for (IUi ui : ClientConnectionController.clientConnect.userInterface){

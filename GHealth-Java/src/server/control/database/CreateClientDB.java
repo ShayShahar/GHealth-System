@@ -17,7 +17,7 @@ public class CreateClientDB {
 		Client client = (Client) request.getEntity();
 	
 		String searchPerson = "SELECT * FROM ghealth.person WHERE personID=?";
-		String createPerson = "INSERT INTO ghealth.person (personID, personName, personFamily, personEmail, personPhone, personAddress ) VALUES (?,?,?,?,?,?)";
+		String createPerson = "INSERT INTO ghealth.person (personID, personName, personFamily, personEmail, personPhone, personAddress) VALUES (?,?,?,?,?,?)";
 		String createClient = "INSERT INTO ghealth.clients (person, clientClinic, joinDate) VALUES (?,?,NOW())";
 
 		
@@ -27,7 +27,7 @@ public class CreateClientDB {
 		    res = preparedStatement1.executeQuery();
 		    if (res.next()) {
 		    	res.close();
-		    	return Result.PERSON_EXSISTS;
+		    	return Result.PERSON_EXISTS;
 		    }
 		    else{
 		    	
