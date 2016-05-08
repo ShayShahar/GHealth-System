@@ -1,12 +1,15 @@
 package client.entity;
 
+import java.util.Date;
+
 public class Reference{
 
 	private enum Urgency {LOW, MEDIUM, HIGH, CRITICAL};
 	
 	//class variables
-	private int id;
-	private String date;
+	private int cid;
+	private int sid;
+	private Date date;
 	private String comments;
 	private int code;
 	private Urgency urgency;
@@ -14,16 +17,22 @@ public class Reference{
 	
 	
 	//class properties
-	public int getId() {
-		return id;
+	public int getCId() {
+		return cid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setCId(int cid) {
+		this.cid = cid;
 	}
-	public String getDate() {
+	public int getSId() {
+		return sid;
+	}
+	public void setSId(int sid) {
+		this.sid = sid;
+	}
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getComments() {
