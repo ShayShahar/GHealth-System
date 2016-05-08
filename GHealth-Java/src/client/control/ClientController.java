@@ -13,6 +13,7 @@ public class ClientController extends AbstractClient{
 	public IController controller;
 	public ArrayList<IUi> userInterface = new ArrayList<IUi>();
 	public String userPrivilege;
+	public String userName;
 	
 	public ClientController(String host, int port) throws IOException {
 		super(host, port);
@@ -24,6 +25,6 @@ public class ClientController extends AbstractClient{
 		Reply reply = (Reply) msg;
 		controller.handleReply(reply);
 	}
-
+	
 	
 }

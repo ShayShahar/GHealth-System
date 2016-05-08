@@ -2,9 +2,6 @@ package client.control;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -157,15 +154,11 @@ public class CancelAppointmentController implements IController, Initializable{
 		if (reply.getCommand() == Command.FIND_APPOINTMENTS){
 			
 			ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();
-			
-			System.out.println("1");
-			
+						
 			if (result instanceof ArrayList<?>){
 				
 				ArrayList<Object> list = (ArrayList<Object>)result;
 	
-				System.out.println("2");
-
 				for (int i = 0 ; i < list.size(); i++){
 					ArrayList<String> strings = (ArrayList<String>)(list.get(i));
 					Appointment appointment = new Appointment();
@@ -174,7 +167,6 @@ public class CancelAppointmentController implements IController, Initializable{
 					appointment.setTimeString(getHourByInteger.get(Integer.parseInt(strings.get(2))));
 					appointment.setSpecialistName(strings.get(3));
 									
-					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 					String dateInString = strings.get(1);
 					String[] date = dateInString.split("-");
 					String setDate = date[2]+"-"+date[1]+"-"+date[0];					

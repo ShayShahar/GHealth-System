@@ -17,8 +17,6 @@ public class FindAppointmentsDB {
     		ResultSet result = stmnt.executeQuery("SELECT * FROM ghealth.appointments, ghealth.clients, ghealth.specialists, ghealth.person"
     				+ " WHERE clients.person='" + request.getList().get(0) + "' AND ghealth.clients.clientID=appointments.client AND "
     						+ "ghealth.appointments.specialist=ghealth.specialists.specialistID AND ghealth.specialists.personID=ghealth.person.personID");
-
-    		System.out.println(request.getList().get(0));
     		
     		if (!result.next()){
     			return Result.NO_APPOINTMENTS_FOUND;

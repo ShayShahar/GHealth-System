@@ -41,6 +41,7 @@ public class UserController implements IController{
 		}
 
 		username = userNameTxt.getText();
+		ClientConnectionController.clientConnect.userName = username;
 		validateUser(userNameTxt.getText(),passwordFld.getText());
 		
 	}

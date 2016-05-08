@@ -1,11 +1,16 @@
 package client.boundry;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import client.control.ClientConnectionController;
 import client.control.CreateClientController;
 import client.interfaces.IUi;
+import common.entity.Request;
+import common.enums.Command;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +19,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
 public class CreateClientUI implements IUi{
@@ -46,6 +52,22 @@ public class CreateClientUI implements IUi{
 		      Scene scene = new Scene(root);
 		      stage.setScene(scene); 
 		      stage.setResizable(false);
+		      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+		            public void handle(WindowEvent we) {
+		            	
+		        		ArrayList<String> username = new ArrayList<String>();
+		        		username.add(ClientConnectionController.clientConnect.userName);
+		        	
+		        		Request request = new Request(Command.LOGOUT, username);
+
+		        		try {
+		        			ClientConnectionController.clientConnect.sendToServer(request);
+		        		} catch (IOException e) {
+		        			e.printStackTrace();
+		        		}
+		            
+		           }
+		     });
 		      stage.show();	
 		      
 		      mainStage = stage;
