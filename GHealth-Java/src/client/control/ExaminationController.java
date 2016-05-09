@@ -21,6 +21,7 @@ import common.enums.Command;
 import common.enums.Result;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -34,6 +35,7 @@ public class ExaminationController implements IController{
 	@FXML private TextField Ecid;
 	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus,Ereference_number;
 	@FXML private CheckBox checkbox1;
+	@FXML private Button ExamBtn;
 	
 	
 	
@@ -58,6 +60,10 @@ public class ExaminationController implements IController{
         {
         	Request request;
         	
+        	
+        	if(!checkFields())
+        		return;
+        	
         	if(!checkbox1.isSelected())  //check the CheckBox
         	{
         	//Get Values cid,sid,date from textfields and date picker
@@ -79,7 +85,7 @@ public class ExaminationController implements IController{
         	
         	else
         	{
-        	request = new Request(Command.FIND_REFERENCE_BY_REFNUM, Ereference_number.getText());
+        	request = new Request(Command.FIND_REFERENCE_BY_REFNUM,(Object)Ereference_number.getText());
         	}
         	
         	//Send the request to server
@@ -123,26 +129,52 @@ public class ExaminationController implements IController{
 			
 			
 			Object result =  reply.getResult();
-			if (reply.getCommand() == Command.LOGOUT)
-				logoutCheck(result);
+			System.out.println("0");
 			
-			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM );
+			if (reply.getCommand() == Command.LOGOUT)
 			{
+				System.out.println("1");
+				logoutCheck(result);
+			}
+			
+			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM )
+			{
+				System.out.println("2");
 				
+				if(result instanceof Result)
+				{
+					
 				if ((Result)result == Result.ERROR){
+					System.out.println("3");
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
 						System.exit(1);
 				}
-			
-				if((Result)result == Result.CLIENT_NOT_FOUND)
+				
+				
+				 if((Result)result == Result.CLIENT_NOT_FOUND)
 				{
+					System.out.println("4");
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("","Reference Not Found!");
+					ExamBtn.setDisable(true);
+					fieldComments.clear();
+					fieldReferenceNum.clear();
+					fieldClientID.clear();
+					fieldSpecielistID.clear();
+					fieldCode.clear();
+					fieldUrgency.clear();
+					fieldStatus.clear();
+					fieldDate.clear();
 				}
-				else
-				{
+				 
+				 
+				 
+				}
+				
+				else { 
+			System.out.println("5.1");
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
-			
+				System.out.println("5");
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
 				fieldReferenceNum.setText(Integer.toString(reference.getRefNum()));
@@ -153,9 +185,9 @@ public class ExaminationController implements IController{
 				fieldStatus.setText(Integer.toString(reference.getStatus()));
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");        //set the format of the date
 				fieldDate.setText(df.format(reference.getDate().getTime()));
-				
+				ExamBtn.setDisable(false);
 				}
-		         
+				System.out.println("6");
 			}
 				
 		}
@@ -222,6 +254,106 @@ public class ExaminationController implements IController{
 						
 					}
 				}
+			
+		}
+		
+		
+		public boolean checkFields()
+		{
+			boolean check = true;
+			
+			//put all Textfiend to be gray style
+			Ecid.setStyle("-fx-prompt-text-fill: gray");
+			Esid.setStyle("-fx-prompt-text-fill: gray");
+			Edate.setStyle("-fx-prompt-text-fill: gray");
+			Ereference_number.setStyle("-fx-prompt-text-fill: gray");
+			
+			
+			if(!checkbox1.isSelected())  //check id cid,sid,date are ok
+			{
+			
+			//check if there is empty Textfield
+				
+        	if (Ecid.getText() == null || Ecid.getText().trim().isEmpty()){
+    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+    			Ecid.clear();
+    			Ecid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+    			check = false;
+    		}
+        	
+        	if (Esid.getText() == null || Esid.getText().trim().isEmpty()){
+        		if(check)
+    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+        		Esid.clear();
+    			Esid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+    			check = false;
+    			
+    		}
+		    
+        	
+        	if (Edate.getValue() == null){
+        		if(check)
+    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+    			Edate.setStyle("-fx-prompt-text-fill: #ffa0a0");
+    			check = false;
+    		}
+        	
+        	
+        	
+        	//check if the input is 9 digits and numbers only
+        	
+        	if ((!Ecid.getText().matches("[0-9]+")) || Ecid.getText().length() != 9)
+			{
+        		if(check)
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
+        		Ecid.clear();
+				Ecid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
+        	
+        	if ((!Esid.getText().matches("[0-9]+")) || Esid.getText().length() != 9)
+			{
+        		if(check)
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
+        		Esid.clear();
+				Esid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
+			
+			}
+			
+			
+			
+			else  //check the reference only input
+			{
+				
+				//check if there is empty Textfield
+				
+				if (Ereference_number.getText() == null || Ereference_number.getText().trim().isEmpty()){
+					if(check)
+	    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+					Ereference_number.clear();
+	    			Ereference_number.setStyle("-fx-prompt-text-fill: #ffa0a0");
+	    			check = false;
+	    		}
+				
+				//check if the input is 9 digits and numbers only
+				
+				if ((!Ereference_number.getText().matches("[0-9]+")) || Ereference_number.getText().length() != 9)
+				{
+					if(check)
+					ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
+					Ereference_number.clear();
+					Ereference_number.setStyle("-fx-prompt-text-fill: #ffa0a0");
+					check = false;
+				}
+				
+				
+			}
+			
+			return check;
+			
+			
 			
 		}
 }

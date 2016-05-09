@@ -46,6 +46,7 @@ public class LabWorkerUI implements IUi{
 				      stage.setScene(scene); 
 				      stage.setResizable(false);
 				      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				    	  
 				            public void handle(WindowEvent we) {
 				            	
 				        		ArrayList<String> username = new ArrayList<String>();

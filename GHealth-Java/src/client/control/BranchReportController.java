@@ -17,4 +17,14 @@ public void onWeeklyReportButtonClick(ActionEvent event){
 	
 }
 
+
+public void onMonthlyReportButtonClick(ActionEvent event){
+	
+	
+		
+	
+}
+
+
+
 }
