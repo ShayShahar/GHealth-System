@@ -60,18 +60,10 @@ public class ExaminationController implements IController{
         {
         	Request request;
         	
-        	/*
-        	  
-        	if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
-    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
-    			
-    			if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
-    				dispClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
-    			}
-    			
-    			return;
-    		}
-        	*/
+        	
+        	if(!checkFields())
+        		return;
+        	
         	if(!checkbox1.isSelected())  //check the CheckBox
         	{
         	//Get Values cid,sid,date from textfields and date picker
@@ -262,6 +254,106 @@ public class ExaminationController implements IController{
 						
 					}
 				}
+			
+		}
+		
+		
+		public boolean checkFields()
+		{
+			boolean check = true;
+			
+			//put all Textfiend to be gray style
+			Ecid.setStyle("-fx-prompt-text-fill: gray");
+			Esid.setStyle("-fx-prompt-text-fill: gray");
+			Edate.setStyle("-fx-prompt-text-fill: gray");
+			Ereference_number.setStyle("-fx-prompt-text-fill: gray");
+			
+			
+			if(!checkbox1.isSelected())  //check id cid,sid,date are ok
+			{
+			
+			//check if there is empty Textfield
+				
+        	if (Ecid.getText() == null || Ecid.getText().trim().isEmpty()){
+    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+    			Ecid.clear();
+    			Ecid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+    			check = false;
+    		}
+        	
+        	if (Esid.getText() == null || Esid.getText().trim().isEmpty()){
+        		if(check)
+    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+        		Esid.clear();
+    			Esid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+    			check = false;
+    			
+    		}
+		    
+        	
+        	if (Edate.getValue() == null){
+        		if(check)
+    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+    			Edate.setStyle("-fx-prompt-text-fill: #ffa0a0");
+    			check = false;
+    		}
+        	
+        	
+        	
+        	//check if the input is 9 digits and numbers only
+        	
+        	if ((!Ecid.getText().matches("[0-9]+")) || Ecid.getText().length() != 9)
+			{
+        		if(check)
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
+        		Ecid.clear();
+				Ecid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
+        	
+        	if ((!Esid.getText().matches("[0-9]+")) || Esid.getText().length() != 9)
+			{
+        		if(check)
+				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
+        		Esid.clear();
+				Esid.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
+			
+			}
+			
+			
+			
+			else  //check the reference only input
+			{
+				
+				//check if there is empty Textfield
+				
+				if (Ereference_number.getText() == null || Ereference_number.getText().trim().isEmpty()){
+					if(check)
+	    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+					Ereference_number.clear();
+	    			Ereference_number.setStyle("-fx-prompt-text-fill: #ffa0a0");
+	    			check = false;
+	    		}
+				
+				//check if the input is 9 digits and numbers only
+				
+				if ((!Ereference_number.getText().matches("[0-9]+")) || Ereference_number.getText().length() != 9)
+				{
+					if(check)
+					ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
+					Ereference_number.clear();
+					Ereference_number.setStyle("-fx-prompt-text-fill: #ffa0a0");
+					check = false;
+				}
+				
+				
+			}
+			
+			return check;
+			
+			
 			
 		}
 }
