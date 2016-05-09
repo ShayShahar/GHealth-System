@@ -12,6 +12,7 @@ public class Reference implements Serializable{
 	private enum Urgency {LOW, MEDIUM, HIGH, CRITICAL};
 	
 	//class variables
+	private int RefNum;
 	private int cid;
 	private int sid;
 	private Date date;
@@ -52,17 +53,45 @@ public class Reference implements Serializable{
 	public void setCode(int code) {
 		this.code = code;
 	}
-	public Urgency getUrgency() {
-		return urgency;
+	public String getUrgency() {
+		if(urgency == Urgency.LOW)
+		return "LOW";
+		if(urgency == Urgency.MEDIUM)
+		 return "MEDIUM";
+		if(urgency == Urgency.HIGH)
+			 return "HIGH";
+		if(urgency == Urgency.CRITICAL)
+			 return "CRITICAL";
+		return null;
 	}
-	public void setUrgency(Urgency urgency) {
-		this.urgency = urgency;
+	public void setUrgency(String urgency) {
+		if(urgency.equals("LOW"))
+			this.urgency = Urgency.LOW;
+		else if(urgency.equals("MEDIUM"))
+			this.urgency = Urgency.MEDIUM;
+		else if(urgency.equals("HIGH"))
+			this.urgency = Urgency.HIGH;
+		else if(urgency.equals("CRITICAL"))
+			this.urgency = Urgency.CRITICAL;
+		else this.urgency = null;
 	}
 	public boolean isStatus() {
 		return status;
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+	public int getStatus()
+	{
+		if(status)
+			return 1;
+		return 0;
+	}
+	public int getRefNum() {
+		return RefNum;
+	}
+	public void setRefNum(int refNum) {
+		RefNum = refNum;
 	}
 	
 	

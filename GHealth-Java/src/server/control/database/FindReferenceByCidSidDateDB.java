@@ -42,7 +42,10 @@ public class FindReferenceByCidSidDateDB {
 					    reference1.setDate(res.getDate(3));
 					    reference1.setComments(res.getString(4));
 					    reference1.setCode(res.getInt(5));
-					    //reference1.setUrgency(res.getString(6));
+					    reference1.setUrgency(res.getString(6));
+					    reference1.setStatus(res.getBoolean(7));
+					    reference1.setRefNum(res.getInt(8));
+					    
 					   // System.out.println(reference1.getComments());    
 			     }
 			    else return Result.CLIENT_NOT_FOUND;

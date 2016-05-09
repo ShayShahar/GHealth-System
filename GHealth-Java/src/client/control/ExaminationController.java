@@ -29,6 +29,8 @@ public class ExaminationController implements IController{
 	@FXML private DatePicker Edate;
 	@FXML private TextField Esid;
 	@FXML private TextField Ecid;
+	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus;
+	
 	
 	
         public void onLogoutButtonClick(ActionEvent event){
@@ -105,7 +107,19 @@ public class ExaminationController implements IController{
 				
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
-				System.out.println(reference.getComments());
+				
+				
+				//fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus;
+				//SetText to the fields
+				fieldComments.setText(reference.getComments());
+				fieldReferenceNum.setText(Integer.toString(reference.getRefNum()));
+				fieldClientID.setText(Integer.toString(reference.getCId()));
+				fieldSpecielistID.setText(Integer.toString(reference.getSId()));
+				fieldCode.setText(Integer.toString(reference.getCode()));
+				fieldUrgency.setText(reference.getUrgency());
+				fieldStatus.setText(Integer.toString(reference.getStatus()));
+				
+				
 		         
 			}
 				
