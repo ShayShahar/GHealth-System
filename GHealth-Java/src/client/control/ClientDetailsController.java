@@ -126,6 +126,57 @@ public class ClientDetailsController implements IController{
 		
 	}
 	
+	public void onFindClientIDButtonClickSpecialist(ActionEvent event){
+		
+		
+		fieldClientID.clear();
+		fieldClientName.clear();
+		fieldClientFamily.clear();
+		fieldClientJoin.clear();
+		fieldClientAddress.clear();
+		fieldClientPhone.clear();
+		fieldClientEmail.clear();
+		fieldClientClinic.clear();
+		
+		
+//		dispCreateClientBtn.setDisable(true);
+
+		
+	//	dispClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
+
+		if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
+			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+			
+			if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
+				dispClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
+			}
+			
+			return;
+		}
+		
+		boolean check = validateID(dispClientIDTxt.getText());
+		
+		if (check == false){
+			return;
+		}
+
+		clientID = dispClientIDTxt.getText();
+		
+		ArrayList<String> client = new ArrayList<String>();
+
+		client.add(clientID);
+		
+		Request request = new Request(Command.FIND_CLIENT, client);
+
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void onCreateAppointmentButtonClick(ActionEvent event){
 		CreateAppointmentUI create = new CreateAppointmentUI(clientID,id);
 		ClientConnectionController.clientConnect.userInterface.add(create);
