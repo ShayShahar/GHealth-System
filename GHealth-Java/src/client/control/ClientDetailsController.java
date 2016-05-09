@@ -24,6 +24,12 @@ public class ClientDetailsController implements IController{
 	@FXML private Button createAppointmentBtn;
 	@FXML private Button cancelAppointmentBtn;
 	@FXML private Button dispCreateClientBtn;
+	@FXML private Button SpViewHistoryBtn;
+	@FXML private Button SpEndTreatmentBtn;
+	@FXML private Button SpViewExaminationsBtn;
+	@FXML private Button SpCreateRefernceBtn;
+	@FXML private Button SpRecordAppointmentBtn;
+	@FXML private Button SpReportMissingBtn;
 	@FXML private TextField dispClientIDTxt;
 	@FXML private TextField fieldClientID;
 	@FXML private TextField fieldClientClinic;
@@ -33,6 +39,7 @@ public class ClientDetailsController implements IController{
 	@FXML private TextField fieldClientAddress;
 	@FXML private TextField fieldClientPhone;
 	@FXML private TextField fieldClientEmail;
+	@FXML private TextField SpClientIDTxt;
 	@FXML private Button removeBtn;
 
 	
@@ -139,28 +146,28 @@ public class ClientDetailsController implements IController{
 		fieldClientClinic.clear();
 		
 		
-//		dispCreateClientBtn.setDisable(true);
+		
 
 		
-	//	dispClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
+		SpClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
 
-		if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
+		if (SpClientIDTxt.getText() == null || SpClientIDTxt.getText().trim().isEmpty()){
 			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
 			
-			if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
-				dispClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
+			if (SpClientIDTxt.getText() == null || SpClientIDTxt.getText().trim().isEmpty()){
+				SpClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
 			}
 			
 			return;
 		}
 		
-		boolean check = validateID(dispClientIDTxt.getText());
+		boolean check = validateID(SpClientIDTxt.getText());
 		
 		if (check == false){
 			return;
 		}
 
-		clientID = dispClientIDTxt.getText();
+		clientID = SpClientIDTxt.getText();
 		
 		ArrayList<String> client = new ArrayList<String>();
 
