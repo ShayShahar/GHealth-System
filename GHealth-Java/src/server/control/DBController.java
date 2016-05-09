@@ -2,7 +2,6 @@ package server.control;
 
 import java.sql.Connection;
 import common.entity.Request;
-import common.enums.Command;
 import common.enums.Result;
 import server.control.database.*;
 
@@ -59,7 +58,7 @@ public class DBController {
 			
 				}
 				
-				case FIND_REFERENCE_BY_RefNum:{
+				case FIND_REFERENCE_BY_REFNUM:{
 					return FindReferenceByRefNum.handleMessage(request, connection);
 				}
 				

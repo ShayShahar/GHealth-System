@@ -79,7 +79,7 @@ public class ExaminationController implements IController{
         	
         	else
         	{
-        	request = new Request(Command.FIND_REFERENCE_BY_RefNum, Ereference_number.getText());
+        	request = new Request(Command.FIND_REFERENCE_BY_REFNUM, Ereference_number.getText());
         	}
         	
         	//Send the request to server
@@ -126,7 +126,7 @@ public class ExaminationController implements IController{
 			if (reply.getCommand() == Command.LOGOUT)
 				logoutCheck(result);
 			
-			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_RefNum );
+			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM );
 			{
 				
 				if ((Result)result == Result.ERROR){

@@ -13,6 +13,7 @@ import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
+import common.enums.Result;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,8 +38,9 @@ public class CancelAppointmentController implements IController, Initializable{
 	@FXML private TableColumn<Appointment, String> specialistClmn;
 	@FXML private TableColumn<Appointment, String> branchClmn;
 	
+	private ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();	
 	
-	HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
+	private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 
 	private int choosedID;
 	private String clientID;
@@ -183,7 +185,6 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 		if (reply.getCommand() == Command.FIND_APPOINTMENTS){
 			
-			ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();
 						
 			if (result instanceof ArrayList<?>){
 				
@@ -226,7 +227,28 @@ public class CancelAppointmentController implements IController, Initializable{
 				
 			}
 	 }
-		
+	
+		else if (reply.getCommand() == Command.CANCEL_APPOINTMENT){
+			
+			if ((Result)result == Result.OK){
+				thisUi.displayMessage("Appointment Canceled", "The choosed appointment canceled successfuly.");
+				
+				for(Appointment app : appointmnetsList){
+					if (app.getAppointmentID() == choosedID){
+						appointmnetsList.remove(app);
+						onUpdateTableView(appointmnetsList);	
+						break;
+					}
+				}
+			}
+			
+			else if ((Result)result == Result.NEXT_24){
+				thisUi.displayErrorMessage("Cancel Appointment Error", "Cannot cancel appointments that occurs in the next day.");
+			}
+			else{
+				thisUi.displayErrorMessage("Cancel Appointment Error", "An error occured while tried to cancel the requested appointment.");
+			}
+		}
 		
 	}
 	
