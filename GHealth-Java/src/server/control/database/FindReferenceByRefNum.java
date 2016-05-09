@@ -16,13 +16,14 @@ public class FindReferenceByRefNum {
 		 
 		 Reference reference1 = new Reference();
 		 String refNum = (String)request.getEntity();
+		
 		 try {
 				Statement stmnt = connection.createStatement();
-				ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.reference WHERE reference.reference_num = '"+Integer.parseInt(refNum));
+				ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.reference WHERE reference.reference_num ="+Integer.parseInt(refNum));
 			   
 				
 			    if (res.next()) {
-			    	
+			    	 
 			    	//get details from the reference table
 			    	 reference1.setCId(res.getInt(1));
 					    reference1.setSId(res.getInt(2));

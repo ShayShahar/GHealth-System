@@ -21,6 +21,7 @@ import common.enums.Command;
 import common.enums.Result;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -34,6 +35,7 @@ public class ExaminationController implements IController{
 	@FXML private TextField Ecid;
 	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus,Ereference_number;
 	@FXML private CheckBox checkbox1;
+	@FXML private Button ExamBtn;
 	
 	
 	
@@ -58,6 +60,18 @@ public class ExaminationController implements IController{
         {
         	Request request;
         	
+        	/*
+        	  
+        	if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
+    			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+    			
+    			if (dispClientIDTxt.getText() == null || dispClientIDTxt.getText().trim().isEmpty()){
+    				dispClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
+    			}
+    			
+    			return;
+    		}
+        	*/
         	if(!checkbox1.isSelected())  //check the CheckBox
         	{
         	//Get Values cid,sid,date from textfields and date picker
@@ -79,7 +93,7 @@ public class ExaminationController implements IController{
         	
         	else
         	{
-        	request = new Request(Command.FIND_REFERENCE_BY_RefNum, Ereference_number.getText());
+        	request = new Request(Command.FIND_REFERENCE_BY_RefNum, (Object)Ereference_number.getText());
         	}
         	
         	//Send the request to server
@@ -123,26 +137,52 @@ public class ExaminationController implements IController{
 			
 			
 			Object result =  reply.getResult();
-			if (reply.getCommand() == Command.LOGOUT)
-				logoutCheck(result);
+			System.out.println("0");
 			
-			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_RefNum );
+			if (reply.getCommand() == Command.LOGOUT)
 			{
+				System.out.println("1");
+				logoutCheck(result);
+			}
+			
+			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_RefNum )
+			{
+				System.out.println("2");
 				
+				if(result instanceof Result)
+				{
+					
 				if ((Result)result == Result.ERROR){
+					System.out.println("3");
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
 						System.exit(1);
 				}
-			
-				if((Result)result == Result.CLIENT_NOT_FOUND)
+				
+				
+				 if((Result)result == Result.CLIENT_NOT_FOUND)
 				{
+					System.out.println("4");
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("","Reference Not Found!");
+					ExamBtn.setDisable(true);
+					fieldComments.clear();
+					fieldReferenceNum.clear();
+					fieldClientID.clear();
+					fieldSpecielistID.clear();
+					fieldCode.clear();
+					fieldUrgency.clear();
+					fieldStatus.clear();
+					fieldDate.clear();
 				}
-				else
-				{
+				 
+				 
+				 
+				}
+				
+				else { 
+			System.out.println("5.1");
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
-			
+				System.out.println("5");
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
 				fieldReferenceNum.setText(Integer.toString(reference.getRefNum()));
@@ -153,9 +193,9 @@ public class ExaminationController implements IController{
 				fieldStatus.setText(Integer.toString(reference.getStatus()));
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");        //set the format of the date
 				fieldDate.setText(df.format(reference.getDate().getTime()));
-				
+				ExamBtn.setDisable(false);
 				}
-		         
+				System.out.println("6");
 			}
 				
 		}
