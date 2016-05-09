@@ -1,6 +1,8 @@
 package client.control;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -19,6 +21,7 @@ import common.enums.Command;
 import common.enums.Result;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -29,7 +32,8 @@ public class ExaminationController implements IController{
 	@FXML private DatePicker Edate;
 	@FXML private TextField Esid;
 	@FXML private TextField Ecid;
-	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus;
+	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus,Ereference_number;
+	@FXML private CheckBox checkbox1;
 	
 	
 	
@@ -52,6 +56,10 @@ public class ExaminationController implements IController{
         
         public void OnSearchButtonClick(ActionEvent event)
         {
+        	Request request;
+        	
+        	if(!checkbox1.isSelected())  //check the CheckBox
+        	{
         	//Get Values cid,sid,date from textfields and date picker
         	
         	LocalDate ldate;
@@ -65,9 +73,15 @@ public class ExaminationController implements IController{
         	reference.setDate(date);
         	reference.setCId(Integer.parseInt(Ecid.getText()));
         	reference.setSId(Integer.parseInt(Esid.getText()));
-        	Request request = new Request(Command.FIND_REFERENCE_BY_SID_CID_DATE, (Object)reference);
+        	request = new Request(Command.FIND_REFERENCE_BY_SID_CID_DATE, (Object)reference);
         	//
- 
+        	}
+        	
+        	else
+        	{
+        	request = new Request(Command.FIND_REFERENCE_BY_RefNum, Ereference_number.getText());
+        	}
+        	
         	//Send the request to server
         	try {
     			ClientConnectionController.clientConnect.controller = this;
@@ -75,14 +89,32 @@ public class ExaminationController implements IController{
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
-    		
+    		       	
         	
-        	
-        	
-        	//System.out.println("sid: "+Esid.getText()+" cid: "+Ecid.getText()+"date:"+date);
-        	
-        	
-        	
+        }
+        
+        public void OnCheckBoxCheck()
+        {
+        	if(checkbox1.isSelected())
+        	{   
+        		//Ref_Num on
+        		Ereference_number.setDisable(false);
+        		
+        		//cid,sid,date off
+        		Edate.setDisable(true);
+        		Esid.setDisable(true);
+        		Ecid.setDisable(true);
+        	}
+        	else
+        	{
+        		//Ref_Num off
+        		Ereference_number.setDisable(true);
+        		
+        		//cid,sid,date off on
+        		Edate.setDisable(false);
+        		Esid.setDisable(false);
+        		Ecid.setDisable(false);
+        	}
         }
 
 
@@ -94,22 +126,23 @@ public class ExaminationController implements IController{
 			if (reply.getCommand() == Command.LOGOUT)
 				logoutCheck(result);
 			
-			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE);
+			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_RefNum );
 			{
-				//System.out.println("111");
-				/*
+				
 				if ((Result)result == Result.ERROR){
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
 						System.exit(1);
 				}
-				*/
-				
-				
+			
+				if((Result)result == Result.CLIENT_NOT_FOUND)
+				{
+					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("","Reference Not Found!");
+				}
+				else
+				{
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
-				
-				
-				//fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus;
+			
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
 				fieldReferenceNum.setText(Integer.toString(reference.getRefNum()));
@@ -118,14 +151,13 @@ public class ExaminationController implements IController{
 				fieldCode.setText(Integer.toString(reference.getCode()));
 				fieldUrgency.setText(reference.getUrgency());
 				fieldStatus.setText(Integer.toString(reference.getStatus()));
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");        //set the format of the date
+				fieldDate.setText(df.format(reference.getDate().getTime()));
 				
-				
+				}
 		         
 			}
 				
-			
-			
-			
 		}
 		
 		

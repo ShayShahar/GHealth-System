@@ -19,7 +19,7 @@ public class Reference implements Serializable{
 	private String comments;
 	private int code;
 	private Urgency urgency;
-	private boolean status;
+	private int status;
 	
 	
 	//class properties
@@ -75,17 +75,15 @@ public class Reference implements Serializable{
 			this.urgency = Urgency.CRITICAL;
 		else this.urgency = null;
 	}
-	public boolean isStatus() {
+	public int isStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public int getStatus()
 	{
-		if(status)
-			return 1;
-		return 0;
+		return status;
 	}
 	public int getRefNum() {
 		return RefNum;

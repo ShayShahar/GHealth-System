@@ -2,6 +2,7 @@ package server.control;
 
 import java.sql.Connection;
 import common.entity.Request;
+import common.enums.Command;
 import common.enums.Result;
 import server.control.database.*;
 
@@ -55,6 +56,11 @@ public class DBController {
 
 				case CANCEL_APPOINTMENT:{
 					return CancelAppointmentDB.handleMessage(request, connection) ;
+			
+				}
+				
+				case FIND_REFERENCE_BY_RefNum:{
+					return FindReferenceByRefNum.handleMessage(request, connection);
 				}
 				
 
