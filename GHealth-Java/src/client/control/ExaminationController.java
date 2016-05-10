@@ -9,6 +9,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
+import client.boundry.CreateAppointmentUI;
+import client.boundry.CreateExaminationUI;
 import client.boundry.DispatcherUI;
 import client.boundry.LabWorkerUI;
 import client.boundry.SpecialistUI;
@@ -28,7 +30,9 @@ import javafx.scene.control.TextField;
 
 public class ExaminationController implements IController{
 	
-	//FXML Components
+	//FXML Components 
+	
+	//LabWorkerUI components
 	
 	@FXML private DatePicker Edate;
 	@FXML private TextField Esid;
@@ -38,7 +42,16 @@ public class ExaminationController implements IController{
 	@FXML private Button ExamBtn;
 	
 	
+	//CreateExaminationUI components
 	
+	
+	
+	
+	//class variables
+	
+	private Reference Curr_Ref;
+	static String Curr_RefNum;
+
         public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();
@@ -62,7 +75,11 @@ public class ExaminationController implements IController{
         	
         	
         	if(!checkFields())
+        	{
+        		ExamBtn.setDisable(true);
         		return;
+        	
+        	}
         	
         	if(!checkbox1.isSelected())  //check the CheckBox
         	{
@@ -98,6 +115,26 @@ public class ExaminationController implements IController{
     		       	
         	
         }
+        
+        public void OnCreateExaminationClick()
+        {
+        	
+        	CreateExaminationUI create = new CreateExaminationUI();
+    		ClientConnectionController.clientConnect.userInterface.add(create);
+    		
+    		for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+    			if (ui instanceof LabWorkerUI){
+    				ui.hideWindow();
+    			}
+    		}
+    		
+    		create.displayUserWindow();
+    		 
+          
+    		
+        }
+        
+      
         
         public void OnCheckBoxCheck()
         {
@@ -174,6 +211,8 @@ public class ExaminationController implements IController{
 			System.out.println("5.1");
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
+				/////////////////////////////////////Curr_Ref.equals(reference);
+				ExaminationController.Curr_RefNum =(Integer.toString(reference.getRefNum()));
 				System.out.println("5");
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
@@ -219,7 +258,7 @@ public class ExaminationController implements IController{
 							{
 								if (ui instanceof DispatcherUI){
 									ui.hideWindow();
-									ClientConnectionController.clientConnect.userInterface.remove(ui);
+									//ClientConnectionController.clientConnect.userInterface.remove(ui);
 									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 								}
@@ -232,7 +271,7 @@ public class ExaminationController implements IController{
 							{
 								if (ui instanceof SpecialistUI){
 									ui.hideWindow();
-									ClientConnectionController.clientConnect.userInterface.remove(ui);
+									//ClientConnectionController.clientConnect.userInterface.remove(ui);
 									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 								}
@@ -245,7 +284,7 @@ public class ExaminationController implements IController{
 							{
 								if (ui instanceof LabWorkerUI){
 									ui.hideWindow();
-									ClientConnectionController.clientConnect.userInterface.remove(ui);
+									//ClientConnectionController.clientConnect.userInterface.remove(ui);
 									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 								}

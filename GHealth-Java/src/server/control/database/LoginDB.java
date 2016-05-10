@@ -26,7 +26,7 @@ public class LoginDB {
     		if (status == 1)
     			return Result.ALREADY_LOGIN;
     		
-			  stmnt.executeUpdate("UPDATE ghealth.users SET userStatus=1 WHERE username='"+request.getList().get(0)+"'");
+			  stmnt.executeUpdate("UPDATE ghealth.users SET userStatus=0 WHERE username='"+request.getList().get(0)+"'");
 			  result.close();
 
 			  
