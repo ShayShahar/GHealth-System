@@ -1,13 +1,7 @@
 package client.control;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
-
 import client.boundry.*;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -18,11 +12,10 @@ import common.enums.Result;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class ClientDetailsController implements IController, Initializable{
+public class DispatcherDetailsController implements IController{
 	
 	//FXML Components
 	@FXML private Button dispLogoutBtn;
@@ -52,19 +45,7 @@ public class ClientDetailsController implements IController, Initializable{
 	//Members
 	public static String clientID;
 	public static int id;
-	
-	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		createAppointmentBtn.setDisable(true);		
-		cancelAppointmentBtn.setDisable(true);
-		dispCreateClientBtn.setDisable(true);
-		removeBtn.setDisable(true);
 		
-		dispClientIDTxt.setStyle("-fx-prompt-text-fill: white");
-	}	
-	
-	
 	
 	//Components Handlers
 	public void onLogoutButtonClick(ActionEvent event){
