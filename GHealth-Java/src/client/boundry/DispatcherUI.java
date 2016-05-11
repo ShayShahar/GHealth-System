@@ -3,7 +3,6 @@ package client.boundry;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import client.control.ClientConnectionController;
 import client.interfaces.IUi;
 import common.entity.Request;
@@ -18,7 +17,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
