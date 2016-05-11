@@ -69,7 +69,6 @@ public class DispatcherUI implements IUi{
 					      scene.getStylesheets().add("client/boundry/css/Style.css");
 					      stage.setScene(scene); 
 					      stage.setResizable(false);
-					      stage.initStyle(StageStyle.UNDECORATED);
 					      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 					            public void handle(WindowEvent we) {
 					            	
