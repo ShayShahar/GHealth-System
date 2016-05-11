@@ -37,7 +37,7 @@ public class ExaminationController implements IController{
 	@FXML private DatePicker Edate;
 	@FXML private TextField Esid;
 	@FXML private TextField Ecid;
-	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus,Ereference_number;
+	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus,Ereference_number, fieldType;
 	@FXML private CheckBox checkbox1;
 	@FXML private Button ExamBtn;
 	
@@ -49,7 +49,7 @@ public class ExaminationController implements IController{
 	
 	//class variables
 	
-	private Reference Curr_Ref;
+	static Reference Curr_Ref;
 	static String Curr_RefNum;
 
         public void onLogoutButtonClick(ActionEvent event){
@@ -107,6 +107,7 @@ public class ExaminationController implements IController{
         	
         	//Send the request to server
         	try {
+        		
     			ClientConnectionController.clientConnect.controller = this;
     			ClientConnectionController.clientConnect.sendToServer(request);
     		} catch (IOException e) {
@@ -212,7 +213,7 @@ public class ExaminationController implements IController{
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
 				/////////////////////////////////////Curr_Ref.equals(reference);
-				ExaminationController.Curr_RefNum =(Integer.toString(reference.getRefNum()));
+				ExaminationController.Curr_Ref=reference;
 				System.out.println("5");
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
@@ -224,6 +225,7 @@ public class ExaminationController implements IController{
 				fieldStatus.setText(Integer.toString(reference.getStatus()));
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");        //set the format of the date
 				fieldDate.setText(df.format(reference.getDate().getTime()));
+				fieldType.setText(reference.getType());
 				ExamBtn.setDisable(false);
 				}
 				System.out.println("6");
@@ -340,8 +342,8 @@ public class ExaminationController implements IController{
         	
         	
         	//check if the input is 9 digits and numbers only
-        	
-        	if ((!Ecid.getText().matches("[0-9]+")) || Ecid.getText().length() != 9)
+        
+        	if ((!Ecid.getText().matches("[0-9]+")))
 			{
         		if(check)
 				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
@@ -350,7 +352,7 @@ public class ExaminationController implements IController{
 				check = false;
 			}
         	
-        	if ((!Esid.getText().matches("[0-9]+")) || Esid.getText().length() != 9)
+        	if ((!Esid.getText().matches("[0-9]+")))
 			{
         		if(check)
 				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");
@@ -378,7 +380,7 @@ public class ExaminationController implements IController{
 				
 				//check if the input is 9 digits and numbers only
 				
-				if ((!Ereference_number.getText().matches("[0-9]+")) || Ereference_number.getText().length() != 9)
+				if ((!Ereference_number.getText().matches("[0-9]+")))      //Ereference_number.getText().length() != 9
 				{
 					if(check)
 					ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "id must contain only 9 digits number");

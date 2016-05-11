@@ -28,7 +28,7 @@
       <AnchorPane layoutX="9.0" layoutY="185.0" prefHeight="370.0" prefWidth="533.0">
          <children>
             <Button fx:id="ExamBtn" disable="true" layoutX="142.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCreateExaminationClick" prefHeight="29.0" prefWidth="219.0" text="Add Examination Result" />
-            <GridPane layoutY="49.0" prefHeight="145.0" prefWidth="533.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
+            <GridPane layoutY="49.0" prefHeight="233.0" prefWidth="533.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="172.22222900390625" minWidth="10.0" prefWidth="80.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.77777099609375" minWidth="10.0" prefWidth="150.0" />
@@ -47,24 +47,25 @@
                   <TextField fx:id="fieldClientID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="fieldUrgency" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <TextField fx:id="fieldSpecielistID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="fieldComments" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <TextField fx:id="fieldCode" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="fieldStatus" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <Label prefHeight="17.0" prefWidth="117.0" text="   Reference Num  " />
                   <Label text="Date" GridPane.columnIndex="2" />
                   <Label text="Specielist ID" GridPane.rowIndex="2" />
-                  <Label text="Comments" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="Type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Label text="Code" GridPane.rowIndex="3" />
                   <Label text="Status" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <Label text="Client ID" GridPane.rowIndex="1" />
                   <Label text="Urgency" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="fieldType" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets bottom="10.0" right="5.0" top="10.0" />
                </padding>
             </GridPane>
             <Label layoutX="220.0" layoutY="24.0" prefHeight="25.0" prefWidth="141.0" text="Reference Details" />
-            <Label layoutX="220.0" layoutY="194.0" prefHeight="25.0" prefWidth="141.0" text="Examination Details" />
+            <TextField fx:id="fieldComments" editable="false" layoutX="101.0" layoutY="293.0" prefHeight="25.0" prefWidth="425.0" />
+            <Label layoutX="43.0" layoutY="297.0" text="Comments" />
          </children>
       </AnchorPane>
       <Separator layoutX="19.0" layoutY="137.0" prefWidth="200.0" />

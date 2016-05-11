@@ -20,6 +20,7 @@ public class Reference implements Serializable{
 	private int code;
 	private Urgency urgency;
 	private int status;
+	private String Type;
 	
 	
 	//class properties
@@ -90,6 +91,12 @@ public class Reference implements Serializable{
 	}
 	public void setRefNum(int refNum) {
 		RefNum = refNum;
+	}
+	public String getType() {
+		return Type;
+	}
+	public void setType(String type) {
+		Type = type;
 	}
 	
 	
