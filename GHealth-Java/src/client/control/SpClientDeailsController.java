@@ -7,7 +7,9 @@
 
 
 	import client.boundry.*;
-	import client.interfaces.IController;
+import client.entity.Appointment;
+import client.entity.Specialist;
+import client.interfaces.IController;
 	import client.interfaces.IUi;
 	import common.entity.Reply;
 	import common.entity.Request;
@@ -18,7 +20,9 @@
 	import javafx.fxml.FXML;
 	import javafx.fxml.Initializable;
 	import javafx.scene.control.Button;
-	import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 public class SpClientDeailsController implements IController{
 
 		
@@ -39,7 +43,9 @@ public class SpClientDeailsController implements IController{
 		@FXML private TextField fieldClientPhone;
 		@FXML private TextField fieldClientEmail;
 		@FXML private TextField SpClientIDTxt;
-
+		@FXML private TableView<Appointment> tabelAppointment;
+		@FXML private TableColumn<Appointment, String> idClmn; 
+		@FXML private TableColumn<Appointment, String> timeClmn;
 		
 		//Members
 		public static String clientID;
