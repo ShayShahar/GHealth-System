@@ -205,16 +205,21 @@ public class SpClientDeailsController implements IController{
 							fieldClientID.setText(res.get(0));
 							id = Integer.parseInt(fieldClientID.getText());
 							fieldClientClinic.setText(res.get(1));
-							String[] date = res.get(2).split("-");
+							String[] date = res.get(3).split("-");
 							fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
-							fieldClientName.setText(res.get(3));
-							fieldClientFamily.setText(res.get(4));
-							fieldClientAddress.setText(res.get(7));
-							fieldClientPhone.setText(res.get(6));
-							fieldClientEmail.setText(res.get(5));
+							fieldClientName.setText(res.get(4));
+							fieldClientFamily.setText(res.get(5));
+							fieldClientAddress.setText(res.get(8));
+							fieldClientPhone.setText(res.get(7));
+							fieldClientEmail.setText(res.get(6));
 							SpViewHistoryBtn.setDisable(false);
 							SpEndTreatmentBtn.setDisable(false);
 							SpCreateRefernceBtn.setDisable(false);
+							SpViewExaminationsBtn.setDisable(false);
+							SpRecordAppointmentBtn.setDisable(false);
+							SpReportMissingBtn.setDisable(false);
+							
+							
 
 						}
 							
