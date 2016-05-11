@@ -23,7 +23,7 @@ import javafx.util.Pair;
 
 public class CreateExaminationUI implements IUi{
 	
-	private static Stage mainStage;
+	public static Stage mainStage;
 
 	@Override
 	public void displayUserWindow() {
