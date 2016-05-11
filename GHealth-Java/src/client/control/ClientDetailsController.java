@@ -25,7 +25,6 @@ import javafx.scene.control.TextField;
 public class ClientDetailsController implements IController, Initializable{
 	
 	//FXML Components
-	/*
 	@FXML private Button dispLogoutBtn;
 	@FXML private Button createAppointmentBtn;
 	@FXML private Button cancelAppointmentBtn;
@@ -36,33 +35,8 @@ public class ClientDetailsController implements IController, Initializable{
 	@FXML private Button SpCreateRefernceBtn;
 	@FXML private Button SpRecordAppointmentBtn;
 	@FXML private Button SpReportMissingBtn;
-	*/
-	
-	@FXML private JFXButton dispLogoutBtn;
-	@FXML private JFXButton createAppointmentBtn;
-	@FXML private JFXButton cancelAppointmentBtn;
-	@FXML private JFXButton dispCreateClientBtn;
-	@FXML private JFXButton SpViewHistoryBtn;
-	@FXML private JFXButton SpEndTreatmentBtn;
-	@FXML private JFXButton SpViewExaminationsBtn;
-	@FXML private JFXButton SpCreateRefernceBtn;
-	@FXML private JFXButton SpRecordAppointmentBtn;
-	@FXML private JFXButton SpReportMissingBtn;
-	@FXML private JFXButton removeBtn;
-	
-	@FXML private JFXTextField dispClientIDTxt;
-	@FXML private JFXTextField fieldClientID;
-	@FXML private JFXTextField fieldClientClinic;
-	@FXML private JFXTextField fieldClientName;
-	@FXML private JFXTextField fieldClientFamily;
-	@FXML private JFXTextField fieldClientJoin;
-	@FXML private JFXTextField fieldClientAddress;
-	@FXML private JFXTextField fieldClientPhone;
-	@FXML private JFXTextField fieldClientEmail;
-	@FXML private JFXTextField SpClientIDTxt;
-	
-	/*
-	
+	@FXML private Button removeBtn;
+
 	@FXML private TextField dispClientIDTxt;
 	@FXML private TextField fieldClientID;
 	@FXML private TextField fieldClientClinic;
@@ -73,7 +47,6 @@ public class ClientDetailsController implements IController, Initializable{
 	@FXML private TextField fieldClientPhone;
 	@FXML private TextField fieldClientEmail;
 	@FXML private TextField SpClientIDTxt;
-	//@FXML private Button removeBtn;*/
 
 	
 	//Members
