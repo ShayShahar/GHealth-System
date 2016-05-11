@@ -30,6 +30,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -41,6 +42,7 @@ public class CreateExaminationController implements IController, Initializable{
 	@FXML private TextField CErefnum;
 	@FXML private ComboBox ExamTypes;
 	@FXML private ImageView ImagePick,ImagePick1,ImagePick2,ImagePick3;
+	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4;
 	
 	
 	IUi thisUi = null;
@@ -55,11 +57,14 @@ public class CreateExaminationController implements IController, Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		// TODO Auto-generated method stub
-		
-		ImagePick.setDisable(true);
-		ImagePick1.setDisable(true);
-		ImagePick2.setDisable(true);
-		ImagePick3.setDisable(true);
+		Xbtn1.setDisable(true);
+		Xbtn2.setDisable(true);
+		Xbtn3.setDisable(true);
+		Xbtn4.setDisable(true);
+		//ImagePick.setDisable(true);
+		//ImagePick1.setDisable(true);
+		//ImagePick2.setDisable(true);
+		//ImagePick3.setDisable(true);
 		list.add(ExaminationController.Curr_Ref.getType());
 		ExamTypes.setItems(list);
 		ExamTypes.getSelectionModel().select(0);
@@ -82,7 +87,7 @@ public class CreateExaminationController implements IController, Initializable{
 		
 	}
 	
-	public void OnAddPictureClickButton()
+	public void OnAddPictureClickButton(int i)
 	{
 		InputStream is = null;
 		Image pic = null;
@@ -103,8 +108,44 @@ public class CreateExaminationController implements IController, Initializable{
 					e.printStackTrace();
 				}
 				 
-				 
+                switch(i)
+                {
+                	case 1:
+                	{
+                		 ImagePick.setImage(pic);
+                		 Xbtn1.setDisable(false);
+                		 Xbtn1.setVisible(true);
+                		return;
+                	}
+                	case 2:
+                	{
+                		 ImagePick1.setImage(pic);
+                		 Xbtn2.setDisable(false);
+                		 Xbtn2.setVisible(true);
+                		return;
+                	}
+                	case 3:
+                	{
+                		 ImagePick2.setImage(pic);
+                		 Xbtn3.setDisable(false);
+                		 Xbtn3.setVisible(true);
+                		return;
+                	}
+                	case 4:
+                	{
+                		 ImagePick3.setImage(pic);
+                		 Xbtn4.setDisable(false);
+                		 Xbtn4.setVisible(true);
+                		return;
+                	}
+                	
+                	default:
+                		return;
+                	
+                }
 				 //choose where to put the picture
+        		 
+        		 /*
 				if(ImagePick.isDisabled())
 				{
 				 ImagePick.setDisable(false);
@@ -130,7 +171,7 @@ public class CreateExaminationController implements IController, Initializable{
 					ImagePick2.setDisable(true);
 					ImagePick3.setDisable(true);
 				}
-				
+				*/
              }
              
         
@@ -139,9 +180,92 @@ public class CreateExaminationController implements IController, Initializable{
          
 	}
 	
+	public void OnAddPictureClickButton1()
+	{
+		 OnAddPictureClickButton(1);
+		
+		 
+	}
 	
+	public void OnAddPictureClickButton2()
+	{
+		 OnAddPictureClickButton(2);
+	}
 
+	public void OnAddPictureClickButton3()
+	{
+		 OnAddPictureClickButton(3);
+	}
 	
+	public void OnAddPictureClickButton4()
+	{
+		 OnAddPictureClickButton(4);
+	}
+	
+	
+	public void OnClosePictureClickButton()
+	{
+		InputStream is = null;
+		Image pic = null;
+		try {
+			is = new FileInputStream("src/img/imagehere.png");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  // get the file path
+		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 ImagePick.setImage(pic);
+		 Xbtn1.setDisable(true);
+		 Xbtn1.setVisible(false);
+	}
+	
+	public void OnClosePictureClickButton1()
+	{
+		InputStream is = null;
+		Image pic = null;
+		try {
+			is = new FileInputStream("src/img/imagehere.png");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  // get the file path
+		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 ImagePick1.setImage(pic);
+		 Xbtn2.setDisable(true);
+		 Xbtn2.setVisible(false);
+	}
+	
+	public void OnClosePictureClickButton2()
+	{
+		InputStream is = null;
+		Image pic = null;
+		try {
+			is = new FileInputStream("src/img/imagehere.png");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  // get the file path
+		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 ImagePick2.setImage(pic);
+		 Xbtn3.setDisable(true);
+		 Xbtn3.setVisible(false);
+	}
+	
+	public void OnClosePictureClickButton3()
+	{
+		InputStream is = null;
+		Image pic = null;
+		try {
+			is = new FileInputStream("src/img/imagehere.png");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  // get the file path
+		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 ImagePick3.setImage(pic);
+		 Xbtn4.setDisable(true);
+		 Xbtn4.setVisible(false);
+	}
 	
 	
 	
