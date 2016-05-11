@@ -67,6 +67,7 @@ public class CreateAppointmentController implements IController, Initializable{
 	
 	IUi thisUi = null;
   private int choosedID = 0;
+  private String choosedSpeciality;
   private int choosedHour = 0;
   private int userID;
   private ArrayList<DateChecker> blockedDates = new ArrayList<DateChecker>();
@@ -281,8 +282,9 @@ public class CreateAppointmentController implements IController, Initializable{
 		}
 		
 		ArrayList<String> msg = new ArrayList<String>();
+		msg.add(Integer.toString(userID));
 		msg.add(listSpecialization.getSelectionModel().getSelectedItem().toString());
-		
+		choosedSpeciality = listSpecialization.getSelectionModel().getSelectedItem().toString();
 		Request request = new Request(Command.FIND_SPECIALIST,msg);
 		
 		try {
@@ -397,9 +399,8 @@ public class CreateAppointmentController implements IController, Initializable{
 				ArrayList<Object> list = (ArrayList<Object>)result;
 	
 				for (int i = 0 ; i < list.size(); i++){
-
 					ArrayList<String> strings = (ArrayList<String>)(list.get(i));
-					Specialist specialist = new Specialist(strings.get(0),strings.get(2),strings.get(3),strings.get(1),strings.get(4),strings.get(5));					
+					Specialist specialist = new Specialist(strings.get(0),strings.get(1),strings.get(2), choosedSpeciality ,strings.get(3),strings.get(4));					
 					specialistList.add(specialist);
 				}
 		 }
