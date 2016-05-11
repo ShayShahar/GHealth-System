@@ -5,8 +5,6 @@
 	import java.util.ArrayList;
 	import java.util.ResourceBundle;
 
-	import com.jfoenix.controls.JFXButton;
-	import com.jfoenix.controls.JFXTextField;
 
 	import client.boundry.*;
 	import client.interfaces.IController;

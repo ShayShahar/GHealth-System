@@ -14,3 +14,20 @@
 #removeBtn Text {
     -fx-fill: white;
 }
+
+#retreiveBtn {          
+    -fx-background-color: #cddc39
+}
+
+#retreiveBtn:hover {
+    -fx-background-color: 
+       linear-gradient(fdfdfd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%),
+        #bbcd09,
+        #cddc39;
+}
+#retreiveBtn:pressed {
+    -fx-padding: 10 15 13 15;
+}
+#retreiveBtn Text {
+    -fx-fill: white;
+}

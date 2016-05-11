@@ -1,7 +1,10 @@
 package client.control;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import client.boundry.*;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -12,10 +15,12 @@ import common.enums.Result;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class DispatcherDetailsController implements IController{
+
+public class DispatcherDetailsController implements IController, Initializable{
 	
 	//FXML Components
 	@FXML private Button dispLogoutBtn;
@@ -29,6 +34,7 @@ public class DispatcherDetailsController implements IController{
 	@FXML private Button SpRecordAppointmentBtn;
 	@FXML private Button SpReportMissingBtn;
 	@FXML private Button removeBtn;
+	@FXML private Button retreiveBtn;
 	@FXML private TextField dispClientIDTxt;
 	@FXML private TextField fieldClientID;
 	@FXML private TextField fieldClientClinic;
@@ -144,9 +150,6 @@ public class DispatcherDetailsController implements IController{
 		fieldClientClinic.clear();
 		
 		
-		
-
-		
 		SpClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
 
 		if (SpClientIDTxt.getText() == null || SpClientIDTxt.getText().trim().isEmpty()){
@@ -202,6 +205,24 @@ public class DispatcherDetailsController implements IController{
 		cancel.displayUserWindow();	
 	}
 	
+	public void onRetrieveClientButtonClick(ActionEvent event){
+		
+		ArrayList<String> client = new ArrayList<String>();
+		
+		client.add(fieldClientID.getText());
+		
+		Request request = new Request(Command.RETURN_CLIENT, client);
+
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	
 	public void onCreateClientButtonClick(ActionEvent event){
 		
@@ -212,6 +233,20 @@ public class DispatcherDetailsController implements IController{
 	}
 	
 	public void onRemoveClientButtonClick(ActionEvent event){
+	
+		ArrayList<String> client = new ArrayList<String>();
+		
+		client.add(fieldClientID.getText());
+		
+		Request request = new Request(Command.REMOVE_CLIENT, client);
+
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
@@ -286,10 +321,17 @@ public class DispatcherDetailsController implements IController{
 						if (Integer.parseInt(res.get(2)) == 1){
 							createAppointmentBtn.setDisable(false);
 							cancelAppointmentBtn.setDisable(false);
-							removeBtn.setDisable(false);
+							removeBtn.setVisible(true);
+							retreiveBtn.setVisible(false);
+
 						}
 						else {
 							ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client Left", "This client has left IHealth, to retrive client please choose the option from the menu below.");
+							createAppointmentBtn.setDisable(true);
+							cancelAppointmentBtn.setDisable(true);
+							retreiveBtn.setVisible(true);
+							removeBtn.setVisible(false);
+
 						}
 
 					}
@@ -308,14 +350,45 @@ public class DispatcherDetailsController implements IController{
 						dispCreateClientBtn.setDisable(false);
 						createAppointmentBtn.setDisable(true);
 						cancelAppointmentBtn.setDisable(true);
-						removeBtn.setDisable(true);
 						}
 				});
 				
 			}
 			
 		}
-							
+		
+		else if (reply.getCommand() == Command.REMOVE_CLIENT){
+			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage("Client Removed", "The client removed successfuly from GHealth System.");	
+			dispCreateClientBtn.setDisable(true);
+			createAppointmentBtn.setDisable(true);
+			cancelAppointmentBtn.setDisable(true);
+			retreiveBtn.setVisible(true);
+			removeBtn.setVisible(false);
+
+			
+		}
+		
+		else if (reply.getCommand() == Command.RETURN_CLIENT){
+			
+			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage("Client Retrieved", "The client succesfuly returned to IHealth.");	
+			dispCreateClientBtn.setDisable(true);
+			createAppointmentBtn.setDisable(false);
+			cancelAppointmentBtn.setDisable(false);
+			retreiveBtn.setVisible(false);
+			removeBtn.setVisible(true);
+			
+		}
+					
+		
+	}
+
+
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		removeBtn.setVisible(false);
+		retreiveBtn.setVisible(false);
+
 	}
 	
 }
