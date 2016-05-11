@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="599.0" prefWidth="564.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ClientDetailsController">
+<AnchorPane prefHeight="599.0" prefWidth="564.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.DispatcherDetailsController">
    <children>
       <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="407.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
          <image>
