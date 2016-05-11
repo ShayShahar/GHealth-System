@@ -29,7 +29,6 @@ public class DispatcherDetailsController implements IController{
 	@FXML private Button SpRecordAppointmentBtn;
 	@FXML private Button SpReportMissingBtn;
 	@FXML private Button removeBtn;
-
 	@FXML private TextField dispClientIDTxt;
 	@FXML private TextField fieldClientID;
 	@FXML private TextField fieldClientClinic;
@@ -261,7 +260,6 @@ public class DispatcherDetailsController implements IController{
 		
 		else if (reply.getCommand() == Command.FIND_CLIENT){
 			
-			
 			if (result instanceof ArrayList<?>){
 				
 				result = (ArrayList<?>) result;
@@ -275,17 +273,24 @@ public class DispatcherDetailsController implements IController{
 						fieldClientID.setText(res.get(0));
 						id = Integer.parseInt(fieldClientID.getText());
 						fieldClientClinic.setText(res.get(1));
-						String[] date = res.get(2).split("-");
+						String[] date = res.get(3).split("-");
 						fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
-						fieldClientName.setText(res.get(3));
-						fieldClientFamily.setText(res.get(4));
-						fieldClientAddress.setText(res.get(7));
-						fieldClientPhone.setText(res.get(6));
-						fieldClientEmail.setText(res.get(5));
+						fieldClientName.setText(res.get(4));
+						fieldClientFamily.setText(res.get(5));
+						fieldClientAddress.setText(res.get(8));
+						fieldClientPhone.setText(res.get(7));
+						fieldClientEmail.setText(res.get(6));
 						
-						createAppointmentBtn.setDisable(false);
-						cancelAppointmentBtn.setDisable(false);
-						removeBtn.setDisable(false);
+						
+						
+						if (Integer.parseInt(res.get(2)) == 1){
+							createAppointmentBtn.setDisable(false);
+							cancelAppointmentBtn.setDisable(false);
+							removeBtn.setDisable(false);
+						}
+						else {
+							ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client Left", "This client has left IHealth, to retrive client please choose the option from the menu below.");
+						}
 
 					}
 						

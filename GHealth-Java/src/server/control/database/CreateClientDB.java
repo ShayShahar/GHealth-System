@@ -18,7 +18,7 @@ public class CreateClientDB {
 	
 		String searchPerson = "SELECT * FROM ghealth.person WHERE personID=?";
 		String createPerson = "INSERT INTO ghealth.person (personID, personName, personFamily, personEmail, personPhone, personAddress) VALUES (?,?,?,?,?,?)";
-		String createClient = "INSERT INTO ghealth.clients (person, clientClinic, joinDate) VALUES (?,?,NOW())";
+		String createClient = "INSERT INTO ghealth.clients (person, clientClinic, clientStatus, joinDate) VALUES (?,?,1,NOW())";
 
 		
 		try {

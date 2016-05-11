@@ -22,12 +22,13 @@ public class FindClientDB {
     		    		
     		list.add(Integer.toString(result.getInt(1)));
     		list.add(result.getString(3));
-    		list.add((result.getDate(4)).toString());
-    		list.add(result.getString(6));
-    		list.add(result.getString(7));
+    		list.add(Integer.toString(result.getInt(4)));
+    		list.add((result.getDate(5)).toString());
     		list.add(result.getString(8));
-      	list.add(result.getString(9));
-      	list.add(result.getString(10));
+    		list.add(result.getString(9));
+    		list.add(result.getString(10));
+      	list.add(result.getString(11));
+      	list.add(result.getString(12));
       	
     		return list;
 			  

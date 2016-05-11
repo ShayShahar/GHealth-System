@@ -62,6 +62,11 @@ public class DBController {
 					return FindReferenceByRefNum.handleMessage(request, connection);
 				}
 				
+				case REMOVE_CLIENT:{
+					return FindReferenceByRefNum.handleMessage(request, connection);
+				}
+				
+				
 
 		default:
 			break;

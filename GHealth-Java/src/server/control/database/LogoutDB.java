@@ -12,7 +12,7 @@ public class LogoutDB {
 			Statement stmt;
 			try {
 				stmt = connection.createStatement();
-				stmt.executeUpdate("UPDATE ghealth.users SET userStatus=1 WHERE userName='" + request.getList().get(0) + "'");
+				stmt.executeUpdate("UPDATE ghealth.users SET userStatus=0 WHERE userName='" + request.getList().get(0) + "'");
 				
 				return Result.LOGGEDOUT;
 	
