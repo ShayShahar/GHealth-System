@@ -66,7 +66,7 @@ public class DispatcherUI implements IUi{
 								URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
 								stage.getIcons().add(new Image(url_32.toString()));
 					      Scene scene = new Scene(root);
-					    //  scene.getStylesheets().add("client/boundry/css/Style.css");
+					      scene.getStylesheets().add("client/boundry/css/Style.css");
 					      stage.setScene(scene); 
 					      stage.setResizable(false);
 					      stage.initStyle(StageStyle.UNDECORATED);
