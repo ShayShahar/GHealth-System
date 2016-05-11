@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import client.control.BranchReportController;
 import client.control.ClientConnectionController;
 import client.interfaces.IUi;
 import common.entity.Request;
@@ -121,7 +122,7 @@ public class BranchManagerUI implements IUi{
 
 			@Override
 			public void run() {
-				URL url = ClientConnectionController.class.getResource("/img/info.png");
+				URL url = BranchReportController.class.getResource("/img/info.png");
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("Information");
 				dialog.setHeaderText(title);
