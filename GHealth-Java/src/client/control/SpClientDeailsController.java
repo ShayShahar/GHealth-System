@@ -25,19 +25,13 @@ public class SpClientDeailsController implements IController{
 
 		
 		//FXML Components
-		@FXML private Button dispLogoutBtn;
-		@FXML private Button createAppointmentBtn;
-		@FXML private Button cancelAppointmentBtn;
-		@FXML private Button dispCreateClientBtn;
+
 		@FXML private Button SpViewHistoryBtn;
 		@FXML private Button SpEndTreatmentBtn;
 		@FXML private Button SpViewExaminationsBtn;
 		@FXML private Button SpCreateRefernceBtn;
 		@FXML private Button SpRecordAppointmentBtn;
 		@FXML private Button SpReportMissingBtn;
-		@FXML private Button removeBtn;
-
-		@FXML private TextField dispClientIDTxt;
 		@FXML private TextField fieldClientID;
 		@FXML private TextField fieldClientClinic;
 		@FXML private TextField fieldClientName;
@@ -138,12 +132,12 @@ public class SpClientDeailsController implements IController{
 			
 		}
 		
-		public void onCreateAppointmentButtonClick(ActionEvent event){
-			CreateAppointmentUI create = new CreateAppointmentUI(clientID,id);
+		public void onCreateLabReferenceButtonClick(ActionEvent event){
+			CreateLabReferenceUI create = new CreateLabReferenceUI();
 			ClientConnectionController.clientConnect.userInterface.add(create);
 			
 			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
-				if (ui instanceof DispatcherUI){
+				if (ui instanceof SpecialistUI){
 					ui.hideWindow();
 				}
 			}
@@ -151,25 +145,8 @@ public class SpClientDeailsController implements IController{
 			create.displayUserWindow();
 		}
 		
-		public void onCancelAppointmentButtonClick(ActionEvent event){
-			CancelAppointmentUI cancel = new CancelAppointmentUI(dispClientIDTxt.getText());
-			ClientConnectionController.clientConnect.userInterface.get(1).hideWindow();
-			ClientConnectionController.clientConnect.userInterface.add(cancel);
-			cancel.displayUserWindow();	
-		}
+
 		
-		
-		public void onCreateClientButtonClick(ActionEvent event){
-			
-			CreateClientUI create = new CreateClientUI(dispClientIDTxt.getText());
-			ClientConnectionController.clientConnect.userInterface.get(1).hideWindow();
-			ClientConnectionController.clientConnect.userInterface.add(create);
-			create.displayUserWindow();		
-		}
-		
-		public void onRemoveClientButtonClick(ActionEvent event){
-			
-		}
 		
 		public void handleReply(Reply reply){
 			 
@@ -237,9 +214,9 @@ public class SpClientDeailsController implements IController{
 							fieldClientAddress.setText(res.get(7));
 							fieldClientPhone.setText(res.get(6));
 							fieldClientEmail.setText(res.get(5));
-							createAppointmentBtn.setDisable(false);
-							cancelAppointmentBtn.setDisable(false);
-							removeBtn.setDisable(false);
+							SpViewHistoryBtn.setDisable(false);
+							SpEndTreatmentBtn.setDisable(false);
+							SpCreateRefernceBtn.setDisable(false);
 
 						}
 							
@@ -254,10 +231,10 @@ public class SpClientDeailsController implements IController{
 
 						@Override
 						public void run() {
-							dispCreateClientBtn.setDisable(false);
-							createAppointmentBtn.setDisable(true);
-							cancelAppointmentBtn.setDisable(true);
-							removeBtn.setDisable(true);
+							SpViewHistoryBtn.setDisable(false);
+							SpEndTreatmentBtn.setDisable(true);
+							//cancelAppointmentBtn.setDisable(true);
+							SpCreateRefernceBtn.setDisable(true);
 							}
 					});
 					
