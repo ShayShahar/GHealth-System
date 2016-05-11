@@ -102,6 +102,26 @@ public class UserController implements IController{
 					
 					ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Login success", "Successfuly logged to G-Health System.");
 				}
+        else if (((String) result).equalsIgnoreCase("Branch")){
+			
+			ClientConnectionController.clientConnect.userPrivilege = "Branch";
+			ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
+			BranchManagerUI branch = new BranchManagerUI();
+			branch.displayUserWindow();
+			ClientConnectionController.clientConnect.userInterface.add(branch);
+			
+			ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Login success", "Successfuly logged to G-Health System.");
+		}
+        else if (((String) result).equalsIgnoreCase("General")){
+			
+			ClientConnectionController.clientConnect.userPrivilege = "General";
+			ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
+			GeneralManagerUI general = new GeneralManagerUI();
+			general.displayUserWindow();
+			ClientConnectionController.clientConnect.userInterface.add(general);
+			
+			ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Login success", "Successfuly logged to G-Health System.");
+		}
 				
 				//add other users
 
