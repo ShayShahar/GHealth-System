@@ -19,7 +19,7 @@ public class FindReferenceByRefNum {
 		
 		 try {
 				Statement stmnt = connection.createStatement();
-				ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.reference,ghealth.clients,ghealth.specialists,ghealth.examinationtype WHERE reference.refID ="+Integer.parseInt(refNum));
+				ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.reference,ghealth.clients,ghealth.specialists,ghealth.examinationtype WHERE reference.refID ="+Integer.parseInt(refNum)+" AND ghealth.reference.client_id = ghealth.clients.clientID AND ghealth.reference.specialist_id = ghealth.specialists.specialistID  ");
 			   
 				
 			    if (res.next()) {

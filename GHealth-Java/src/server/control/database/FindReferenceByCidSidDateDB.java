@@ -30,7 +30,7 @@ public class FindReferenceByCidSidDateDB {
 			
 			try {
 				Statement stmnt = connection.createStatement();
-				ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.reference,ghealth.clients,ghealth.specialists,ghealth.examinationtype WHERE reference.client_id = '"+reference.getCId()+"' && reference.specialist_id = '"+reference.getSId()+"' && reference.refDate ='"+sqlDate+"' ");
+				ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.reference,ghealth.clients,ghealth.specialists,ghealth.examinationtype WHERE reference.client_id = '"+reference.getCId()+"' && reference.specialist_id = '"+reference.getSId()+"' && reference.refDate ='"+sqlDate+"' AND ghealth.reference.client_id = ghealth.clients.clientID AND ghealth.reference.specialist_id = ghealth.specialists.specialistID ");
 			   
 				
 			    if (res.next()) {
