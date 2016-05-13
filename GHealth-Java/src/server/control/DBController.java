@@ -69,7 +69,12 @@ public class DBController {
 				case RETURN_CLIENT:{
 					return ReturnClientDB.handleMessage(request, connection);
 				}
-				
+				case FIND_USERID_BY_USERNAME:{
+					return FindUserIdByUserName.handleMessage(request, connection);
+				}
+				case FIND_TODAY_APPOINTMENT:{
+					return FindTodayAppointmentDB.handleMessage(request, connection);
+				}
 
 		default:
 			break;
