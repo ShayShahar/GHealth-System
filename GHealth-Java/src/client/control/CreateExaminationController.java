@@ -19,11 +19,13 @@ import client.boundry.CreateAppointmentUI;
 import client.boundry.CreateExaminationUI;
 import client.boundry.DispatcherUI;
 import client.boundry.LabWorkerUI;
+import client.entity.Examination;
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
+import common.enums.Result;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -32,6 +34,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,10 +46,12 @@ public class CreateExaminationController implements IController, Initializable{
 	@FXML private ComboBox ExamTypes;
 	@FXML private ImageView ImagePick,ImagePick1,ImagePick2,ImagePick3;
 	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4;
+	@FXML private TextArea ExamTextArea;
 	
 	
 	IUi thisUi = null;
 	private boolean ispicture = false;
+	Examination exam;
 	
 	final FileChooser fileChooser = new FileChooser();
 	 private Desktop desktop = Desktop.getDesktop();
@@ -77,15 +82,30 @@ public class CreateExaminationController implements IController, Initializable{
 		}
 		
 		
+		if(ExaminationController.Curr_Ref.getCode() != 0)   // view Examination Details
+		{
+			 Request request = null;
+			 exam = new Examination();
+			 exam.setId(ExaminationController.Curr_Ref.getCode());
+			 request = new Request(Command.CREATE_EXAMINATION_VIEW, exam);
+			
+			 
+			 try {
+					ClientConnectionController.clientConnect.controller = this;
+					ClientConnectionController.clientConnect.sendToServer(request);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+	
+		
+		
 		
 		
 	}
 	
 	
-	public void OnSendClickButton()
-	{
-		
-	}
+	
 	
 	public void OnAddPictureClickButton(int i)
 	{
@@ -275,6 +295,52 @@ public class CreateExaminationController implements IController, Initializable{
 	public void handleReply(Reply reply) {
 		// TODO Auto-generated method stub
 		
+		
+		Object result =  reply.getResult();
+		
+		
+		if(result instanceof Result)
+		{
+			
+		if ((Result)result == Result.ERROR){
+			System.out.println("3");
+			ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
+				System.exit(1);
+		}
+		
+		
+		}
+		
+		if (reply.getCommand() == Command.CREATE_EXAMINATION )
+		{
+			
+			
+			
+			ExaminationController.Curr_Ref.setCode(((int)result));
+			System.out.println((int)result);
+			onBackButtonClick();
+			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("CREATE", "Examination Successfully CREATED");
+		}
+		
+		if (reply.getCommand() == Command.CREATE_EXAMINATION_VIEW )
+		{
+			System.out.print(".CREATE_EXAMINATION_VIEW");
+			Examination exam = (Examination)result;
+			ExamTextArea.setText(exam.getDetails());
+			
+			
+			
+		}
+		
+		if (reply.getCommand() == Command.CREATE_EXAMINATION_UPDATE )
+		{
+			onBackButtonClick();
+			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("UPDATE", "Examination Successfully Updated");
+			
+		}
+		
+			 
+			 
 	}
 	
 	
@@ -331,6 +397,37 @@ public class CreateExaminationController implements IController, Initializable{
 	        
 	      
 }
+	 
+	 
+	 public void OnSendClickButton()
+	 {
+		 Request request = null;
+		 
+		 if(ExaminationController.Curr_Ref.getCode() == 0)  //check if there is exist examination	 
+		 {
+			
+		 Examination exam = new Examination();
+		 exam.setRef_id(ExaminationController.Curr_Ref.getRefNum());
+         exam.setDetails(ExamTextArea.getText());
+		 request = new Request(Command.CREATE_EXAMINATION, exam);
+		
+		 
+		 
+		 }
+		 else
+		 {
+			 this.exam.setDetails(ExamTextArea.getText());
+			 request = new Request(Command.CREATE_EXAMINATION_UPDATE, exam);
+		 }
+		 
+		 try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+	 }
 	 
 	  private static void configureFileChooser( final FileChooser fileChooser)
       {   

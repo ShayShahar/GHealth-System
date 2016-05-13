@@ -23,6 +23,11 @@ public class Reference implements Serializable{
 	private String Type;
 	
 	
+	public Reference()
+	{
+		code = 0;
+	}
+	
 	//class properties
 	public int getCId() {
 		return cid;

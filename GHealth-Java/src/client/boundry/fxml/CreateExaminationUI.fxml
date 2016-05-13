@@ -24,7 +24,7 @@
             <Separator layoutX="86.0" layoutY="559.0" prefHeight="2.0" prefWidth="363.0" />
             <TextField fx:id="CErefnum" editable="false" layoutX="204.0" layoutY="9.0" />
             <Label layoutX="76.0" layoutY="9.0" prefHeight="25.0" prefWidth="121.0" text="Reference Number" />
-            <TextArea layoutX="69.0" layoutY="102.0" prefHeight="141.0" prefWidth="356.0" promptText="Add Examination Result Here" />
+            <TextArea fx:id="ExamTextArea" layoutX="69.0" layoutY="102.0" prefHeight="141.0" prefWidth="356.0" promptText="Add Examination Result Here" />
             <ImageView fx:id="ImagePick1" fitHeight="110.0" fitWidth="121.0" layoutX="296.0" layoutY="258.0" onMouseClicked="#OnAddPictureClickButton2" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="257.0" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="109.39850616455078" AnchorPane.topAnchor="258.0">
                <image>
                   <Image url="@../../../img/imagehere.png" />

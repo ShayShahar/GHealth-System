@@ -12,7 +12,7 @@ public class Examination implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	//class variables
-	private int id;
+	private int id , Ref_id;
 	private String details;
 	private List<Image> pictures;
 	
@@ -34,6 +34,12 @@ public class Examination implements Serializable{
 	}
 	public void setPictures(List<Image> pictures) {
 		this.pictures = pictures;
+	}
+	public int getRef_id() {
+		return Ref_id;
+	}
+	public void setRef_id(int ref_id) {
+		Ref_id = ref_id;
 	}
 	
 }
