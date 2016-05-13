@@ -38,7 +38,7 @@ CREATE TABLE `appointments` (
   KEY `client_idx` (`client`),
   CONSTRAINT `client` FOREIGN KEY (`client`) REFERENCES `clients` (`clientID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `specialist` FOREIGN KEY (`specialist`) REFERENCES `specialists` (`specialistID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES (4,'2016-05-16','2016-05-07 19:53:29',4,NULL,NULL,0,10,1),(6,'2016-05-16','2016-05-07 19:55:12',15,NULL,NULL,0,1,1),(9,'2016-05-16','2016-05-07 19:58:14',18,NULL,NULL,0,10,1),(16,'2016-05-10','2016-05-09 22:04:14',2,NULL,NULL,0,2,1),(17,'2016-05-09','2016-05-11 15:42:05',2,NULL,NULL,0,2,1),(18,'2016-05-16','2016-05-11 17:17:17',15,NULL,NULL,0,1,1);
+INSERT INTO `appointments` VALUES (4,'2016-05-16','2016-05-07 19:53:29',4,NULL,NULL,0,10,1),(6,'2016-05-16','2016-05-07 19:55:12',15,NULL,NULL,0,1,1),(9,'2016-05-16','2016-05-07 19:58:14',18,NULL,NULL,0,10,1),(16,'2016-05-10','2016-05-09 22:04:14',2,NULL,NULL,0,2,1),(17,'2016-05-09','2016-05-11 15:42:05',2,NULL,NULL,0,2,1),(18,'2016-05-16','2016-05-11 17:17:17',15,NULL,NULL,0,1,1),(19,'2016-05-13','2016-05-11 17:17:17',7,NULL,NULL,0,16,1),(20,'2016-05-13','2016-05-11 17:17:17',3,NULL,NULL,0,16,1);
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `specialists` (
 
 LOCK TABLES `specialists` WRITE;
 /*!40000 ALTER TABLE `specialists` DISABLE KEYS */;
-INSERT INTO `specialists` VALUES (1,'Cardiology','999999991','Mini IHealth'),(2,'Cardiology','999999992','IHealth 2'),(3,'Neurology','999999993','IHealth 2'),(4,'Gastroenterology','999999994','Mini IHealth'),(5,'Gastroenterology','999999995','IHealth 2'),(6,'Gastroenterology','999999996','IHealth 1'),(7,'Microbiology','999999997','Mini IHealth'),(9,'Microbiology','999999998','IHealth 1'),(10,'Allergology','999999999','IHealth 3'),(11,'Psychiatry','999999910','IHealth 1'),(12,'Psychiatry','999999911','IHealth 2'),(13,'Orthopaedics','999999912','IHealth 1'),(14,'Child psychiatry','999999913','IHealth 3'),(15,'Dermatology','999999914','IHealth 3');
+INSERT INTO `specialists` VALUES (1,'Cardiology','999999991','Mini IHealth'),(2,'Cardiology','999999992','IHealth 2'),(3,'Neurology','999999993','IHealth 2'),(4,'Gastroenterology','999999994','Mini IHealth'),(5,'Gastroenterology','999999995','IHealth 2'),(6,'Gastroenterology','999999996','IHealth 1'),(7,'Microbiology','999999997','Mini IHealth'),(9,'Microbiology','999999998','IHealth 1'),(10,'Allergology','999999999','IHealth 3'),(11,'Psychiatry','999999910','IHealth 1'),(12,'Psychiatry','999999911','IHealth 2'),(13,'Orthopaedics','999999912','IHealth 1'),(14,'Child psychiatry','999999913','IHealth 3'),(15,'Dermatology','999999914','IHealth 3'),(16,'Dermatology','213245658','IHealth 3');
 /*!40000 ALTER TABLE `specialists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +304,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('assaf','1234',0,'Specialist','213245658'),('raz','1234',0,'LabWorker','305003659'),('shay','shahar',0,'Dispatcher','302632195');
+INSERT INTO `users` VALUES ('asaf','12',0,'Specialist','213245658'),('raz','1234',0,'LabWorker','305003659'),('shay','shahar',0,'Dispatcher','302632195');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -317,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-12 10:04:41
+-- Dump completed on 2016-05-13 17:26:59
