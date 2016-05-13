@@ -14,8 +14,6 @@ public class ExtendedReportController implements IController{
 	
 	
 	
-	
-	
 	public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();

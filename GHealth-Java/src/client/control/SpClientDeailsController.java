@@ -52,10 +52,7 @@ public class SpClientDeailsController implements IController,Initializable{
 		public static int userId;
 		public static String clientID;
 		public static String userName = ClientConnectionController.clientConnect.userName;
-	    private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
-
-		
-	
+	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 	
 		
 		public ObservableList<Hour> getHours(ArrayList<Hour> list){
@@ -67,7 +64,6 @@ public class SpClientDeailsController implements IController,Initializable{
 			
 			return hours;
 		}
-		
 		
 		public void onUpdateTableView(ArrayList<Hour> list){
 
@@ -81,8 +77,6 @@ public class SpClientDeailsController implements IController,Initializable{
 		
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-			
-			
 			
 			//initialize hash tables
 			getHourByInteger.put(1, "8:00");
@@ -119,7 +113,7 @@ public class SpClientDeailsController implements IController,Initializable{
 			ArrayList<String> list = new ArrayList<String>();
 			list.add(Integer.toString(userId));
 			
-			Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENTֹ,list);
+			Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,list);
 			
 			try {
 				ClientConnectionController.clientConnect.controller = this;
@@ -127,13 +121,7 @@ public class SpClientDeailsController implements IController,Initializable{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			
-			
-			
 		}
-		
-		
 		
 		//Components Handlers
 		public void onLogoutButtonClick(ActionEvent event){
@@ -169,7 +157,6 @@ public class SpClientDeailsController implements IController,Initializable{
 			return true;
 		}
 		
-
 		public void onFindClientIDButtonClickSpecialist(ActionEvent event){
 			
 			
@@ -233,8 +220,6 @@ public class SpClientDeailsController implements IController,Initializable{
 		}
 		
 
-		
-		
 		@SuppressWarnings("unchecked")
 		public void handleReply(Reply reply){
 			 
@@ -282,6 +267,7 @@ public class SpClientDeailsController implements IController,Initializable{
 		
 			else if (reply.getCommand() == Command.FIND_USERID_BY_USERNAME){
 				userId = (int)reply.getResult();
+				System.out.println(userId);
 
 			}
 			
@@ -291,8 +277,7 @@ public class SpClientDeailsController implements IController,Initializable{
 				if (result instanceof ArrayList<?>){
 					
 					result = (ArrayList<?>) result;
-				  @SuppressWarnings("unchecked")
-				ArrayList<String> res = (ArrayList<String>) result;
+					ArrayList<String> res = (ArrayList<String>) result;
 				  
 					Platform.runLater(new Runnable() {
 
@@ -333,7 +318,6 @@ public class SpClientDeailsController implements IController,Initializable{
 						public void run() {
 							SpViewHistoryBtn.setDisable(false);
 							SpEndTreatmentBtn.setDisable(true);
-							//cancelAppointmentBtn.setDisable(true);
 							SpCreateRefernceBtn.setDisable(true);
 							}
 					});
@@ -342,7 +326,7 @@ public class SpClientDeailsController implements IController,Initializable{
 				
 			}
 			
-			else if (reply.getCommand() == Command.FIND_TODAY_APPOINTMENTֹ){
+			else if (reply.getCommand() == Command.FIND_TODAY_APPOINTMENT){
 				
 				
 				if (result instanceof ArrayList<?>){

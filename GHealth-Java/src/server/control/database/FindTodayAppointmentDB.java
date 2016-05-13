@@ -11,18 +11,19 @@ import common.enums.Result;
 
 public class FindTodayAppointmentDB {
 	   public static Object handleMessage (Request request, Connection connection) {
-	    	//12
-			String searchAppointments = "SELECT * FROM ghealth.appointments WHERE specialist=? AND appDate=CURDATE() ORDER BY appTime ASC";
-			ArrayList<Integer> list = new ArrayList<Integer>();
+
+		   String searchAppointments = "SELECT * FROM ghealth.appointments WHERE specialist=? AND appDate=CURDATE() ORDER BY appTime ASC";
+		 	ArrayList<Integer> list = new ArrayList<Integer>();
 		   
 		   	try{
 			    PreparedStatement preparedStatement1 = connection.prepareStatement(searchAppointments);
 			    ResultSet res;
 			    preparedStatement1.setInt(1, Integer.parseInt(request.getList().get(0)));
-			    
+			    System.out.println(request.getList().get(0));
 			    res = preparedStatement1.executeQuery();
 			    
 			    if (!res.next()){
+			    	System.out.println("@!");
 			    	return Result.ERROR;
 			    }
 			    
