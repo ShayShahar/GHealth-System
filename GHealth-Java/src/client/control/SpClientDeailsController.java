@@ -25,7 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class SpClientDeailsController implements IController,Initializable{
+public class SpClientDeailsController implements IController, Initializable{
 
 		
 		//FXML Components
@@ -51,7 +51,7 @@ public class SpClientDeailsController implements IController,Initializable{
 		//Members
 		public static int userId;
 		public static String clientID;
-		public static String userName = ClientConnectionController.clientConnect.userName;
+		
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 	
 		
@@ -77,7 +77,7 @@ public class SpClientDeailsController implements IController,Initializable{
 		
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-			
+						
 			//initialize hash tables
 			getHourByInteger.put(1, "8:00");
 			getHourByInteger.put(2, "8:30");
@@ -97,23 +97,25 @@ public class SpClientDeailsController implements IController,Initializable{
 			getHourByInteger.put(16, "15:30");
 			getHourByInteger.put(17, "16:00");
 			getHourByInteger.put(18, "16:30");
+				
+			ArrayList<String> user = new ArrayList<String>();
+			user.add(ClientConnectionController.clientConnect.userName);
 			
-			
-			Request requst = new Request(Command.FIND_USERID_BY_USERNAME,userName);
+			/*
+			Request requst = new Request(Command.FIND_USERID_BY_USERNAME,user);
 			
 			try {
 				ClientConnectionController.clientConnect.controller = this;
 				ClientConnectionController.clientConnect.sendToServer(requst);
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			
+			}*/
+			timeClmn.setStyle( "-fx-alignment: CENTER;");
 			timeClmn.setCellValueFactory(new PropertyValueFactory<>("hour"));
 			
-			ArrayList<String> list = new ArrayList<String>();
-			list.add(Integer.toString(userId));
-			
-			Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,list);
+		//	ArrayList<String> list = new ArrayList<String>();
+		//	list.add(Integer.toString(userId));
+			Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
 			
 			try {
 				ClientConnectionController.clientConnect.controller = this;
@@ -266,9 +268,7 @@ public class SpClientDeailsController implements IController,Initializable{
 			
 		
 			else if (reply.getCommand() == Command.FIND_USERID_BY_USERNAME){
-				userId = (int)reply.getResult();
-				System.out.println(userId);
-
+				userId = (Integer)result;
 			}
 			
 			else if (reply.getCommand() == Command.FIND_CLIENT){
@@ -337,8 +337,6 @@ public class SpClientDeailsController implements IController,Initializable{
 						hour.setHour(getHourByInteger.get(hoursRes.get(i)));
 						hours.add(hour);
 					}
-					
-					
 					onUpdateTableView(hours);
 				}
 				

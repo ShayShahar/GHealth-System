@@ -15,15 +15,15 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="599.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.SpClientDeailsController">
+<AnchorPane prefHeight="595.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.SpClientDeailsController">
    <children>
-      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="640.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="592.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/header.png" />
          </image>
       </ImageView>
-      <Button  cancelButton="true" layoutX="25.0" layoutY="542.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="29.0" prefWidth="92.0" text="Logout" />
-      <Separator layoutX="76.0" layoutY="516.0" prefHeight="2.0" prefWidth="640.0" />
+      <Button cancelButton="true" layoutX="25.0" layoutY="542.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout" />
+      <Separator layoutX="57.0" layoutY="522.0" prefHeight="2.0" prefWidth="640.0" />
       <Accordion layoutX="25.0" layoutY="232.0" />
       <GridPane layoutX="16.0" layoutY="45.0" prefHeight="167.0" prefWidth="534.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
          <columnConstraints>
@@ -60,12 +60,12 @@
             <Insets bottom="10.0" right="5.0" top="10.0" />
          </padding>
       </GridPane>
-      <TableView fx:id="tabelAppointment" layoutX="582.0" layoutY="46.0" prefHeight="400.0" prefWidth="158.0">
+      <TableView fx:id="tabelAppointment" layoutX="575.0" layoutY="46.0" prefHeight="400.0" prefWidth="158.0">
         <columns>
-          <TableColumn fx:id="timeClmn" prefWidth="199.0" text="Time" />
+          <TableColumn fx:id="timeClmn" prefWidth="143.0" text="Today's Agenda" />
         </columns>
       </TableView>
-      <Separator layoutX="550.0" layoutY="75.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="29.0" rotate="180.0" />
+      <Separator layoutX="550.0" layoutY="53.0" orientation="VERTICAL" prefHeight="439.0" prefWidth="29.0" rotate="180.0" />
       <GridPane layoutX="61.0" layoutY="245.0" prefHeight="219.0" prefWidth="454.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
