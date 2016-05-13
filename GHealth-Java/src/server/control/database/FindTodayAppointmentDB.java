@@ -11,7 +11,7 @@ import common.enums.Result;
 
 public class FindTodayAppointmentDB {
 	   public static Object handleMessage (Request request, Connection connection) {
-	    	
+	    	//12
 			String searchAppointments = "SELECT * FROM ghealth.appointments WHERE specialist=? AND appDate=CURDATE() ORDER BY appTime ASC";
 			ArrayList<Integer> list = new ArrayList<Integer>();
 		   
