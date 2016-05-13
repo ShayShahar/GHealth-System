@@ -1,29 +1,31 @@
-	package client.control;
+package client.control;
 
-	import java.io.IOException;
-	import java.net.URL;
-	import java.util.ArrayList;
-	import java.util.ResourceBundle;
-
-
-	import client.boundry.*;
-import client.entity.Appointment;
-import client.entity.Specialist;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+import client.boundry.*;
+import client.entity.Hour;
 import client.interfaces.IController;
-	import client.interfaces.IUi;
-	import common.entity.Reply;
-	import common.entity.Request;
-	import common.enums.Command;
-	import common.enums.Result;
-	import javafx.application.Platform;
-	import javafx.event.ActionEvent;
-	import javafx.fxml.FXML;
-	import javafx.fxml.Initializable;
-	import javafx.scene.control.Button;
+import client.interfaces.IUi;
+import common.entity.Reply;
+import common.entity.Request;
+import common.enums.Command;
+import common.enums.Result;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-public class SpClientDeailsController implements IController{
+import javafx.scene.control.cell.PropertyValueFactory;
+
+public class SpClientDeailsController implements IController,Initializable{
 
 		
 		//FXML Components
@@ -43,14 +45,95 @@ public class SpClientDeailsController implements IController{
 		@FXML private TextField fieldClientPhone;
 		@FXML private TextField fieldClientEmail;
 		@FXML private TextField SpClientIDTxt;
-		@FXML private TableView<Appointment> tabelAppointment;
-		@FXML private TableColumn<Appointment, String> idClmn; 
-		@FXML private TableColumn<Appointment, String> timeClmn;
+		@FXML private TableView<Hour> tabelAppointment;
+		@FXML private TableColumn<Hour, String> timeClmn;
 		
 		//Members
+		public static int userId;
 		public static String clientID;
-		public static int id;
+		public static String userName = ClientConnectionController.clientConnect.userName;
+	    private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
+
+		
+	
+	
+		
+		public ObservableList<Hour> getHours(ArrayList<Hour> list){
+			ObservableList<Hour> hours = FXCollections.observableArrayList();
 			
+			for (int i=0 ; i < list.size(); i++){
+				hours.add(list.get(i));
+			}
+			
+			return hours;
+		}
+		
+		
+		public void onUpdateTableView(ArrayList<Hour> list){
+
+			Platform.runLater(new Runnable() {
+				
+				@Override
+				public void run() {
+					tabelAppointment.setItems(getHours(list));
+				}});
+		}
+		
+		@Override
+		public void initialize(URL location, ResourceBundle resources) {
+			
+			
+			
+			//initialize hash tables
+			getHourByInteger.put(1, "8:00");
+			getHourByInteger.put(2, "8:30");
+			getHourByInteger.put(3, "9:00");
+			getHourByInteger.put(4, "9:30");
+			getHourByInteger.put(5, "10:00");
+			getHourByInteger.put(6, "10:30");
+			getHourByInteger.put(7, "11:00");
+			getHourByInteger.put(8, "11:30");
+			getHourByInteger.put(9, "12:00");
+			getHourByInteger.put(10, "12:30");
+			getHourByInteger.put(11, "13:00");
+			getHourByInteger.put(12, "13:30");
+			getHourByInteger.put(13, "14:00");
+			getHourByInteger.put(14, "14:30");
+			getHourByInteger.put(15, "15:00");
+			getHourByInteger.put(16, "15:30");
+			getHourByInteger.put(17, "16:00");
+			getHourByInteger.put(18, "16:30");
+			
+			
+			Request requst = new Request(Command.FIND_USERID_BY_USERNAME,userName);
+			
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(requst);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			timeClmn.setCellValueFactory(new PropertyValueFactory<>("hour"));
+			
+			ArrayList<String> list = new ArrayList<String>();
+			list.add(Integer.toString(userId));
+			
+			Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENTֹ,list);
+			
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(requst2);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+		}
+		
+		
 		
 		//Components Handlers
 		public void onLogoutButtonClick(ActionEvent event){
@@ -152,6 +235,7 @@ public class SpClientDeailsController implements IController{
 
 		
 		
+		@SuppressWarnings("unchecked")
 		public void handleReply(Reply reply){
 			 
 			Object result =  reply.getResult();
@@ -195,6 +279,12 @@ public class SpClientDeailsController implements IController{
 				}
 			}
 			
+		
+			else if (reply.getCommand() == Command.FIND_USERID_BY_USERNAME){
+				userId = (int)reply.getResult();
+
+			}
+			
 			else if (reply.getCommand() == Command.FIND_CLIENT){
 				
 				
@@ -209,7 +299,7 @@ public class SpClientDeailsController implements IController{
 						@Override
 						public void run() {
 							fieldClientID.setText(res.get(0));
-							id = Integer.parseInt(fieldClientID.getText());
+						//	id = Integer.parseInt(fieldClientID.getText());
 							fieldClientClinic.setText(res.get(1));
 							String[] date = res.get(3).split("-");
 							fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
@@ -228,10 +318,11 @@ public class SpClientDeailsController implements IController{
 							
 
 						}
-							
+						
 					});
 							  
 				}
+				
 				
 				else {
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client not found", "You can add new client from the menu below.");
@@ -250,8 +341,29 @@ public class SpClientDeailsController implements IController{
 				}
 				
 			}
+			
+			else if (reply.getCommand() == Command.FIND_TODAY_APPOINTMENTֹ){
+				
+				
+				if (result instanceof ArrayList<?>){
+					ArrayList<Integer> hoursRes = (ArrayList<Integer>)result;
+					ArrayList<Hour> hours = new ArrayList<Hour>();
+					for (int i = 0 ; i<hoursRes.size(); i++){
+						Hour hour  = new Hour();
+						hour.setHour(getHourByInteger.get(hoursRes.get(i)));
+						hours.add(hour);
+					}
+					
+					
+					onUpdateTableView(hours);
+				}
+				
+				
+			}
 								
 		}
+
+		
 		
 	}
 
