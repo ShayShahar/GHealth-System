@@ -75,6 +75,15 @@ public class DBController {
 				case FIND_TODAY_APPOINTMENT:{
 					return FindTodayAppointmentDB.handleMessage(request, connection);
 				}
+				case CREATE_EXAMINATION:{
+					return CreateExamination.handleMessage(request, connection);
+				}
+				case CREATE_EXAMINATION_VIEW:{
+					return CreateExaminationView.handleMessage(request, connection);
+				}
+				case CREATE_EXAMINATION_UPDATE:{
+					return CreateExaminationUpdate.handleMessage(request, connection);
+				}
 
 		default:
 			break;
