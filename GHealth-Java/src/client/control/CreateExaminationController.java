@@ -1,6 +1,8 @@
 package client.control;
 
 import java.awt.Desktop;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import client.boundry.CreateExaminationUI;
 import client.boundry.LabWorkerUI;
@@ -35,6 +38,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 
 public class CreateExaminationController implements IController, Initializable{
@@ -45,6 +50,7 @@ public class CreateExaminationController implements IController, Initializable{
 	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4;
 	@FXML private TextArea ExamTextArea;
 	private ArrayList<byte[]> pictures = new ArrayList<byte[]>();
+	private String[] filenameArr = new String[4];
 	
 	IUi thisUi = null;
 	private boolean ispicture = false;
@@ -54,6 +60,7 @@ public class CreateExaminationController implements IController, Initializable{
 	 private Desktop desktop = Desktop.getDesktop();
 	
 	ObservableList<String> list = FXCollections.observableArrayList();
+	
 			
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -126,6 +133,7 @@ public class CreateExaminationController implements IController, Initializable{
                 {
                 	case 1:
                 	{
+                		filenameArr[0] = file.getPath();
                 		 ImagePick.setImage(pic);
                 		 Xbtn1.setDisable(false);
                 		 Xbtn1.setVisible(true);
@@ -133,6 +141,7 @@ public class CreateExaminationController implements IController, Initializable{
                 	}
                 	case 2:
                 	{
+                		filenameArr[1] = file.getPath();
                 		 ImagePick1.setImage(pic);
                 		 Xbtn2.setDisable(false);
                 		 Xbtn2.setVisible(true);
@@ -140,6 +149,7 @@ public class CreateExaminationController implements IController, Initializable{
                 	}
                 	case 3:
                 	{
+                		filenameArr[2] = file.getPath();
                 		 ImagePick2.setImage(pic);
                 		 Xbtn3.setDisable(false);
                 		 Xbtn3.setVisible(true);
@@ -147,6 +157,7 @@ public class CreateExaminationController implements IController, Initializable{
                 	}
                 	case 4:
                 	{
+                		filenameArr[3] = file.getPath();
                 		 ImagePick3.setImage(pic);
                 		 Xbtn4.setDisable(false);
                 		 Xbtn4.setVisible(true);
@@ -228,6 +239,7 @@ public class CreateExaminationController implements IController, Initializable{
 			e.printStackTrace();
 		}  // get the file path
 		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 filenameArr[0] = null;
 		 ImagePick.setImage(pic);
 		 Xbtn1.setDisable(true);
 		 Xbtn1.setVisible(false);
@@ -244,6 +256,7 @@ public class CreateExaminationController implements IController, Initializable{
 			e.printStackTrace();
 		}  // get the file path
 		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 filenameArr[1] = null;
 		 ImagePick1.setImage(pic);
 		 Xbtn2.setDisable(true);
 		 Xbtn2.setVisible(false);
@@ -260,6 +273,7 @@ public class CreateExaminationController implements IController, Initializable{
 			e.printStackTrace();
 		}  // get the file path
 		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 filenameArr[2] = null;
 		 ImagePick2.setImage(pic);
 		 Xbtn3.setDisable(true);
 		 Xbtn3.setVisible(false);
@@ -276,6 +290,7 @@ public class CreateExaminationController implements IController, Initializable{
 			e.printStackTrace();
 		}  // get the file path
 		 pic = new Image(is,100,100,false,false);  // resize the picture
+		 filenameArr[3] = null;
 		 ImagePick3.setImage(pic);
 		 Xbtn4.setDisable(true);
 		 Xbtn4.setVisible(false);
@@ -322,6 +337,35 @@ public class CreateExaminationController implements IController, Initializable{
 			Examination exam = (Examination)result;
 			ExamTextArea.setText(exam.getDetails());
 			
+			
+			
+		//picture 1
+			int num = exam.getPictures().size();
+			if(num == 1)
+			ImagePick.setImage(convertBytesToImage(exam.getPictures().get(0)));
+			
+			if(num == 2)
+			{
+				ImagePick.setImage(convertBytesToImage(exam.getPictures().get(0)));
+				ImagePick1.setImage(convertBytesToImage(exam.getPictures().get(1)));
+			}
+			
+			if(num == 3)
+			{
+				ImagePick.setImage(convertBytesToImage(exam.getPictures().get(0)));
+				ImagePick1.setImage(convertBytesToImage(exam.getPictures().get(1)));
+				ImagePick2.setImage(convertBytesToImage(exam.getPictures().get(2)));
+			}
+			
+			if(num == 4)
+			{
+				ImagePick.setImage(convertBytesToImage(exam.getPictures().get(0)));
+				ImagePick1.setImage(convertBytesToImage(exam.getPictures().get(1)));
+				ImagePick2.setImage(convertBytesToImage(exam.getPictures().get(2)));
+				ImagePick3.setImage(convertBytesToImage(exam.getPictures().get(3)));
+			}
+			
+			//picture 1
 			
 			
 		}
@@ -410,6 +454,10 @@ public class CreateExaminationController implements IController, Initializable{
 		 }
 		 else
 		 {
+			 checkPicArr();
+			 FileNameToArrayList();
+			 
+			this.exam.setPictures(pictures);
 			 this.exam.setDetails(ExamTextArea.getText());
 			 request = new Request(Command.CREATE_EXAMINATION_UPDATE, exam);
 		 }
@@ -452,6 +500,55 @@ public class CreateExaminationController implements IController, Initializable{
 			  bfile = null;
 		  }
 		return bfile;  
+	  }
+	  
+	  public void FileNameToArrayList()
+	  {
+		  for(int i=0;i<4;i++)
+		  {
+			  if( filenameArr[i] != null)
+				  pictures.add(convertFileToBytes(filenameArr[i]));
+		  }
+	  }
+	  
+	  public void checkPicArr()
+	  {
+		  for(int i=0;i<4;i++)
+			  if( filenameArr[i] != null)
+				  System.out.println("i = "+i+" name:  "+filenameArr[i]);
+	  }
+	  
+	  public Image convertBytesToImage(byte[] pic)
+	  {
+		  BufferedImage img = null;
+			
+			try {
+				img = ImageIO.read(new ByteArrayInputStream(pic));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			WritableImage wr = null;
+	        if (img != null) {
+	            wr = new WritableImage(img.getWidth(), img.getHeight());
+	            PixelWriter pw = wr.getPixelWriter();
+	            for (int x = 0; x < img.getWidth(); x++) {
+	                for (int y = 0; y < img.getHeight(); y++) {
+	                    pw.setArgb(x, y, img.getRGB(x, y));
+	                }
+	            }
+	        }
+	 
+	        ImageView imView = new ImageView(wr);
+	        imView.setFitHeight(100);
+	        imView.setFitWidth(100);
+	        imView.setPreserveRatio(true);
+	        
+	        Image im = imView.getImage();
+	     
+	        return im;
+	        
 	  }
 	  
 

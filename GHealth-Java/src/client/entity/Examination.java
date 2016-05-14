@@ -15,7 +15,7 @@ public class Examination implements Serializable{
 	//class variables
 	private int id , Ref_id;
 	private String details;
-	private ArrayList<byte[]> pictures = new ArrayList<byte[]>();
+	private ArrayList<byte[]> pictures;
 	
 	//class properties
 	public int getId() {

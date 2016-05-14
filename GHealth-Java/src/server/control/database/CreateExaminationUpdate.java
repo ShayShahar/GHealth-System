@@ -24,14 +24,18 @@ public class CreateExaminationUpdate {
 		    int num = exam.getPictures().size(); 
 		   
 		    for(int i=0 ;i<num;i++)
-		    	updateExam1 = updateExam1+",exPicture"+i;
+		    	updateExam1 = updateExam1+",exPicture"+i+"=? ";
 		    
 		    updateExam1 = updateExam1+"WHERE exID=?";
+		    
+		    System.out.println(updateExam1);
 		   
 		    PreparedStatement preparedStatement = connection.prepareStatement(updateExam1);
 		    preparedStatement.setString(1,exam.getDetails());
-		    preparedStatement.setInt(2,exam.getId());
-		  
+		    preparedStatement.setInt(num+2,exam.getId());
+		    for(int i=0;i<num;i++)
+		    preparedStatement.setBytes(i+2,exam.getPictures().get(i));
+		    
 		    preparedStatement.executeUpdate();
 		    
 		         
