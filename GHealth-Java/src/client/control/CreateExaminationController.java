@@ -47,7 +47,7 @@ public class CreateExaminationController implements IController, Initializable{
 	@FXML private ImageView ImagePick,ImagePick1,ImagePick2,ImagePick3;
 	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4;
 	@FXML private TextArea ExamTextArea;
-	
+	private ArrayList<byte[]> pictures = new ArrayList<byte[]>();
 	
 	IUi thisUi = null;
 	private boolean ispicture = false;
@@ -442,6 +442,23 @@ public class CreateExaminationController implements IController, Initializable{
               new FileChooser.ExtensionFilter("PNG", "*.png")
           );
   }
+	  
+	  public byte[] convertFileToBytes(String filename)
+	  {
+		  FileInputStream fileinputstream = null;
+		  File file = new File(filename);
+		  byte[] bfile = new byte[(int)file.length()];
+		  try{
+			  fileinputstream = new FileInputStream(file);
+			  fileinputstream.read(bfile);
+			  fileinputstream.close();
+		  }
+		  
+		  catch(Exception e){
+			  bfile = null;
+		  }
+		return bfile;  
+	  }
 	  
 
 }

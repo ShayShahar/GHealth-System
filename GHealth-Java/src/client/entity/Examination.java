@@ -1,6 +1,7 @@
 package client.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
@@ -14,7 +15,7 @@ public class Examination implements Serializable{
 	//class variables
 	private int id , Ref_id;
 	private String details;
-	private List<Image> pictures;
+	private ArrayList<byte[]> pictures = new ArrayList<byte[]>();
 	
 	//class properties
 	public int getId() {
@@ -29,10 +30,10 @@ public class Examination implements Serializable{
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	public List<Image> getPictures() {
+	public ArrayList<byte[]> getPictures() {
 		return pictures;
 	}
-	public void setPictures(List<Image> pictures) {
+	public void setPictures(ArrayList<byte[]> pictures) {
 		this.pictures = pictures;
 	}
 	public int getRef_id() {
