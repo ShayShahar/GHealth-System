@@ -6,29 +6,29 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="625.0" prefWidth="519.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ExaminationController">
+<AnchorPane prefHeight="693.0" prefWidth="542.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ExaminationController">
    <children>
-      <TextField fx:id="Ereference_number" disable="true" layoutX="19.0" layoutY="154.0" prefHeight="25.0" prefWidth="200.0" promptText="Reference Number" />
-      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="365.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="389.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/header.png" />
          </image>
       </ImageView>
-      <Button fx:id="LabWorkerLogoutBtn" layoutX="21.0" layoutY="581.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="29.0" prefWidth="100.0" text="Logout" />
-      <Separator layoutX="86.0" layoutY="559.0" prefHeight="2.0" prefWidth="363.0" />
-      <AnchorPane layoutX="9.0" layoutY="185.0" prefHeight="370.0" prefWidth="533.0">
+      <Button fx:id="LabWorkerLogoutBtn" layoutX="14.0" layoutY="672.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout" />
+      <Separator layoutX="90.0" layoutY="648.0" prefHeight="2.0" prefWidth="363.0" />
+      <AnchorPane layoutX="9.0" layoutY="185.0" prefHeight="295.0" prefWidth="533.0">
          <children>
-            <Button fx:id="ExamBtn" disable="true" layoutX="142.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCreateExaminationClick" prefHeight="29.0" prefWidth="219.0" text="Add Examination Result" />
-            <GridPane layoutY="49.0" prefHeight="233.0" prefWidth="533.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
+            <GridPane layoutX="-6.0" layoutY="49.0" prefHeight="233.0" prefWidth="533.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="172.22222900390625" minWidth="10.0" prefWidth="80.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.77777099609375" minWidth="10.0" prefWidth="150.0" />
@@ -49,23 +49,21 @@
                   <TextField fx:id="fieldSpecielistID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="fieldCode" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="fieldStatus" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Label prefHeight="17.0" prefWidth="117.0" text="   Reference Num  " />
-                  <Label text="Date" GridPane.columnIndex="2" />
-                  <Label text="Specielist ID" GridPane.rowIndex="2" />
-                  <Label text="Type" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Label text="Code" GridPane.rowIndex="3" />
-                  <Label text="Status" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label text="Client ID" GridPane.rowIndex="1" />
-                  <Label text="Urgency" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label text="Date " GridPane.columnIndex="2" />
+                  <Label text="Specielist ID " GridPane.rowIndex="2" />
+                  <Label text="Type " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="Code " GridPane.rowIndex="3" />
+                  <Label text="Status " GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Client ID " GridPane.rowIndex="1" />
+                  <Label text="Urgency " GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <TextField fx:id="fieldType" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label text="#Reference " />
                </children>
                <padding>
                   <Insets bottom="10.0" right="5.0" top="10.0" />
                </padding>
             </GridPane>
             <Label layoutX="220.0" layoutY="24.0" prefHeight="25.0" prefWidth="141.0" text="Reference Details" />
-            <TextField fx:id="fieldComments" editable="false" layoutX="101.0" layoutY="293.0" prefHeight="25.0" prefWidth="425.0" />
-            <Label layoutX="43.0" layoutY="297.0" text="Comments" />
          </children>
       </AnchorPane>
       <Separator layoutX="19.0" layoutY="137.0" prefWidth="200.0" />
@@ -76,9 +74,17 @@
             <TextField fx:id="Ecid" promptText="Client ID" />
          </children>
       </VBox>
-      <Button layoutX="425.0" layoutY="152.0" mnemonicParsing="false" onAction="#OnSearchButtonClick" prefHeight="29.0" prefWidth="74.0" text="Search" />
-      <Separator layoutX="225.0" layoutY="154.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
-      <Separator layoutX="412.0" layoutY="154.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
-      <CheckBox fx:id="checkbox1" layoutX="246.0" layoutY="161.0" mnemonicParsing="false" onAction="#OnCheckBoxCheck" text="Search By Reference Numer" />
+      <HBox layoutX="18.0" layoutY="145.0" prefHeight="29.0" prefWidth="493.0" spacing="10.0">
+         <children>
+            <TextField fx:id="Ereference_number" disable="true" prefHeight="25.0" prefWidth="205.0" promptText="Reference Number" />
+            <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
+            <CheckBox fx:id="checkbox1" mnemonicParsing="false" onAction="#OnCheckBoxCheck" text="Search By Reference Number" />
+            <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
+            <Button mnemonicParsing="false" onAction="#OnSearchButtonClick" prefHeight="29.0" prefWidth="74.0" text="Search" />
+         </children>
+      </HBox>
+      <Button fx:id="ExamBtn" disable="true" layoutX="151.0" layoutY="600.0" mnemonicParsing="false" onAction="#OnCreateExaminationClick" prefHeight="29.0" prefWidth="219.0" text="Add Examination Result" />
+      <Label layoutX="44.0" layoutY="478.0" text="Comments" />
+      <TextArea fx:id="fieldComments" layoutX="43.0" layoutY="497.0" prefHeight="89.0" prefWidth="465.0" />
    </children>
 </AnchorPane>

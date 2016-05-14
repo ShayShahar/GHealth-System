@@ -15,9 +15,7 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
-import client.boundry.CreateAppointmentUI;
 import client.boundry.CreateExaminationUI;
-import client.boundry.DispatcherUI;
 import client.boundry.LabWorkerUI;
 import client.entity.Examination;
 import client.interfaces.IController;
@@ -28,7 +26,6 @@ import common.enums.Command;
 import common.enums.Result;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -103,10 +100,7 @@ public class CreateExaminationController implements IController, Initializable{
 		
 		
 	}
-	
-	
-	
-	
+		
 	public void OnAddPictureClickButton(int i)
 	{
 		InputStream is = null;
