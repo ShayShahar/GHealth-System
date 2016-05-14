@@ -47,25 +47,20 @@ public class DBController {
 				case FIND_APPOINTMENTS:{
 					return FindAppointmentsDB.handleMessage(request, connection) ;
 				}
-				
-
+			
 				case FIND_REFERENCE_BY_SID_CID_DATE:{
 					return FindReferenceByCidSidDateDB.handleMessage(request, connection) ;
 				}
 
 				case CANCEL_APPOINTMENT:{
 					return CancelAppointmentDB.handleMessage(request, connection) ;
-			
 				}
-				
 				case FIND_REFERENCE_BY_REFNUM:{
 					return FindReferenceByRefNum.handleMessage(request, connection);
 				}
-				
 				case REMOVE_CLIENT:{
 					return RemoveClientDB.handleMessage(request, connection);
-				}
-				
+				}			
 				case RETURN_CLIENT:{
 					return ReturnClientDB.handleMessage(request, connection);
 				}
@@ -75,7 +70,7 @@ public class DBController {
 				case FIND_TODAY_APPOINTMENT:{
 					return FindTodayAppointmentDB.handleMessage(request, connection);
 				}
-				case CREATE_EXAMINATION:{
+		  	case CREATE_EXAMINATION:{
 					return CreateExamination.handleMessage(request, connection);
 				}
 				case CREATE_EXAMINATION_VIEW:{
