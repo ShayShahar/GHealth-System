@@ -33,12 +33,16 @@ public class CreateExaminationUpdate {
 		   
 		    PreparedStatement preparedStatement = connection.prepareStatement(updateExam1);
 		    preparedStatement.setString(1,exam.getDetails());
-		    preparedStatement.setInt(num+2,exam.getId());
+		    preparedStatement.setInt(6,exam.getId());
 		    
 		    for(int i=0;i<num;i++)
 		    preparedStatement.setBytes(i+2,exam.getPictures().get(i));
-		    for(int i=4;i>num;i--)
-		    preparedStatement.setString(i+2,"?");   // java.sql.Types.BLOB
+		    
+		    for(int j=4;j>num;j--)
+		    {
+		    preparedStatement.setNull(j+1, java.sql.Types.BLOB);   // java.sql.Types.BLOB
+		    System.out.println("Picture Number "+j+" is NULL NOW");
+		    }
 		    
 		    preparedStatement.executeUpdate();
 		    
