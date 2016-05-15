@@ -10,10 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane prefHeight="626.0" prefWidth="443.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.CreateExaminationController">
    <children>
@@ -28,10 +25,6 @@
             <Separator layoutX="33.0" layoutY="554.0" prefHeight="3.0" prefWidth="465.0" />
             <TextArea fx:id="ExamTextArea" layoutX="58.0" layoutY="102.0" prefHeight="141.0" prefWidth="419.0" promptText="Add Examination Result Here" />
             <ComboBox fx:id="ExamTypes" layoutX="58.0" layoutY="60.0" prefHeight="35.0" prefWidth="168.0" promptText="Choose Type" />
-            <Button fx:id="Xbtn1" layoutX="185.0" layoutY="258.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
-            <Button fx:id="Xbtn2" layoutX="389.0" layoutY="258.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton1" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
-            <Button fx:id="Xbtn4" layoutX="389.0" layoutY="405.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton3" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
-            <Button fx:id="Xbtn3" layoutX="185.0" layoutY="405.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton2" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
             <HBox layoutX="67.0" layoutY="16.0" prefHeight="29.0" prefWidth="320.0" spacing="5.0">
                <children>
                   <Label prefHeight="25.0" prefWidth="109.0" text="Reference Number" />
@@ -39,52 +32,44 @@
                   <TextField fx:id="CErefnum" editable="false" />
                </children>
             </HBox>
-            <GridPane hgap="100.0" layoutX="151.0" layoutY="269.0" prefHeight="245.0" prefWidth="251.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="CENTER" minWidth="0.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" minWidth="100.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="164.4444580078125" minHeight="100.0" prefHeight="130.22222900390625" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="127.77777099609375" minHeight="10.0" prefHeight="127.77777099609375" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <ImageView fx:id="ImagePick" fitHeight="110.0" fitWidth="121.0" onMouseClicked="#OnAddPictureClickButton1" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../img/imagehere.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <ImageView fx:id="ImagePick1" fitHeight="110.0" fitWidth="357.0" onMouseClicked="#OnAddPictureClickButton2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                     <image>
-                        <Image url="@../../../img/imagehere.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <ImageView fx:id="ImagePick2" fitHeight="110.0" fitWidth="121.0" onMouseClicked="#OnAddPictureClickButton3" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../../../img/imagehere.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <ImageView fx:id="ImagePick3" fitHeight="110.0" fitWidth="121.0" onMouseClicked="#OnAddPictureClickButton4" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../../../img/imagehere.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </children>
-            </GridPane>
             <Button layoutX="423.0" layoutY="518.0" mnemonicParsing="false" onAction="#OnSendClickButton" prefHeight="29.0" prefWidth="59.0" text="Send" />
             <Separator layoutX="40.0" layoutY="51.0" prefHeight="3.0" prefWidth="465.0" />
+            <ImageView fx:id="ImagePick" fitHeight="110.0" fitWidth="121.0" layoutX="130.0" layoutY="268.0" onMouseClicked="#OnAddPictureClickButton1" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/imagehere.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Button fx:id="Xbtn1" layoutX="216.0" layoutY="268.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
+            <ImageView fx:id="ImagePick1" fitHeight="110.0" fitWidth="357.0" layoutX="291.0" layoutY="268.0" onMouseClicked="#OnAddPictureClickButton2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/imagehere.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Button fx:id="Xbtn2" layoutX="377.0" layoutY="268.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton1" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
+            <ImageView fx:id="ImagePick2" fitHeight="110.0" fitWidth="121.0" layoutX="130.0" layoutY="407.0" onMouseClicked="#OnAddPictureClickButton3" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/imagehere.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Button fx:id="Xbtn3" layoutX="216.0" layoutY="407.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton2" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
+            <ImageView fx:id="ImagePick3" fitHeight="110.0" fitWidth="121.0" layoutX="291.0" layoutY="407.0" onMouseClicked="#OnAddPictureClickButton4" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/imagehere.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Button fx:id="Xbtn4" layoutX="377.0" layoutY="407.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton3" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
          </children>
       </AnchorPane>
    </children>
