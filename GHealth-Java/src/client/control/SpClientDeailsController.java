@@ -50,8 +50,10 @@ public class SpClientDeailsController implements IController, Initializable{
 		@FXML private TableColumn<Hour, String> timeClmn;
 		
 		//Members
-		public static int userId;
+		public static Integer userId;
 		public static String clientID;
+		public static String userName = ClientConnectionController.clientConnect.userName;
+		
 		
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 	  private HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
@@ -148,7 +150,18 @@ public class SpClientDeailsController implements IController, Initializable{
 		
 		
 		public void onMouseClick(MouseEvent event){
-		System.out.println("123   ");
+		
+			ArrayList<String> msg2 = new ArrayList<String>();
+			msg2.add(userName);
+			Request requst2 = new Request(Command.FIND_USERID_BY_USERNAME,msg2);
+			
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(requst2);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			try{
 					if (tabelAppointment.getSelectionModel().getSelectedItem().getHour() != null){
 					int hour = getIntegerByHour.get(tabelAppointment.getSelectionModel().getSelectedItem().getHour());
@@ -156,8 +169,8 @@ public class SpClientDeailsController implements IController, Initializable{
 						//System.out.println(hour);
 						ArrayList<String> msg = new ArrayList<String>();
 						msg.add(Integer.toString(hour));
-						msg.add(Integer.toString(16));   //error
-					
+						msg.add(Integer.toString(userId));   //error
+					System.out.println(userId);
 						Request request = new Request(Command.GET_CLIENT_BY_APPOINTMET,msg);
 						
 						try {
@@ -172,8 +185,8 @@ public class SpClientDeailsController implements IController, Initializable{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}
 		
+		}
 		
 		
 		//Components Handlers
@@ -321,6 +334,7 @@ public class SpClientDeailsController implements IController, Initializable{
 			else if (reply.getCommand() == Command.FIND_USERID_BY_USERNAME){
 				userId = (Integer)result;
 				System.out.println(userId);
+				
 			}
 			
 			else if (reply.getCommand() == Command.FIND_CLIENT){
