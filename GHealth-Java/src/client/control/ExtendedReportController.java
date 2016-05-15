@@ -22,10 +22,7 @@ public class ExtendedReportController implements IController, Initializable{
 
 	@FXML private ComboBox selectBranchList;
 	@FXML private TextField numberTxt;
-	@FXML private Spinner monthStartTxt;
-	@FXML private Spinner monthEndTxt;
-	@FXML private Spinner yearStartTxt;
-	@FXML private Spinner yearEndTxt;
+
 	
 
 	public void onLogoutButtonClick(ActionEvent event){
@@ -54,9 +51,7 @@ public class ExtendedReportController implements IController, Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-	//		monthStartTxt.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1950, 2070, LocalDate.now().getYear()));
-	//		monthStartTxt.visibleProperty().bind(Bindings.notEqual(cbTimeRange.valueProperty(), TimeRangeType.LAST_12_MONTHS));
-		
+
 	}
 	
 }
