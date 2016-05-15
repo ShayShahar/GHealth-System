@@ -19,8 +19,7 @@ public class CreateExaminationUpdate {
 		exam = (Examination)request.getEntity();
 		
 		try {
-			//Statement stmnt = connection.createStatement();
-		   // stmnt.executeUpdate("UPDATE `ghealth`.`examination` SET `exDetails`='"+exam.getDetails()+"' WHERE `exID`='"+exam.getId()+"';");
+			
 		    int num = exam.getPictures().size(); 
 		    System.out.println("Num  =   "+num);
 		   

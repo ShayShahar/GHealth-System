@@ -216,7 +216,13 @@ public class ExaminationController implements IController{
 				fieldSpecielistID.setText(Integer.toString(reference.getSId()));
 				fieldCode.setText(Integer.toString(reference.getCode()));
 				fieldUrgency.setText(reference.getUrgency());
-				fieldStatus.setText(Integer.toString(reference.getStatus()));
+				
+				
+				if(reference.getStatus() == 0)
+					fieldStatus.setText("Not Checked");
+				else fieldStatus.setText("Checked");
+				
+				
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");        //set the format of the date
 				fieldDate.setText(df.format(reference.getDate().getTime()));
 				fieldType.setText(reference.getType());

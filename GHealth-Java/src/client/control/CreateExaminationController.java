@@ -103,6 +103,10 @@ public class CreateExaminationController implements IController, Initializable{
 		
 	}
 		
+	/**
+	 * 
+	 * @param i
+	 */
 	public void OnAddPictureClickButton(int i)
 	{
 		InputStream is = null;
@@ -175,35 +179,7 @@ public class CreateExaminationController implements IController, Initializable{
                 		return;
                 	
                 }
-				 //choose where to put the picture
-        		 
-        		 /*
-				if(ImagePick.isDisabled())
-				{
-				 ImagePick.setDisable(false);
-				 ImagePick.setImage(pic);
-				}
-				else if(ImagePick1.isDisabled())
-				    {
-					 ImagePick1.setDisable(false);
-					 ImagePick1.setImage(pic);
-					}
-				else if(ImagePick2.isDisabled())
-			    {
-				 ImagePick2.setDisable(false);
-				 ImagePick2.setImage(pic);
-				}
-				else if(ImagePick3.isDisabled())
-			    {
-				 ImagePick3.setDisable(false);
-				 ImagePick3.setImage(pic);
-				 
-				 ImagePick.setDisable(true);
-					ImagePick1.setDisable(true);
-					ImagePick2.setDisable(true);
-					ImagePick3.setDisable(true);
-				}
-				*/
+				
              }
              
         
@@ -351,16 +327,213 @@ public class CreateExaminationController implements IController, Initializable{
 			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("CREATE", "Examination Successfully CREATED");
 		}
 		
+		
+		
 		if (reply.getCommand() == Command.CREATE_EXAMINATION_VIEW )
 		{
 			System.out.print(".CREATE_EXAMINATION_VIEW");
 			Examination exam = (Examination)result;
 			ExamTextArea.setText(exam.getDetails());
 			
+			initializePictures(exam);
+			
+
 			
 			
-	///////////////////// 
-			int num = exam.getPictures().size();  //check how many picture loaded
+			
+		}
+		
+		if (reply.getCommand() == Command.CREATE_EXAMINATION_UPDATE )
+		{
+			onBackButtonClick();
+			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("UPDATE", "Examination Successfully Updated");
+			
+		}
+		
+			 
+			 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 public void onLogoutButtonClick(ActionEvent event){
+			
+			ArrayList<String> username = new ArrayList<String>();
+			username.add(UserController.getUser());
+		
+			Request request = new Request(Command.LOGOUT, username);
+
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	 
+	 public void onBackButtonClick()
+	 {
+		 thisUi.hideWindow();
+			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof LabWorkerUI){
+						ui.showWindow();
+				}
+			}
+			
+			ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+	 }
+	 
+	 
+	 private void openFile(File file) {
+	        try {
+	            desktop.open(file);
+	        } catch (IOException ex) {
+	            Logger.getLogger(
+	            		CreateExaminationUI.class.getName()).log(
+	                    Level.SEVERE, null, ex
+	                );
+	        }
+	        
+	      
+}
+	 
+	 
+	 public void OnSendClickButton()
+	 {
+		 Request request = null;
+		 
+		 if(ExaminationController.Curr_Ref.getCode() == 0)  //check if there is exist examination	 
+		 {
+			 
+			
+			 FileNameToArrayList();
+			 
+			
+		 Examination exam = new Examination();
+		 exam.setRef_id(ExaminationController.Curr_Ref.getRefNum());
+         exam.setDetails(ExamTextArea.getText());
+         exam.setPictures(pictures);
+		 request = new Request(Command.CREATE_EXAMINATION, exam);
+		
+		 
+		 
+		 }
+		 else
+		 {
+			 
+			 FileNameToArrayList();
+			
+			 
+			 for(int i=0 ; i <4 ;i++)
+				 if( DBpic[i] != null)
+				 {
+					 pictures.add(DBpic[i]);
+					 System.out.print("DB");
+				 }
+			 
+			
+			this.exam.setPictures(pictures);
+			 this.exam.setDetails(ExamTextArea.getText());
+			 request = new Request(Command.CREATE_EXAMINATION_UPDATE, exam);
+		 }
+		 
+		 try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+	 }
+	 
+	  private static void configureFileChooser( final FileChooser fileChooser)
+      {   
+		  
+          fileChooser.setTitle("View Pictures");
+          fileChooser.setInitialDirectory(
+              new File(System.getProperty("user.home"))
+          );                 
+          fileChooser.getExtensionFilters().addAll(
+              new FileChooser.ExtensionFilter("All Images", "*.*"),
+              new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+              new FileChooser.ExtensionFilter("PNG", "*.png")
+          );
+  }
+	  
+	  public byte[] convertFileToBytes(String filename)
+	  {
+		  FileInputStream fileinputstream = null;
+		  File file = new File(filename);
+		  byte[] bfile = new byte[(int)file.length()];
+		  try{
+			  fileinputstream = new FileInputStream(file);
+			  fileinputstream.read(bfile);
+			  fileinputstream.close();
+		  }
+		  
+		  catch(Exception e){
+			  bfile = null;
+		  }
+		return bfile;  
+	  }
+	  
+	  public void FileNameToArrayList()
+	  {
+		  for(int i=0;i<4;i++)
+		  {
+			  if( filenameArr[i] != null)
+				  pictures.add(convertFileToBytes(filenameArr[i]));
+		  }
+	  }
+	  
+	 
+	  
+	  public Image convertBytesToImage(byte[] pic)
+	  {
+		  BufferedImage img = null;
+			
+			try {
+				img = ImageIO.read(new ByteArrayInputStream(pic));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			WritableImage wr = null;
+	        if (img != null) {
+	            wr = new WritableImage(img.getWidth(), img.getHeight());
+	            PixelWriter pw = wr.getPixelWriter();
+	            for (int x = 0; x < img.getWidth(); x++) {
+	                for (int y = 0; y < img.getHeight(); y++) {
+	                    pw.setArgb(x, y, img.getRGB(x, y));
+	                }
+	            }
+	        }
+	 
+	        ImageView imView = new ImageView(wr);
+	      
+	        Image im = imView.getImage();
+	       
+	        
+	        return im;
+	        
+	  }
+	  
+	  public void initializePictures(Examination exam)
+	  {
+		  int num = exam.getPictures().size();  //check how many picture loaded
 			
 			if(num == 1)
 			{
@@ -378,7 +551,7 @@ public class CreateExaminationController implements IController, Initializable{
 			//set Close Button visible
 			
 			 Xbtn1.setDisable(false);
-    		 Xbtn1.setVisible(true);
+  		 Xbtn1.setVisible(true);
 			
 			}
 			
@@ -518,196 +691,6 @@ public class CreateExaminationController implements IController, Initializable{
 			}
 			
 		
-			
-			
-		}
-		
-		if (reply.getCommand() == Command.CREATE_EXAMINATION_UPDATE )
-		{
-			onBackButtonClick();
-			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("UPDATE", "Examination Successfully Updated");
-			
-		}
-		
-			 
-			 
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 public void onLogoutButtonClick(ActionEvent event){
-			
-			ArrayList<String> username = new ArrayList<String>();
-			username.add(UserController.getUser());
-		
-			Request request = new Request(Command.LOGOUT, username);
-
-			try {
-				ClientConnectionController.clientConnect.controller = this;
-				ClientConnectionController.clientConnect.sendToServer(request);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
-	 
-	 public void onBackButtonClick()
-	 {
-		 thisUi.hideWindow();
-			
-			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-				if (ui instanceof LabWorkerUI){
-						ui.showWindow();
-				}
-			}
-			
-			ClientConnectionController.clientConnect.userInterface.remove(thisUi);
-	 }
-	 
-	 
-	 private void openFile(File file) {
-	        try {
-	            desktop.open(file);
-	        } catch (IOException ex) {
-	            Logger.getLogger(
-	            		CreateExaminationUI.class.getName()).log(
-	                    Level.SEVERE, null, ex
-	                );
-	        }
-	        
-	      
-}
-	 
-	 
-	 public void OnSendClickButton()
-	 {
-		 Request request = null;
-		 
-		 if(ExaminationController.Curr_Ref.getCode() == 0)  //check if there is exist examination	 
-		 {
-			
-		 Examination exam = new Examination();
-		 exam.setRef_id(ExaminationController.Curr_Ref.getRefNum());
-         exam.setDetails(ExamTextArea.getText());
-		 request = new Request(Command.CREATE_EXAMINATION, exam);
-		
-		 
-		 
-		 }
-		 else
-		 {
-			 checkPicArr();
-			 FileNameToArrayList();
-			
-			 
-			 for(int i=0 ; i <4 ;i++)
-				 if( DBpic[i] != null)
-				 {
-					 pictures.add(DBpic[i]);
-					 System.out.print("DB");
-				 }
-			 
-			
-			this.exam.setPictures(pictures);
-			 this.exam.setDetails(ExamTextArea.getText());
-			 request = new Request(Command.CREATE_EXAMINATION_UPDATE, exam);
-		 }
-		 
-		 try {
-				ClientConnectionController.clientConnect.controller = this;
-				ClientConnectionController.clientConnect.sendToServer(request);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-	 }
-	 
-	  private static void configureFileChooser( final FileChooser fileChooser)
-      {   
-		  
-          fileChooser.setTitle("View Pictures");
-          fileChooser.setInitialDirectory(
-              new File(System.getProperty("user.home"))
-          );                 
-          fileChooser.getExtensionFilters().addAll(
-              new FileChooser.ExtensionFilter("All Images", "*.*"),
-              new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-              new FileChooser.ExtensionFilter("PNG", "*.png")
-          );
-  }
-	  
-	  public byte[] convertFileToBytes(String filename)
-	  {
-		  FileInputStream fileinputstream = null;
-		  File file = new File(filename);
-		  byte[] bfile = new byte[(int)file.length()];
-		  try{
-			  fileinputstream = new FileInputStream(file);
-			  fileinputstream.read(bfile);
-			  fileinputstream.close();
-		  }
-		  
-		  catch(Exception e){
-			  bfile = null;
-		  }
-		return bfile;  
-	  }
-	  
-	  public void FileNameToArrayList()
-	  {
-		  for(int i=0;i<4;i++)
-		  {
-			  if( filenameArr[i] != null)
-				  pictures.add(convertFileToBytes(filenameArr[i]));
-		  }
-	  }
-	  
-	  public void checkPicArr()
-	  {
-		  for(int i=0;i<4;i++)
-			  if( filenameArr[i] != null)
-				  System.out.println("i = "+i+" name:  "+filenameArr[i]);
-	  }
-	  
-	  public Image convertBytesToImage(byte[] pic)
-	  {
-		  BufferedImage img = null;
-			
-			try {
-				img = ImageIO.read(new ByteArrayInputStream(pic));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			WritableImage wr = null;
-	        if (img != null) {
-	            wr = new WritableImage(img.getWidth(), img.getHeight());
-	            PixelWriter pw = wr.getPixelWriter();
-	            for (int x = 0; x < img.getWidth(); x++) {
-	                for (int y = 0; y < img.getHeight(); y++) {
-	                    pw.setArgb(x, y, img.getRGB(x, y));
-	                }
-	            }
-	        }
-	 
-	        ImageView imView = new ImageView(wr);
-	      
-	        Image im = imView.getImage();
-	       
-	        
-	        return im;
-	        
 	  }
 	  
 
