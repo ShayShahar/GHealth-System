@@ -100,7 +100,6 @@ public class DispatcherDetailsController implements IController, Initializable{
 		
 		
 		dispCreateClientBtn.setDisable(true);
-
 		
 		dispClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
 
@@ -149,6 +148,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 		fieldClientEmail.clear();
 		fieldClientClinic.clear();
 		
+		retreiveBtn.setVisible(false);
+		removeBtn.setVisible(false);
 		
 		SpClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
 
@@ -322,7 +323,6 @@ public class DispatcherDetailsController implements IController, Initializable{
 							createAppointmentBtn.setDisable(false);
 							cancelAppointmentBtn.setDisable(false);
 							removeBtn.setVisible(true);
-							retreiveBtn.setVisible(false);
 
 						}
 						else {
