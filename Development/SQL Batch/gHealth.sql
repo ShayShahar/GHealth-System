@@ -38,7 +38,7 @@ CREATE TABLE `appointments` (
   KEY `client_idx` (`client`),
   CONSTRAINT `client` FOREIGN KEY (`client`) REFERENCES `clients` (`clientID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `specialist` FOREIGN KEY (`specialist`) REFERENCES `specialists` (`specialistID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,6 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES (4,'2016-05-16','2016-05-07 19:53:29',4,NULL,NULL,0,10,1),(6,'2016-05-16','2016-05-07 19:55:12',15,NULL,NULL,0,1,1),(9,'2016-05-16','2016-05-07 19:58:14',18,NULL,NULL,0,10,1),(16,'2016-05-10','2016-05-09 22:04:14',2,NULL,NULL,0,2,1),(17,'2016-05-09','2016-05-11 15:42:05',2,NULL,NULL,0,2,1),(18,'2016-05-16','2016-05-11 17:17:17',15,NULL,NULL,0,1,1),(21,'2016-05-15','2016-05-14 19:48:23',4,NULL,NULL,0,10,1);
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,7 +73,7 @@ CREATE TABLE `branches` (
 
 LOCK TABLES `branches` WRITE;
 /*!40000 ALTER TABLE `branches` DISABLE KEYS */;
-INSERT INTO `branches` VALUES ('IHealth 1','Haifa',NULL),('IHealth 2','Tel Aviv',NULL),('IHealth 3','Jerusalem',NULL),('Mini IHealth','Ramat - Gan',NULL);
+INSERT INTO `branches` VALUES ('IHealth 1','Haifa',NULL),('IHealth 2','Tel Aviv',NULL),('IHealth 3','Jerusalem','111111111'),('Mini IHealth','Ramat - Gan',NULL);
 /*!40000 ALTER TABLE `branches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +103,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'123456789','Clalit',1,'2016-05-06','2016-05-11'),(2,'741852963','Maccabi',0,'2016-05-08',NULL),(3,'147258369','Meuhedet',0,'2016-05-11',NULL),(4,'852963741','Maccabi',1,'2016-05-11',NULL);
+INSERT INTO `clients` VALUES (1,'123456789','Clalit',0,'2016-05-06','2016-05-15'),(2,'741852963','Maccabi',0,'2016-05-08',NULL),(3,'147258369','Meuhedet',0,'2016-05-11',NULL),(4,'852963741','Maccabi',1,'2016-05-11',NULL);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +130,6 @@ CREATE TABLE `dates` (
 
 LOCK TABLES `dates` WRITE;
 /*!40000 ALTER TABLE `dates` DISABLE KEYS */;
-INSERT INTO `dates` VALUES ('2016-05-10',2,'010000000000000000'),('2016-05-12',2,'010000000000000000'),('2016-05-15',1,'111111111111111111'),('2016-05-15',10,'000100000000000000'),('2016-05-16',1,'111111111111111111'),('2016-05-16',10,'000000000000000001'),('2016-05-17',1,'111111111111111111');
 /*!40000 ALTER TABLE `dates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +181,7 @@ CREATE TABLE `examinationtype` (
 
 LOCK TABLES `examinationtype` WRITE;
 /*!40000 ALTER TABLE `examinationtype` DISABLE KEYS */;
-INSERT INTO `examinationtype` VALUES (0,'Check');
+INSERT INTO `examinationtype` VALUES (2000,'Papiloma'),(2001,'Synositis'),(2002,'Hearing Test');
 /*!40000 ALTER TABLE `examinationtype` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +209,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES ('123456789','Yossi','Bitton','none','052-2222222','Karmiel'),('147258369','Barak','Itzhaki','none','03-987412','Jerusalem'),('213245658','Assaf','Tzar',NULL,NULL,'Nofit'),('302632195','Shay','Shahar','shayscal90@gmail.com','0509443347','Haifa'),('305003659','Ra','Cohen','none',NULL,NULL),('741852963','Dani','Danieli','asdad@walla.com','052-9878233','Jerusalem'),('852963741','Moni','Mushonov','none','054-1231234','Tel Aviv'),('987654321','Yossi','Bitton','none','054-4445554','Karmiel'),('999999910','Moshe','Moshe','moshemoshe@gmail.com','03-435341','Haifa'),('999999911','Yehoram','Arbel','yoar@gmail.com','02-435435','Nofit'),('999999912','Hassan','Nasrallah','none','054-45343324','Zichron Yakov'),('999999913','Muhamad','Death','none','054-2342341','Somewhere'),('999999914','Itzak','Zohar','none','050-2342341','Tel Aviv'),('999999915','Taleb','Tawatha','none','04-345341','Haifa'),('999999991','Yossi','Benayun','yossi@gmail.com','050-1431233','Haifa'),('999999992','Itay','Shecter','itay@gmail.com','04-3242341','Haifa'),('999999993','Eran','Zehavi','eran@walla.com','03-2355114','Ramat Gan'),('999999994','Tal','Ben - Haim','tal@braude.ac.il','08-1342351','Ramat Gan'),('999999995','Christiano','Ronaldo','cr7@gmail.com','054-234211','Ramat Gan'),('999999996','Bar','Refaeli','barbar@gmail.com','052-536321','Tel Aviv'),('999999997','Gal','Gadot','galg@walla.co.il','03-6520234','Tel Aviv'),('999999998','Pini','Balili','pinhas@gmail.com','04-235214','Tel Aviv'),('999999999','Eyal','Bercovich','eyalbe@gmail.com','055-4354352','Haifa');
+INSERT INTO `person` VALUES ('111111111','Yakir','Karandian',NULL,NULL,NULL),('123456789','Yossi','Bitton','none','052-2222222','Karmiel'),('147258369','Barak','Itzhaki','none','03-987412','Jerusalem'),('213245658','Assaf','Tzar',NULL,NULL,'Nofit'),('302632195','Shay','Shahar','shayscal90@gmail.com','0509443347','Haifa'),('305003659','Ra','Cohen','none',NULL,NULL),('741852963','Dani','Danieli','asdad@walla.com','052-9878233','Jerusalem'),('852963741','Moni','Mushonov','none','054-1231234','Tel Aviv'),('987654321','Yossi','Bitton','none','054-4445554','Karmiel'),('999999910','Moshe','Moshe','moshemoshe@gmail.com','03-435341','Haifa'),('999999911','Yehoram','Arbel','yoar@gmail.com','02-435435','Nofit'),('999999912','Hassan','Nasrallah','none','054-45343324','Zichron Yakov'),('999999913','Muhamad','Death','none','054-2342341','Somewhere'),('999999914','Itzak','Zohar','none','050-2342341','Tel Aviv'),('999999915','Taleb','Tawatha','none','04-345341','Haifa'),('999999991','Yossi','Benayun','yossi@gmail.com','050-1431233','Haifa'),('999999992','Itay','Shecter','itay@gmail.com','04-3242341','Haifa'),('999999993','Eran','Zehavi','eran@walla.com','03-2355114','Ramat Gan'),('999999994','Tal','Ben - Haim','tal@braude.ac.il','08-1342351','Ramat Gan'),('999999995','Christiano','Ronaldo','cr7@gmail.com','054-234211','Ramat Gan'),('999999996','Bar','Refaeli','barbar@gmail.com','052-536321','Tel Aviv'),('999999997','Gal','Gadot','galg@walla.co.il','03-6520234','Tel Aviv'),('999999998','Pini','Balili','pinhas@gmail.com','04-235214','Tel Aviv'),('999999999','Eyal','Bercovich','eyalbe@gmail.com','055-4354352','Haifa');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +249,7 @@ CREATE TABLE `reference` (
 
 LOCK TABLES `reference` WRITE;
 /*!40000 ALTER TABLE `reference` DISABLE KEYS */;
-INSERT INTO `reference` VALUES (1,'2016-05-11','Some Comments','HIGH',0,1,16,1,0);
+INSERT INTO `reference` VALUES (1,'2016-05-11','Some Comments','HIGH',0,1,16,1,NULL);
 /*!40000 ALTER TABLE `reference` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +308,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('asaf','12',0,'Specialist','213245658'),('raz','1234',0,'LabWorker','305003659'),('shay','11',0,'Dispatcher','302632195'),('shay2','11',0,'General','999999999');
+INSERT INTO `users` VALUES ('asaf','12',0,'Specialist','213245658'),('raz','1234',0,'LabWorker','305003659'),('shay','11',0,'Dispatcher','302632195'),('shay2','11',0,'General','999999999'),('yakir','123',0,'Branch','111111111');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -323,4 +321,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-15 13:19:55
+-- Dump completed on 2016-05-15 17:25:38
