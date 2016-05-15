@@ -51,6 +51,7 @@ public class CreateExaminationController implements IController, Initializable{
 	@FXML private TextArea ExamTextArea;
 	private ArrayList<byte[]> pictures = new ArrayList<byte[]>();
 	private String[] filenameArr = new String[4];
+	private byte[][]  DBpic  = new  byte[4][];
 	
 	IUi thisUi = null;
 	private boolean ispicture = false;
@@ -137,6 +138,9 @@ public class CreateExaminationController implements IController, Initializable{
                 		 ImagePick.setImage(pic);
                 		 Xbtn1.setDisable(false);
                 		 Xbtn1.setVisible(true);
+                		 
+                		 ImagePick.setDisable(true);
+                		 
                 		return;
                 	}
                 	case 2:
@@ -145,6 +149,9 @@ public class CreateExaminationController implements IController, Initializable{
                 		 ImagePick1.setImage(pic);
                 		 Xbtn2.setDisable(false);
                 		 Xbtn2.setVisible(true);
+                		 
+                		 ImagePick1.setDisable(true);
+                		 
                 		return;
                 	}
                 	case 3:
@@ -153,6 +160,9 @@ public class CreateExaminationController implements IController, Initializable{
                 		 ImagePick2.setImage(pic);
                 		 Xbtn3.setDisable(false);
                 		 Xbtn3.setVisible(true);
+                		 
+                		 ImagePick2.setDisable(true);
+                		 
                 		return;
                 	}
                 	case 4:
@@ -161,6 +171,9 @@ public class CreateExaminationController implements IController, Initializable{
                 		 ImagePick3.setImage(pic);
                 		 Xbtn4.setDisable(false);
                 		 Xbtn4.setVisible(true);
+                		 
+                		 ImagePick3.setDisable(true);
+                		 
                 		return;
                 	}
                 	
@@ -243,6 +256,9 @@ public class CreateExaminationController implements IController, Initializable{
 		 ImagePick.setImage(pic);
 		 Xbtn1.setDisable(true);
 		 Xbtn1.setVisible(false);
+		 
+		 ImagePick.setDisable(false);
+		 DBpic[0] = null;
 	}
 	
 	public void OnClosePictureClickButton1()
@@ -260,6 +276,9 @@ public class CreateExaminationController implements IController, Initializable{
 		 ImagePick1.setImage(pic);
 		 Xbtn2.setDisable(true);
 		 Xbtn2.setVisible(false);
+		 
+		 ImagePick1.setDisable(false);
+		 DBpic[1] = null;
 	}
 	
 	public void OnClosePictureClickButton2()
@@ -277,6 +296,9 @@ public class CreateExaminationController implements IController, Initializable{
 		 ImagePick2.setImage(pic);
 		 Xbtn3.setDisable(true);
 		 Xbtn3.setVisible(false);
+		 
+		 ImagePick2.setDisable(false);
+		 DBpic[2] = null;
 	}
 	
 	public void OnClosePictureClickButton3()
@@ -294,6 +316,10 @@ public class CreateExaminationController implements IController, Initializable{
 		 ImagePick3.setImage(pic);
 		 Xbtn4.setDisable(true);
 		 Xbtn4.setVisible(false);
+		 
+		 ImagePick3.setDisable(false);
+		 DBpic[3] = null;
+		 
 	}
 	
 	
@@ -339,15 +365,62 @@ public class CreateExaminationController implements IController, Initializable{
 			
 			
 			
-		//picture 1
-			int num = exam.getPictures().size();
+	///////////////////// 
+			int num = exam.getPictures().size();  //check how many picture loaded
+			
 			if(num == 1)
+			{
 			ImagePick.setImage(convertBytesToImage(exam.getPictures().get(0)));
+			DBpic[0] = exam.getPictures().get(0);
+			//resizeing
+			
+			ImagePick.setFitWidth(100);
+			ImagePick.setFitHeight(100);
+			ImagePick.setPreserveRatio(false);
+			ImagePick.setSmooth(false);
+			
+			ImagePick.setDisable(true);
+			
+			//set Close Button visible
+			
+			 Xbtn1.setDisable(false);
+    		 Xbtn1.setVisible(true);
+			
+			}
 			
 			if(num == 2)
 			{
 				ImagePick.setImage(convertBytesToImage(exam.getPictures().get(0)));
 				ImagePick1.setImage(convertBytesToImage(exam.getPictures().get(1)));
+				DBpic[0] = exam.getPictures().get(0);
+				DBpic[1] = exam.getPictures().get(1);
+				
+				
+				
+				//resizeing
+				
+				ImagePick.setFitWidth(100);
+				ImagePick.setFitHeight(100);
+				ImagePick.setPreserveRatio(false);
+				ImagePick.setSmooth(false);
+				
+				ImagePick1.setFitWidth(100);
+				ImagePick1.setFitHeight(100);
+				ImagePick1.setPreserveRatio(false);
+				ImagePick1.setSmooth(false);
+				
+				ImagePick.setDisable(true);
+				ImagePick1.setDisable(true);
+				
+				//set Close Button visible
+				
+				 Xbtn1.setDisable(false);
+	    		 Xbtn1.setVisible(true);
+	    		 
+	    		 Xbtn2.setDisable(false);
+	    		 Xbtn2.setVisible(true);
+				
+				
 			}
 			
 			if(num == 3)
@@ -355,6 +428,45 @@ public class CreateExaminationController implements IController, Initializable{
 				ImagePick.setImage(convertBytesToImage(exam.getPictures().get(0)));
 				ImagePick1.setImage(convertBytesToImage(exam.getPictures().get(1)));
 				ImagePick2.setImage(convertBytesToImage(exam.getPictures().get(2)));
+				DBpic[0] = exam.getPictures().get(0);
+				DBpic[1] = exam.getPictures().get(1);
+				DBpic[2] = exam.getPictures().get(2);
+				
+				//resizeing
+				
+				ImagePick.setFitWidth(100);
+				ImagePick.setFitHeight(100);
+				ImagePick.setPreserveRatio(false);
+				ImagePick.setSmooth(false);
+				
+				ImagePick1.setFitWidth(100);
+				ImagePick1.setFitHeight(100);
+				ImagePick1.setPreserveRatio(false);
+				ImagePick1.setSmooth(false);
+				
+				ImagePick2.setFitWidth(100);
+				ImagePick2.setFitHeight(100);
+				ImagePick2.setPreserveRatio(false);
+				ImagePick2.setSmooth(false);
+				
+				ImagePick.setDisable(true);
+				ImagePick1.setDisable(true);
+				ImagePick2.setDisable(true);
+				
+				//set Close Button visible
+				
+				 Xbtn1.setDisable(false);
+	    		 Xbtn1.setVisible(true);
+	    		 
+	    		 Xbtn2.setDisable(false);
+	    		 Xbtn2.setVisible(true);
+	    		 
+	    		 Xbtn3.setDisable(false);
+	    		 Xbtn3.setVisible(true);
+	    		 
+	    		 
+				
+				
 			}
 			
 			if(num == 4)
@@ -363,9 +475,55 @@ public class CreateExaminationController implements IController, Initializable{
 				ImagePick1.setImage(convertBytesToImage(exam.getPictures().get(1)));
 				ImagePick2.setImage(convertBytesToImage(exam.getPictures().get(2)));
 				ImagePick3.setImage(convertBytesToImage(exam.getPictures().get(3)));
+				DBpic[0] = exam.getPictures().get(0);
+				DBpic[1] = exam.getPictures().get(1);
+				DBpic[2] = exam.getPictures().get(2);
+				DBpic[3] = exam.getPictures().get(3);
+				
+				//resizeing
+				
+				ImagePick.setFitWidth(100);
+				ImagePick.setFitHeight(100);
+				ImagePick.setPreserveRatio(false);
+				ImagePick.setSmooth(false);
+				
+				ImagePick1.setFitWidth(100);
+				ImagePick1.setFitHeight(100);
+				ImagePick1.setPreserveRatio(false);
+				ImagePick1.setSmooth(false);
+				
+				ImagePick2.setFitWidth(100);
+				ImagePick2.setFitHeight(100);
+				ImagePick2.setPreserveRatio(false);
+				ImagePick2.setSmooth(false);
+				
+				ImagePick3.setFitWidth(100);
+				ImagePick3.setFitHeight(100);
+				ImagePick3.setPreserveRatio(false);
+				ImagePick3.setSmooth(false);
+				
+				ImagePick.setDisable(true);
+				ImagePick1.setDisable(true);
+				ImagePick2.setDisable(true);
+				ImagePick3.setDisable(true);
+				
+				//set Close Button visible
+				
+				 Xbtn1.setDisable(false);
+	    		 Xbtn1.setVisible(true);
+	    		 
+	    		 Xbtn2.setDisable(false);
+	    		 Xbtn2.setVisible(true);
+	    		 
+	    		 Xbtn3.setDisable(false);
+	    		 Xbtn3.setVisible(true);
+	    		 
+	    		 Xbtn4.setDisable(false);
+	    		 Xbtn4.setVisible(true);
+				
 			}
 			
-			//picture 1
+		
 			
 			
 		}
@@ -456,7 +614,16 @@ public class CreateExaminationController implements IController, Initializable{
 		 {
 			 checkPicArr();
 			 FileNameToArrayList();
+			
 			 
+			 for(int i=0 ; i <4 ;i++)
+				 if( DBpic[i] != null)
+				 {
+					 pictures.add(DBpic[i]);
+					 System.out.print("DB");
+				 }
+			 
+			
 			this.exam.setPictures(pictures);
 			 this.exam.setDetails(ExamTextArea.getText());
 			 request = new Request(Command.CREATE_EXAMINATION_UPDATE, exam);
@@ -541,12 +708,10 @@ public class CreateExaminationController implements IController, Initializable{
 	        }
 	 
 	        ImageView imView = new ImageView(wr);
-	        imView.setFitHeight(100);
-	        imView.setFitWidth(100);
-	        imView.setPreserveRatio(true);
-	        
+	      
 	        Image im = imView.getImage();
-	     
+	       
+	        
 	        return im;
 	        
 	  }
