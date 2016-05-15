@@ -150,26 +150,15 @@ public class SpClientDeailsController implements IController, Initializable{
 		
 		
 		public void onMouseClick(MouseEvent event){
-		
-			ArrayList<String> msg2 = new ArrayList<String>();
-			msg2.add(userName);
-			Request requst2 = new Request(Command.FIND_USERID_BY_USERNAME,msg2);
-			
-			try {
-				ClientConnectionController.clientConnect.controller = this;
-				ClientConnectionController.clientConnect.sendToServer(requst2);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+	
 			try{
 					if (tabelAppointment.getSelectionModel().getSelectedItem().getHour() != null){
 					int hour = getIntegerByHour.get(tabelAppointment.getSelectionModel().getSelectedItem().getHour());
 						
-						//System.out.println(hour);
+				
 						ArrayList<String> msg = new ArrayList<String>();
 						msg.add(Integer.toString(hour));
-						msg.add(Integer.toString(userId));   //error
+						msg.add(userName);   
 					System.out.println(userId);
 						Request request = new Request(Command.GET_CLIENT_BY_APPOINTMET,msg);
 						
@@ -223,7 +212,7 @@ public class SpClientDeailsController implements IController, Initializable{
 			return true;
 		}
 		
-		public void onFindClientIDButtonClickSpecialist(ActionEvent event){
+	/*	public void onFindClientIDButtonClickSpecialist(ActionEvent event){
 			
 			
 			fieldClientID.clear();
@@ -271,7 +260,7 @@ public class SpClientDeailsController implements IController, Initializable{
 			}
 			
 		}
-		
+		*/
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
 			CreateLabReferenceUI create = new CreateLabReferenceUI();
 			ClientConnectionController.clientConnect.userInterface.add(create);
@@ -421,16 +410,17 @@ else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
 
 			@Override
 			public void run() {
-				fieldClientID.setText(res.get(0));
+				fieldClientID.setText(res.get(1));
 			//	id = Integer.parseInt(fieldClientID.getText());
-				//fieldClientClinic.setText(res.get(1));
+				fieldClientClinic.setText(res.get(2));
 				//String[] date = res.get(3).split("-");
 				//fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
-				fieldClientName.setText(res.get(1));
-				fieldClientFamily.setText(res.get(2));
-				fieldClientAddress.setText(res.get(5));
-				fieldClientPhone.setText(res.get(4));
-				fieldClientEmail.setText(res.get(3));
+				SpClientIDTxt.setText(res.get(0));
+				fieldClientName.setText(res.get(3));
+				fieldClientFamily.setText(res.get(4));
+				fieldClientAddress.setText(res.get(7));
+				fieldClientPhone.setText(res.get(6));
+				fieldClientEmail.setText(res.get(5));
 				
 				SpViewHistoryBtn.setDisable(false);
 				SpEndTreatmentBtn.setDisable(false);

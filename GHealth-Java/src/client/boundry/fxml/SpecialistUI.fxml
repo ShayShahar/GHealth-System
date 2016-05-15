@@ -25,7 +25,7 @@
       <Button cancelButton="true" layoutX="25.0" layoutY="542.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout" />
       <Separator layoutX="57.0" layoutY="522.0" prefHeight="2.0" prefWidth="640.0" />
       <Accordion layoutX="25.0" layoutY="232.0" />
-      <GridPane layoutX="16.0" layoutY="45.0" prefHeight="167.0" prefWidth="534.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
+      <GridPane layoutX="16.0" layoutY="70.0" prefHeight="167.0" prefWidth="534.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="172.22222900390625" minWidth="10.0" prefWidth="80.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.77777099609375" minWidth="10.0" prefWidth="150.0" />
@@ -66,7 +66,7 @@
          </columns>
       </TableView>
       <Separator layoutX="550.0" layoutY="53.0" orientation="VERTICAL" prefHeight="439.0" prefWidth="29.0" rotate="180.0" />
-      <GridPane layoutX="61.0" layoutY="245.0" prefHeight="219.0" prefWidth="454.0">
+      <GridPane layoutX="61.0" layoutY="270.0" prefHeight="219.0" prefWidth="454.0" AnchorPane.bottomAnchor="131.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -81,9 +81,10 @@
             <Button fx:id="SpEndTreatmentBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="End Treatment" GridPane.rowIndex="1" />
             <Button fx:id="SpViewExaminationsBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="View Examinations" GridPane.rowIndex="2" />
             <Button fx:id="SpCreateRefernceBtn" disable="true" mnemonicParsing="false" onAction="#onCreateLabReferenceButtonClick" prefHeight="35.0" prefWidth="180.0" text="Create Reference" GridPane.columnIndex="1" />
-            <Button fx:id="SpRecordAppointmentBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Record Appointment" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="SpRecordAppointmentBtn" disable="true" layoutY="70.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Record Appointment" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="SpReportMissingBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #ff2d32;" text="Report Missing" textAlignment="JUSTIFY" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <TextField fx:id="SpClientIDTxt" layoutX="16.0" layoutY="26.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
    </children>
 </AnchorPane>
