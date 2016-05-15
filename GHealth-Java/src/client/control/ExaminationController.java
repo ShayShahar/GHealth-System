@@ -26,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ExaminationController implements IController{
@@ -37,7 +38,8 @@ public class ExaminationController implements IController{
 	@FXML private DatePicker Edate;
 	@FXML private TextField Esid;
 	@FXML private TextField Ecid;
-	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldComments,fieldStatus,Ereference_number, fieldType;
+	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldStatus,Ereference_number, fieldType;
+	@FXML private TextArea fieldComments;
 	@FXML private CheckBox checkbox1;
 	@FXML private Button ExamBtn;
 	

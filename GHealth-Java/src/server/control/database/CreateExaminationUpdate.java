@@ -22,8 +22,9 @@ public class CreateExaminationUpdate {
 			//Statement stmnt = connection.createStatement();
 		   // stmnt.executeUpdate("UPDATE `ghealth`.`examination` SET `exDetails`='"+exam.getDetails()+"' WHERE `exID`='"+exam.getId()+"';");
 		    int num = exam.getPictures().size(); 
+		    System.out.println("Num  =   "+num);
 		   
-		    for(int i=0 ;i<num;i++)
+		    for(int i=0 ;i<4;i++)
 		    	updateExam1 = updateExam1+",exPicture"+i+"=? ";
 		    
 		    updateExam1 = updateExam1+"WHERE exID=?";
@@ -33,8 +34,11 @@ public class CreateExaminationUpdate {
 		    PreparedStatement preparedStatement = connection.prepareStatement(updateExam1);
 		    preparedStatement.setString(1,exam.getDetails());
 		    preparedStatement.setInt(num+2,exam.getId());
+		    
 		    for(int i=0;i<num;i++)
 		    preparedStatement.setBytes(i+2,exam.getPictures().get(i));
+		    for(int i=4;i>num;i--)
+		    preparedStatement.setString(i+2,"?");   // java.sql.Types.BLOB
 		    
 		    preparedStatement.executeUpdate();
 		    
