@@ -19,7 +19,7 @@ public class FindTodayAppointmentDB {
 			    PreparedStatement preparedStatement1 = connection.prepareStatement(searchAppointments);
 			    ResultSet res;
 			    preparedStatement1.setString(1,request.getList().get(0));
-			    System.out.println(request.getList().get(0));
+			  //  System.out.println(request.getList().get(0));
 			    res = preparedStatement1.executeQuery();
 			    
 			    if (!res.next()){

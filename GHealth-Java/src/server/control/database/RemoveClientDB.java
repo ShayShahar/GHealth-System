@@ -13,7 +13,7 @@ public class RemoveClientDB {
     		
     String getAppointments= "SELECT ghealth.appointments.appDate, ghealth.appointments.appTime, ghealth.appointments.specialist "
     		+ "FROM ghealth.appointments WHERE ghealth.appointments.client=? AND appointments.appDate>CURDATE()";
-    String deleteAppointments = "DELETE FROM ghealth.appointments WHERE ghealth.appointments.client=? AND ppointments.appDate>CURDATE()";
+    String deleteAppointments = "DELETE FROM ghealth.appointments WHERE ghealth.appointments.client=? AND appointments.appDate>CURDATE()";
 	  String searchDate = "SELECT ghealth.dates.appointments FROM ghealth.dates WHERE dateDate=? AND specID=?";
 	  String deleteDate = "DELETE FROM ghealth.dates WHERE dateDate=? AND specID=?";
 	  String updateDate = "UPDATE ghealth.dates SET appointments=? WHERE dateDate=? AND specID=?";

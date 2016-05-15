@@ -79,6 +79,9 @@ public class DBController {
 				case CREATE_EXAMINATION_UPDATE:{
 					return CreateExaminationUpdate.handleMessage(request, connection);
 				}
+				case GET_CLIENT_BY_APPOINTMET:{
+					return GetClientByAppointmentDB.handleMessage(request, connection);
+				}
 
 		default:
 			break;
