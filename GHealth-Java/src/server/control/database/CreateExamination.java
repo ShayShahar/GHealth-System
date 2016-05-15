@@ -28,6 +28,8 @@ public class CreateExamination {
 			
 			Statement stmnt = connection.createStatement();
 			
+			//create new Examination
+			
 			 PreparedStatement preparedStatement = connection.prepareStatement(insertNewExamination);
 			 
 			 //set details
@@ -40,8 +42,7 @@ public class CreateExamination {
 			 
 			 for(int j=4;j>num;j--)
 			    {
-			    preparedStatement.setNull(j+1, java.sql.Types.BLOB);   // java.sql.Types.BLOB
-			    System.out.println("Picture Number "+j+" is NULL NOW");
+			    preparedStatement.setNull(j+1, java.sql.Types.BLOB);   
 			    }
 				    
 			 
@@ -50,7 +51,7 @@ public class CreateExamination {
 		    
 		   
 		   
-		 //Create new Exam id to the match reference
+		 //Create new Exam id to the match reference and change the status to 1
 		    
 		    ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.examination WHERE ghealth.examination.exDetails ='"+exam.getDetails()+"'");
 		    if (res.next()) {

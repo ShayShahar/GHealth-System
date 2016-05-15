@@ -161,23 +161,23 @@ public class ExaminationController implements IController{
 			
 			
 			Object result =  reply.getResult();
-			System.out.println("0");
+			
 			
 			if (reply.getCommand() == Command.LOGOUT)
 			{
-				System.out.println("1");
+				
 				logoutCheck(result);
 			}
 			
 			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM )
 			{
-				System.out.println("2");
+				
 				
 				if(result instanceof Result)
 				{
 					
 				if ((Result)result == Result.ERROR){
-					System.out.println("3");
+					
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
 						System.exit(1);
 				}
@@ -185,7 +185,7 @@ public class ExaminationController implements IController{
 				
 				 if((Result)result == Result.CLIENT_NOT_FOUND)
 				{
-					System.out.println("4");
+					
 					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("","Reference Not Found!");
 					ExamBtn.setDisable(true);
 					fieldComments.clear();
@@ -203,12 +203,12 @@ public class ExaminationController implements IController{
 				}
 				
 				else { 
-			System.out.println("5.1");
+			
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
 				/////////////////////////////////////Curr_Ref.equals(reference);
 				ExaminationController.Curr_Ref=reference;
-				System.out.println("5");
+				
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
 				fieldReferenceNum.setText(Integer.toString(reference.getRefNum()));
@@ -228,7 +228,7 @@ public class ExaminationController implements IController{
 				fieldType.setText(reference.getType());
 				ExamBtn.setDisable(false);
 				}
-				System.out.println("6");
+				
 			}
 				
 		}
@@ -241,7 +241,7 @@ public class ExaminationController implements IController{
 		
 		
 		
-		public void logoutCheck(Object result)
+		public void logoutCheck(Object result)  //Logged out if the user pressed the button
 		{
 				
 				if (result instanceof Result){
@@ -260,7 +260,7 @@ public class ExaminationController implements IController{
 							{
 								if (ui instanceof DispatcherUI){
 									ui.hideWindow();
-									//ClientConnectionController.clientConnect.userInterface.remove(ui);
+									
 									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 								}
@@ -273,7 +273,7 @@ public class ExaminationController implements IController{
 							{
 								if (ui instanceof SpecialistUI){
 									ui.hideWindow();
-									//ClientConnectionController.clientConnect.userInterface.remove(ui);
+									
 									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 								}
@@ -286,7 +286,7 @@ public class ExaminationController implements IController{
 							{
 								if (ui instanceof LabWorkerUI){
 									ui.hideWindow();
-									//ClientConnectionController.clientConnect.userInterface.remove(ui);
+									
 									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 								}
@@ -299,7 +299,7 @@ public class ExaminationController implements IController{
 		}
 		
 		
-		public boolean checkFields()
+		public boolean checkFields()  //check if the user insert legal values to the fields
 		{
 			boolean check = true;
 			

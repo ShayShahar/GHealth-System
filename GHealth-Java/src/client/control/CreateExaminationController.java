@@ -308,7 +308,7 @@ public class CreateExaminationController implements IController, Initializable{
 		{
 			
 		if ((Result)result == Result.ERROR){
-			System.out.println("3");
+			
 			ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
 				System.exit(1);
 		}
@@ -322,7 +322,6 @@ public class CreateExaminationController implements IController, Initializable{
 			
 			
 			ExaminationController.Curr_Ref.setCode(((int)result));
-			System.out.println((int)result);
 			onBackButtonClick();
 			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("CREATE", "Examination Successfully CREATED");
 		}
@@ -331,7 +330,7 @@ public class CreateExaminationController implements IController, Initializable{
 		
 		if (reply.getCommand() == Command.CREATE_EXAMINATION_VIEW )
 		{
-			System.out.print(".CREATE_EXAMINATION_VIEW");
+			
 			Examination exam = (Examination)result;
 			ExamTextArea.setText(exam.getDetails());
 			
@@ -440,7 +439,7 @@ public class CreateExaminationController implements IController, Initializable{
 				 if( DBpic[i] != null)
 				 {
 					 pictures.add(DBpic[i]);
-					 System.out.print("DB");
+					 
 				 }
 			 
 			

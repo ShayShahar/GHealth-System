@@ -11,7 +11,7 @@ import common.enums.Result;
 
 public class CreateExaminationUpdate {
 
-	public static Object handleMessage(Request request, Connection connection) {
+	public static Object handleMessage(Request request, Connection connection) {  //updateExamination Details
 	
 		String updateExam1 ="UPDATE ghealth.examination SET exDetails=?";
 		String updateExam2 =  "WHERE exID=?";
@@ -20,27 +20,25 @@ public class CreateExaminationUpdate {
 		
 		try {
 			
-		    int num = exam.getPictures().size(); 
-		    System.out.println("Num  =   "+num);
+		    int num = exam.getPictures().size();  //take the size of the picture array , so we will know how many pictures to add
+		    
 		   
 		    for(int i=0 ;i<4;i++)
-		    	updateExam1 = updateExam1+",exPicture"+i+"=? ";
+		    	updateExam1 = updateExam1+",exPicture"+i+"=? ";  //building the statement
 		    
-		    updateExam1 = updateExam1+"WHERE exID=?";
+		    updateExam1 = updateExam1+"WHERE exID=?";   //finishing the statement
 		    
-		    System.out.println(updateExam1);
 		   
 		    PreparedStatement preparedStatement = connection.prepareStatement(updateExam1);
 		    preparedStatement.setString(1,exam.getDetails());
 		    preparedStatement.setInt(6,exam.getId());
 		    
-		    for(int i=0;i<num;i++)
+		    for(int i=0;i<num;i++) //add the pictures to DB
 		    preparedStatement.setBytes(i+2,exam.getPictures().get(i));
 		    
-		    for(int j=4;j>num;j--)
+		    for(int j=4;j>num;j--)  //set null on the null pictures
 		    {
-		    preparedStatement.setNull(j+1, java.sql.Types.BLOB);   // java.sql.Types.BLOB
-		    System.out.println("Picture Number "+j+" is NULL NOW");
+		    preparedStatement.setNull(j+1, java.sql.Types.BLOB);   
 		    }
 		    
 		    preparedStatement.executeUpdate();

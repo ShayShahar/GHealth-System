@@ -12,7 +12,7 @@ import common.enums.Result;
 
 public class CreateExaminationView {
 
-	public static Object handleMessage(Request request, Connection connection) {
+	public static Object handleMessage(Request request, Connection connection) {    //take examination details to show on the screen
 		
 		ArrayList<byte[]> pictures = new ArrayList<byte[]>();
 		Examination exam = new Examination();
@@ -32,7 +32,7 @@ public class CreateExaminationView {
 		    	
 		    	for(int i =0 ;i<4;i++)
 		    	if(res.getBytes(i+3) != null)
-		       pictures.add(res.getBytes(i+3));
+		       pictures.add(res.getBytes(i+3));    //get only the pictures that not null
 		    	
 		       exam1.setPictures(pictures);
 		     }
