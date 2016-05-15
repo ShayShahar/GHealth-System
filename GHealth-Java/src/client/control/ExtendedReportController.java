@@ -23,8 +23,6 @@ public class ExtendedReportController implements IController, Initializable{
 	@FXML private ComboBox selectBranchList;
 	@FXML private TextField numberTxt;
 
-	
-
 	public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();

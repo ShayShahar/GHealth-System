@@ -33,28 +33,20 @@ public class ExaminationController implements IController{
 	
 	//FXML Components 
 	
-	//LabWorkerUI components
-	
 	@FXML private DatePicker Edate;
 	@FXML private TextField Esid;
 	@FXML private TextField Ecid;
 	@FXML private TextField fieldReferenceNum,fieldClientID,fieldSpecielistID,fieldCode,fieldDate,fieldUrgency,fieldStatus,Ereference_number, fieldType;
 	@FXML private TextArea fieldComments;
 	@FXML private CheckBox checkbox1;
-	@FXML private Button ExamBtn;
-	
-	
-	//CreateExaminationUI components
-	
-	
-	
+	@FXML private Button ExamBtn;	
 	
 	//class variables
 	
 	static Reference Curr_Ref;
 	static String Curr_RefNum;
 
-        public void onLogoutButtonClick(ActionEvent event){
+  public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();
 		username.add(UserController.getUser());

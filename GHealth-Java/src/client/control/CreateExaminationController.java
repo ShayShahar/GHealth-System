@@ -45,7 +45,7 @@ import javafx.stage.FileChooser;
 public class CreateExaminationController implements IController, Initializable{
 	
 	@FXML private TextField CErefnum;
-	@FXML private ComboBox ExamTypes;
+	@FXML private TextField examType;
 	@FXML private ImageView ImagePick,ImagePick1,ImagePick2,ImagePick3;
 	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4;
 	@FXML private TextArea ExamTextArea;
@@ -66,18 +66,12 @@ public class CreateExaminationController implements IController, Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		// TODO Auto-generated method stub
 		Xbtn1.setDisable(true);
 		Xbtn2.setDisable(true);
 		Xbtn3.setDisable(true);
 		Xbtn4.setDisable(true);
-		//ImagePick.setDisable(true);
-		//ImagePick1.setDisable(true);
-		//ImagePick2.setDisable(true);
-		//ImagePick3.setDisable(true);
-		list.add(ExaminationController.Curr_Ref.getType());
-		ExamTypes.setItems(list);
-		ExamTypes.getSelectionModel().select(0);
+
+		examType.setText(ExaminationController.Curr_Ref.getType());
 		CErefnum.setText(Integer.toString(ExaminationController.Curr_Ref.getRefNum()));
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
