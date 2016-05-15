@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class SpClientDeailsController implements IController, Initializable{
 
@@ -53,6 +54,7 @@ public class SpClientDeailsController implements IController, Initializable{
 		public static String clientID;
 		
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
+	  private HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
 	
 		
 		public ObservableList<Hour> getHours(ArrayList<Hour> list){
@@ -97,6 +99,25 @@ public class SpClientDeailsController implements IController, Initializable{
 			getHourByInteger.put(16, "15:30");
 			getHourByInteger.put(17, "16:00");
 			getHourByInteger.put(18, "16:30");
+			
+			getIntegerByHour.put("8:00",1);
+			getIntegerByHour.put("8:30",2);
+			getIntegerByHour.put("9:00",3);
+			getIntegerByHour.put("9:30",4);
+			getIntegerByHour.put("10:00",5);
+			getIntegerByHour.put("10:30",6);
+			getIntegerByHour.put("11:00",7);
+			getIntegerByHour.put("11:30",8);
+			getIntegerByHour.put("12:00",9);
+			getIntegerByHour.put("12:30",10);
+			getIntegerByHour.put("13:00",11);
+			getIntegerByHour.put("13:30",12);
+			getIntegerByHour.put("14:00",13);
+			getIntegerByHour.put("14:30",14);
+			getIntegerByHour.put("15:00",15);
+			getIntegerByHour.put("15:30",16);
+			getIntegerByHour.put("16:00",17);
+			getIntegerByHour.put("16:30",18);
 				
 			ArrayList<String> user = new ArrayList<String>();
 			user.add(ClientConnectionController.clientConnect.userName);
@@ -124,6 +145,36 @@ public class SpClientDeailsController implements IController, Initializable{
 				e.printStackTrace();
 			}
 		}
+		
+		
+		public void onMouseClick(MouseEvent event){
+		System.out.println("123   ");
+			try{
+					if (tabelAppointment.getSelectionModel().getSelectedItem().getHour() != null){
+					int hour = getIntegerByHour.get(tabelAppointment.getSelectionModel().getSelectedItem().getHour());
+						
+						//System.out.println(hour);
+						ArrayList<String> msg = new ArrayList<String>();
+						msg.add(Integer.toString(hour));
+						msg.add(Integer.toString(16));   //error
+					
+						Request request = new Request(Command.GET_CLIENT_BY_APPOINTMET,msg);
+						
+						try {
+							ClientConnectionController.clientConnect.controller = this;
+							ClientConnectionController.clientConnect.sendToServer(request);
+						} 
+						catch (IOException e) {
+							e.printStackTrace();
+						}					
+					}
+					
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		
 		
 		//Components Handlers
 		public void onLogoutButtonClick(ActionEvent event){
@@ -269,6 +320,7 @@ public class SpClientDeailsController implements IController, Initializable{
 		
 			else if (reply.getCommand() == Command.FIND_USERID_BY_USERNAME){
 				userId = (Integer)result;
+				System.out.println(userId);
 			}
 			
 			else if (reply.getCommand() == Command.FIND_CLIENT){
@@ -339,6 +391,48 @@ public class SpClientDeailsController implements IController, Initializable{
 					}
 					onUpdateTableView(hours);
 				}
+				
+				
+				
+			}
+else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
+				
+
+	if (result instanceof ArrayList<?>){
+		
+		result = (ArrayList<?>) result;
+		ArrayList<String> res = (ArrayList<String>) result;
+	  
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				fieldClientID.setText(res.get(0));
+			//	id = Integer.parseInt(fieldClientID.getText());
+				//fieldClientClinic.setText(res.get(1));
+				//String[] date = res.get(3).split("-");
+				//fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
+				fieldClientName.setText(res.get(1));
+				fieldClientFamily.setText(res.get(2));
+				fieldClientAddress.setText(res.get(5));
+				fieldClientPhone.setText(res.get(4));
+				fieldClientEmail.setText(res.get(3));
+				
+				SpViewHistoryBtn.setDisable(false);
+				SpEndTreatmentBtn.setDisable(false);
+				SpCreateRefernceBtn.setDisable(false);
+				SpViewExaminationsBtn.setDisable(false);
+				SpRecordAppointmentBtn.setDisable(false);
+				SpReportMissingBtn.setDisable(false);
+				
+				
+
+			}
+			
+		});
+				  
+	}
+				
 				
 				
 			}
