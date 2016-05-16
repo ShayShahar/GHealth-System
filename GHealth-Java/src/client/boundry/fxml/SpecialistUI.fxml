@@ -60,7 +60,7 @@
             <Insets bottom="10.0" right="5.0" top="10.0" />
          </padding>
       </GridPane>
-      <TableView fx:id="tabelAppointment" layoutX="575.0" layoutY="46.0" onMouseClicked="#onMouseClick" prefHeight="400.0" prefWidth="158.0">
+      <TableView fx:id="tabelAppointment" layoutX="575.0" layoutY="46.0" onMouseClicked="#onMouseClick" prefHeight="455.0" prefWidth="163.0">
          <columns>
             <TableColumn fx:id="timeClmn" prefWidth="157.0" text="Time" />
          </columns>
@@ -85,6 +85,6 @@
             <Button fx:id="SpReportMissingBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #ff2d32;" text="Report Missing" textAlignment="JUSTIFY" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <TextField fx:id="SpClientIDTxt" layoutX="16.0" layoutY="26.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
+      <TextField fx:id="SpClientIDTxt" editable="false" layoutX="16.0" layoutY="34.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
    </children>
 </AnchorPane>
