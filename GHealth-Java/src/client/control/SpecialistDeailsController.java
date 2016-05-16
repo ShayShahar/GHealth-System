@@ -26,7 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class SpClientDeailsController implements IController, Initializable{
+public class SpecialistDeailsController implements IController, Initializable{
 
 		
 		//FXML Components
@@ -124,20 +124,9 @@ public class SpClientDeailsController implements IController, Initializable{
 			ArrayList<String> user = new ArrayList<String>();
 			user.add(ClientConnectionController.clientConnect.userName);
 			
-			/*
-			Request requst = new Request(Command.FIND_USERID_BY_USERNAME,user);
-			
-			try {
-				ClientConnectionController.clientConnect.controller = this;
-				ClientConnectionController.clientConnect.sendToServer(requst);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
 			timeClmn.setStyle( "-fx-alignment: CENTER;");
 			timeClmn.setCellValueFactory(new PropertyValueFactory<>("hour"));
-			
-		//	ArrayList<String> list = new ArrayList<String>();
-		//	list.add(Integer.toString(userId));
+
 			Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
 			
 			try {
@@ -159,7 +148,6 @@ public class SpClientDeailsController implements IController, Initializable{
 						ArrayList<String> msg = new ArrayList<String>();
 						msg.add(Integer.toString(hour));
 						msg.add(userName);   
-					System.out.println(userId);
 						Request request = new Request(Command.GET_CLIENT_BY_APPOINTMET,msg);
 						
 						try {
@@ -172,7 +160,6 @@ public class SpClientDeailsController implements IController, Initializable{
 					}
 					
 			}catch(Exception e){
-				e.printStackTrace();
 			}
 		
 		}
@@ -212,55 +199,7 @@ public class SpClientDeailsController implements IController, Initializable{
 			return true;
 		}
 		
-	/*	public void onFindClientIDButtonClickSpecialist(ActionEvent event){
-			
-			
-			fieldClientID.clear();
-			fieldClientName.clear();
-			fieldClientFamily.clear();
-			fieldClientJoin.clear();
-			fieldClientAddress.clear();
-			fieldClientPhone.clear();
-			fieldClientEmail.clear();
-			fieldClientClinic.clear();
-			
-			
-			
-			SpClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
-
-			if (SpClientIDTxt.getText() == null || SpClientIDTxt.getText().trim().isEmpty()){
-				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
-				
-				if (SpClientIDTxt.getText() == null || SpClientIDTxt.getText().trim().isEmpty()){
-					SpClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
-				}
-				
-				return;
-			}
-			
-			boolean check = validateID(SpClientIDTxt.getText());
-			
-			if (check == false){
-				return;
-			}
-
-			clientID = SpClientIDTxt.getText();
-			
-			ArrayList<String> client = new ArrayList<String>();
-
-			client.add(clientID);
-			
-			Request request = new Request(Command.FIND_CLIENT, client);
-
-			try {
-				ClientConnectionController.clientConnect.controller = this;
-				ClientConnectionController.clientConnect.sendToServer(request);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		*/
+		
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
 			CreateLabReferenceUI create = new CreateLabReferenceUI();
 			ClientConnectionController.clientConnect.userInterface.add(create);
