@@ -82,6 +82,12 @@ public class DBController {
 				case GET_CLIENT_BY_APPOINTMET:{
 					return GetClientByAppointmentDB.handleMessage(request, connection);
 				}
+				case GET_BRANCHES:{
+					return GetBranchesDB.handleMessage(request, connection);
+				}
+				case WEEKLY_REPORT:{
+					return WeeklyReportDB.handleMessage(request, connection);
+				}
 
 		default:
 			break;

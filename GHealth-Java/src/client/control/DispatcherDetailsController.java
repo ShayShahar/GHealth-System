@@ -278,18 +278,6 @@ public class DispatcherDetailsController implements IController, Initializable{
 							}
 						}
 					}
-					
-					else if (ClientConnectionController.clientConnect.userPrivilege.equals("Specialist")){
-						
-						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-						{
-							if (ui instanceof SpecialistUI){
-								ui.hideWindow();
-								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-							}
-						}
-					}
 				}
 			}
 		}

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.entity.Request;
@@ -54,7 +53,6 @@ public class GetClientByAppointmentDB {
 	 			   list.add(Integer.toString(id));
 	 			   list.add(Integer.toString(res.getInt(2)));
 	 			   list.add(res.getString(3));
-	 			 //  String joinDate = res.getString(5);
 	 			    	 
 	 		 		   	try{
 	 		 			    PreparedStatement preparedStatement2 = connection.prepareStatement(searchDetails);
