@@ -49,21 +49,44 @@ public class CreateExaminationController implements IController, Initializable{
 	@FXML private ImageView ImagePick,ImagePick1,ImagePick2,ImagePick3;
 	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4;
 	@FXML private TextArea ExamTextArea;
+	
+	/**
+	 * pictures array list that we send and get from server
+	 */
 	private ArrayList<byte[]> pictures = new ArrayList<byte[]>();
+	/**
+	 * String of the pathes of the pictures we want to add
+	 */
 	private String[] filenameArr = new String[4];
+	
+	/**
+	 * array of the pictures to database according the the position in the screen(to avoid to add pictures that we throwed out)
+	 */
 	private byte[][]  DBpic  = new  byte[4][];
 	
+	/*
+	 * UI variable for createExamination view.
+	 */
 	IUi thisUi = null;
-	private boolean ispicture = false;
+	
+	/**
+	 * the current handle examination.
+	 */
 	Examination exam;
 	
+	/**
+	 * browser for the picture
+	 */
 	final FileChooser fileChooser = new FileChooser();
-	 private Desktop desktop = Desktop.getDesktop();
 	
 	ObservableList<String> list = FXCollections.observableArrayList();
 	
 			
 	@Override
+	/**
+	 * initialize the CreateExamination variables , and loaded items like 
+	 * pictures , texts from the server
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		Xbtn1.setDisable(true);
@@ -104,8 +127,8 @@ public class CreateExaminationController implements IController, Initializable{
 	}
 		
 	/**
-	 * 
-	 * @param i
+	 * Add picture
+	 * @param i - number of picture
 	 */
 	public void OnAddPictureClickButton(int i)
 	{
@@ -188,6 +211,9 @@ public class CreateExaminationController implements IController, Initializable{
          
 	}
 	
+	/**
+	 * Add picture to Location1
+	 */
 	public void OnAddPictureClickButton1()
 	{
 		 OnAddPictureClickButton(1);
@@ -195,22 +221,33 @@ public class CreateExaminationController implements IController, Initializable{
 		 
 	}
 	
+	/**
+	 * Add picture to Location2
+	 */
 	public void OnAddPictureClickButton2()
 	{
 		 OnAddPictureClickButton(2);
 	}
-
+	
+	/**
+	 * Add picture to Location3
+	 */
 	public void OnAddPictureClickButton3()
 	{
 		 OnAddPictureClickButton(3);
 	}
-	
+	/**
+	 * Add picture to Location4
+	 */
 	public void OnAddPictureClickButton4()
 	{
 		 OnAddPictureClickButton(4);
 	}
 	
 	
+	/**
+	 * Remove picture in Location1
+	 */
 	public void OnClosePictureClickButton()
 	{
 		InputStream is = null;
@@ -231,6 +268,9 @@ public class CreateExaminationController implements IController, Initializable{
 		 DBpic[0] = null;
 	}
 	
+    /**
+    * Remove picture in Location2
+    */
 	public void OnClosePictureClickButton1()
 	{
 		InputStream is = null;
@@ -250,7 +290,9 @@ public class CreateExaminationController implements IController, Initializable{
 		 ImagePick1.setDisable(false);
 		 DBpic[1] = null;
 	}
-	
+    /**
+     * Remove picture in Location3
+     */
 	public void OnClosePictureClickButton2()
 	{
 		InputStream is = null;
@@ -270,7 +312,9 @@ public class CreateExaminationController implements IController, Initializable{
 		 ImagePick2.setDisable(false);
 		 DBpic[2] = null;
 	}
-	
+	/**
+	 * Remove picture in Location4
+	 */
 	public void OnClosePictureClickButton3()
 	{
 		InputStream is = null;
@@ -294,8 +338,13 @@ public class CreateExaminationController implements IController, Initializable{
 	
 	
 	
-	
-
+	/**
+	 * Handle Reply from the server
+	 * Command.CREATE_EXAMINATION_VIEW is for the initialize
+	 *  Command.CREATE_EXAMINATION is for create new Examination
+	 *  Command.CREATE_EXAMINATION_UPDATE is for update existing Examination
+	 */
+    
 	@Override
 	public void handleReply(Reply reply) {
 		// TODO Auto-generated method stub
@@ -363,7 +412,10 @@ public class CreateExaminationController implements IController, Initializable{
 	
 	
 	
-	
+	/**
+	 * Logout to the Login window
+	 * @param event listen to action event
+	 */
 	
 	 public void onLogoutButtonClick(ActionEvent event){
 			
@@ -381,6 +433,10 @@ public class CreateExaminationController implements IController, Initializable{
 			
 		}
 	 
+	 /**
+	  * going back to the prev page
+	  */
+	 
 	 public void onBackButtonClick()
 	 {
 		 thisUi.hideWindow();
@@ -395,20 +451,11 @@ public class CreateExaminationController implements IController, Initializable{
 	 }
 	 
 	 
-	 private void openFile(File file) {
-	        try {
-	            desktop.open(file);
-	        } catch (IOException ex) {
-	            Logger.getLogger(
-	            		CreateExaminationUI.class.getName()).log(
-	                    Level.SEVERE, null, ex
-	                );
-	        }
-	        
-	      
-}
+	
 	 
-	 
+	 /**
+	  *  Update or Create The Examination according to the details and pictures inserted
+	  */
 	 public void OnSendClickButton()
 	 {
 		 Request request = null;
@@ -457,6 +504,11 @@ public class CreateExaminationController implements IController, Initializable{
 			
 	 }
 	 
+	 /**
+	  *configure the browse picture to filter images by diffrent formats
+	  * @param fileChooser is the browser
+	  */
+	 
 	  private static void configureFileChooser( final FileChooser fileChooser)
       {   
 		  
@@ -470,6 +522,11 @@ public class CreateExaminationController implements IController, Initializable{
               new FileChooser.ExtensionFilter("PNG", "*.png")
           );
   }
+	  /**
+	   * convert picture to bytr[] format so we will be able to save them in mysql database
+	   * @param filename - the path of the picture
+	   * @return byte[] the fromat that we can save pictures in mysql
+	   */
 	  
 	  public byte[] convertFileToBytes(String filename)
 	  {
@@ -488,6 +545,10 @@ public class CreateExaminationController implements IController, Initializable{
 		return bfile;  
 	  }
 	  
+	  /**
+	   * add the actual added picture to arraylist that we 
+	   * are going to send to the database.
+	   */ 
 	  public void FileNameToArrayList()
 	  {
 		  for(int i=0;i<4;i++)
@@ -497,7 +558,11 @@ public class CreateExaminationController implements IController, Initializable{
 		  }
 	  }
 	  
-	 
+	 /**
+	  * Convert bytes[] pic to Image so we can pick the picture from the database(mysql) and display them in the window
+	  * @param pic - the picture we want to convert to Image
+	  * @return pic Converted to Image format
+	  */
 	  
 	  public Image convertBytesToImage(byte[] pic)
 	  {
@@ -529,6 +594,11 @@ public class CreateExaminationController implements IController, Initializable{
 	        return im;
 	        
 	  }
+	  
+	  /**
+	   * Draw the pictures that we got from the database to the screen when we opened the create examination window
+	   * @param exam - the object that hold the pictures from the database
+	   */
 	  
 	  public void initializePictures(Examination exam)
 	  {
