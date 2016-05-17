@@ -81,7 +81,7 @@ public class CreateAppointmentController implements IController, Initializable{
    * list of possible specializations that supported by IHealth
    */
   
-	ObservableList<String> list = FXCollections.observableArrayList("--","Allergology","Anaesthetics",
+	ObservableList<String> list = FXCollections.observableArrayList("Allergology","Anaesthetics",
 			"Biological hematology","Cardiology","Child psychiatry","Clinical biology",
 			"Clinical chemistry","Clinical neurophysiology","Craniofacial surgery",
 			"Craniofacial surgery","Dermato-venerology","Dermatology","Endocrinology",
@@ -140,7 +140,6 @@ public class CreateAppointmentController implements IController, Initializable{
 
 	
 		listSpecialization.setItems(list);		
-		listSpecialization.getSelectionModel().selectFirst();
 				
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof CreateAppointmentUI){
@@ -276,7 +275,7 @@ public class CreateAppointmentController implements IController, Initializable{
 		
 		hboxDate.setDisable(true);
 	  appPicker.setValue(LocalDate.now());
-		if (listSpecialization.getSelectionModel().getSelectedItem().toString().equals("--")){
+		if (listSpecialization.getSelectionModel().getSelectedItem() == null){
 			thisUi.displayErrorMessage("Invalid Input", "Please choose a specialization from the list.");
 			return;
 		}

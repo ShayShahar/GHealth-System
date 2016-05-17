@@ -46,6 +46,7 @@ public class ExtendedReportController implements IController, Initializable{
 	@FXML private ComboBox<Integer> monthList;
 	@FXML private ComboBox<Integer> yearList1;
 	@FXML private ComboBox<Integer> yearList2;
+	@FXML private ComboBox<Integer> weekList;
 	
 	
 	private IUi thisUi;
@@ -62,8 +63,8 @@ public class ExtendedReportController implements IController, Initializable{
 	public void onMonthlyReportButtonClick(ActionEvent event){
 
 		try{
-			if (monthList.getSelectionModel().getSelectedItem() == null || yearList1.getSelectionModel().getSelectedItem() == null){
-					thisUi.displayErrorMessage("Invalid Input", "Please select a branch from the list.");
+			if (monthList.getSelectionModel().getSelectedItem() == null || yearList1.getSelectionModel().getSelectedItem() == null || selectBranchList.getSelectionModel().getSelectedItem() == null){
+					thisUi.displayErrorMessage("Invalid Input", "Required fields are missing. try again");
 					return;
 				}
 				
@@ -93,7 +94,7 @@ public class ExtendedReportController implements IController, Initializable{
 		try{
 		
 			//TODO fix error message
-				if (selectBranchList.getSelectionModel().getSelectedItem().toString() == null){
+				if (selectBranchList.getSelectionModel().getSelectedItem() == null){
 					thisUi.displayErrorMessage("Invalid Input", "Please select a branch from the list.");
 					return;
 				}
@@ -250,6 +251,13 @@ public class ExtendedReportController implements IController, Initializable{
 		yearList1.setItems(obYear);
 		yearList2.setItems(obYear);
 
+		ArrayList<Integer> weeks = new ArrayList<Integer>();
+		for (int i = 1; i<57; i++){
+			weeks.add(i);
+		}
+		ObservableList obWeeks = FXCollections.observableList(weeks);
+		weekList.setItems(obWeeks);
+		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof GeneralManagerUI){
 				thisUi = ui;
