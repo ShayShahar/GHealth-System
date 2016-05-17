@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import client.boundry.GeneralManagerUI;
@@ -27,30 +29,66 @@ import javafx.scene.control.TextField;
 
 public class ExtendedReportController implements IController, Initializable{
 
+	 /**
+	  * FXML Components links
+	  */
+	
 	@FXML private ComboBox<String> selectBranchList;
+	@FXML private ComboBox<String> selectBranchList1;
 	@FXML private TextField numberTxt;
 	@FXML private BarChart<String, Integer> resChart;
-
 	@FXML private TextField clientsAvg;
 	@FXML private TextField waitingAvg;
 	@FXML private TextField clientsSd;
 	@FXML private TextField waitingSd;
 	@FXML private TextField clientsTotal;
 	@FXML private TextField waitingTotal;
+	@FXML private ComboBox<Integer> monthList;
+	@FXML private ComboBox<Integer> yearList1;
+	@FXML private ComboBox<Integer> yearList2;
 	
 	
 	private IUi thisUi;
 	private HashMap<Integer,String> days = new HashMap<Integer,String>();
+	private double c_avg;
+	private int c_total;
+	private double c_sd;
+	private double w_avg;
+	private int w_total;
+	private double w_sd;
 	
-	 private double c_avg;
-	 private int c_total;
-	 private double c_sd;
-	 private double w_avg;
-	 private int w_total;
-	 private double w_sd;
+	
+	 
+	public void onMonthlyReportButtonClick(ActionEvent event){
+
+		try{
+			if (monthList.getSelectionModel().getSelectedItem() == null || yearList1.getSelectionModel().getSelectedItem() == null){
+					thisUi.displayErrorMessage("Invalid Input", "Please select a branch from the list.");
+					return;
+				}
+				
+				ArrayList<String> msg = new ArrayList<String>();
+				msg.add(selectBranchList.getSelectionModel().getSelectedItem().toString());
+				
+				Request request = new Request(Command.WEEKLY_REPORT,msg);
+				
+				try {
+					ClientConnectionController.clientConnect.controller = this;
+					ClientConnectionController.clientConnect.sendToServer(request);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}		
+		}catch(Exception e){}
+		
+	}
+ 
+	
+	 /**
+	  * Weekly report button handler
+	  * @param event
+	  */
 	
 	public void onWeeklyReportButtonClick(ActionEvent event){
-		
 
 		try{
 		
@@ -75,7 +113,10 @@ public class ExtendedReportController implements IController, Initializable{
 		
 	}
 	
-	
+		/**
+		 * Logout button handler
+		 * @param event
+		 */
 	
 	public void onLogoutButtonClick(ActionEvent event){
 		
@@ -93,6 +134,10 @@ public class ExtendedReportController implements IController, Initializable{
 		
 	}
 	
+	/**
+	 * Process reply from server function to Extended report controller
+	 *  @param reply
+	 */
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
@@ -104,6 +149,7 @@ public class ExtendedReportController implements IController, Initializable{
 			ArrayList<String> branches = (ArrayList<String>)result;
 			ObservableList obList = FXCollections.observableList(branches);
 			selectBranchList.setItems(obList);
+			selectBranchList1.setItems(obList);
 		}
 		
 		else if (reply.getCommand() == Command.WEEKLY_REPORT){
@@ -176,7 +222,11 @@ public class ExtendedReportController implements IController, Initializable{
 			}
 		}
 
-
+	/**
+	 * Initialize controller and General Manager UI function
+	 */
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -186,6 +236,20 @@ public class ExtendedReportController implements IController, Initializable{
 		days.put(4,"Wednesday");
 		days.put(5,"Thursday");
 		
+		ArrayList<Integer> months = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12));
+		ObservableList obList = FXCollections.observableList(months);
+		monthList.setItems(obList);
+		
+		ArrayList<Integer> years = new ArrayList<Integer>();
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		for (int i = 0 ; i<7; i++){
+			years.add(year--);
+		}
+		
+		ObservableList obYear = FXCollections.observableList(years);
+		yearList1.setItems(obYear);
+		yearList2.setItems(obYear);
+
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof GeneralManagerUI){
 				thisUi = ui;

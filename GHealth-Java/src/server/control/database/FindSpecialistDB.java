@@ -11,7 +11,7 @@ public class FindSpecialistDB {
     public static Object handleMessage (Request request, Connection connection) {
     	
     	ResultSet result = null;
-    	
+    	boolean not_found = false;
     	try{
     	
     		String searchAppointments = "SELECT * FROM ghealth.appointments, ghealth.specialists, ghealth.person, ghealth.branches " +
@@ -21,7 +21,7 @@ public class FindSpecialistDB {
                                     "AND ghealth.specialists.branchName=ghealth.branches.branchName " +
                                     "ORDER BY appDate DESC";
     		
-    		String findSpecialists = "SELECT * FROM ghealth.specialists," +
+    		String findSpecialists = "SELECT ghealth.specialists.specialistID, ghealth.person.personName, ghealth.person.personFamily, ghealth.branches.branchName, ghealth.branches.branchAddress FROM ghealth.specialists," +
     		                  		   " ghealth.person, ghealth.branches WHERE specialists.specialistType=?" +
     				                     " AND ghealth.person.personID=ghealth.specialists.personID AND" +
     				                     " ghealth.specialists.branchName=ghealth.branches.branchName";
@@ -37,7 +37,6 @@ public class FindSpecialistDB {
 		    ArrayList<Object> objectList = new ArrayList<Object>();
 		    while (result.next()){
 		    	boolean flag = false;
-		    	
 		    	for (int i = 0; i<specialists.size(); i++){
 		    			if (specialists.get(i) == result.getInt(8)){
 		    				flag = true;
@@ -63,29 +62,28 @@ public class FindSpecialistDB {
 
 		    PreparedStatement preparedStatement2 = connection.prepareStatement(builder.toString());
 		    preparedStatement2.setString(1, request.getList().get(1));
-		    
 		    result = preparedStatement2.executeQuery();
-		    
-		    if (!result.next() && specialists.size() == 0){
-    			return Result.SPECIALIST_NOT_FOUND;
+		    if (!result.next()){
+		    		not_found = true;
+		    }
+		    else{
+					    do{
+					    	ArrayList<String> list = new ArrayList<String>();
+				    		    		
+				    		list.add(Integer.toString(result.getInt(1)));
+				    		list.add(result.getString(2));
+				    		list.add(result.getString(3));
+				      	list.add(result.getString(4));
+				      	list.add(result.getString(5));
+				      	
+				      	objectList.add(list);
+					    	
+					    }while(result.next());
 		    }
 		    
-		    do{
-		    	
-    			
-	    		ArrayList<String> list = new ArrayList<String>();
-	    		    		
-	    		list.add(Integer.toString(result.getInt(1)));
-	    		list.add(result.getString(6));
-	    		list.add(result.getString(7));
-	      	list.add(result.getString(11));
-	      	list.add(result.getString(12));
-	      	
-	      	objectList.add(list);
-		    	
-		    }while(result.next());
-		    
-		    
+		    if (not_found == true && specialists.size() == 0){
+		    	return Result.SPECIALIST_NOT_FOUND;
+		    }
 		    return objectList;
 		    
     	} catch (SQLException e) {
