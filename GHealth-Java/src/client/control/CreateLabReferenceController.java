@@ -1,7 +1,9 @@
 package client.control;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import client.boundry.CreateLabReferenceUI;
 import client.boundry.DispatcherUI;
@@ -14,11 +16,13 @@ import common.enums.Command;
 import common.enums.Result;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 
-public class CreateLabReferenceController implements IController{
+public class CreateLabReferenceController implements IController,Initializable{
 
 	public static String user_id;
 	public static int id;
+	public String clientID;
 		
 	//Components Handlers
 	public void onLogoutButtonClick(ActionEvent event){
@@ -36,6 +40,25 @@ public class CreateLabReferenceController implements IController{
 		}
 		
 	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		clientID = SpecialistDeailsController.clientID; 
+		
+		ArrayList<String> msg = new ArrayList<String>();
+		msg.add(clientID);
+		Request request = new Request(Command.GET_CLIENT_BY_CLIENT_ID,msg);
+		
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+
 
 
 	
@@ -82,52 +105,10 @@ public class CreateLabReferenceController implements IController{
 				}
 			}
 		}
-		
-		else if (reply.getCommand() == Command.FIND_CLIENT){
-			
-			
-			if (result instanceof ArrayList<?>){
-				
-				result = (ArrayList<?>) result;
-			  @SuppressWarnings("unchecked")
-			ArrayList<String> res = (ArrayList<String>) result;
-			  
-				Platform.runLater(new Runnable() {
-
-					@Override
-					public void run() {
-	
-
-					}
-						
-				});
-						  
-			}
-			
-			else {
-				ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client not found", "You can add new client from the menu below.");
-				
-				Platform.runLater(new Runnable() {
-
-					@Override
-					public void run() {
-			
-						}
-				});
-				
-			}
-			
-		}
-							
 	}
-	public void setID(int id2) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void setUser(String user_id2) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-}
+}	
+
+
+
+
 

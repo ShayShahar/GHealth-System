@@ -41,7 +41,6 @@ public class SpecialistDeailsController implements IController, Initializable{
 		@FXML private TextField fieldClientClinic;
 		@FXML private TextField fieldClientName;
 		@FXML private TextField fieldClientFamily;
-		@FXML private TextField fieldClientJoin;
 		@FXML private TextField fieldClientAddress;
 		@FXML private TextField fieldClientPhone;
 		@FXML private TextField fieldClientEmail;
@@ -265,60 +264,6 @@ public class SpecialistDeailsController implements IController, Initializable{
 				
 			}
 			
-			else if (reply.getCommand() == Command.FIND_CLIENT){
-				
-				
-				if (result instanceof ArrayList<?>){
-					
-					result = (ArrayList<?>) result;
-					ArrayList<String> res = (ArrayList<String>) result;
-				  
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-							fieldClientID.setText(res.get(0));
-						//	id = Integer.parseInt(fieldClientID.getText());
-							fieldClientClinic.setText(res.get(1));
-							String[] date = res.get(3).split("-");
-							fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
-							fieldClientName.setText(res.get(4));
-							fieldClientFamily.setText(res.get(5));
-							fieldClientAddress.setText(res.get(8));
-							fieldClientPhone.setText(res.get(7));
-							fieldClientEmail.setText(res.get(6));
-							SpViewHistoryBtn.setDisable(false);
-							SpEndTreatmentBtn.setDisable(false);
-							SpCreateRefernceBtn.setDisable(false);
-							SpViewExaminationsBtn.setDisable(false);
-							SpRecordAppointmentBtn.setDisable(false);
-							SpReportMissingBtn.setDisable(false);
-							
-							
-
-						}
-						
-					});
-							  
-				}
-				
-				
-				else {
-					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client not found", "You can add new client from the menu below.");
-					
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-							SpViewHistoryBtn.setDisable(false);
-							SpEndTreatmentBtn.setDisable(true);
-							SpCreateRefernceBtn.setDisable(true);
-							}
-					});
-					
-				}
-				
-			}
 			
 			else if (reply.getCommand() == Command.FIND_TODAY_APPOINTMENT){
 				
@@ -349,13 +294,9 @@ else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
 
 			@Override
 			public void run() {
+				clientID = res.get(1);
 				fieldClientID.setText(res.get(1));
-			//	id = Integer.parseInt(fieldClientID.getText());
 				fieldClientClinic.setText(res.get(2));
-				//String[] date = res.get(3).split("-");
-			//	fieldClientJoin.setText(res.get(9));
-				//String[] date = res.get(9).split("-");
-			//	fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
 				SpClientIDTxt.setText(res.get(0));
 				fieldClientName.setText(res.get(4));
 				fieldClientFamily.setText(res.get(5));

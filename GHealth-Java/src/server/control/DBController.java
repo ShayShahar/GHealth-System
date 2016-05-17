@@ -88,6 +88,9 @@ public class DBController {
 				case WEEKLY_REPORT:{
 					return WeeklyReportDB.handleMessage(request, connection);
 				}
+				case GET_CLIENT_BY_CLIENT_ID:{
+					return GetClientIdByClientIdDB.handleMessage(request, connection);
+				}
 
 		default:
 			break;
