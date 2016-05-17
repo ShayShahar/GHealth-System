@@ -85,6 +85,7 @@
             <Button fx:id="SpReportMissingBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #ff2d32;" text="Report Missing" textAlignment="JUSTIFY" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <TextField fx:id="SpClientIDTxt" editable="false" layoutX="16.0" layoutY="34.0" prefHeight="25.0" prefWidth="163.0" promptText="Client ID" />
+      <TextField fx:id="SpClientIDTxt" editable="false" layoutX="120.0" layoutY="33.0" prefHeight="25.0" prefWidth="163.0" />
+      <Label layoutX="49.0" layoutY="38.0" text="personID" />
    </children>
 </AnchorPane>

@@ -354,6 +354,8 @@ else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
 				fieldClientClinic.setText(res.get(2));
 				//String[] date = res.get(3).split("-");
 			//	fieldClientJoin.setText(res.get(9));
+				//String[] date = res.get(9).split("-");
+			//	fieldClientJoin.setText(date[2]+"-"+date[1]+"-"+date[0]);
 				SpClientIDTxt.setText(res.get(0));
 				fieldClientName.setText(res.get(4));
 				fieldClientFamily.setText(res.get(5));
