@@ -178,6 +178,46 @@ public class ExtendedReportController implements IController, Initializable{
 			selectBranchList1.setItems(obList);
 		}
 		
+		else if (reply.getCommand() == Command.MONTHLY_REPORT){
+			if (result instanceof Result){
+				if ((Result)result == Result.FAILED){
+					thisUi.displayErrorMessage("Operation failed","No information found for the selected month.");
+				}
+				else {
+					thisUi.displayErrorMessage("Server Error","An error occured while trying to create the report. try again.");
+				}
+			}
+			
+			else{
+				ArrayList<Object> list = (ArrayList<Object>)result;
+				ArrayList<Integer> clients = (ArrayList<Integer>)list.get(0);
+				ArrayList<Integer> waiting = (ArrayList<Integer>)list.get(1);
+				
+				Series<String, Integer> s1 = new XYChart.Series<>();
+				Series<String, Integer> s2 = new XYChart.Series<>();
+				
+
+				s1.setName("Treated Clients");
+				s2.setName("Waiting Time");
+				
+				for (int i = 0 ; i < clients.size(); i++){
+					s1.getData().add(new XYChart.Data("Week "+ (i + 1), clients.get(i)));
+					s2.getData().add(new XYChart.Data("Week "+ (i + 1), waiting.get(i)));
+				}
+
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+												
+						resChart.getData().clear();
+						resChart.getData().addAll(s1,s2);
+						}
+				});
+				
+				
+			}
+		}
+		
 		else if (reply.getCommand() == Command.WEEKLY_REPORT){
 			
 			Series<String, Integer> s1 = new XYChart.Series<>();
@@ -244,47 +284,7 @@ public class ExtendedReportController implements IController, Initializable{
 						ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 						ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 			}
-		
-		else if (reply.getCommand() == Command.MONTHLY_REPORT){
-			if (result instanceof Result){
-				if ((Result)result == Result.FAILED){
-					thisUi.displayErrorMessage("Operation failed","No information found for the selected month.");
-				}
-				else {
-					thisUi.displayErrorMessage("Server Error","An error occured while trying to create the report. try again.");
-				}
-			}
-			
-			else{
-				ArrayList<Object> list = (ArrayList<Object>)result;
-				ArrayList<Integer> clients = (ArrayList<Integer>)list.get(0);
-				ArrayList<Integer> waiting = (ArrayList<Integer>)list.get(1);
-				
-				Series<String, Integer> s1 = new XYChart.Series<>();
-				Series<String, Integer> s2 = new XYChart.Series<>();
-				
-
-				s1.setName("Treated Clients");
-				s2.setName("Waiting Time");
-				
-				for (int i = 0 ; i < clients.size(); i++){
-					s1.getData().add(new XYChart.Data("Week "+ i + 1, clients.get(i)));
-					s2.getData().add(new XYChart.Data("Week "+ i + 1, waiting.get(i)));
-				}
-
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-												
-						resChart.getData().clear();
-						resChart.getData().addAll(s1,s2);
-						}
-				});
-				
-				
-			}
-		}
-		
+	
 	}
 
 	

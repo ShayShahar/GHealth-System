@@ -49,13 +49,13 @@ public class MonthlyReportDB {
 			ResultSet week_number = stmnt1.executeQuery();
 			week_number.next();
 			int first_week = week_number.getInt(1);
-			
+			System.out.println("1");
 			PreparedStatement stmnt2 = connection.prepareStatement(getMonthlyClients);
 			stmnt2.setString(1,request.getList().get(0));
-			stmnt2.setInt(2,Integer.parseInt(request.getList().get(1)));
-			stmnt2.setInt(3,Integer.parseInt(request.getList().get(2)));
+			stmnt2.setInt(2,Integer.parseInt(request.getList().get(2)));
+			stmnt2.setInt(3,Integer.parseInt(request.getList().get(1)));
 			ResultSet res = stmnt2.executeQuery();
-			
+			System.out.println("2");
 			ArrayList<Integer> total_clients = new ArrayList<Integer>();
 			while(res.next()){
 				flag1 = true;
@@ -74,8 +74,8 @@ public class MonthlyReportDB {
 			
 			PreparedStatement stmnt3 = connection.prepareStatement(getMonthlyWaitingTime);
 			stmnt3.setString(1,request.getList().get(0));
-			stmnt3.setInt(2,Integer.parseInt(request.getList().get(1)));
-			stmnt3.setInt(3,Integer.parseInt(request.getList().get(2)));
+			stmnt3.setInt(2,Integer.parseInt(request.getList().get(2)));
+			stmnt3.setInt(3,Integer.parseInt(request.getList().get(1)));
 			ResultSet res2 = stmnt3.executeQuery();
 			
 			ArrayList<Integer> total_waiting = new ArrayList<Integer>();
@@ -105,7 +105,7 @@ public class MonthlyReportDB {
 			ArrayList<Object> list = new ArrayList<Object>();
 			list.add(total_clients);
 			list.add(total_waiting);
-
+			System.out.println(list);
 			return list;
 			
 		}catch(Exception e){
