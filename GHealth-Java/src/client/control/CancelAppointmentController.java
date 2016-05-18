@@ -27,6 +27,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * 
+ * @author shays
+ *
+ */
+
 public class CancelAppointmentController implements IController, Initializable{
 
 	@FXML private TextField fieldPersonID;

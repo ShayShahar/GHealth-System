@@ -7,6 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 
+
+/**
+ * 
+ * @author shays
+ *
+ */
+
 public class ClientConnectionController{
 
 	@FXML private TextField ipAddress;

@@ -10,6 +10,15 @@ import common.entity.Request;
 import common.enums.Result;
 
 public class GetClientByAppointmentDB {
+	
+	/**
+	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
+	 * The function process the queries results then return a message to the client with the requested details.
+	 * @param request The request object that send by the client
+	 * @param connection JDBC connection parameter
+	 * @return return Object type. each result may return different type of objects.
+	 */
+	
 	  public static Object handleMessage (Request request, Connection connection) {
 		  Integer id ,spId;
 	    		String searchClient = "SELECT ghealth.clients.person, ghealth.clients.clientID, ghealth.clients.clientClinic  FROM ghealth.appointments , ghealth.clients WHERE  ghealth.appointments.appDate=CURDATE() AND ghealth.appointments.specialist=?  AND ghealth.appointments.appTime=? AND ghealth.appointments.client=ghealth.clients.clientID";

@@ -5,12 +5,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * WeeklyReportDB creates a weekly report from the information that stored in mySQL database
+ * Weekly report includes number of clients that got treatments and waiting time for appointments (from invite date)
+ * All the information grouped by the days of the week
+ * @author shays
+ *
+ */
 public class WeeklyReportDB {
 
+	/**
+	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
+	 * The function process the queries results then return a message to the client with the requested details.
+	 * @param request The request object that send by the client
+	 * @param connection JDBC connection parameter
+	 * @return return Object type. each result may return different type of objects.
+	 */
+	
 	public static Object handleMessage (Request request, Connection connection) {
 		
 		
@@ -37,7 +51,6 @@ public class WeeklyReportDB {
 			  ResultSet res2 = null;
 				
 				for (int i = 0 ; i<5; i++){
-					System.out.println(i + " " + request.getList().get(2) + " " + request.getList().get(1));
 					ArrayList<Integer> day = new ArrayList<Integer>();
 				  statement.setInt(1,Integer.parseInt(request.getList().get(2)));
 			    statement.setInt(2,Integer.parseInt(request.getList().get(1)));

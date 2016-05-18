@@ -25,6 +25,12 @@ import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+/**
+ * ExtendedReportController connects between the GeneralManagerUI to the components logics.
+ * @author shays
+ *
+ */
+
 public class ExtendedReportController implements IController, Initializable{
 
 	 /**
