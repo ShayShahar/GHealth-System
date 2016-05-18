@@ -294,7 +294,7 @@ else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
 
 			@Override
 			public void run() {
-				clientID = res.get(1);
+				clientID = res.get(0);
 				fieldClientID.setText(res.get(1));
 				fieldClientClinic.setText(res.get(2));
 				SpClientIDTxt.setText(res.get(0));

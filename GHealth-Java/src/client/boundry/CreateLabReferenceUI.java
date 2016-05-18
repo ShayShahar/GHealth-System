@@ -55,7 +55,7 @@ public class CreateLabReferenceUI implements IUi {
 			
 				@Override
 				public void run() {
-				  URL url_fxml = CreateLabReferenceUI.class.getResource("/client/boundry/fxml/CreateLabReferene.fxml");
+				  URL url_fxml = CreateLabReferenceUI.class.getResource("/client/boundry/fxml/CreateLabRefereneUI.fxml");
 				  FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
 				  Parent root;
 					try {

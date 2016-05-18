@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import client.boundry.CreateLabReferenceUI;
 import client.boundry.DispatcherUI;
 import client.boundry.SpecialistUI;
 import client.interfaces.IController;
@@ -15,14 +14,38 @@ import common.entity.Request;
 import common.enums.Command;
 import common.enums.Result;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 public class CreateLabReferenceController implements IController,Initializable{
 
 	public static String user_id;
 	public static int id;
 	public String clientID;
+	
+	@FXML private TextField SpClientIDTxt;
+	@FXML private TextField fieldClientName;
+	@FXML private TextField fieldClientFamily;
+	@FXML private TextField fieldClientAddress;
+	@FXML private TextField fieldClientPhone;
+	@FXML private TextField fieldClientEmail;
+	@FXML private ComboBox<String> examinationTypeCom;
+	@FXML private ComboBox<String> urgencyCom;
+
+	ObservableList<String> examinationList = FXCollections.observableArrayList("Allergology","Anaesthetics",
+			"Biological hematology","Cardiology",
+			"Clinical chemistry","Craniofacial surgery","Dermatology","Endocrinology",
+			"Gastroenterology","General hematology","General Practice",
+			"Geriatrics","Immunology","Infectious diseases","Internal medicine","Microbiology",
+			"Nephrology", "Neurology","Neurosurgery","Orthopaedics","Pathology",
+			"Psychiatry","Radiology","Stomatology","Urology","Venereology");
+	
+	ObservableList<String> urgencyList = FXCollections.observableArrayList("Low","Normal","Critical");
 		
 	//Components Handlers
 	public void onLogoutButtonClick(ActionEvent event){
@@ -44,6 +67,12 @@ public class CreateLabReferenceController implements IController,Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		clientID = SpecialistDeailsController.clientID; 
+		
+		examinationTypeCom.setItems(examinationList);		
+		//examinationTypeCom.getSelectionModel().selectFirst();
+		
+		urgencyCom.setItems(urgencyList);		
+		//urgencyCom.getSelectionModel().selectFirst();
 		
 		ArrayList<String> msg = new ArrayList<String>();
 		msg.add(clientID);
@@ -102,6 +131,36 @@ public class CreateLabReferenceController implements IController,Initializable{
 							}
 						}
 					}
+					else if (reply.getCommand() == Command.GET_CLIENT_BY_CLIENT_ID){
+						
+
+						if (result instanceof ArrayList<?>){
+							
+							result = (ArrayList<?>) result;
+							@SuppressWarnings("unchecked")
+							ArrayList<String> res = (ArrayList<String>) result;
+						  
+							Platform.runLater(new Runnable() {
+
+								@Override
+								public void run() {
+									System.out.println(res.get(0));
+									SpClientIDTxt.setText(res.get(0));
+									fieldClientName.setText(res.get(1));
+									fieldClientFamily.setText(res.get(2));
+									fieldClientAddress.setText(res.get(5));
+									fieldClientPhone.setText(res.get(4));
+									fieldClientEmail.setText(res.get(3));
+
+								}
+								
+							});
+									  
+						}
+									
+									
+									
+								}
 				}
 			}
 		}
