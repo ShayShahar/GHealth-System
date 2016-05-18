@@ -31,7 +31,21 @@ public class MonthlyReportDB {
                                    "GROUP BY WEEK(appointments.appDate) " +
                                    "ORDER BY WEEK(appointments.appDate) ASC";
 		
-		boolean flag1 = false; boolean flag2 = false;
+		String getMonthlyMissingAppointments = "SELECT COUNT(*), WEEK(appointments.appDate) AS WEEK " +
+																								"FROM appointments, specialists " +
+																								"WHERE appointments.specialist=specialists.specialistID AND specialists.branchName=? " +
+																								"AND appointments.appMissed=1 AND MONTH(appointments.appDate)= ? AND YEAR(appointments.appDate)=? " +
+																								"GROUP BY WEEK(appointments.appDate) " +
+																								"ORDER BY  WEEK(appointments.appDate) ASC";
+		
+		String getMonthlyLeftClients = "SELECT COUNT(*), WEEK(clients.leftDate) AS WEEK " +
+																				"FROM clients " +
+																				"WHERE clients.clientStatus = 0 " +
+																				"AND MONTH(clients.leftDate)=? AND YEAR(clients.leftDate)=? " +
+																				"GROUP BY WEEK(clients.leftDate) " +
+																				"ORDER BY  WEEK(clients.leftDate) ASC";
+		
+		boolean flag1 = false; boolean flag2 = false; boolean flag3 = false; boolean flag4 = false;
 		
 		try{
 			//prepare the first week of the month -> necessary for barChart
@@ -49,13 +63,11 @@ public class MonthlyReportDB {
 			ResultSet week_number = stmnt1.executeQuery();
 			week_number.next();
 			int first_week = week_number.getInt(1);
-			System.out.println("1");
 			PreparedStatement stmnt2 = connection.prepareStatement(getMonthlyClients);
 			stmnt2.setString(1,request.getList().get(0));
 			stmnt2.setInt(2,Integer.parseInt(request.getList().get(2)));
 			stmnt2.setInt(3,Integer.parseInt(request.getList().get(1)));
 			ResultSet res = stmnt2.executeQuery();
-			System.out.println("2");
 			ArrayList<Integer> total_clients = new ArrayList<Integer>();
 			while(res.next()){
 				flag1 = true;
@@ -95,16 +107,68 @@ public class MonthlyReportDB {
 					total_waiting.add(0);
 				}
 			}
-			System.out.println(total_waiting + " " + total_clients);
 			
-			if (!flag1 && !flag2){
-				System.out.println("im here");
+			
+			PreparedStatement stmnt4 = connection.prepareStatement(getMonthlyMissingAppointments);
+			stmnt4.setString(1,request.getList().get(0));
+			stmnt4.setInt(2,Integer.parseInt(request.getList().get(2)));
+			stmnt4.setInt(3,Integer.parseInt(request.getList().get(1)));
+			ResultSet res3 = stmnt4.executeQuery();
+			
+			ArrayList<Integer> total_missed = new ArrayList<Integer>();
+			first_week = week_number.getInt(1);
+			
+			while(res3.next()){
+				flag3 = true;
+				while(first_week < res3.getInt(2)){
+					total_missed.add(0);
+					first_week++;
+				}
+				total_missed.add(res3.getInt(1));
+			}
+			
+			if (flag3 == false){
+				for (int i = 0; i<5; i++){
+					total_missed.add(0);
+				}
+			}
+			
+			
+			
+			PreparedStatement stmnt5 = connection.prepareStatement(getMonthlyLeftClients);
+			stmnt5.setInt(1,Integer.parseInt(request.getList().get(2)));
+			stmnt5.setInt(2,Integer.parseInt(request.getList().get(1)));
+			ResultSet res4 = stmnt5.executeQuery();
+			
+			ArrayList<Integer> total_left = new ArrayList<Integer>();
+			first_week = week_number.getInt(1);
+			
+			while(res4.next()){
+				flag4 = true;
+				while(first_week < res4.getInt(2)){
+					total_missed.add(0);
+					first_week++;
+				}
+				total_missed.add(res4.getInt(1));
+			}
+			
+			if (flag4 == false){
+				for (int i = 0; i<5; i++){
+					total_left.add(0);
+				}
+			}
+			
+			
+			
+			if (!flag1 && !flag2 && !flag3 && !flag4){
 				return Result.FAILED;
 			}
 			
 			ArrayList<Object> list = new ArrayList<Object>();
 			list.add(total_clients);
 			list.add(total_waiting);
+			list.add(total_missed);
+			list.add(total_left);
 			System.out.println(list);
 			return list;
 			

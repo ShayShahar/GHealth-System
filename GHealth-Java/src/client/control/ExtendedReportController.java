@@ -45,8 +45,19 @@ public class ExtendedReportController implements IController, Initializable{
 	@FXML private ComboBox<Integer> yearList1;
 	@FXML private ComboBox<Integer> yearList2;
 	@FXML private ComboBox<Integer> weekList;
-	
-	
+	@FXML private TextField clientsAvg;
+	@FXML private TextField waitingAvg;
+	@FXML private TextField clientsSd;
+	@FXML private TextField waitingSd;
+	@FXML private TextField clientsTotal;
+	@FXML private TextField waitingTotal;
+	@FXML private TextField missedAvg;
+	@FXML private TextField missedSd;
+	@FXML private TextField missedTotal;
+	@FXML private TextField leftAvg;
+	@FXML private TextField leftSd;
+	@FXML private TextField leftTotal;
+
 	private IUi thisUi;
 	private HashMap<Integer,String> days = new HashMap<Integer,String>();
 	private double c_avg;
@@ -55,6 +66,12 @@ public class ExtendedReportController implements IController, Initializable{
 	private double w_avg;
 	private int w_total;
 	private double w_sd;
+	private double m_avg;
+	private int m_total;
+	private double m_sd;
+	private double l_avg;
+	private int l_total;
+	private double l_sd;
 	
 	/**
 	 * Monthly report button handler
@@ -192,25 +209,88 @@ public class ExtendedReportController implements IController, Initializable{
 				ArrayList<Object> list = (ArrayList<Object>)result;
 				ArrayList<Integer> clients = (ArrayList<Integer>)list.get(0);
 				ArrayList<Integer> waiting = (ArrayList<Integer>)list.get(1);
-				
+				ArrayList<Integer> missed = (ArrayList<Integer>)list.get(2);
+				ArrayList<Integer> left = (ArrayList<Integer>)list.get(3);
+
 				Series<String, Integer> s1 = new XYChart.Series<>();
 				Series<String, Integer> s2 = new XYChart.Series<>();
-				
+				Series<String, Integer> s3 = new XYChart.Series<>();
+				Series<String, Integer> s4 = new XYChart.Series<>();
+
 
 				s1.setName("Treated Clients");
 				s2.setName("Waiting Time");
+				s3.setName("Missed Appointments");
+				s4.setName("Left Clients");
 				
+				
+				 c_avg = 0;
+				 c_total = 0;
+				 c_sd = 0;
+				 w_avg = 0;
+				 w_total = 0;
+				 w_sd = 0;
+				 m_avg = 0;
+				 m_total = 0;
+				 m_sd = 0;
+				 l_avg = 0;
+				 l_total = 0;
+				 l_sd = 0;
+
 				for (int i = 0 ; i < clients.size(); i++){
 					s1.getData().add(new XYChart.Data("Week "+ (i + 1), clients.get(i)));
 					s2.getData().add(new XYChart.Data("Week "+ (i + 1), waiting.get(i)));
+					s3.getData().add(new XYChart.Data("Week "+ (i + 1), missed.get(i)));
+					s4.getData().add(new XYChart.Data("Week "+ (i + 1), left.get(i)));
+					c_total+=clients.get(i);
+					w_total+=waiting.get(i);
+					m_total+=missed.get(i);
+					l_total+=left.get(i);
 				}
 
+				c_avg = (float)c_total/5;
+				w_avg = (float)w_total/5;
+				m_avg = (float)m_total/5;
+				l_avg = (float)l_total/5;
+				
+				int calc_cSd = 0;
+				int calc_wSd = 0;
+				int calc_mSd = 0;
+				int calc_lSd = 0;
+				
+				for (int i = 0 ; i < 5; i++){
+					calc_cSd += Math.pow(clients.get(i) - c_avg, 2);
+					calc_wSd += Math.pow(waiting.get(i) - w_avg, 2);
+					calc_mSd += Math.pow(missed.get(i) - m_avg, 2);
+					calc_lSd += Math.pow(left.get(i) - l_avg, 2);
+				}
+				
+				c_sd = Math.sqrt(0.2*calc_cSd);
+				w_sd = Math.sqrt(0.2*calc_wSd);
+				m_sd = Math.sqrt(0.2*calc_mSd);
+				l_sd = Math.sqrt(0.2*calc_lSd);
+
+				
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
 												
+						DecimalFormat df = new DecimalFormat("#.##");
+						clientsAvg.setText(df.format(c_avg));
+						waitingAvg.setText(df.format(w_avg));
+						clientsSd.setText(df.format(c_sd));
+						waitingSd.setText(df.format(w_sd));
+						clientsTotal.setText(Integer.toString(c_total));
+						waitingTotal.setText(Integer.toString(w_total));
+						missedAvg.setText(df.format(m_avg));
+						leftAvg.setText(df.format(l_avg));
+						missedSd.setText(df.format(m_sd));
+						leftSd.setText(df.format(l_sd));
+						missedTotal.setText(Integer.toString(m_total));
+						leftTotal.setText(Integer.toString(l_total));
+						
 						resChart.getData().clear();
-						resChart.getData().addAll(s1,s2);
+						resChart.getData().addAll(s1,s2,s3,s4);
 						}
 				});
 				
@@ -234,7 +314,7 @@ public class ExtendedReportController implements IController, Initializable{
 			 w_sd = 0;
 			
 			
-			 ArrayList<Object> list = (ArrayList<Object>)result;
+			ArrayList<Object> list = (ArrayList<Object>)result;
 			
 			for (int i = 0 ; i < 5; i++){
 				ArrayList<Integer> res = (ArrayList<Integer>) list.get(i);

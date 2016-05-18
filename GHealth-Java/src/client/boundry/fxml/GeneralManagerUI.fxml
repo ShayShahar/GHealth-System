@@ -72,6 +72,12 @@
                               <TextField fx:id="waitingTotal" alignment="CENTER" style="-fx-background-color: #e2e2e2;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                               <Label text="Missed" GridPane.columnIndex="3" />
                               <Label text="Left Clients" GridPane.columnIndex="4" />
+                              <TextField fx:id="missedAvg" alignment="CENTER" editable="false" style="-fx-background-color: #e2e2e2;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="missedSd" alignment="CENTER" editable="false" style="-fx-background-color: #e2e2e2;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField fx:id="missedTotal" alignment="CENTER" editable="false" style="-fx-background-color: #e2e2e2;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField fx:id="leftAvg" alignment="CENTER" editable="false" style="-fx-background-color: #e2e2e2;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <TextField fx:id="leftSd" alignment="CENTER" editable="false" style="-fx-background-color: #e2e2e2;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <TextField fx:id="leftTotal" alignment="CENTER" editable="false" style="-fx-background-color: #e2e2e2;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                         <VBox layoutX="12.0" layoutY="14.0" prefHeight="172.0" prefWidth="182.0" spacing="20.0">
