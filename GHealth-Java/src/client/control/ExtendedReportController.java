@@ -364,12 +364,30 @@ public class ExtendedReportController implements IController, Initializable{
 
 		}
 		
-		else if ((Result)result == Result.LOGGEDOUT){
-			
-						thisUi.hideWindow();
-						ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-						ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
+		else 	if (reply.getCommand() == Command.LOGOUT){
+		
+			if (result instanceof Result){
+						
+				result = (Result)result;
+						
+				if ((Result)result == Result.ERROR){
+					ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
+						System.exit(1);
+				}
+				else if ((Result)result == Result.LOGGEDOUT){
+					
+					if (ClientConnectionController.clientConnect.userPrivilege.equals("General")){
+						
+						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
+						{
+								ui.hideWindow();
+								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
+								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
+						}
+					}
+				}
 			}
+		}
 	
 	}
 

@@ -9,7 +9,6 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-import client.boundry.CreateAppointmentUI;
 import client.boundry.CreateExaminationUI;
 import client.boundry.DispatcherUI;
 import client.boundry.LabWorkerUI;
