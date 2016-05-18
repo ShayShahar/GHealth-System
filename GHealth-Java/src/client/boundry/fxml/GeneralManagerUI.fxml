@@ -40,7 +40,7 @@
       </BarChart>
       <TabPane layoutX="7.0" layoutY="399.0" prefHeight="219.0" prefWidth="568.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Branch Weekly Report">
+          <Tab text="Branch Monthly Report">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="190.0" prefWidth="521.0">
                      <children>
@@ -83,13 +83,13 @@
                                     <ComboBox fx:id="yearList1" prefWidth="150.0" promptText="Year" />
                                  </children>
                               </HBox>
-                              <Button fx:id="WeeklyBtn" disable="true" mnemonicParsing="false" onAction="#onWeeklyReportButtonClick" prefHeight="45.0" prefWidth="204.0" text="Display Weekly Report" />
+                              <Button fx:id="MonthlyBtn" mnemonicParsing="false" onAction="#onMonthlyReportButtonClick" prefHeight="45.0" prefWidth="180.0" text="Display Monthly Report" />
                            </children>
                         </VBox>
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Branch Monthly Report">
+          <Tab text="Branch Weekly Report">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="190.0" prefWidth="521.0">
                      <children>
@@ -128,7 +128,7 @@
                                     <ComboBox fx:id="yearList2" prefWidth="150.0" promptText="Year" />
                                  </children>
                               </HBox>
-                              <Button fx:id="MonthlyBtn" mnemonicParsing="false" onAction="#onMonthlyReportButtonClick" prefHeight="45.0" prefWidth="180.0" text="Display Monthly Report" />
+                              <Button fx:id="WeeklyBtn" mnemonicParsing="false" onAction="#onWeeklyReportButtonClick" prefHeight="45.0" prefWidth="204.0" text="Display Weekly Report" />
                            </children>
                         </VBox>
                         <Separator layoutX="198.0" layoutY="12.0" orientation="VERTICAL" prefHeight="166.0" prefWidth="12.0" />

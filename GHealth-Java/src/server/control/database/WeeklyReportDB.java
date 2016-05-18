@@ -17,16 +17,17 @@ public class WeeklyReportDB {
 		 //use dayofweek(appDate) -> 0- Sunday, 1- Monday, Etc...
 		
 		//get total number of clients from the current week perday
-		String dailyClients = "SELECT COUNT(*) AS count from ghealth.appointments"
-				+ ", ghealth.specialists WHERE WEEK (appDate) = WEEK( current_date ) - 1 AND YEAR(appDate) = "
-				+ "YEAR( current_date ) AND dayofweek(appDate)=? AND appointments.appMissed=0 AND appointments.specialist=specialists.specialistID "
-				+ "AND specialists.branchName=?";
+		String dailyClients = "SELECT COUNT(*) AS count from ghealth.appointments, ghealth.specialists " +
+				                  "WHERE WEEK(appDate)=? AND YEAR(appDate)=? AND dayofweek(appDate)=? " +
+				                  "AND appointments.appMissed=0 AND appointments.specialist=specialists.specialistID " +
+				                  "AND specialists.branchName=?";
 		
 		//get total number of waiting time from the current week perday
-		String dailyWaitingTime = "SELECT SUM(DATEDIFF(appointments.appDate, appointments.appInviteDate)) as waitingTime"
-				+ " from ghealth.appointments, ghealth.specialists WHERE WEEK (appDate) = WEEK( current_date ) - 1 AND YEAR(appDate) ="
-				+ " YEAR( current_date ) AND dayofweek(appDate)=? AND appointments.appMissed=0 AND "
-				+ "appointments.specialist=specialists.specialistID AND specialists.branchName=?"; //
+		String dailyWaitingTime = "SELECT SUM(DATEDIFF(appointments.appDate, appointments.appInviteDate)) AS waitingTime " +
+																	"FROM ghealth.appointments, ghealth.specialists " +
+																	"WHERE WEEK(appDate)=? AND YEAR(appDate)=? " +
+																	"AND dayofweek(appDate)=? AND appointments.appMissed=0 " +
+																	"AND appointments.specialist=specialists.specialistID AND specialists.branchName=?"; 
 		
 			try{
 				ArrayList<Object> list = new ArrayList<Object>();
@@ -34,19 +35,21 @@ public class WeeklyReportDB {
 			  PreparedStatement statement2 = connection.prepareStatement(dailyWaitingTime);    				
 			  ResultSet res = null;
 			  ResultSet res2 = null;
-				System.out.println(request.getList().get(0));
 				
 				for (int i = 0 ; i<5; i++){
-					System.out.println(i);
+					System.out.println(i + " " + request.getList().get(2) + " " + request.getList().get(1));
 					ArrayList<Integer> day = new ArrayList<Integer>();
-		    	statement.setInt(1,i+1);
-		    	statement.setString(2,request.getList().get(0));
+				  statement.setInt(1,Integer.parseInt(request.getList().get(2)));
+			    statement.setInt(2,Integer.parseInt(request.getList().get(1)));
+		    	statement.setInt(3,i+1);
+		    	statement.setString(4,request.getList().get(0));
 		    	res = statement.executeQuery();
 		    	res.next();
 					day.add(res.getInt(1));
-					System.out.println(res.getInt(1));
-			   statement2.setInt(1,i+1);
-			   statement2.setString(2,request.getList().get(0));
+					statement2.setInt(1,Integer.parseInt(request.getList().get(2)));
+					statement2.setInt(2,Integer.parseInt(request.getList().get(1)));
+					statement2.setInt(3,i+1);
+					statement2.setString(4,request.getList().get(0));
 		    	res2 = statement2.executeQuery();
 		    	res2.next();		    	
 					day.add(res2.getInt(1));

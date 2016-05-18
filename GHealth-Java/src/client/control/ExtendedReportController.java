@@ -11,10 +11,8 @@ import java.util.ResourceBundle;
 import client.boundry.GeneralManagerUI;
 import client.interfaces.IController;
 import client.interfaces.IUi;
-import common.entity.Reply;
-import common.entity.Request;
-import common.enums.Command;
-import common.enums.Result;
+import common.entity.*;
+import common.enums.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,12 +35,12 @@ public class ExtendedReportController implements IController, Initializable{
 	@FXML private ComboBox<String> selectBranchList1;
 	@FXML private TextField numberTxt;
 	@FXML private BarChart<String, Integer> resChart;
-	@FXML private TextField clientsAvg;
-	@FXML private TextField waitingAvg;
-	@FXML private TextField clientsSd;
-	@FXML private TextField waitingSd;
-	@FXML private TextField clientsTotal;
-	@FXML private TextField waitingTotal;
+	@FXML private TextField clientsAvg1;
+	@FXML private TextField waitingAvg1;
+	@FXML private TextField clientsSd1;
+	@FXML private TextField waitingSd1;
+	@FXML private TextField clientsTotal1;
+	@FXML private TextField waitingTotal1;
 	@FXML private ComboBox<Integer> monthList;
 	@FXML private ComboBox<Integer> yearList1;
 	@FXML private ComboBox<Integer> yearList2;
@@ -58,20 +56,36 @@ public class ExtendedReportController implements IController, Initializable{
 	private int w_total;
 	private double w_sd;
 	
-	
+	/**
+	 * Monthly report button handler
+	 * @param event
+	 */
 	 
 	public void onMonthlyReportButtonClick(ActionEvent event){
 
 		try{
-			if (monthList.getSelectionModel().getSelectedItem() == null || yearList1.getSelectionModel().getSelectedItem() == null || selectBranchList.getSelectionModel().getSelectedItem() == null){
+			
+				if (selectBranchList.getSelectionModel().getSelectedItem() == null 
+						|| yearList1.getSelectionModel().getSelectedItem() == null 
+						|| monthList.getSelectionModel().getSelectedItem() == null ){
 					thisUi.displayErrorMessage("Invalid Input", "Required fields are missing. try again");
 					return;
 				}
 				
+				
+				Calendar now = Calendar.getInstance();
+				if (Integer.toString(now.get(Calendar.YEAR)).equals(yearList1.getSelectionModel().getSelectedItem().toString())
+						&& now.get(Calendar.MONTH) + 1 <= monthList.getSelectionModel().getSelectedItem()){
+					thisUi.displayErrorMessage("Not available", "No available information for the selected month.");
+					return;
+				}
+					
 				ArrayList<String> msg = new ArrayList<String>();
 				msg.add(selectBranchList.getSelectionModel().getSelectedItem().toString());
-				
-				Request request = new Request(Command.WEEKLY_REPORT,msg);
+				msg.add(yearList1.getSelectionModel().getSelectedItem().toString());
+				msg.add(monthList.getSelectionModel().getSelectedItem().toString());
+
+				Request request = new Request(Command.MONTHLY_REPORT,msg);
 				
 				try {
 					ClientConnectionController.clientConnect.controller = this;
@@ -93,14 +107,25 @@ public class ExtendedReportController implements IController, Initializable{
 
 		try{
 		
-			//TODO fix error message
-				if (selectBranchList.getSelectionModel().getSelectedItem() == null){
-					thisUi.displayErrorMessage("Invalid Input", "Please select a branch from the list.");
+				if (selectBranchList1.getSelectionModel().getSelectedItem() == null 
+						|| yearList2.getSelectionModel().getSelectedItem() == null 
+						|| weekList.getSelectionModel().getSelectedItem() == null ){
+					thisUi.displayErrorMessage("Invalid Input", "Required fields are missing. try again");
+					return;
+				}
+				
+				Calendar now = Calendar.getInstance();
+				
+				if (Integer.toString(now.get(Calendar.YEAR)).equals(yearList2.getSelectionModel().getSelectedItem().toString())
+						&& now.get(Calendar.WEEK_OF_YEAR) <= weekList.getSelectionModel().getSelectedItem()){
+					thisUi.displayErrorMessage("Not available", "No available information for the selected week.");
 					return;
 				}
 				
 				ArrayList<String> msg = new ArrayList<String>();
-				msg.add(selectBranchList.getSelectionModel().getSelectedItem().toString());
+				msg.add(selectBranchList1.getSelectionModel().getSelectedItem().toString());
+				msg.add(yearList2.getSelectionModel().getSelectedItem().toString());
+				msg.add(weekList.getSelectionModel().getSelectedItem().toString());
 				
 				Request request = new Request(Command.WEEKLY_REPORT,msg);
 				
@@ -193,20 +218,18 @@ public class ExtendedReportController implements IController, Initializable{
 			
 			c_sd = Math.sqrt(0.2*calc_cSd);
 			w_sd = Math.sqrt(0.2*calc_wSd);
-
-			System.out.println(c_avg);
 			
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					
 					DecimalFormat df = new DecimalFormat("#.##");
-					clientsAvg.setText(df.format(c_avg));
-					waitingAvg.setText(df.format(w_avg));
-					clientsSd.setText(df.format(c_sd));
-					waitingSd.setText(df.format(w_sd));
-					clientsTotal.setText(Integer.toString(c_total));
-					waitingTotal.setText(Integer.toString(w_total));
+					clientsAvg1.setText(df.format(c_avg));
+					waitingAvg1.setText(df.format(w_avg));
+					clientsSd1.setText(df.format(c_sd));
+					waitingSd1.setText(df.format(w_sd));
+					clientsTotal1.setText(Integer.toString(c_total));
+					waitingTotal1.setText(Integer.toString(w_total));
 					
 					resChart.getData().clear();
 					resChart.getData().addAll(s1,s2);
@@ -221,8 +244,50 @@ public class ExtendedReportController implements IController, Initializable{
 						ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 						ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 			}
-		}
+		
+		else if (reply.getCommand() == Command.MONTHLY_REPORT){
+			if (result instanceof Result){
+				if ((Result)result == Result.FAILED){
+					thisUi.displayErrorMessage("Operation failed","No information found for the selected month.");
+				}
+				else {
+					thisUi.displayErrorMessage("Server Error","An error occured while trying to create the report. try again.");
+				}
+			}
+			
+			else{
+				ArrayList<Object> list = (ArrayList<Object>)result;
+				ArrayList<Integer> clients = (ArrayList<Integer>)list.get(0);
+				ArrayList<Integer> waiting = (ArrayList<Integer>)list.get(1);
+				
+				Series<String, Integer> s1 = new XYChart.Series<>();
+				Series<String, Integer> s2 = new XYChart.Series<>();
+				
 
+				s1.setName("Treated Clients");
+				s2.setName("Waiting Time");
+				
+				for (int i = 0 ; i < clients.size(); i++){
+					s1.getData().add(new XYChart.Data("Week "+ i + 1, clients.get(i)));
+					s2.getData().add(new XYChart.Data("Week "+ i + 1, waiting.get(i)));
+				}
+
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+												
+						resChart.getData().clear();
+						resChart.getData().addAll(s1,s2);
+						}
+				});
+				
+				
+			}
+		}
+		
+	}
+
+	
 	/**
 	 * Initialize controller and General Manager UI function
 	 */

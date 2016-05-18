@@ -19,13 +19,13 @@ public class MonthlyReportDB {
 		String getMonthlyClients = "SELECT COUNT(*), WEEK(appointments.appDate) AS WEEK " +
                                "FROM appointments, specialists " +
                                "WHERE appointments.specialist=specialists.specialistID AND specialists.branchName=? " +
-                               "AND appointments.appMissed=0 AND MONTH(appointments.appDate)=? AND YEAR(appointments.appDate)=?" +
+                               "AND appointments.appMissed=0 AND MONTH(appointments.appDate)=? AND YEAR(appointments.appDate)=? " +
                                "GROUP BY WEEK(appointments.appDate) " +
                                "ORDER BY  WEEK(appointments.appDate) ASC";
 		
 		String getMonthlyWaitingTime = "SELECT SUM(DATEDIFF(appointments.appDate, appointments.appInviteDate)) AS Waiting, WEEK(appointments.appDate) AS WEEK " +
                                    "FROM appointments, specialists " +
-                                   "WHERE appointments.specialist=specialists.specialistID AND specialists.branchName=?" +
+                                   "WHERE appointments.specialist=specialists.specialistID AND specialists.branchName=? " +
                                    "AND appointments.appMissed=0 AND " +
                                    "MONTH(appointments.appDate)=? AND YEAR(appointments.appDate)=? " +
                                    "GROUP BY WEEK(appointments.appDate) " +
@@ -36,12 +36,18 @@ public class MonthlyReportDB {
 		try{
 			//prepare the first week of the month -> necessary for barChart
 			PreparedStatement stmnt1 = connection.prepareStatement(firstWeekOfMonth);
-			String strDate = request.getList().get(1) +"-0"+request.getList().get(2)+"-01";
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+			String strDate;
+			if (Integer.parseInt(request.getList().get(2)) < 10)
+				strDate = request.getList().get(1) +"0"+request.getList().get(2) + "01";
+			else{
+				strDate = request.getList().get(1) + request.getList().get(2) + "01";
+			}
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			java.util.Date date = sdf.parse(strDate);
      java.sql.Date sqlDate = new java.sql.Date(date.getTime());
      stmnt1.setDate(1, sqlDate);
 			ResultSet week_number = stmnt1.executeQuery();
+			week_number.next();
 			int first_week = week_number.getInt(1);
 			
 			PreparedStatement stmnt2 = connection.prepareStatement(getMonthlyClients);
@@ -89,8 +95,10 @@ public class MonthlyReportDB {
 					total_waiting.add(0);
 				}
 			}
+			System.out.println(total_waiting + " " + total_clients);
 			
 			if (!flag1 && !flag2){
+				System.out.println("im here");
 				return Result.FAILED;
 			}
 			
