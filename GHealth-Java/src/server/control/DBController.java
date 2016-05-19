@@ -55,59 +55,77 @@ public class DBController {
 				case CANCEL_APPOINTMENT:{
 					return CancelAppointmentDB.handleMessage(request, connection) ;
 				}
+				
 				case FIND_REFERENCE_BY_REFNUM:{
 					return FindReferenceByRefNum.handleMessage(request, connection);
 				}
+				
 				case REMOVE_CLIENT:{
 					return RemoveClientDB.handleMessage(request, connection);
-				}			
+				}
+				
 				case RETURN_CLIENT:{
 					return ReturnClientDB.handleMessage(request, connection);
 				}
+				
 				case FIND_USERID_BY_USERNAME:{
 					return FindUserIdByUserNameDB.handleMessage(request, connection);
 				}
+				
 				case FIND_TODAY_APPOINTMENT:{
 					return FindTodayAppointmentDB.handleMessage(request, connection);
 				}
+				
 		  	case CREATE_EXAMINATION:{
 					return CreateExaminationDB.handleMessage(request, connection);
 				}
+		  	
 				case CREATE_EXAMINATION_VIEW:{
 					return CreateExaminationViewDB.handleMessage(request, connection);
 				}
+				
 				case CREATE_EXAMINATION_UPDATE:{
 					return CreateExaminationUpdateDB.handleMessage(request, connection);
 				}
+				
 				case GET_CLIENT_BY_APPOINTMET:{
 					return GetClientByAppointmentDB.handleMessage(request, connection);
 				}
+				
 				case GET_BRANCHES:{
 					return GetBranchesDB.handleMessage(request, connection);
 				}
+				
 				case WEEKLY_REPORT:{
 					return WeeklyReportDB.handleMessage(request, connection);
 				}
+				
 				case MONTHLY_REPORT:{
 					return MonthlyReportDB.handleMessage(request, connection);
 				}
+				
 				case GET_CLIENT_BY_CLIENT_ID:{
 					return GetClientIdByClientIdDB.handleMessage(request, connection);
 				}
+				
 				case GET_BRANCH_BY_USERNAME:{
 					return GetBranchByUserNameDB.handleMessage(request, connection);
 				}
+				
 				case GET_EXAMINATION_TYPE:{
 					return GetExaminationTypeDB.handleMessage(request, connection);
 				}
+				
 				case INSERT_LAB_REFRENCE:{
 					return insertLabReferenceDB.handleMessage(request, connection);
 				}
-				
+		
+				case REPORT_MISSING:{
+					return ReportMissingDB.handleMessage(request, connection);
+				}
 
-		default:
-			break;
-				
+				default:
+								break;
 		}
 		
 		return Result.ERROR;

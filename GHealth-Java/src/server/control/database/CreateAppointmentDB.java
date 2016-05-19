@@ -22,6 +22,7 @@ public class CreateAppointmentDB {
     	
 		ResultSet res = null;
 		boolean flag = false;
+		String appStr = "";
 		Appointment appointment = (Appointment) request.getEntity();
 	
 		String searchDate = "SELECT * FROM ghealth.dates WHERE dateDate=? AND specID=?";
@@ -43,8 +44,9 @@ public class CreateAppointmentDB {
 		    
 		    if (res.next()){
 		    	flag = true;
-		    	String appStr = res.getString(3);
+		    	appStr = res.getString(3);
 		    	if (appStr.charAt(appointment.getTime() - 1) == '1'){
+		    		System.out.println("1");
 				    return Result.ERROR;
 		    	}
 		    }
@@ -58,6 +60,7 @@ public class CreateAppointmentDB {
 		    res = preparedStatement2.executeQuery();
 		    
 		    if (res.next()){
+	    		System.out.println("2");
 		    	return Result.FAILED;
 		    }
 
@@ -89,7 +92,6 @@ public class CreateAppointmentDB {
 		  //update existing date value in dates db  
 		    else{
 		    	
-		    	String appStr = res.getString(3);
 		    	StringBuilder addValue = new StringBuilder(appStr);
 		    	addValue.setCharAt(appointment.getTime() - 1,'1');
 		    	
@@ -107,6 +109,7 @@ public class CreateAppointmentDB {
 		    
 		} catch (SQLException e) {
 		    e.printStackTrace();
+    		System.out.println("3");
 		    return Result.ERROR;
 		}
 	}

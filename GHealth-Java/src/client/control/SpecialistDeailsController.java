@@ -263,7 +263,6 @@ public class SpecialistDeailsController implements IController, Initializable{
 			
 			else if (reply.getCommand() == Command.FIND_TODAY_APPOINTMENT){
 				
-				if (result instanceof ArrayList<?>){
 					ArrayList<Integer> hoursRes = (ArrayList<Integer>)result;
 					ArrayList<Hour> hours = new ArrayList<Hour>();
 					for (int i = 0 ; i<hoursRes.size(); i++){
@@ -272,7 +271,6 @@ public class SpecialistDeailsController implements IController, Initializable{
 						hours.add(hour);
 					}
 					onUpdateTableView(hours);
-				}
 			}
 			
 			else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
@@ -310,9 +308,6 @@ public class SpecialistDeailsController implements IController, Initializable{
 							add = res.get(7);
 							phoneNumber = res.get(6);
 							email = res.get(5);
-							
-							
-			
 						}
 						
 					});
@@ -322,20 +317,25 @@ public class SpecialistDeailsController implements IController, Initializable{
 			
 			else if (reply.getCommand() == Command.REPORT_MISSING){
 				
+				if ((Result)result == Result.OK){
+					
+					thisUi.displayMessage("Missed Appointments", "The appointment has marked as missed.");
+					
+					ArrayList<String> user = new ArrayList<String>();
+					user.add(ClientConnectionController.clientConnect.userName);
+					
+					Request request = new Request(Command.FIND_TODAY_APPOINTMENT,user);
+					
+					try {
+						ClientConnectionController.clientConnect.controller = this;
+						ClientConnectionController.clientConnect.sendToServer(request);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 				
-				
-				
-		
-				ArrayList<String> user = new ArrayList<String>();
-				user.add(ClientConnectionController.clientConnect.userName);
-				
-				Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
-				
-				try {
-					ClientConnectionController.clientConnect.controller = this;
-					ClientConnectionController.clientConnect.sendToServer(requst2);
-				} catch (IOException e) {
-					e.printStackTrace();
+				else{
+					thisUi.displayErrorMessage("Error", "An error occured while trying to report the appointment as missed.");
 				}
 			}
 		
