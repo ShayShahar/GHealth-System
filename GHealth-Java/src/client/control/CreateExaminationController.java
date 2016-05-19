@@ -1,6 +1,5 @@
 package client.control;
 
-import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -11,13 +10,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-
-import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-
 import client.boundry.CreateExaminationUI;
 import client.boundry.LabWorkerUI;
 import client.entity.Examination;
@@ -33,7 +26,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -148,7 +140,6 @@ public class CreateExaminationController implements IController, Initializable{
 					is = new FileInputStream(file.getPath());  // get the file path
 	        		 pic = new Image(is,100,100,false,false);  // resize the picture
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				 
@@ -256,7 +247,6 @@ public class CreateExaminationController implements IController, Initializable{
 		try {
 			is = new FileInputStream("src/img/imagehere.png");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  // get the file path
 		 pic = new Image(is,100,100,false,false);  // resize the picture
@@ -301,7 +291,6 @@ public class CreateExaminationController implements IController, Initializable{
 		try {
 			is = new FileInputStream("src/img/imagehere.png");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  // get the file path
 		 pic = new Image(is,100,100,false,false);  // resize the picture
