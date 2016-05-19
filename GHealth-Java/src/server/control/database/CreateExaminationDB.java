@@ -11,7 +11,7 @@ import client.entity.Examination;
 import common.entity.Request;
 import common.enums.Result;
 
-public class CreateExamination {
+public class CreateExaminationDB {
 	
 	/**
 	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector

@@ -22,7 +22,8 @@ public class FindAppointmentsDB {
     	
     	try{
     		Statement stmnt = connection.createStatement();
-    		ResultSet result = stmnt.executeQuery("SELECT * FROM ghealth.appointments, ghealth.clients, ghealth.specialists, ghealth.person"
+    		ResultSet result = stmnt.executeQuery("SELECT ghealth.appointments.appID, ghealth.appointments.appDate, "
+    				+ "ghealth.appointments.appTime, ghealth.person.personName, ghealth.person.personFamily, ghealth.specialists.branchName FROM ghealth.appointments, ghealth.clients, ghealth.specialists, ghealth.person"
     				+ " WHERE clients.person='" + request.getList().get(0) + "' AND ghealth.appointments.appDate >= NOW() AND ghealth.clients.clientID=appointments.client AND "
     						+ "ghealth.appointments.specialist=ghealth.specialists.specialistID AND ghealth.specialists.personID=ghealth.person.personID");
     		
@@ -38,9 +39,9 @@ public class FindAppointmentsDB {
     		    		
     		list.add(Integer.toString(result.getInt(1))); //appointment id
     		list.add((result.getDate(2)).toString()); //appointment date
-    		list.add(Integer.toString(result.getInt(4))); //appointment time
-    		list.add(result.getString(19) + " " + result.getString(20)); //set specialist name
-    		list.add(result.getString(17)); //branch
+    		list.add(Integer.toString(result.getInt(3))); //appointment time
+    		list.add(result.getString(4) + " " + result.getString(5)); //set specialist name
+    		list.add(result.getString(6)); //branch
     		
     		resultList.add(list);
     		

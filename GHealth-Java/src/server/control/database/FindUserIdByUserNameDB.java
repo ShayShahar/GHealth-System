@@ -8,7 +8,7 @@ import java.sql.Statement;
 import common.entity.Request;
 import common.enums.Result;
 
-public class FindUserIdByUserName {
+public class FindUserIdByUserNameDB {
 	
 	/**
 	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector

@@ -22,12 +22,12 @@ public class FindSpecialistDB {
     	boolean not_found = false;
     	try{
     	
-    		String searchAppointments = "SELECT * FROM ghealth.appointments, ghealth.specialists, ghealth.person, ghealth.branches " +
+    		String searchAppointments = "SELECT ghealth.appointments.specialist, ghealth.person.personName, ghealth.person.personFamily, ghealth.branches.branchName, ghealth.branches.branchAddress FROM ghealth.appointments, ghealth.specialists, ghealth.person, ghealth.branches " +
     		                            "WHERE ghealth.appointments.client=? AND appDate < NOW() AND " +
     		                            "ghealth.appointments.specialist=ghealth.specialists.specialistID " +
     	                           		"AND ghealth.specialists.specialistType=? AND ghealth.person.personID=ghealth.specialists.personID " +
-                                    "AND ghealth.specialists.branchName=ghealth.branches.branchName " +
-                                    "ORDER BY appDate DESC";
+    	                           		"AND ghealth.specialists.branchName=ghealth.branches.branchName " +
+    	                           		"ORDER BY appDate DESC";
     		
     		String findSpecialists = "SELECT ghealth.specialists.specialistID, ghealth.person.personName, ghealth.person.personFamily, ghealth.branches.branchName, ghealth.branches.branchAddress FROM ghealth.specialists," +
     		                  		   " ghealth.person, ghealth.branches WHERE specialists.specialistType=?" +
@@ -46,18 +46,18 @@ public class FindSpecialistDB {
 		    while (result.next()){
 		    	boolean flag = false;
 		    	for (int i = 0; i<specialists.size(); i++){
-		    			if (specialists.get(i) == result.getInt(8)){
+		    			if (specialists.get(i) == result.getInt(1)){
 		    				flag = true;
 		    			}
 		    	}
 		    	if (flag == false){
 			    	ArrayList<String> list = new ArrayList<String>();
-			    	list.add((Integer.toString(result.getInt(8))));
-			    	list.add(result.getString(15));
-			    	list.add(result.getString(16));
-			    	list.add(result.getString(20));
-			    	list.add(result.getString(21));
-			    	specialists.add(result.getInt(8));
+			    	list.add((Integer.toString(result.getInt(1))));
+			    	list.add(result.getString(2));
+			    	list.add(result.getString(3));
+			    	list.add(result.getString(4));
+			    	list.add(result.getString(5));
+			    	specialists.add(result.getInt(1));
 			    	objectList.add(list);
 		    	}
 		    }

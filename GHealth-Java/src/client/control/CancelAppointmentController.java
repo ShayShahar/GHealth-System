@@ -94,7 +94,6 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 		ArrayList<String> msg = new ArrayList<String>();
 		msg.add(Integer.toString(choosedID));
-	
 		Request request = new Request(Command.CANCEL_APPOINTMENT,msg);
 		
 		try {
