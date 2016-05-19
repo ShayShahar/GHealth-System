@@ -24,7 +24,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 
 	public static String user_id;
 	public static int id;
-	public String clientID;
+	public String clientId;
 	public String comments;
 	public String choosedUrgency;
 	public String choosedExaminationType;
@@ -58,6 +58,8 @@ public class CreateLabReferenceController implements IController,Initializable{
 		fieldClientFamily.setEditable(false);
 		fieldClientAddress.setEditable(false);
 		fieldClientEmail.setEditable(false);
+		
+		this.clientId = clientId;
 	}
 	
 	@Override
@@ -94,6 +96,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 		 list.add(comments);
 		 list.add(choosedUrgency);
 		 list.add(choosedExaminationType);
+		 list.add(clientId);
 		 
 		 
 		 
