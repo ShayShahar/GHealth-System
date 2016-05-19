@@ -88,6 +88,17 @@ public class DBController {
 				case WEEKLY_REPORT:{
 					return WeeklyReportDB.handleMessage(request, connection);
 				}
+				case MONTHLY_REPORT:{
+					return MonthlyReportDB.handleMessage(request, connection);
+				}
+				case GET_CLIENT_BY_CLIENT_ID:{
+		//			return GetClientIdByClientIdDB.handleMessage(request, connection);
+				}
+				
+				case GET_BRANCH_BY_USERNAME:{
+					return GetBranchByUserNameDB.handleMessage(request, connection);
+				}
+				
 
 		default:
 			break;

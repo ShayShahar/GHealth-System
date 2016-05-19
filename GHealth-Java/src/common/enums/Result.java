@@ -17,4 +17,5 @@ public enum Result {
     NO_APPOINTMENTS_FOUND,
     NEXT_24,
     APPOINTMENT_CANCELED;
+
 }

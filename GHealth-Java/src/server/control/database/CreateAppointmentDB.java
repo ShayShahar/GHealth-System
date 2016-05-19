@@ -10,21 +10,58 @@ import common.enums.Result;
 
 public class CreateAppointmentDB {
 	
+	/**
+	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
+	 * The function process the queries results then return a message to the client with the requested details.
+	 * @param request The request object that send by the client
+	 * @param connection JDBC connection parameter
+	 * @return return Object type. each result may return different type of objects.
+	 */
 	
     public static Object handleMessage (Request request, Connection connection) {
     	
 		ResultSet res = null;
-
+		boolean flag = false;
 		Appointment appointment = (Appointment) request.getEntity();
 	
 		String searchDate = "SELECT * FROM ghealth.dates WHERE dateDate=? AND specID=?";
 		String insertAppointment = "INSERT INTO ghealth.appointments (appDate, appInviteDate, appTime, specialist, client) VALUES (?,NOW(),?,?,?)";
 		String insertNewDate = "INSERT INTO ghealth.dates (dateDate, specID, appointments) VALUES (?,?,?)";
 		String updateDate ="UPDATE ghealth.dates SET appointments=? WHERE dateDate=? AND specID=?";
+		String searchAppointment = "SELECT * FROM ghealth.appointments " + 
+																	 "WHERE client = ? AND appDate = ? AND appTime = ?";
 
 		
 		try {
 			
+			//search for the date in db
+		    PreparedStatement preparedStatement = connection.prepareStatement(searchDate);
+		    preparedStatement.setDate(1,appointment.getDate());
+		    preparedStatement.setInt(2,appointment.getSpecialistID());
+		    
+		    res = preparedStatement.executeQuery();
+		    
+		    if (res.next()){
+		    	flag = true;
+		    	String appStr = res.getString(3);
+		    	if (appStr.charAt(appointment.getTime() - 1) == '1'){
+				    return Result.ERROR;
+		    	}
+		    }
+		    
+		  //check if the client have another appointment in same date and hour
+		    PreparedStatement preparedStatement2 = connection.prepareStatement(searchAppointment);
+		    preparedStatement2.setInt(1,appointment.getClientID());
+		    preparedStatement2.setDate(2,appointment.getDate());
+		    preparedStatement2.setInt(3,appointment.getTime());
+			
+		    res = preparedStatement2.executeQuery();
+		    
+		    if (res.next()){
+		    	return Result.FAILED;
+		    }
+
+		    
 			//create new appointment in db
 		    PreparedStatement preparedStatement1 = connection.prepareStatement(insertAppointment);
 		    preparedStatement1.setDate(1,appointment.getDate());
@@ -33,17 +70,10 @@ public class CreateAppointmentDB {
 		    preparedStatement1.setInt(4,appointment.getClientID());
 
 		    preparedStatement1.executeUpdate();
-		    
-		 //search for date in db
-		    
-		    PreparedStatement preparedStatement2 = connection.prepareStatement(searchDate);
-		    preparedStatement2.setDate(1,appointment.getDate());
-		    preparedStatement2.setInt(2,appointment.getSpecialistID());
-		    
-		    res = preparedStatement2.executeQuery();
-		    
+		   
+ 
 		  //in case this is the first appointment for the specialist at this date 		    
-		    if (!res.next()) {
+		    if (flag == false) {
 		    	
 			    PreparedStatement preparedStatement3 = connection.prepareStatement(insertNewDate);
 			    preparedStatement3.setDate(1,appointment.getDate());

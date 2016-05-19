@@ -271,11 +271,9 @@ public class DispatcherDetailsController implements IController, Initializable{
 						
 						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
 						{
-							if (ui instanceof DispatcherUI){
 								ui.hideWindow();
 								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-							}
 						}
 					}
 				}

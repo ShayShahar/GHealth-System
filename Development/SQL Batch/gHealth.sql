@@ -38,7 +38,7 @@ CREATE TABLE `appointments` (
   KEY `client_idx` (`client`),
   CONSTRAINT `client` FOREIGN KEY (`client`) REFERENCES `clients` (`clientID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `specialist` FOREIGN KEY (`specialist`) REFERENCES `specialists` (`specialistID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +47,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
+INSERT INTO `appointments` VALUES (1,'2016-05-18','2016-05-01 17:57:52',1,NULL,NULL,0,16,1),(2,'2016-05-15','2016-05-07 17:58:04',4,NULL,NULL,0,10,1),(3,'2016-05-08','2016-05-01 17:57:52',3,NULL,NULL,0,10,1),(4,'2016-05-09','2016-05-02 17:57:52',1,NULL,NULL,0,10,1),(5,'2016-05-01','2016-05-01 17:57:52',3,NULL,NULL,0,16,1),(6,'2016-04-27','2016-03-01 17:57:52',5,NULL,NULL,0,16,1);
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,8 +63,8 @@ CREATE TABLE `branches` (
   `branchAddress` varchar(45) DEFAULT NULL,
   `manager` varchar(9) DEFAULT NULL,
   PRIMARY KEY (`branchName`),
-  KEY `manager_idx` (`manager`),
-  CONSTRAINT `manager` FOREIGN KEY (`manager`) REFERENCES `person` (`personID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `manager_UNIQUE` (`manager`),
+  KEY `manager_idx` (`manager`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -94,7 +95,7 @@ CREATE TABLE `clients` (
   PRIMARY KEY (`clientID`),
   KEY `personID_idx` (`person`),
   CONSTRAINT `person` FOREIGN KEY (`person`) REFERENCES `person` (`personID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +104,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'123456789','Clalit',0,'2016-05-06','2016-05-15'),(2,'741852963','Maccabi',0,'2016-05-08',NULL),(3,'147258369','Meuhedet',0,'2016-05-11',NULL),(4,'852963741','Maccabi',1,'2016-05-11',NULL);
+INSERT INTO `clients` VALUES (1,'123456789','Clalit',1,'2016-05-06','2016-05-17'),(2,'741852963','Maccabi',0,'2016-05-08',NULL),(3,'147258369','Meuhedet',0,'2016-05-11',NULL),(4,'852963741','Maccabi',1,'2016-05-11',NULL),(5,'784512963','Bikur Rofe',0,'2016-05-15','2016-05-15');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,6 +131,7 @@ CREATE TABLE `dates` (
 
 LOCK TABLES `dates` WRITE;
 /*!40000 ALTER TABLE `dates` DISABLE KEYS */;
+INSERT INTO `dates` VALUES ('2016-05-16',10,'100000000000000000'),('2016-05-24',2,'000100000000000000');
 /*!40000 ALTER TABLE `dates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +211,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES ('111111111','Yakir','Karandian',NULL,NULL,NULL),('123456789','Yossi','Bitton','none','052-2222222','Karmiel'),('147258369','Barak','Itzhaki','none','03-987412','Jerusalem'),('213245658','Assaf','Tzar',NULL,NULL,'Nofit'),('302632195','Shay','Shahar','shayscal90@gmail.com','0509443347','Haifa'),('305003659','Ra','Cohen','none',NULL,NULL),('741852963','Dani','Danieli','asdad@walla.com','052-9878233','Jerusalem'),('852963741','Moni','Mushonov','none','054-1231234','Tel Aviv'),('987654321','Yossi','Bitton','none','054-4445554','Karmiel'),('999999910','Moshe','Moshe','moshemoshe@gmail.com','03-435341','Haifa'),('999999911','Yehoram','Arbel','yoar@gmail.com','02-435435','Nofit'),('999999912','Hassan','Nasrallah','none','054-45343324','Zichron Yakov'),('999999913','Muhamad','Death','none','054-2342341','Somewhere'),('999999914','Itzak','Zohar','none','050-2342341','Tel Aviv'),('999999915','Taleb','Tawatha','none','04-345341','Haifa'),('999999991','Yossi','Benayun','yossi@gmail.com','050-1431233','Haifa'),('999999992','Itay','Shecter','itay@gmail.com','04-3242341','Haifa'),('999999993','Eran','Zehavi','eran@walla.com','03-2355114','Ramat Gan'),('999999994','Tal','Ben - Haim','tal@braude.ac.il','08-1342351','Ramat Gan'),('999999995','Christiano','Ronaldo','cr7@gmail.com','054-234211','Ramat Gan'),('999999996','Bar','Refaeli','barbar@gmail.com','052-536321','Tel Aviv'),('999999997','Gal','Gadot','galg@walla.co.il','03-6520234','Tel Aviv'),('999999998','Pini','Balili','pinhas@gmail.com','04-235214','Tel Aviv'),('999999999','Eyal','Bercovich','eyalbe@gmail.com','055-4354352','Haifa');
+INSERT INTO `person` VALUES ('111111111','Yakir','Karandian',NULL,NULL,NULL),('123456789','Yossi','Bitton','none','052-2222222','Karmiel'),('147258369','Barak','Itzhaki','none','03-987412','Jerusalem'),('213245658','Assaf','Tzar',NULL,NULL,'Nofit'),('302632195','Shay','Shahar','shayscal90@gmail.com','0509443347','Haifa'),('305003659','Ra','Cohen','none',NULL,NULL),('741852963','Dani','Danieli','asdad@walla.com','052-9878233','Jerusalem'),('784512963','Israel','Israeli','none','052-12365478','Hadera'),('852963741','Moni','Mushonov','none','054-1231234','Tel Aviv'),('987654321','Yossi','Bitton','none','054-4445554','Karmiel'),('999999910','Moshe','Moshe','moshemoshe@gmail.com','03-435341','Haifa'),('999999911','Yehoram','Arbel','yoar@gmail.com','02-435435','Nofit'),('999999912','Hassan','Nasrallah','none','054-45343324','Zichron Yakov'),('999999913','Muhamad','Death','none','054-2342341','Somewhere'),('999999914','Itzak','Zohar','none','050-2342341','Tel Aviv'),('999999915','Taleb','Tawatha','none','04-345341','Haifa'),('999999991','Yossi','Benayun','yossi@gmail.com','050-1431233','Haifa'),('999999992','Itay','Shecter','itay@gmail.com','04-3242341','Haifa'),('999999993','Eran','Zehavi','eran@walla.com','03-2355114','Ramat Gan'),('999999994','Tal','Ben - Haim','tal@braude.ac.il','08-1342351','Ramat Gan'),('999999995','Christiano','Ronaldo','cr7@gmail.com','054-234211','Ramat Gan'),('999999996','Bar','Refaeli','barbar@gmail.com','052-536321','Tel Aviv'),('999999997','Gal','Gadot','galg@walla.co.il','03-6520234','Tel Aviv'),('999999998','Pini','Balili','pinhas@gmail.com','04-235214','Tel Aviv'),('999999999','Eyal','Bercovich','eyalbe@gmail.com','055-4354352','Haifa');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,7 +251,7 @@ CREATE TABLE `reference` (
 
 LOCK TABLES `reference` WRITE;
 /*!40000 ALTER TABLE `reference` DISABLE KEYS */;
-INSERT INTO `reference` VALUES (1,'2016-05-11','Some Comments','HIGH',0,1,16,1,NULL);
+INSERT INTO `reference` VALUES (1,'2016-05-11','Some Comments','HIGH',0,1,16,1,2000);
 /*!40000 ALTER TABLE `reference` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -321,4 +323,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-15 17:25:38
+-- Dump completed on 2016-05-18 15:36:17
