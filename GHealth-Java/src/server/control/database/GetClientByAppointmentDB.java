@@ -20,7 +20,8 @@ public class GetClientByAppointmentDB {
 	 */
 	
 	  public static Object handleMessage (Request request, Connection connection) {
-		  Integer id ,spId;
+		  Integer spId;
+		  String id;
 	    		String searchClient = "SELECT ghealth.clients.person, ghealth.clients.clientID, ghealth.clients.clientClinic  FROM ghealth.appointments , ghealth.clients WHERE  ghealth.appointments.appDate=CURDATE() AND ghealth.appointments.specialist=?  AND ghealth.appointments.appTime=? AND ghealth.appointments.client=ghealth.clients.clientID";
 	 		    String searchDetails = "SELECT * FROM ghealth.person WHERE  ghealth.person.personID=? ";
 	 		   String spIdSt = "SELECT ghealth.specialists.specialistID FROM ghealth.users , ghealth.specialists WHERE userName =? AND ghealth.users.personID=ghealth.specialists.personID";
@@ -48,9 +49,7 @@ public class GetClientByAppointmentDB {
 	 			    PreparedStatement preparedStatement1 = connection.prepareStatement(searchClient);
 	 			    ResultSet res;
 	 			    preparedStatement1.setString(1,Integer.toString(spId));
-	 			   preparedStatement1.setString(2,request.getList().get(0));
-	 			  System.out.println(request.getList().get(0));
-	 			 System.out.println(request.getList().get(1));
+	 			    preparedStatement1.setString(2,request.getList().get(0));
 	 			    res = preparedStatement1.executeQuery();
 
 	 			    if (!res.next()){
@@ -58,31 +57,28 @@ public class GetClientByAppointmentDB {
 	 			    	return Result.ERROR;
 	 			    }
 		    	
-	 			     id = res.getInt(1);
-	 			   list.add(Integer.toString(id));
+	 			     id = res.getString(1);
+	 			   list.add(id);
 	 			   list.add(Integer.toString(res.getInt(2)));
 	 			   list.add(res.getString(3));
 	 			    	 
 	 		 		   	try{
 	 		 			    PreparedStatement preparedStatement2 = connection.prepareStatement(searchDetails);
 	 		 			    ResultSet result;
-	 		 			    preparedStatement2.setString(1,Integer.toString(id));
+	 		 			    preparedStatement2.setString(1,id);
 
 	 		 			  result = preparedStatement2.executeQuery();
 	 		 			    
 	 		 			    if (!result.next()){
 	 		 			    	return Result.ERROR;
 	 		 			    }
-	 			    	
-	 		 			list.add(Integer.toString(res.getInt(1)));
 	 		     		list.add(result.getString(2));
 	 		     		list.add(result.getString(3));
 	 		     		list.add(result.getString(4));
 	 		     		list.add(result.getString(5));
 	 		     		list.add(result.getString(6));
-	 		     	//	list.add(joinDate);
 	 		 			    
-	 		 			    return list;
+	 		 			return list;
 	 		 				  
 	 		 	    	} catch (SQLException e) {
 	 		 						e.printStackTrace();

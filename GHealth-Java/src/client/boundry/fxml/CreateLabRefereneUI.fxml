@@ -22,7 +22,7 @@
             <Image url="@../../../img/header.png" />
          </image>
       </ImageView>
-      <Button cancelButton="true" layoutX="35.0" layoutY="552.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout" />
+      <Button cancelButton="true" layoutX="35.0" layoutY="552.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />
       <Separator layoutX="51.0" layoutY="197.0" prefHeight="17.0" prefWidth="472.0" />
       <Accordion layoutX="35.0" layoutY="242.0" />
       <GridPane layoutX="20.0" layoutY="37.0" prefHeight="136.0" prefWidth="534.0" style="-fx-background-color: #ebebeb;" vgap="10.0">

@@ -1,4 +1,4 @@
-package server.control;
+package server.control.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

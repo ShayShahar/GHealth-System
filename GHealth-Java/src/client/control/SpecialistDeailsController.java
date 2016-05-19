@@ -299,11 +299,11 @@ else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
 				fieldClientID.setText(res.get(1));
 				fieldClientClinic.setText(res.get(2));
 				SpClientIDTxt.setText(res.get(0));
-				fieldClientName.setText(res.get(4));
-				fieldClientFamily.setText(res.get(5));
-				fieldClientAddress.setText(res.get(8));
-				fieldClientPhone.setText(res.get(7));
-				fieldClientEmail.setText(res.get(6));
+				fieldClientName.setText(res.get(3));
+				fieldClientFamily.setText(res.get(4));
+				fieldClientAddress.setText(res.get(7));
+				fieldClientPhone.setText(res.get(6));
+				fieldClientEmail.setText(res.get(5));
 				
 				SpViewHistoryBtn.setDisable(false);
 				SpEndTreatmentBtn.setDisable(false);
@@ -311,12 +311,13 @@ else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
 				SpViewExaminationsBtn.setDisable(false);
 				SpRecordAppointmentBtn.setDisable(false);
 				SpReportMissingBtn.setDisable(false);
-				pName = res.get(4);
-				fName = res.get(5);
+				
+				pName = res.get(3);
+				fName = res.get(4);
 				personId = res.get(0);
-				add = res.get(8);
-				phoneNumber = res.get(7);
-				email = res.get(6);
+				add = res.get(7);
+				phoneNumber = res.get(6);
+				email = res.get(5);
 				
 				
 

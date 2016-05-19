@@ -1,4 +1,4 @@
-package server.control;
+package server.control.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,25 +14,31 @@ public class GetExaminationTypeDB {
 	public static Object handleMessage(Request request, Connection connection) {
 		
 		ArrayList<String> list = new ArrayList<String>();
-		String stmnt = "SELECT ghealth.examinationtype. FROM ghealth.examinationtype , ghealth.specialists WHERE userName =? AND ghealth.users.personID=ghealth.specialists.personID";
+		
+		String stmnt = "SELECT ghealth.examinationtype.typeName FROM ghealth.examinationtype";
 	   	try{
 
     		PreparedStatement preparedStatement1 = connection.prepareStatement(stmnt);    				
     		ResultSet result;	
-    		preparedStatement1.setString(1,request.getList().get(0));
+    		
     		result = preparedStatement1.executeQuery();
-    		if(!result.next())
+    		if(!result.next()){
+
     			return Result.ERROR;
-    			
-    		list.add(result.getString(1));
-    
+    		}
+    		
+    		do{
+    			list.add(result.getString(1));
+    		   }while(result.next());
+
+
+    		return list;
 			  
     	} catch (SQLException e) {
 					e.printStackTrace();
 					return Result.ERROR;
-			}
-		return id;
+		}
 	}		
-	}
+}
 
 
