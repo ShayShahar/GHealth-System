@@ -81,7 +81,8 @@ public class CreateExaminationController implements IController, Initializable{
 	
 	ObservableList<String> list = FXCollections.observableArrayList();
 	
-			
+	
+		 
 	@Override
 	/**
 	 * initialize the CreateExamination variables , and loaded items like 
