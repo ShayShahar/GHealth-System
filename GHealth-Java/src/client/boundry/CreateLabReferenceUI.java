@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import client.control.ClientConnectionController;
+import client.control.CreateAppointmentController;
+import client.control.CreateLabReferenceController;
 import client.interfaces.IUi;
 import common.entity.Request;
 import common.enums.Command;
@@ -24,6 +26,16 @@ import javafx.util.Pair;
 public class CreateLabReferenceUI implements IUi {
 	
 	private static Stage mainStage;
+	String pName,fName,personId,add,phoneNumber,email;
+	
+	public CreateLabReferenceUI(String pName,String fName,String personId,String add,String phoneNumber,String email){
+		this.pName = pName;
+		this.fName = fName;
+		this.personId = personId;
+		this.add = add;
+		this.phoneNumber = phoneNumber;
+		this.email = email;		
+	}
 
 	@Override
 	public void hideWindow() {
@@ -60,8 +72,10 @@ public class CreateLabReferenceUI implements IUi {
 				  Parent root;
 					try {
 						root = (Parent) fxmlLoader.load();
-					      Stage stage = new Stage();
+					    Stage stage = new Stage();
 					      stage.setTitle("Create Lab Reference");
+					      CreateLabReferenceController controller = fxmlLoader.getController();
+					      controller.setUser(pName,fName,personId,add,phoneNumber,email);
 						  URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
 						 stage.getIcons().add(new Image(url_32.toString()));
 					      Scene scene = new Scene(root);

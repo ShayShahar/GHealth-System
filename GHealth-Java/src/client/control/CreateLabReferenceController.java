@@ -36,6 +36,8 @@ public class CreateLabReferenceController implements IController,Initializable{
 	@FXML private TextField fieldClientEmail;
 	@FXML private ComboBox<String> examinationTypeCom;
 	@FXML private ComboBox<String> urgencyCom;
+	
+	
 
 	ObservableList<String> examinationList = FXCollections.observableArrayList("Allergology","Anaesthetics",
 			"Biological hematology","Cardiology",
@@ -64,6 +66,21 @@ public class CreateLabReferenceController implements IController,Initializable{
 		
 	}
 	
+	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email){
+		fieldClientName.setText(pName);
+		SpClientIDTxt.setText(personId);
+		fieldClientPhone.setText(phoneNumber);
+		fieldClientFamily.setText(fName);
+		fieldClientAddress.setText(add);
+		fieldClientEmail.setText(email);
+		fieldClientName.setEditable(false);
+		SpClientIDTxt.setEditable(false);
+		fieldClientPhone.setEditable(false);
+		fieldClientFamily.setEditable(false);
+		fieldClientAddress.setEditable(false);
+		fieldClientEmail.setEditable(false);
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		clientID = SpecialistDeailsController.clientID; 
@@ -74,9 +91,9 @@ public class CreateLabReferenceController implements IController,Initializable{
 		urgencyCom.setItems(urgencyList);		
 		//urgencyCom.getSelectionModel().selectFirst();
 		
-		ArrayList<String> msg = new ArrayList<String>();
-		msg.add(clientID);
-		Request request = new Request(Command.GET_CLIENT_BY_CLIENT_ID,msg);
+	//	ArrayList<String> msg = new ArrayList<String>();
+
+		Request request = new Request(Command.GET_EXAMINATION_TYPE,null);
 		
 		try {
 			ClientConnectionController.clientConnect.controller = this;

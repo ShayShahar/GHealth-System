@@ -98,6 +98,9 @@ public class DBController {
 				case GET_BRANCH_BY_USERNAME:{
 					return GetBranchByUserNameDB.handleMessage(request, connection);
 				}
+				case GET_EXAMINATION_TYPE:{
+					return GetExaminationTypeDB.handleMessage(request, connection);
+				}
 				
 
 		default:
