@@ -52,7 +52,13 @@ public class SpecialistDeailsController implements IController, Initializable{
 		@SuppressWarnings("unused")
 		private static String clientID;
 		private static String userName = ClientConnectionController.clientConnect.userName;
-		private String pName; private String fName; private String personId; private String add; private String phoneNumber; private String email;
+		private String pName; 
+		private String fName; 
+		private String personId; 
+		private String add; 
+		private String phoneNumber; 
+		private String email;
+		private String clientId;
 		private IUi thisUi;
 		
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
@@ -192,7 +198,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		
 				
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
-			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email);
+			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email,clientId);
 			ClientConnectionController.clientConnect.userInterface.add(create);
 			
 			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
@@ -310,6 +316,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 							add = res.get(7);
 							phoneNumber = res.get(6);
 							email = res.get(5);
+							clientId = res.get(1);
 							
 							
 			

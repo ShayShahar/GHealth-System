@@ -26,15 +26,16 @@ import javafx.util.Pair;
 public class CreateLabReferenceUI implements IUi {
 	
 	private static Stage mainStage;
-	String pName,fName,personId,add,phoneNumber,email;
+	String pName,fName,personId,add,phoneNumber,email,clientId;
 	
-	public CreateLabReferenceUI(String pName,String fName,String personId,String add,String phoneNumber,String email){
+	public CreateLabReferenceUI(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId){
 		this.pName = pName;
 		this.fName = fName;
 		this.personId = personId;
 		this.add = add;
 		this.phoneNumber = phoneNumber;
 		this.email = email;		
+		this.clientId = clientId;
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class CreateLabReferenceUI implements IUi {
 					    Stage stage = new Stage();
 					      stage.setTitle("Create Lab Reference");
 					      CreateLabReferenceController controller = fxmlLoader.getController();
-					      controller.setUser(pName,fName,personId,add,phoneNumber,email);
+					      controller.setUser(pName,fName,personId,add,phoneNumber,email,clientId);
 						  URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
 						 stage.getIcons().add(new Image(url_32.toString()));
 					      Scene scene = new Scene(root);
