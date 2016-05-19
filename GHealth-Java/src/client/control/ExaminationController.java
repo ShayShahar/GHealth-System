@@ -43,9 +43,17 @@ public class ExaminationController implements IController{
 	
 	//class variables
 	
+	/**
+	 * current reference that the user chose
+	 */
 	static Reference Curr_Ref;
+	
 	static String Curr_RefNum;
 
+	/**
+	 * Logut to the login menu
+	 * @param event
+	 */
   public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();
@@ -62,7 +70,10 @@ public class ExaminationController implements IController{
 		
 	}
         
-        
+        /**
+         * Search Reference by sid,cid,date or by reference number
+         * @param event
+         */
         public void OnSearchButtonClick(ActionEvent event)
         {
         	Request request;
@@ -111,6 +122,9 @@ public class ExaminationController implements IController{
         	
         }
         
+        /**
+         * Open Create Examination Window
+         */
         public void OnCreateExaminationClick()
         {
         	
@@ -130,7 +144,10 @@ public class ExaminationController implements IController{
         }
         
       
-        
+        /**
+         * choose between cid,sid,date and reference number
+         * disable the textfields that we dont need and enable the needed
+         */
         public void OnCheckBoxCheck()
         {
         	if(checkbox1.isSelected())
@@ -155,7 +172,10 @@ public class ExaminationController implements IController{
         	}
         }
 
-
+        /**
+         * handle reply from the server
+         * get the reference from the server
+         */
 		@Override
 		public void handleReply(Reply reply) {
 			
@@ -239,7 +259,10 @@ public class ExaminationController implements IController{
 		
 		
 		
-		
+		/**
+		 * check if we have to log out/
+		 * @param result
+		 */
 		
 		public void logoutCheck(Object result)  //Logged out if the user pressed the button
 		{
@@ -298,6 +321,10 @@ public class ExaminationController implements IController{
 			
 		}
 		
+		/*
+		 * check if the input in the field are fine or not
+		 * and display massage accordingly
+		 */
 		
 		public boolean checkFields()  //check if the user insert legal values to the fields
 		{
