@@ -21,14 +21,19 @@ public class FindTodayAppointmentDB {
 	
 	   public static Object handleMessage (Request request, Connection connection) {
 
-		  String searchAppointments = "SELECT * FROM ghealth.users, ghealth.appointments, ghealth.specialists WHERE ghealth.users.userName=? AND ghealth.appointments.appDate=CURDATE() AND ghealth.users.personID=ghealth.specialists.personID ORDER BY ghealth.appointments.appTime ASC";
-		 	ArrayList<Integer> list = new ArrayList<Integer>();
+		  String searchAppointments =
+				  														"SELECT appointments.appTime " +
+				  														"FROM ghealth.users, ghealth.appointments, ghealth.specialists " +
+				  														"WHERE ghealth.users.userName=? AND ghealth.appointments.appDate=CURDATE() " +
+				  														"AND ghealth.users.personID=ghealth.specialists.personID " +
+				  														"AND ghealth.appointments.specialist=ghealth.specialists.specialistID ORDER BY ghealth.appointments.appTime ASC";
+
+		   ArrayList<Integer> list = new ArrayList<Integer>();
 		   
 		   	try{
 			    PreparedStatement preparedStatement1 = connection.prepareStatement(searchAppointments);
 			    ResultSet res;
 			    preparedStatement1.setString(1,request.getList().get(0));
-			  //  System.out.println(request.getList().get(0));
 			    res = preparedStatement1.executeQuery();
 			    
 			    if (!res.next()){
@@ -37,7 +42,7 @@ public class FindTodayAppointmentDB {
 			    
 			    do {
 			    				    	
-			    	list.add(res.getInt(9));
+			    	list.add(res.getInt(1));
 			    	
 			    }while(res.next());
 			    

@@ -37,8 +37,6 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	private IUi thisUi;
 	
-
-	
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("Low","Normal","Critical");
 		
 	
@@ -59,7 +57,6 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		clientID = SpecialistDeailsController.clientID; 
 	
 		urgencyCom.setItems(urgencyList);		
 

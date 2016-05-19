@@ -1,6 +1,7 @@
 package client.control;
 
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -8,11 +9,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.ResourceBundle;
 import client.boundry.CreateExaminationUI;
-import client.boundry.DispatcherUI;
 import client.boundry.LabWorkerUI;
-import client.boundry.SpecialistUI;
 import client.entity.Reference;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -22,13 +21,14 @@ import common.enums.Command;
 import common.enums.Result;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class ExaminationController implements IController{
+public class ExaminationController implements IController, Initializable{
 	
 	//FXML Components 
 	
@@ -46,11 +46,11 @@ public class ExaminationController implements IController{
 	 * current reference that the user chose
 	 */
 	static Reference Curr_Ref;
-	
 	static String Curr_RefNum;
+	private IUi thisUi;
 
 	/**
-	 * Logut to the login menu
+	 * Logout to the login menu
 	 * @param event
 	 */
   public void onLogoutButtonClick(ActionEvent event){
@@ -182,10 +182,23 @@ public class ExaminationController implements IController{
 			Object result =  reply.getResult();
 			
 			
-			if (reply.getCommand() == Command.LOGOUT)
-			{
+		if (reply.getCommand() == Command.LOGOUT){
 				
-				logoutCheck(result);
+				if (result instanceof Result){
+							
+					result = (Result)result;
+							
+					if ((Result)result == Result.ERROR){
+						ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
+							System.exit(1);
+					}
+					else if ((Result)result == Result.LOGGEDOUT){
+									thisUi.hideWindow();	
+								 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
+									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
+							}
+					}
 			}
 			
 			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM )
@@ -254,71 +267,7 @@ public class ExaminationController implements IController{
 		
 		
 		
-		
-		
-		
-		
-		/**
-		 * check if we have to log out/
-		 * @param result
-		 */
-		
-		public void logoutCheck(Object result)  //Logged out if the user pressed the button
-		{
-				
-				if (result instanceof Result){
-							
-					result = (Result)result;
-							
-					if ((Result)result == Result.ERROR){
-						ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
-							System.exit(1);
-					}
-					else if ((Result)result == Result.LOGGEDOUT){
-						
-						if (ClientConnectionController.clientConnect.userPrivilege.equals("Dispatcher")){
-							
-							for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-							{
-								if (ui instanceof DispatcherUI){
-									ui.hideWindow();
-									
-									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-								}
-							}
-						}
-						
-						else if (ClientConnectionController.clientConnect.userPrivilege.equals("Specialist")){
-							
-							for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-							{
-								if (ui instanceof SpecialistUI){
-									ui.hideWindow();
-									
-									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-								}
-							}
-						}
-						
-						else if (ClientConnectionController.clientConnect.userPrivilege.equals("LabWorker")){
-							
-							for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-							{
-								if (ui instanceof LabWorkerUI){
-									ui.hideWindow();
-									
-									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-								}
-							}
-						}
-						
-					}
-				}
-			
-		}
+
 		
 		/*
 		 * check if the input in the field are fine or not
@@ -419,8 +368,15 @@ public class ExaminationController implements IController{
 			}
 			
 			return check;
+		}
+
+		@Override
+		public void initialize(URL arg0, ResourceBundle arg1) {
 			
-			
-			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof LabWorkerUI){
+					thisUi = ui;
+				}
+			}			
 		}
 }

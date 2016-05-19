@@ -48,12 +48,12 @@ public class SpecialistDeailsController implements IController, Initializable{
 		@FXML private TableView<Hour> tabelAppointment;
 		@FXML private TableColumn<Hour, String> timeClmn;
 		
-		//Members
-		public static Integer userId;
-		public static String clientID;
-		public static String userName = ClientConnectionController.clientConnect.userName;
-		String pName,fName,personId,add,phoneNumber,email;
-		
+		private static Integer userId;
+		@SuppressWarnings("unused")
+		private static String clientID;
+		private static String userName = ClientConnectionController.clientConnect.userName;
+		private String pName; private String fName; private String personId; private String add; private String phoneNumber; private String email;
+		private IUi thisUi;
 		
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 	  private HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
@@ -135,6 +135,14 @@ public class SpecialistDeailsController implements IController, Initializable{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof SpecialistUI){
+					thisUi = ui;
+				}
+			}
+			
 		}
 		
 		
@@ -182,24 +190,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 			
 		}
 		
-		private boolean validateID(String id){
-			
-			if (id.length() != 9){
-				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Invalid Input", "ID must contain 9 digits.");
-				return false;
-			}
-			
-			for (int i = 0 ; i < id.length(); i++){
-				if(id.charAt(i) < '0' || id.charAt(i) > '9'){
-					ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Invalid Input", "ID must contain digits only.");
-					return false;
-				}
-			}
-			
-			return true;
-		}
-		
-		
+				
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
 			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email);
 			ClientConnectionController.clientConnect.userInterface.add(create);
@@ -219,8 +210,8 @@ public class SpecialistDeailsController implements IController, Initializable{
 			 
 			Object result =  reply.getResult();
 			
-			if (reply.getCommand() == Command.LOGOUT){
-			
+		if (reply.getCommand() == Command.LOGOUT){
+				
 				if (result instanceof Result){
 							
 					result = (Result)result;
@@ -230,44 +221,21 @@ public class SpecialistDeailsController implements IController, Initializable{
 							System.exit(1);
 					}
 					else if ((Result)result == Result.LOGGEDOUT){
-						
-						if (ClientConnectionController.clientConnect.userPrivilege.equals("Dispatcher")){
-							
-							for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-							{
-								if (ui instanceof DispatcherUI){
-									ui.hideWindow();
+									thisUi.hideWindow();	
+								 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-								}
 							}
-						}
-						
-						else if (ClientConnectionController.clientConnect.userPrivilege.equals("Specialist")){
-							
-							for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-							{
-								if (ui instanceof SpecialistUI){
-									ui.hideWindow();
-									ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-									ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-								}
-							}
-						}
 					}
-				}
 			}
-			
-		
+
 			else if (reply.getCommand() == Command.FIND_USERID_BY_USERNAME){
 				userId = (Integer)result;
 				System.out.println(userId);
 				
 			}
 			
-			
 			else if (reply.getCommand() == Command.FIND_TODAY_APPOINTMENT){
-				
 				
 				if (result instanceof ArrayList<?>){
 					ArrayList<Integer> hoursRes = (ArrayList<Integer>)result;
@@ -279,61 +247,55 @@ public class SpecialistDeailsController implements IController, Initializable{
 					}
 					onUpdateTableView(hours);
 				}
-				
-				
-				
-			}
-else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
-				
-
-	if (result instanceof ArrayList<?>){
-		
-		result = (ArrayList<?>) result;
-		ArrayList<String> res = (ArrayList<String>) result;
-	  
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				clientID = res.get(0);
-				fieldClientID.setText(res.get(1));
-				fieldClientClinic.setText(res.get(2));
-				SpClientIDTxt.setText(res.get(0));
-				fieldClientName.setText(res.get(3));
-				fieldClientFamily.setText(res.get(4));
-				fieldClientAddress.setText(res.get(7));
-				fieldClientPhone.setText(res.get(6));
-				fieldClientEmail.setText(res.get(5));
-				
-				SpViewHistoryBtn.setDisable(false);
-				SpEndTreatmentBtn.setDisable(false);
-				SpCreateRefernceBtn.setDisable(false);
-				SpViewExaminationsBtn.setDisable(false);
-				SpRecordAppointmentBtn.setDisable(false);
-				SpReportMissingBtn.setDisable(false);
-				
-				pName = res.get(3);
-				fName = res.get(4);
-				personId = res.get(0);
-				add = res.get(7);
-				phoneNumber = res.get(6);
-				email = res.get(5);
-				
-				
-
 			}
 			
-		});
+			else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
+							
+			
+				if (result instanceof ArrayList<?>){
+					
+					result = (ArrayList<?>) result;
+					ArrayList<String> res = (ArrayList<String>) result;
 				  
+					Platform.runLater(new Runnable() {
+			
+						@Override
+						public void run() {
+							clientID = res.get(0);
+							fieldClientID.setText(res.get(1));
+							fieldClientClinic.setText(res.get(2));
+							SpClientIDTxt.setText(res.get(0));
+							fieldClientName.setText(res.get(3));
+							fieldClientFamily.setText(res.get(4));
+							fieldClientAddress.setText(res.get(7));
+							fieldClientPhone.setText(res.get(6));
+							fieldClientEmail.setText(res.get(5));
+							
+							SpViewHistoryBtn.setDisable(false);
+							SpEndTreatmentBtn.setDisable(false);
+							SpCreateRefernceBtn.setDisable(false);
+							SpViewExaminationsBtn.setDisable(false);
+							SpRecordAppointmentBtn.setDisable(false);
+							SpReportMissingBtn.setDisable(false);
+							
+							pName = res.get(3);
+							fName = res.get(4);
+							personId = res.get(0);
+							add = res.get(7);
+							phoneNumber = res.get(6);
+							email = res.get(5);
+							
+							
+			
+						}
+						
+					});
+							  
+				}
+				
 	}
-				
-				
-				
-			}
 								
-		}
-
-		
-		
 	}
+		
+}
 

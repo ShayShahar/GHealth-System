@@ -20,12 +20,13 @@ public class GetClientByAppointmentDB {
 	 */
 	
 	  public static Object handleMessage (Request request, Connection connection) {
-		  Integer spId;
-		  String id;
-	    		String searchClient = "SELECT ghealth.clients.person, ghealth.clients.clientID, ghealth.clients.clientClinic  FROM ghealth.appointments , ghealth.clients WHERE  ghealth.appointments.appDate=CURDATE() AND ghealth.appointments.specialist=?  AND ghealth.appointments.appTime=? AND ghealth.appointments.client=ghealth.clients.clientID";
-	 		    String searchDetails = "SELECT * FROM ghealth.person WHERE  ghealth.person.personID=? ";
-	 		   String spIdSt = "SELECT ghealth.specialists.specialistID FROM ghealth.users , ghealth.specialists WHERE userName =? AND ghealth.users.personID=ghealth.specialists.personID";
-	    		 ArrayList<String> list = new ArrayList<String>();
+		  
+		  	Integer spId;
+		  	String id;
+		  	String searchClient = "SELECT ghealth.clients.person, ghealth.clients.clientID, ghealth.clients.clientClinic  FROM ghealth.appointments , ghealth.clients WHERE  ghealth.appointments.appDate=CURDATE() AND ghealth.appointments.specialist=?  AND ghealth.appointments.appTime=? AND ghealth.appointments.client=ghealth.clients.clientID";
+	   		String searchDetails = "SELECT * FROM ghealth.person WHERE  ghealth.person.personID=? ";
+	   		String spIdSt = "SELECT ghealth.specialists.specialistID FROM ghealth.users , ghealth.specialists WHERE userName =? AND ghealth.users.personID=ghealth.specialists.personID";
+	   		ArrayList<String> list = new ArrayList<String>();
 	    		 
 	    			try{
 
@@ -57,40 +58,38 @@ public class GetClientByAppointmentDB {
 	 			    	return Result.ERROR;
 	 			    }
 		    	
-	 			     id = res.getString(1);
-	 			   list.add(id);
-	 			   list.add(Integer.toString(res.getInt(2)));
-	 			   list.add(res.getString(3));
+	 			    id = res.getString(1);
+	 			    list.add(id);
+	 			    list.add(Integer.toString(res.getInt(2)));
+	 			    list.add(res.getString(3));
 	 			    	 
 	 		 		   	try{
+	 		 		   		
 	 		 			    PreparedStatement preparedStatement2 = connection.prepareStatement(searchDetails);
 	 		 			    ResultSet result;
 	 		 			    preparedStatement2.setString(1,id);
 
-	 		 			  result = preparedStatement2.executeQuery();
+	 		 			    result = preparedStatement2.executeQuery();
 	 		 			    
 	 		 			    if (!result.next()){
 	 		 			    	return Result.ERROR;
 	 		 			    }
-	 		     		list.add(result.getString(2));
-	 		     		list.add(result.getString(3));
-	 		     		list.add(result.getString(4));
-	 		     		list.add(result.getString(5));
-	 		     		list.add(result.getString(6));
+	 		 			    list.add(result.getString(2));
+	 		 			    list.add(result.getString(3));
+	 		 			    list.add(result.getString(4));
+	 		 			    list.add(result.getString(5));
+	 		 			    list.add(result.getString(6));
 	 		 			    
-	 		 			return list;
+	 		 			    return list;
 	 		 				  
 	 		 	    	} catch (SQLException e) {
 	 		 						e.printStackTrace();
 	 		 						return Result.ERROR;
 	 		 				}
 	 		 	    
-
-	 			   
-	 				  
 	 	    	} catch (SQLException e) {
 	 						e.printStackTrace();
 	 						return Result.ERROR;
 	 				}
-	 	    }
+	 	 }
 }
