@@ -100,6 +100,9 @@ public class DBController {
 				case GET_EXAMINATION_TYPE:{
 					return GetExaminationTypeDB.handleMessage(request, connection);
 				}
+				case INSERT_LAB_REFRENCE:{
+					return insertLabReferenceDB.handleMessage(request, connection);
+				}
 				
 
 		default:
