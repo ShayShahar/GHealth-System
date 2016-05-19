@@ -52,6 +52,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		public static Integer userId;
 		public static String clientID;
 		public static String userName = ClientConnectionController.clientConnect.userName;
+		String pName,fName,personId,add,phoneNumber,email;
 		
 		
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
@@ -200,7 +201,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		
 		
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
-			CreateLabReferenceUI create = new CreateLabReferenceUI();
+			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email);
 			ClientConnectionController.clientConnect.userInterface.add(create);
 			
 			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
@@ -310,6 +311,12 @@ else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
 				SpViewExaminationsBtn.setDisable(false);
 				SpRecordAppointmentBtn.setDisable(false);
 				SpReportMissingBtn.setDisable(false);
+				pName = res.get(4);
+				fName = res.get(5);
+				personId = res.get(0);
+				add = res.get(8);
+				phoneNumber = res.get(7);
+				email = res.get(6);
 				
 				
 

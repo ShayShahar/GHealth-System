@@ -57,10 +57,10 @@
       </GridPane>
       <Separator layoutX="67.0" layoutY="528.0" prefHeight="17.0" prefWidth="464.0" />
       <Button layoutX="208.0" layoutY="471.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="158.0" text="Create Lab Reference" />
-      <ComboBox fx:id="examinationTypeCom" layoutX="57.0" layoutY="255.0" prefHeight="27.0" prefWidth="170.0" promptText="--" />
+      <ComboBox fx:id="examinationTypeCom" layoutX="57.0" layoutY="255.0" prefHeight="27.0" prefWidth="170.0" promptText="select" />
       <Label layoutX="57.0" layoutY="208.0" prefHeight="34.0" prefWidth="170.0" text="Examination Type:" />
-      <Label layoutX="338.0" layoutY="225.0" text="Urgency:" />
-      <ComboBox fx:id="urgencyCom" layoutX="338.0" layoutY="255.0" prefHeight="27.0" prefWidth="170.0" promptText="--" />
+      <Label layoutX="338.0" layoutY="217.0" text="Urgency:" />
+      <ComboBox fx:id="urgencyCom" layoutX="338.0" layoutY="255.0" prefHeight="27.0" prefWidth="170.0" promptText="select" />
       <Separator layoutX="115.0" layoutY="293.0" prefHeight="17.0" prefWidth="324.0" />
       <Separator layoutX="115.0" layoutY="454.0" prefHeight="17.0" prefWidth="324.0" />
       <TextArea layoutX="29.0" layoutY="344.0" prefHeight="110.0" prefWidth="534.0" />
