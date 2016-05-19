@@ -3,13 +3,11 @@ package server.control.database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import client.entity.Examination;
 import common.entity.Request;
 import common.enums.Result;
 
-public class CreateExaminationUpdate {
+public class CreateExaminationUpdateDB {
 	
 	/**
 	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
@@ -22,7 +20,6 @@ public class CreateExaminationUpdate {
 	public static Object handleMessage(Request request, Connection connection) {  //updateExamination Details
 	
 		String updateExam1 ="UPDATE ghealth.examination SET exDetails=?";
-		String updateExam2 =  "WHERE exID=?";
 		Examination exam = new Examination();
 		exam = (Examination)request.getEntity();
 		

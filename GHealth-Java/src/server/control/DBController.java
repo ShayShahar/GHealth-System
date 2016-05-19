@@ -65,19 +65,19 @@ public class DBController {
 					return ReturnClientDB.handleMessage(request, connection);
 				}
 				case FIND_USERID_BY_USERNAME:{
-					return FindUserIdByUserName.handleMessage(request, connection);
+					return FindUserIdByUserNameDB.handleMessage(request, connection);
 				}
 				case FIND_TODAY_APPOINTMENT:{
 					return FindTodayAppointmentDB.handleMessage(request, connection);
 				}
 		  	case CREATE_EXAMINATION:{
-					return CreateExamination.handleMessage(request, connection);
+					return CreateExaminationDB.handleMessage(request, connection);
 				}
 				case CREATE_EXAMINATION_VIEW:{
-					return CreateExaminationView.handleMessage(request, connection);
+					return CreateExaminationViewDB.handleMessage(request, connection);
 				}
 				case CREATE_EXAMINATION_UPDATE:{
-					return CreateExaminationUpdate.handleMessage(request, connection);
+					return CreateExaminationUpdateDB.handleMessage(request, connection);
 				}
 				case GET_CLIENT_BY_APPOINTMET:{
 					return GetClientByAppointmentDB.handleMessage(request, connection);

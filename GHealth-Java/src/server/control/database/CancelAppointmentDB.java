@@ -38,6 +38,7 @@ public class CancelAppointmentDB {
 	
 		    if (!res.next()) {
 		    	res.close();
+		    	System.out.println("1");
 		    	return Result.ERROR;
 		    }
 		    		    
@@ -46,6 +47,7 @@ public class CancelAppointmentDB {
 		    java.sql.Date tomorrow = new java.sql.Date(Calendar.getInstance().getTime().getTime() + (1000 * 60 * 60 * 24));
 		    
 		    if (tomorrow.compareTo(date) == 1 || today.compareTo(date) == 0){
+		    	System.out.println("2");
 		    	return Result.NEXT_24;
 		    }
 		    
@@ -58,11 +60,12 @@ public class CancelAppointmentDB {
 			    
 	      if (!res2.next()) {
 	    	  res.close();
+		    	System.out.println("3");
 			   	return Result.ERROR;
 			  }
 			    
 			    
-			String checkAppointments = res2.getString(3);
+				String checkAppointments = res2.getString(3);
 		  	int appointmentTime = res.getInt(4);
 			    				    	
 		  	StringBuilder builder = new StringBuilder(checkAppointments);
@@ -94,6 +97,7 @@ public class CancelAppointmentDB {
 		} catch (SQLException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
+	    	System.out.println("4");
 		    return Result.ERROR;
 		}
 		

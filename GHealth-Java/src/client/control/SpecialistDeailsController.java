@@ -204,7 +204,33 @@ public class SpecialistDeailsController implements IController, Initializable{
 			create.displayUserWindow();
 		}
 		
+		
+		public void onReportMissingButtonClick(ActionEvent event){
+			
+			try{
+				int hour = getIntegerByHour.get(tabelAppointment.getSelectionModel().getSelectedItem().getHour());
+				
+				ArrayList<String> msg = new ArrayList<String>();
+				msg.add(Integer.toString(hour));
+				msg.add(userName);
+			
+				Request request = new Request(Command.REPORT_MISSING,msg);
+				
+				try {
+					ClientConnectionController.clientConnect.controller = this;
+					ClientConnectionController.clientConnect.sendToServer(request);
+				} 
+				catch (IOException e) {
+					e.printStackTrace();
+				}		
+			
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 
+		}
+
+		
 		@SuppressWarnings("unchecked")
 		public void handleReply(Reply reply){
 			 
@@ -292,8 +318,44 @@ public class SpecialistDeailsController implements IController, Initializable{
 					});
 							  
 				}
+			}
+			
+			else if (reply.getCommand() == Command.REPORT_MISSING){
 				
-	}
+				
+				
+				
+		
+				ArrayList<String> user = new ArrayList<String>();
+				user.add(ClientConnectionController.clientConnect.userName);
+				
+				Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
+				
+				try {
+					ClientConnectionController.clientConnect.controller = this;
+					ClientConnectionController.clientConnect.sendToServer(requst2);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		
+			else if (reply.getCommand() == Command.END_TREATMENT){
+				
+
+				ArrayList<String> user = new ArrayList<String>();
+				user.add(ClientConnectionController.clientConnect.userName);
+				
+				Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
+				
+				try {
+					ClientConnectionController.clientConnect.controller = this;
+					ClientConnectionController.clientConnect.sendToServer(requst2);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		
 								
 	}
 		

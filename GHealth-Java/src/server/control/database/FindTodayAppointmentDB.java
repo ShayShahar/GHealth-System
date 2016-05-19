@@ -26,7 +26,8 @@ public class FindTodayAppointmentDB {
 				  														"FROM ghealth.users, ghealth.appointments, ghealth.specialists " +
 				  														"WHERE ghealth.users.userName=? AND ghealth.appointments.appDate=CURDATE() " +
 				  														"AND ghealth.users.personID=ghealth.specialists.personID " +
-				  														"AND ghealth.appointments.specialist=ghealth.specialists.specialistID ORDER BY ghealth.appointments.appTime ASC";
+				  														"AND ghealth.appointments.specialist=ghealth.specialists.specialistID AND ghealth.appointments.appStatus=0 " +
+				  														"ORDER BY ghealth.appointments.appTime ASC";
 
 		   ArrayList<Integer> list = new ArrayList<Integer>();
 		   
