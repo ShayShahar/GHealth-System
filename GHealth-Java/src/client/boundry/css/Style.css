@@ -15,6 +15,23 @@
     -fx-fill: white;
 }
 
+#SpReportMissingBtn {          
+    -fx-background-color: #F44336
+}
+
+#SpReportMissingBtn:hover {
+    -fx-background-color: 
+       linear-gradient(fdfdfd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%),
+        #9d4024,
+        #EF5350;
+}
+#SpReportMissingBtn:pressed {
+    -fx-padding: 10 15 13 15;
+}
+#SpReportMissingBtn Text {
+    -fx-fill: white;
+}
+
 #retreiveBtn {          
     -fx-background-color: #cddc39
 }

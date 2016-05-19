@@ -92,9 +92,8 @@ public class DBController {
 					return MonthlyReportDB.handleMessage(request, connection);
 				}
 				case GET_CLIENT_BY_CLIENT_ID:{
-		//			return GetClientIdByClientIdDB.handleMessage(request, connection);
+					return GetClientIdByClientIdDB.handleMessage(request, connection);
 				}
-				
 				case GET_BRANCH_BY_USERNAME:{
 					return GetBranchByUserNameDB.handleMessage(request, connection);
 				}
