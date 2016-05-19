@@ -27,8 +27,13 @@ public enum Command {
     MONTHLY_REPORT, 
     GET_CLIENT_BY_CLIENT_ID,
     GET_BRANCH_BY_USERNAME, 
+<<<<<<< HEAD
+    GET_EXAMINATION_TYPE, 
+    INSERT_LAB_REFRENCE;
+=======
     GET_EXAMINATION_TYPE,
     END_TREATMENT,
     REPORT_MISSING;
     
+>>>>>>> refs/remotes/origin/master
 }

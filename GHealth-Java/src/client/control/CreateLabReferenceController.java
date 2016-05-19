@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class CreateLabReferenceController implements IController,Initializable{
@@ -24,6 +25,9 @@ public class CreateLabReferenceController implements IController,Initializable{
 	public static String user_id;
 	public static int id;
 	public String clientID;
+	public String comments;
+	public String choosedUrgency;
+	public String choosedExaminationType;
 	
 	@FXML private TextField SpClientIDTxt;
 	@FXML private TextField fieldClientName;
@@ -33,6 +37,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	@FXML private TextField fieldClientEmail;
 	@FXML private ComboBox<String> examinationTypeCom;
 	@FXML private ComboBox<String> urgencyCom;
+	@FXML private TextArea commentsField;
 	
 	
 	private IUi thisUi;
@@ -40,7 +45,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("Low","Normal","Critical");
 		
 	
-	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email){
+	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email,String clientId){
 		fieldClientName.setText(pName);
 		SpClientIDTxt.setText(personId);
 		fieldClientPhone.setText(phoneNumber);
@@ -77,6 +82,31 @@ public class CreateLabReferenceController implements IController,Initializable{
 		}	
 		
 	}
+	
+	
+	 public void onClickCreate(ActionEvent event){
+		 
+		 comments = commentsField.getText();
+		 choosedUrgency = urgencyCom.getSelectionModel().getSelectedItem().toString();
+		 choosedExaminationType = examinationTypeCom.getSelectionModel().getSelectedItem().toString();
+		 
+		 ArrayList<String> list = new ArrayList<String>();
+		 list.add(comments);
+		 list.add(choosedUrgency);
+		 list.add(choosedExaminationType);
+		 
+		 
+		 
+			Request request = new Request(Command.INSERT_LAB_REFRENCE,list);
+			
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+	 }
 	
 	public void onBackButtonClick(ActionEvent event){
 		
