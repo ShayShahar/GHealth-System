@@ -455,6 +455,10 @@ public class CreateAppointmentController implements IController, Initializable{
 			if ((Result)result == Result.ERROR){
 				thisUi.displayErrorMessage("Cannot Create Appointmnet", "Error occured while tried to create the appoinment, try again.");
 			}
+			else if ((Result)result == Result.FAILED){
+				thisUi.displayErrorMessage("Duplicate appointments error", "This client have another appointment at the same date and hour as you choosed.");
+
+			}
 			else{
 				thisUi.hideWindow();
 				
