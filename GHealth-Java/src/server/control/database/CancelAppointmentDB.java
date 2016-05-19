@@ -37,8 +37,6 @@ public class CancelAppointmentDB {
 		    res = preparedStatement1.executeQuery();
 	
 		    if (!res.next()) {
-		    	res.close();
-		    	System.out.println("1");
 		    	return Result.ERROR;
 		    }
 		    		    
@@ -47,20 +45,17 @@ public class CancelAppointmentDB {
 		    java.sql.Date tomorrow = new java.sql.Date(Calendar.getInstance().getTime().getTime() + (1000 * 60 * 60 * 24));
 		    
 		    if (tomorrow.compareTo(date) == 1 || today.compareTo(date) == 0){
-		    	System.out.println("2");
 		    	return Result.NEXT_24;
 		    }
 		    
 		    	
 		    PreparedStatement preparedStatement2 = connection.prepareStatement(searchDate);
 		    preparedStatement2.setDate(1,res.getDate(2));
-		   	preparedStatement2.setInt(2,res.getInt(8));
+		    preparedStatement2.setInt(2,res.getInt(9));
 		    res2 = preparedStatement2.executeQuery();
 			   
 			    
 	      if (!res2.next()) {
-	    	  res.close();
-		    	System.out.println("3");
 			   	return Result.ERROR;
 			  }
 			    
@@ -81,23 +76,21 @@ public class CancelAppointmentDB {
 			    	
 			  else{
 				  
-				PreparedStatement preparedStatement4 = connection.prepareStatement(updateDate);
+				  PreparedStatement preparedStatement4 = connection.prepareStatement(updateDate);
 			    preparedStatement4.setString(1, builder.toString());
 			    preparedStatement4.setDate(2,res.getDate(2));
-			   	preparedStatement4.setInt(3, res.getInt(8));
-	   	  		preparedStatement4.executeUpdate();
+			    preparedStatement4.setInt(3, res.getInt(8));
+			    preparedStatement4.executeUpdate();
 	   	  		}		    
 		   
 			 	PreparedStatement preparedStatement5 = connection.prepareStatement(deleteAppointment);
 			 	preparedStatement5.setInt(1, Integer.parseInt(request.getList().get(0)));
-	    		preparedStatement5.executeUpdate();
-
-	    		return Result.OK;  
+	    	preparedStatement5.executeUpdate();
+	    	
+	    	return Result.OK;  
 		    
 		} catch (SQLException e) {
-		    // TODO Auto-generated catch block
 		    e.printStackTrace();
-	    	System.out.println("4");
 		    return Result.ERROR;
 		}
 		
