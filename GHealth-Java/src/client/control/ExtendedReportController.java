@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
 import client.boundry.GeneralManagerUI;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -375,20 +376,13 @@ public class ExtendedReportController implements IController, Initializable{
 						System.exit(1);
 				}
 				else if ((Result)result == Result.LOGGEDOUT){
-					
-					if (ClientConnectionController.clientConnect.userPrivilege.equals("General")){
-						
-						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-						{
-								ui.hideWindow();
+								thisUi.hideWindow();	
+							 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 						}
-					}
 				}
-			}
 		}
-	
 	}
 
 	

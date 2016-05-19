@@ -62,13 +62,14 @@ public class CancelAppointmentDB {
 			  }
 			    
 			    
-			  String checkAppointments = res2.getString(3);
+			String checkAppointments = res2.getString(3);
 		  	int appointmentTime = res.getInt(4);
 			    				    	
 		  	StringBuilder builder = new StringBuilder(checkAppointments);
 		  	builder.setCharAt(appointmentTime - 1, '0');
 			    	
 			  if (builder.toString().equals("000000000000000000")){
+				  
 				  PreparedStatement preparedStatement3 = connection.prepareStatement(deleteDate);
 				  preparedStatement3.setDate(1, res.getDate(2));
 				  preparedStatement3.setInt(2, res.getInt(8));
@@ -76,18 +77,19 @@ public class CancelAppointmentDB {
 			  }
 			    	
 			  else{
-				  PreparedStatement preparedStatement4 = connection.prepareStatement(updateDate);
+				  
+				PreparedStatement preparedStatement4 = connection.prepareStatement(updateDate);
 			    preparedStatement4.setString(1, builder.toString());
 			    preparedStatement4.setDate(2,res.getDate(2));
 			   	preparedStatement4.setInt(3, res.getInt(8));
-	   	  	preparedStatement4.executeUpdate();
-	   	  	}		    
+	   	  		preparedStatement4.executeUpdate();
+	   	  		}		    
 		   
 			 	PreparedStatement preparedStatement5 = connection.prepareStatement(deleteAppointment);
 			 	preparedStatement5.setInt(1, Integer.parseInt(request.getList().get(0)));
-	    	preparedStatement5.executeUpdate();
+	    		preparedStatement5.executeUpdate();
 
-	    	return Result.OK;  
+	    		return Result.OK;  
 		    
 		} catch (SQLException e) {
 		    // TODO Auto-generated catch block

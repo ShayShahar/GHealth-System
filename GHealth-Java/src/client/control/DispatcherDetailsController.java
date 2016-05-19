@@ -50,6 +50,7 @@ public class DispatcherDetailsController implements IController, Initializable{
 	//Members
 	public static String clientID;
 	public static int id;
+	private IUi thisUi;
 		
 	
 	//Components Handlers
@@ -255,8 +256,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 		 
 		Object result =  reply.getResult();
 		
-		if (reply.getCommand() == Command.LOGOUT){
-		
+			if (reply.getCommand() == Command.LOGOUT){
+			
 			if (result instanceof Result){
 						
 				result = (Result)result;
@@ -266,18 +267,12 @@ public class DispatcherDetailsController implements IController, Initializable{
 						System.exit(1);
 				}
 				else if ((Result)result == Result.LOGGEDOUT){
-					
-					if (ClientConnectionController.clientConnect.userPrivilege.equals("Dispatcher")){
-						
-						for(IUi ui : ClientConnectionController.clientConnect.userInterface)
-						{
-								ui.hideWindow();
+								thisUi.hideWindow();	
+							 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 								ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
 								ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 						}
-					}
 				}
-			}
 		}
 		
 		else if (reply.getCommand() == Command.FIND_CLIENT){
@@ -374,6 +369,12 @@ public class DispatcherDetailsController implements IController, Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		removeBtn.setVisible(false);
 		retreiveBtn.setVisible(false);
+		
+		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof DispatcherUI){
+				thisUi = ui;
+			}
+		}
 
 	}
 	
