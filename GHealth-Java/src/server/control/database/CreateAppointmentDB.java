@@ -72,7 +72,7 @@ public class CreateAppointmentDB {
 		    preparedStatement1.setInt(3,appointment.getSpecialistID());
 		    preparedStatement1.setInt(4,appointment.getClientID());
 
-		    preparedStatement1.executeUpdate();
+		    preparedStatement1.executeQuery();
 		   
  
 		  //in case this is the first appointment for the specialist at this date 		    

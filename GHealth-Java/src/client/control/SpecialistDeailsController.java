@@ -48,7 +48,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		@FXML private TableView<Hour> tabelAppointment;
 		@FXML private TableColumn<Hour, String> timeClmn;
 		
-		private static Integer userId;
+		private static int userId = 1;  //<---------------
 		@SuppressWarnings("unused")
 		private static String clientID;
 		private static String userName = ClientConnectionController.clientConnect.userName;
@@ -64,7 +64,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 	  private HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
 	
-		
+	 
 		public ObservableList<Hour> getHours(ArrayList<Hour> list){
 			ObservableList<Hour> hours = FXCollections.observableArrayList();
 			
@@ -198,7 +198,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		
 				
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
-			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email,clientId);
+			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email,clientId,userId);
 			ClientConnectionController.clientConnect.userInterface.add(create);
 			
 			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
