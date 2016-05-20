@@ -211,6 +211,20 @@ public class SpecialistDeailsController implements IController, Initializable{
 		}
 		
 		
+		public void onRecordAppointmentButtonClick(ActionEvent event){
+			RecordAppointmentUI create = new RecordAppointmentUI(pName,fName,personId,add,phoneNumber,email,clientId,userId);
+			ClientConnectionController.clientConnect.userInterface.add(create);
+			
+			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof SpecialistUI){
+					ui.hideWindow();
+				}
+			}
+			
+			create.displayUserWindow();
+		}
+		
+		
 		public void onReportMissingButtonClick(ActionEvent event){
 			
 			try{
