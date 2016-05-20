@@ -123,6 +123,10 @@ public class DBController {
 				case REPORT_MISSING:{
 					return ReportMissingDB.handleMessage(request, connection);
 				}
+				
+				case VALIDATE_REFERENCE:{
+					return ValidateReferenceDB.handleMessage(request, connection);
+				}
 
 				default:
 								break;

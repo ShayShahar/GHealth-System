@@ -3,6 +3,7 @@ package client.control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import client.boundry.*;
@@ -16,8 +17,16 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 
 
 public class DispatcherDetailsController implements IController, Initializable{
@@ -188,16 +197,64 @@ public class DispatcherDetailsController implements IController, Initializable{
 	}
 	
 	public void onCreateAppointmentButtonClick(ActionEvent event){
-		CreateAppointmentUI create = new CreateAppointmentUI(clientID,id);
-		ClientConnectionController.clientConnect.userInterface.add(create);
 		
-		for(IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof DispatcherUI){
-				ui.hideWindow();
-			}
-		}
+				URL url = ClientConnectionController.class.getResource("/img/question.png");
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("Insert Reference");
+				dialog.setGraphic(new ImageView(url.toString()));
+				dialog.setHeaderText("Validate reference number");
+				//dialog.setContentText(information);
+		    // Set the button types.
+		    ButtonType validate = new ButtonType("OK", ButtonData.OK_DONE);
+		    dialog.getDialogPane().getButtonTypes().addAll(validate, ButtonType.CANCEL);
+
+		    GridPane gridPane = new GridPane();
+		    gridPane.setHgap(10);
+		    gridPane.setVgap(10);
+		    gridPane.setPadding(new Insets(20, 120, 10, 10));
+
+		    TextField refNumber = new TextField();
+		    refNumber.setPromptText("Reference Number");
+
+		    gridPane.add(new Label("Reference number:"), 0, 0);
+		    gridPane.add(refNumber, 1, 0);
+
+		    dialog.getDialogPane().setContent(gridPane);
+
+		    // Request focus on the username field by default.
+		    Platform.runLater(() -> refNumber.requestFocus());
+
+		    dialog.setResultConverter(dialogButton -> {
+		        if (dialogButton == validate) {
+		        		
+		        	if (refNumber.getText() == null || refNumber.getText().isEmpty()){
+		        		thisUi.displayErrorMessage("Missing Fields", "Missing reference number. please insert the reference number and try again.");
+		        	}
+		        	
+		        	else{
+		        		
+			        	ArrayList<String> msg = new ArrayList<String>();
+			        	msg.add(fieldClientID.getText());
+			        	msg.add(refNumber.getText());
+			        	
+			    			Request request = new Request(Command.VALIDATE_REFERENCE, msg);
+
+				    		try {
+				    			ClientConnectionController.clientConnect.controller = this;
+				    			ClientConnectionController.clientConnect.sendToServer(request);
+				    		} catch (IOException e) {
+				    			e.printStackTrace();
+				    		}
+		        	}
+		        }
+		        return null;
+		    });
+
+		    Optional<Pair<String, String>> result = dialog.showAndWait();
+
+		    result.ifPresent(pair -> {
+		    });
 		
-		create.displayUserWindow();
 	}
 	
 	public void onCancelAppointmentButtonClick(ActionEvent event){
@@ -357,6 +414,28 @@ public class DispatcherDetailsController implements IController, Initializable{
 			cancelAppointmentBtn.setDisable(false);
 			retreiveBtn.setVisible(false);
 			removeBtn.setVisible(true);
+			
+		}
+			
+		else if (reply.getCommand() == Command.VALIDATE_REFERENCE){
+			
+			if ((Result)result == Result.OK){
+				CreateAppointmentUI create = new CreateAppointmentUI(clientID,id);
+				ClientConnectionController.clientConnect.userInterface.add(create);
+				
+				for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+					if (ui instanceof DispatcherUI){
+						ui.hideWindow();
+					}
+				}
+				
+				create.displayUserWindow();
+				
+			}
+			
+			else {
+				thisUi.displayErrorMessage("Validatation failed", "Please contact client's clinic to approve the reference.");
+			}
 			
 		}
 					
