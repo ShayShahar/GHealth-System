@@ -159,8 +159,6 @@ public class CreateAppointmentController implements IController, Initializable{
 		branchClmn.setCellValueFactory(new PropertyValueFactory<>("branchName"));
 		addrClmn.setCellValueFactory(new PropertyValueFactory<>("branchAddress"));	
 
-    appPicker.setValue(LocalDate.now());
-
 		
 	    final Callback<DatePicker, DateCell> dayCellFactory = 
 	            new Callback<DatePicker, DateCell>() {

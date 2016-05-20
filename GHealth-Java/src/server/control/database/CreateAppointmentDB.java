@@ -8,6 +8,12 @@ import client.entity.Appointment;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * 
+ * @author shays
+ *
+ */
+
 public class CreateAppointmentDB {
 	
 	/**
@@ -46,7 +52,6 @@ public class CreateAppointmentDB {
 		    	flag = true;
 		    	appStr = res.getString(3);
 		    	if (appStr.charAt(appointment.getTime() - 1) == '1'){
-		    		System.out.println("1");
 				    return Result.ERROR;
 		    	}
 		    }
@@ -60,7 +65,6 @@ public class CreateAppointmentDB {
 		    res = preparedStatement2.executeQuery();
 		    
 		    if (res.next()){
-	    		System.out.println("2");
 		    	return Result.FAILED;
 		    }
 
@@ -109,7 +113,6 @@ public class CreateAppointmentDB {
 		    
 		} catch (SQLException e) {
 		    e.printStackTrace();
-    		System.out.println("3");
 		    return Result.ERROR;
 		}
 	}

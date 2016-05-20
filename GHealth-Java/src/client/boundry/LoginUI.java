@@ -29,22 +29,21 @@ public class LoginUI implements IUi{
 				
 				try{
 					URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/LoginUI.fxml");
-		      FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
-		      Parent root = (Parent) fxmlLoader.load();
-		      Stage stage = new Stage();
-		      stage.setTitle("GHealth Login");
+					FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
+					Parent root = (Parent) fxmlLoader.load();
+					Stage stage = new Stage();
+					stage.setTitle("GHealth Login");
 					URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
 					stage.getIcons().add(new Image(url_32.toString()));
-		      Scene scene = new Scene(root);
-		      stage.setScene(scene); 
-		      stage.setResizable(false);
-		      stage.show();	
-		      mainStage = stage;
-		      }
+					Scene scene = new Scene(root);
+					stage.setScene(scene); 
+					stage.setResizable(false);
+					stage.show();	
+					mainStage = stage;
+		    }
 				catch(Exception e){
 					e.printStackTrace();
 				}
-				
 			}
 			});
 	}
