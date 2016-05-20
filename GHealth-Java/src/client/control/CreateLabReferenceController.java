@@ -22,12 +22,13 @@ import javafx.scene.control.TextField;
 
 public class CreateLabReferenceController implements IController,Initializable{
 
-	public static String user_id;
+	public int userId;
 	public static int id;
 	public String clientId;
 	public String comments;
 	public String choosedUrgency;
 	public String choosedExaminationType;
+
 	
 	@FXML private TextField SpClientIDTxt;
 	@FXML private TextField fieldClientName;
@@ -44,8 +45,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("Low","Normal","Critical");
 		
-	
-	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email,String clientId){
+	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email,String clientId, int userId){
 		fieldClientName.setText(pName);
 		SpClientIDTxt.setText(personId);
 		fieldClientPhone.setText(phoneNumber);
@@ -60,6 +60,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 		fieldClientEmail.setEditable(false);
 		
 		this.clientId = clientId;
+		this.userId = userId;
 	}
 	
 	@Override
@@ -97,6 +98,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 		 list.add(choosedUrgency);
 		 list.add(choosedExaminationType);
 		 list.add(clientId);
+		 list.add(Integer.toString(userId));
 		 
 		 
 		 

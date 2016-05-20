@@ -117,7 +117,7 @@ public class DBController {
 				}
 				
 				case INSERT_LAB_REFRENCE:{
-					return insertLabReferenceDB.handleMessage(request, connection);
+					return InsertLabReferenceDB.handleMessage(request, connection);
 				}
 		
 				case REPORT_MISSING:{
