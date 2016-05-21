@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import client.boundry.CreateLabReferenceUI;
+import client.boundry.RecordAppointmentUI;
 import client.boundry.SpecialistUI;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -98,7 +98,7 @@ public class RecordAppointmentController implements IController,Initializable{
 		}
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof CreateLabReferenceUI){
+			if (ui instanceof RecordAppointmentUI){
 				thisUi = ui;
 			}
 		}	
