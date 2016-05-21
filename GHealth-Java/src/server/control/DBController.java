@@ -127,9 +127,13 @@ public class DBController {
 				case VALIDATE_REFERENCE:{
 					return ValidateReferenceDB.handleMessage(request, connection);
 				}
+				
+				case INSERT_RECORD:{
+					return InsertRecordDB.handleMessage(request, connection);
+				}
 
 				default:
-								break;
+				break;
 		}
 		
 		return Result.ERROR;
