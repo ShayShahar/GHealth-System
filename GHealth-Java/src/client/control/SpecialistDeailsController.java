@@ -59,6 +59,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		private String phoneNumber; 
 		private String email;
 		private String clientId;
+		private String appId;
 		private IUi thisUi;
 		
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
@@ -212,7 +213,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		
 		
 		public void onRecordAppointmentButtonClick(ActionEvent event){
-			RecordAppointmentUI create = new RecordAppointmentUI(pName,fName,personId,add,phoneNumber,email,clientId,userId);
+			RecordAppointmentUI create = new RecordAppointmentUI(pName,fName,personId,add,phoneNumber,email,clientId,userId,appId);
 			ClientConnectionController.clientConnect.userInterface.add(create);
 			
 			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
@@ -329,6 +330,8 @@ public class SpecialistDeailsController implements IController, Initializable{
 							phoneNumber = res.get(6);
 							email = res.get(5);
 							clientId = res.get(1);
+							appId = res.get(8);
+							
 						}
 						
 					});

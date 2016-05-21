@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import common.entity.Request;
 import common.enums.Result;
@@ -13,7 +14,7 @@ public class InsertLabReferenceDB {
 
 	public static Object handleMessage(Request request, Connection connection) {
 		
-		Date date = new Date(0);
+		Date date = new Date(Calendar.getInstance().getTimeInMillis());
 		int exId;
 		String insertReference = "INSERT INTO ghealth.reference (refDate, refComments, refUrgency, client_id, specialist_id, "
 				+ "type_id) VALUES (?,?,?,?,?,?)";

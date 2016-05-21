@@ -23,7 +23,8 @@ public class GetClientByAppointmentDB {
 		  
 		  	Integer spId;
 		  	String id;
-		  	String searchClient = "SELECT ghealth.clients.person, ghealth.clients.clientID, ghealth.clients.clientClinic  FROM ghealth.appointments , ghealth.clients WHERE  ghealth.appointments.appDate=CURDATE() AND ghealth.appointments.specialist=?  AND ghealth.appointments.appTime=? AND ghealth.appointments.client=ghealth.clients.clientID";
+		  	int appId;
+		  	String searchClient = "SELECT ghealth.clients.person, ghealth.clients.clientID, ghealth.clients.clientClinic ,ghealth.appointments.appID FROM ghealth.appointments , ghealth.clients WHERE  ghealth.appointments.appDate=CURDATE() AND ghealth.appointments.specialist=?  AND ghealth.appointments.appTime=? AND ghealth.appointments.client=ghealth.clients.clientID";
 	   		String searchDetails = "SELECT * FROM ghealth.person WHERE  ghealth.person.personID=? ";
 	   		String spIdSt = "SELECT ghealth.specialists.specialistID FROM ghealth.users , ghealth.specialists WHERE userName =? AND ghealth.users.personID=ghealth.specialists.personID";
 	   		ArrayList<String> list = new ArrayList<String>();
@@ -32,6 +33,7 @@ public class GetClientByAppointmentDB {
 
 	    	    		PreparedStatement statement = connection.prepareStatement(spIdSt);    				
 	    	    		ResultSet res1;	
+	    	    		
 	    	    		statement.setString(1,request.getList().get(1));
 	    	    		res1 = statement.executeQuery();
 	    	    		if(!res1.next())
@@ -62,6 +64,7 @@ public class GetClientByAppointmentDB {
 	 			    list.add(id);
 	 			    list.add(Integer.toString(res.getInt(2)));
 	 			    list.add(res.getString(3));
+	 			    appId = res.getInt(4);
 	 			    	 
 	 		 		   	try{
 	 		 		   		
@@ -79,6 +82,7 @@ public class GetClientByAppointmentDB {
 	 		 			    list.add(result.getString(4));
 	 		 			    list.add(result.getString(5));
 	 		 			    list.add(result.getString(6));
+	 		 			    list.add(Integer.toString(appId));
 	 		 			    
 	 		 			    return list;
 	 		 				  

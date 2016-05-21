@@ -25,11 +25,17 @@ import javafx.util.Pair;
 public class RecordAppointmentUI implements IUi {
 	
 	private static Stage mainStage;
-	public String pName; public String fName; public String personId; public String add; public String phoneNumber;
-	public String email; public String clientId;
+	public String pName; 
+	public String fName; 
+	public String personId; 
+	public String add; 
+	public String phoneNumber;
+	public String email; 
+	public String clientId; 
+	public String appId;
 	public int userId;
 	
-	public RecordAppointmentUI(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId,int  userId){
+	public RecordAppointmentUI(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId,int userId, String appId){
 		this.pName = pName;
 		this.fName = fName;
 		this.personId = personId;
@@ -38,6 +44,7 @@ public class RecordAppointmentUI implements IUi {
 		this.email = email;		
 		this.clientId = clientId;
 		this.userId = userId;
+		this.appId = appId;
 	}
 
 	@Override
@@ -78,7 +85,7 @@ public class RecordAppointmentUI implements IUi {
 					    Stage stage = new Stage();
 					      stage.setTitle("Record Appointment");
 					      RecordAppointmentController controller = fxmlLoader.getController();
-					      controller.setUser(pName,fName,personId,add,phoneNumber,email,clientId,userId);
+					      controller.setUser(pName,fName,personId,add,phoneNumber,email,clientId,userId,appId);
 						  URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
 						 stage.getIcons().add(new Image(url_32.toString()));
 					      Scene scene = new Scene(root);
