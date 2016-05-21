@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * FindClientDB class search for client details in the Data base
+ * @author shays
+ *
+ */
+
 public class FindClientDB {
 	
 	/**

@@ -5,6 +5,12 @@ import java.sql.*;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * LogoutDB class updates user status to logged out in the Data base
+ * @author shays
+ *
+ */
+
 public class LogoutDB {
 
 	/**

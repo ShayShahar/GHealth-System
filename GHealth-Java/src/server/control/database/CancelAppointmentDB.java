@@ -8,6 +8,12 @@ import java.util.Calendar;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * CancelAppointmentDB class removes an allocated appointment from the Data base
+ * @author shays
+ *
+ */
+
 public class CancelAppointmentDB {
 
 	/**

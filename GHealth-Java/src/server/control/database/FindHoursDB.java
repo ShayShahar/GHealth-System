@@ -7,6 +7,13 @@ import java.sql.Statement;
 import common.entity.Request;
 import common.enums.Result;
 
+
+/**
+ * FindHoursDB class search for available hours to create appointment in specific date in the Data base
+ * @author shays
+ *
+ */
+
 public class FindHoursDB {
 	
 	/**

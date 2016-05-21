@@ -5,6 +5,12 @@ import java.sql.*;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * LoginDB class validates login information and updates user status to logged-in in the Data base in case the details are correct.
+ * @author shays
+ *
+ */
+
 public class LoginDB {
 	
 	/**

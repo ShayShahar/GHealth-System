@@ -9,9 +9,17 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * MonthlyReportDB creates a monthly report from the information that stored in mySQL database
+ * Monthly0 report includes number of clients that got treatments, waiting time for appointments (from invite date),
+ * clients that left IHealth and missing appointments.
+ * All the information grouped by the weeks of the month.
+ * @author shays
+ *
+ */
+
 public class MonthlyReportDB {
 
-	
 	/**
 	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
 	 * The function process the queries results then return a message to the client with the requested details.

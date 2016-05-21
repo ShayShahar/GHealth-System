@@ -10,19 +10,28 @@ import client.entity.DateChecker;
 import common.entity.Request;
 import common.enums.Result;
 
-/**
- * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
- * The function process the queries results then return a message to the client with the requested details.
- * @param request The request object that send by the client
- * @param connection JDBC connection parameter
- * @return return Object type. each result may return different type of objects.
- */
+
+	/**
+	 * FindDatesDB class search for blocked dates in the Data base
+	 * @author shays
+	 *
+	 */
 
 public class FindDatesDB {
 	
-	static String mask = "111111111111111111";
+	
+	/**
+	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
+	 * The function process the queries results then return a message to the client with the requested details.
+	 * @param request The request object that send by the client
+	 * @param connection JDBC connection parameter
+	 * @return return Object type. each result may return different type of objects.
+	 */
 	
     public static Object handleMessage (Request request, Connection connection) {
+    	
+    	String mask = "111111111111111111";
+
     	
     	try{
     		Statement stmnt = connection.createStatement();

@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * GetBranchesDB class search for all branches names that stored in the Data base
+ * @author shays
+ *
+ */
+
+
 public class GetBranchesDB {
 	
 	/**

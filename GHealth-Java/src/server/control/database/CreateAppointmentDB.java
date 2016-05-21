@@ -9,7 +9,7 @@ import common.entity.Request;
 import common.enums.Result;
 
 /**
- * 
+ * CreateAppointmentDB class creates an appointment in the Data base
  * @author shays
  *
  */
