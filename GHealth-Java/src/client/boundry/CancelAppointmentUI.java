@@ -22,17 +22,30 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+
+	/**
+	 * CancelAppointmentUI class connects between the java code and the CancelAppointmentUI FXML file
+ * The class implements IUi interface
+ * @author shays
+ *
+ */
 public class CancelAppointmentUI implements IUi{
 	
 	private static Stage mainStage;
 	private String user_id;
 
-	
+	/**
+	 * CancelAppointmentUI constructor
+	 * @param clientID Gets the client id
+	 */
 	public CancelAppointmentUI(String clientID) {
 		user_id = clientID;
 	}
 
-
+/*
+ * (non-Javadoc)
+ * @see client.interfaces.IUi#hideWindow()
+ */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -44,7 +57,10 @@ public class CancelAppointmentUI implements IUi{
 			});		
 	}
 
-
+/*
+ * (non-Javadoc)
+ * @see client.interfaces.IUi#showWindow()
+ */
 	@Override
 	public void showWindow() {
 		Platform.runLater(new Runnable() {
@@ -56,6 +72,10 @@ public class CancelAppointmentUI implements IUi{
 			});		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
 	@Override
 	public void displayUserWindow() {
 					
@@ -106,6 +126,10 @@ public class CancelAppointmentUI implements IUi{
 			});		
 		}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -123,7 +147,10 @@ public class CancelAppointmentUI implements IUi{
 			}
 		});			
 	}
-	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayMessage(String title, String information){
 		Platform.runLater(new Runnable() {
@@ -142,7 +169,4 @@ public class CancelAppointmentUI implements IUi{
 		});
 	}
 
-
-
-	
 }

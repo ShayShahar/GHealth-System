@@ -1,7 +1,6 @@
 package client.boundry;
 
 import java.net.URL;
-
 import client.control.ClientConnectionController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -15,7 +14,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
-
+/**
+ * ClientConnectionUI class is the main entry for the GHealth System Application
+ * The class inherits from Application class to implement JavaFX application.
+ * @author shays
+ *
+ */
 public class ClientConnectionUI extends Application{
 
 		public static void main(String[] args) {
@@ -36,6 +40,11 @@ public class ClientConnectionUI extends Application{
 			
 		}
 
+		/**
+		 * display an error message on the screen
+		 * @param title Gets the title of the message
+		 * @param information Gets extra information to display in the message
+		 */
 		public static void displayErrorMessage(String title, String information) {
 			Platform.runLater(new Runnable() {
 
@@ -53,6 +62,11 @@ public class ClientConnectionUI extends Application{
 			});			
 		}
 		
+		/**
+		 * display information message on the screen.
+		 * @param title Gets the title of the message
+		 * @param information Gets extra information to display in the message
+		 */
 		public static void displayMessage(String title, String information){
 			Platform.runLater(new Runnable() {
 

@@ -22,19 +22,32 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+/**
+ * CreateAppointmentUI class connects between the java code and the CreateAppointmentUI FXML file
+ * The class implements IUi interface
+ * @author shays
+ *
+ */
 public class CreateAppointmentUI implements IUi{
 	
 	private static Stage mainStage;
 	private String user_id;
 	private int id;
 
-	
+	/**
+	 * CreateAppointmentUI constructor
+	 * @param clientID get the person's id
+	 * @param id get the client's id
+	 */
 	public CreateAppointmentUI(String clientID, int id) {
 		user_id = clientID;
 		this.id = id;
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -46,7 +59,10 @@ public class CreateAppointmentUI implements IUi{
 			});		
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#showWindow()
+	 */
 	@Override
 	public void showWindow() {
 		Platform.runLater(new Runnable() {
@@ -57,7 +73,11 @@ public class CreateAppointmentUI implements IUi{
 			}
 			});		
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
 	@Override
 	public void displayUserWindow() {
 					
@@ -109,6 +129,10 @@ public class CreateAppointmentUI implements IUi{
 			});		
 		}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -127,6 +151,10 @@ public class CreateAppointmentUI implements IUi{
 		});			
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayMessage(String title, String information){
 		Platform.runLater(new Runnable() {
@@ -143,9 +171,5 @@ public class CreateAppointmentUI implements IUi{
 				dialog.showAndWait();
 				}
 		});
-	}
-
-
-
-	
+	}	
 }

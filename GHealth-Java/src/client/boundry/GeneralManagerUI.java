@@ -21,10 +21,21 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+/**
+ * GeneralManagerUI class connects between the java code and the GeneralManagerUI FXML file
+ * The class implements IUi interface
+ * @author shays
+ *
+ */
+
 public class GeneralManagerUI implements IUi{
 	
 	private static Stage mainStage;
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -36,7 +47,10 @@ public class GeneralManagerUI implements IUi{
 			});		
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#showWindow()
+	 */
 	@Override
 	public void showWindow() {
 		Platform.runLater(new Runnable() {
@@ -47,7 +61,11 @@ public class GeneralManagerUI implements IUi{
 			}
 			});		
 	}
-
+	
+/*
+ * (non-Javadoc)
+ * @see client.interfaces.IUi#displayUserWindow()
+ */
 	@Override
 	public void displayUserWindow() {
 					
@@ -97,6 +115,10 @@ public class GeneralManagerUI implements IUi{
 			});		
 		}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -115,6 +137,10 @@ public class GeneralManagerUI implements IUi{
 		});			
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayMessage(String title, String information){
 		Platform.runLater(new Runnable() {

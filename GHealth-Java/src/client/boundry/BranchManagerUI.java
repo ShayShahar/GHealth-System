@@ -24,6 +24,7 @@ import javafx.util.Pair;
 
 /**
  * BranchManagerUI class connects between the java code and the BranchManagerUI FXML file
+ * The class implements IUi interface
  * @author shays
  *
  */

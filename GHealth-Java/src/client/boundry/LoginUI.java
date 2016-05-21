@@ -15,10 +15,22 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+
+
+/**
+ * LoginUI class connects between the java code and the LoginUI FXML file
+ * The class implements IUi interface
+ * @author shays
+ *
+ */
 public class LoginUI implements IUi{
 	
 	private static Stage mainStage;
 
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
 	@Override
 	public void displayUserWindow() {
 
@@ -48,7 +60,10 @@ public class LoginUI implements IUi{
 			});
 	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -60,7 +75,10 @@ public class LoginUI implements IUi{
 			});		
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#showWindow()
+	 */
 	@Override
 	public void showWindow() {
 		Platform.runLater(new Runnable() {
@@ -71,7 +89,10 @@ public class LoginUI implements IUi{
 			}
 			});		
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -90,6 +111,10 @@ public class LoginUI implements IUi{
 		});			
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayMessage(String title, String information){
 		Platform.runLater(new Runnable() {
@@ -108,7 +133,4 @@ public class LoginUI implements IUi{
 		});
 	}
 
-
-
-	
 }
