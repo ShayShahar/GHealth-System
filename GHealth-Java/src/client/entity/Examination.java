@@ -1,6 +1,7 @@
 package client.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,14 @@ public class Examination implements Serializable{
 	private static final long serialVersionUID = 1L;
 	//class variables
 	private int id , Ref_id;
+	private String date;
+	private String specialistName;
+	private String specialist;
+	private String examinationCode;
 	private String details;
 	private ArrayList<byte[]> pictures;
+	
+	public String examination
 	
 	//class properties
 	public int getId() {
@@ -41,6 +48,38 @@ public class Examination implements Serializable{
 	}
 	public void setRef_id(int ref_id) {
 		Ref_id = ref_id;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getSpecialistName() {
+		return specialistName;
+	}
+	public void setSpecialistName(String specialistName) {
+		this.specialistName = specialistName;
+	}
+	public String getSpecialist() {
+		return specialist;
+	}
+	public void setSpecialist(String specialist) {
+		this.specialist = specialist;
+	}
+	public String getExaminationCode() {
+		return examinationCode;
+	}
+	public void setExaminationCode(String examinationCode) {
+		this.examinationCode = examinationCode;
+	}
+	
+	public String getExamination() {
+		return examination;
+		
+		public void setExamination(String examination) {
+			this.examination = examination;
+		}
 	}
 	
 }
