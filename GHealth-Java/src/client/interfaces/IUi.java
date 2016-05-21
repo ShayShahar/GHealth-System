@@ -13,10 +13,33 @@ package client.interfaces;
 
 public interface IUi {
 
+	/**
+	 * displayUserWindow connects between the java code to the fxml file
+	 */
 	abstract void displayUserWindow();
+	
+	/**
+	 * hides the current stage
+	 */
 	abstract void hideWindow();
+	
+	/**
+	 * shows the current stage
+	 */
 	abstract void showWindow();
+	
+	/**
+	 * display an error message on the screen
+	 * @param title Gets the title of the message
+	 * @param information Gets extra information to display in the message
+	 */
 	abstract void displayErrorMessage(String title, String information);
+	
+	/**
+	 * display information message on the screen.
+	 * @param title Gets the title of the message
+	 * @param information Gets extra information to display in the message
+	 */
 	abstract void displayMessage(String title, String information);
 	
 }

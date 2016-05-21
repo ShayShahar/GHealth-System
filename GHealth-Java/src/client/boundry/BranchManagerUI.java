@@ -22,10 +22,19 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+/**
+ * BranchManagerUI class connects between the java code and the BranchManagerUI FXML file
+ * @author shays
+ *
+ */
 public class BranchManagerUI implements IUi{
 	
 	private static Stage mainStage;
 	
+/*
+ * (non-Javadoc)
+ * @see client.interfaces.IUi#hideWindow()
+ */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -37,7 +46,10 @@ public class BranchManagerUI implements IUi{
 			});		
 	}
 
-
+/*
+ * (non-Javadoc)
+ * @see client.interfaces.IUi#showWindow()
+ */
 	@Override
 	public void showWindow() {
 		Platform.runLater(new Runnable() {
@@ -49,6 +61,10 @@ public class BranchManagerUI implements IUi{
 			});		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
 	@Override
 	public void displayUserWindow() {
 					
@@ -98,6 +114,10 @@ public class BranchManagerUI implements IUi{
 			});		
 		}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -116,6 +136,10 @@ public class BranchManagerUI implements IUi{
 		});			
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayMessage(String title, String information){
 		Platform.runLater(new Runnable() {
@@ -134,7 +158,4 @@ public class BranchManagerUI implements IUi{
 		});
 	}
 
-
-
-	
 }
