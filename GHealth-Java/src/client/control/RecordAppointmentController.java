@@ -1,13 +1,10 @@
 package client.control;
 
-import java.awt.TextArea;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import client.boundry.CreateLabReferenceUI;
-import client.boundry.RecordAppointmentUI;
 import client.boundry.SpecialistUI;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -15,11 +12,10 @@ import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class RecordAppointmentController implements IController,Initializable{
