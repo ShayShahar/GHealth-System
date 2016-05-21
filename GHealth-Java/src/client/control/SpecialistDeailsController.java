@@ -48,7 +48,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		@FXML private TableView<Hour> tabelAppointment;
 		@FXML private TableColumn<Hour, String> timeClmn;
 		
-		private static int userId = 1;  //<---------------
+		private static int userId;  
 		@SuppressWarnings("unused")
 		private static String clientID;
 		private static String userName = ClientConnectionController.clientConnect.userName;
@@ -88,7 +88,6 @@ public class SpecialistDeailsController implements IController, Initializable{
 		
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-						
 			//initialize hash tables
 			getHourByInteger.put(1, "8:00");
 			getHourByInteger.put(2, "8:30");
@@ -199,7 +198,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 		
 				
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
-			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email,clientId,userId);
+			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email,clientId,userName);
 			ClientConnectionController.clientConnect.userInterface.add(create);
 			
 			for(IUi ui : ClientConnectionController.clientConnect.userInterface){

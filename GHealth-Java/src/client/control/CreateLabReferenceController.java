@@ -28,7 +28,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	public String comments;
 	public String choosedUrgency;
 	public String choosedExaminationType;
-
+	public String userName;
 	
 	@FXML private TextField SpClientIDTxt;
 	@FXML private TextField fieldClientName;
@@ -45,7 +45,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("Low","Normal","Critical");
 		
-	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email,String clientId, int userId){
+	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email,String clientId, String userName){
 		fieldClientName.setText(pName);
 		SpClientIDTxt.setText(personId);
 		fieldClientPhone.setText(phoneNumber);
@@ -60,15 +60,19 @@ public class CreateLabReferenceController implements IController,Initializable{
 		fieldClientEmail.setEditable(false);
 		
 		this.clientId = clientId;
-		this.userId = userId;
+		this.userName = userName;
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
-		urgencyCom.setItems(urgencyList);		
-
-		Request request = new Request(Command.GET_EXAMINATION_TYPE,null);
+		urgencyCom.setItems(urgencyList);	
+		
+		ArrayList<String> list = new ArrayList<String>();
+        list.add(ClientConnectionController.clientConnect.userName);
+        
+		
+		Request request = new Request(Command.GET_EXAMINATION_TYPE,list);
 		
 		try {
 			ClientConnectionController.clientConnect.controller = this;
@@ -137,6 +141,9 @@ public class CreateLabReferenceController implements IController,Initializable{
 		if (reply.getCommand() == Command.GET_EXAMINATION_TYPE){
 			ArrayList<String> exType = (ArrayList<String>)result;
 
+			userId = Integer.parseInt(exType.get(0));
+			exType.remove(0);
+			
 			@SuppressWarnings("rawtypes")
 			ObservableList examinationList = FXCollections.observableList(exType);
 			examinationTypeCom.setItems(examinationList);

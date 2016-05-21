@@ -16,11 +16,32 @@ public class GetExaminationTypeDB {
 		ArrayList<String> list = new ArrayList<String>();
 		
 		String stmnt = "SELECT ghealth.examinationtype.typeName FROM ghealth.examinationtype";
-	   	try{
+		String searchSpecialistId = "SELECT ghealth.specialists.specialistID FROM ghealth.users , ghealth.specialists WHERE userName =? AND ghealth.users.personID=ghealth.specialists.personID";
 
+		try{
+			
+
+    		PreparedStatement preparedStatement2 = connection.prepareStatement(searchSpecialistId);    				
+    		ResultSet result1;
+    		
     		PreparedStatement preparedStatement1 = connection.prepareStatement(stmnt);    				
     		ResultSet result;	
     		
+    		
+    		preparedStatement2.setString(1,request.getList().get(0));
+    		result1 = preparedStatement2.executeQuery();
+    		
+    		
+    		if(!result1.next()){
+
+    			return Result.ERROR;
+    		}
+    		
+    		
+    			list.add(Integer.toString(result1.getInt(1)));
+    	
+
+    	
     		result = preparedStatement1.executeQuery();
     		if(!result.next()){
 
