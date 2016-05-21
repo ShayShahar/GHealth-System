@@ -134,6 +134,10 @@ public class DBController {
 				case FIND_CLIENT_EXAMINATION:{
 					return FindClientExaminationDB.handleMessage(request, connection);
 				}
+				
+				case END_MEDICAL_TREATMENT:{
+					return EndMedicalTreatmentDB.handleMessage(request, connection);
+				}
 
 				default:
 				break;

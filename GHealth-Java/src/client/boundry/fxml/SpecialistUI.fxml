@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="595.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.SpecialistDeailsController">
+<AnchorPane prefHeight="595.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.SpecialistDetailsController">
    <children>
       <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="592.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -78,7 +78,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="SpViewHistoryBtn" disable="true" graphicTextGap="2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="View History" textAlignment="JUSTIFY" textOverrun="CLIP" />
-            <Button fx:id="SpEndTreatmentBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="End Treatment" GridPane.rowIndex="1" />
+            <Button fx:id="SpEndTreatmentBtn" disable="true" mnemonicParsing="false" onAction="#onEndTreatmentButtonClick" prefHeight="35.0" prefWidth="180.0" text="End Treatment" GridPane.rowIndex="1" />
             <Button fx:id="SpViewExaminationsBtn" disable="true" mnemonicParsing="false" onAction="#onViewExaminationButtonClick" prefHeight="35.0" prefWidth="180.0" text="View Examinations" GridPane.rowIndex="2" />
             <Button fx:id="SpCreateRefernceBtn" disable="true" mnemonicParsing="false" onAction="#onCreateLabReferenceButtonClick" prefHeight="35.0" prefWidth="180.0" text="Create Reference" GridPane.columnIndex="1" />
             <Button fx:id="SpRecordAppointmentBtn" disable="true" layoutY="70.0" mnemonicParsing="false" onAction="#onRecordAppointmentButtonClick" prefHeight="35.0" prefWidth="180.0" text="Record Appointment" GridPane.columnIndex="1" GridPane.rowIndex="1" />

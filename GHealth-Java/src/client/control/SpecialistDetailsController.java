@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import client.boundry.*;
 import client.entity.Hour;
@@ -19,14 +20,22 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 
-public class SpecialistDeailsController implements IController, Initializable{
+public class SpecialistDetailsController implements IController, Initializable{
 
 		
 		//FXML Components
@@ -84,6 +93,65 @@ public class SpecialistDeailsController implements IController, Initializable{
 				public void run() {
 					tabelAppointment.setItems(getHours(list));
 				}});
+		}
+		
+		public void onEndTreatmentButtonClick(ActionEvent event){
+			
+			URL url = ClientConnectionController.class.getResource("/img/question.png");
+			Dialog<Pair<String, String>> dialog = new Dialog<>();
+			dialog.setTitle("End Medical Treatment");
+			dialog.setGraphic(new ImageView(url.toString()));
+			dialog.setHeaderText("Insert the price of the treatment and press OK to finish treatment.");
+			
+	    // Set the button types.
+	    ButtonType finish = new ButtonType("OK", ButtonData.OK_DONE);
+	    dialog.getDialogPane().getButtonTypes().addAll(finish, ButtonType.CANCEL);
+
+	    GridPane gridPane = new GridPane();
+	    gridPane.setHgap(10);
+	    gridPane.setVgap(10);
+	    gridPane.setPadding(new Insets(20, 120, 10, 10));
+
+	    TextField refNumber = new TextField();
+	    refNumber.setPromptText("Price");
+
+	    gridPane.add(new Label("Insert Price:"), 0, 0);
+	    gridPane.add(refNumber, 1, 0);
+
+	    dialog.getDialogPane().setContent(gridPane);
+
+	    Platform.runLater(() -> refNumber.requestFocus());
+
+	    dialog.setResultConverter(dialogButton -> {
+	        if (dialogButton == finish) {
+	        		
+	        	if (refNumber.getText() == null || refNumber.getText().isEmpty()){
+	        		thisUi.displayErrorMessage("Missing Fields", "Missing reference number. please insert the reference number and try again.");
+	        	}
+	        	
+	        	else{
+	        		
+		        	ArrayList<String> msg = new ArrayList<String>();
+		        	msg.add(appId);
+		        	msg.add(refNumber.getText());
+		        	 
+		    			Request request = new Request(Command.END_MEDICAL_TREATMENT, msg);
+
+			    		try {
+			    			ClientConnectionController.clientConnect.controller = this;
+			    			ClientConnectionController.clientConnect.sendToServer(request);
+			    		} catch (IOException e) {
+			    			e.printStackTrace();
+			    		}
+	        	}
+	        }
+	        return null;
+	    });
+
+	    Optional<Pair<String, String>> result = dialog.showAndWait();
+
+	    result.ifPresent(pair -> {
+	    });
 		}
 		
 		@Override
@@ -376,7 +444,7 @@ public class SpecialistDeailsController implements IController, Initializable{
 				}
 			}
 		
-			else if (reply.getCommand() == Command.END_TREATMENT){
+			else if (reply.getCommand() == Command.END_MEDICAL_TREATMENT){
 				
 
 				ArrayList<String> user = new ArrayList<String>();

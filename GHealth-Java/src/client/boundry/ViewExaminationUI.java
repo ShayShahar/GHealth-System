@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import client.control.ClientConnectionController;
-import client.control.ViewExaminationController;
 import client.interfaces.IUi;
 import common.entity.Request;
 import common.enums.Command;
