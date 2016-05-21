@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ViewExaminationController">
    <children>
       <AnchorPane prefHeight="603.0" prefWidth="591.0">
          <children>
@@ -24,17 +24,15 @@
                   <Image url="@../../../img/header.png" />
                </image>
             </ImageView>
-            <Separator layoutX="48.0" layoutY="214.0" prefHeight="17.0" prefWidth="472.0" />
+            <Separator layoutX="48.0" layoutY="206.0" prefHeight="17.0" prefWidth="472.0" />
             <Accordion layoutX="35.0" layoutY="242.0" />
             <Separator layoutX="67.0" layoutY="528.0" prefHeight="17.0" prefWidth="464.0" />
             <Button layoutX="212.0" layoutY="480.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="158.0" text="Open" />
             <Separator layoutX="122.0" layoutY="463.0" prefHeight="17.0" prefWidth="324.0" />
-            <TableView layoutX="26.0" layoutY="246.0" prefHeight="219.0" prefWidth="534.0">
+            <TableView layoutX="26.0" layoutY="246.0" onSort="#tabelExamination" prefHeight="219.0" prefWidth="527.0">
                <columns>
-                  <TableColumn prefWidth="128.0" text="Date" />
-                  <TableColumn prefWidth="117.0" text="Specialist" />
-                  <TableColumn prefWidth="170.0" text="Full Name" />
-                  <TableColumn prefWidth="118.0" text="Exmination" />
+                  <TableColumn fx:id="dateClmn" prefWidth="264.0" text="Date" />
+                  <TableColumn fx:id="examinationCodeClmn" prefWidth="262.0" text="Exmination" />
                </columns>
             </TableView>
          </children>

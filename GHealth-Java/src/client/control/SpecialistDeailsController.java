@@ -225,6 +225,20 @@ public class SpecialistDeailsController implements IController, Initializable{
 		}
 		
 		
+		public void onViewExaminationButtonClick(ActionEvent event){
+			ViewExaminationUI create = new ViewExaminationUI(pName,fName,personId,add,phoneNumber,email);
+			ClientConnectionController.clientConnect.userInterface.add(create);
+			
+			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof SpecialistUI){
+					ui.hideWindow();
+				}
+			}
+			
+			create.displayUserWindow();
+		}
+		
+		
 		public void onReportMissingButtonClick(ActionEvent event){
 			
 			try{

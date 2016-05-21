@@ -131,6 +131,9 @@ public class DBController {
 				case INSERT_RECORD:{
 					return InsertRecordDB.handleMessage(request, connection);
 				}
+				case FIND_CLIENT_EXAMINATION:{
+					return FindClientExaminationDB.handleMessage(request, connection);
+				}
 
 				default:
 				break;
