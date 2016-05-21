@@ -28,13 +28,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
  
+
+/**
+ * BranchReportController connects between the BranchManagerUI to the components logics.
+ * @author shays
+ *
+ */
 public class BranchReportController implements IController, Initializable{
 	
 
-	 /**
-	  * FXML Components links
-	  */
-	
 	@FXML private TextField numberTxt;
 	@FXML private BarChart<String, Integer> resChart;
 	@FXML private TextField clientsAvg1;
@@ -61,12 +63,8 @@ public class BranchReportController implements IController, Initializable{
 	@FXML private TextField leftTotal;
 	@FXML private Label branchName;
 
-	/**
-	 * Class members
-	 */
-	
-	private IUi thisUi;
 	private HashMap<Integer,String> days = new HashMap<Integer,String>();
+	private IUi thisUi;
 	private double c_avg;
 	private int c_total;
 	private double c_sd;
@@ -81,11 +79,12 @@ public class BranchReportController implements IController, Initializable{
 	private double l_sd;
 	private String user_branch;
 	
+	
 	/**
-	 * Monthly report button handler
+	 * onMonthlyReportButtonClick function is view monthly report button handler.
+	 * The function creates a request to display a monthly report for a selected month for the logged-in manager's branch.
 	 * @param event
 	 */
-	 
 	public void onMonthlyReportButtonClick(ActionEvent event){
 
 		try{
@@ -121,12 +120,11 @@ public class BranchReportController implements IController, Initializable{
 		
 	}
 
-	
 	 /**
-	  * Weekly report button handler
+	  * onWeeklyReportButtonClick function is view weekly report button handler.
+	  * The function creates a request to display a weekly report for a selected month for the logged-in manager's branch.
 	  * @param event
 	  */
-	
 	public void onWeeklyReportButtonClick(ActionEvent event){
 
 		try{
@@ -163,11 +161,10 @@ public class BranchReportController implements IController, Initializable{
 	}
 	
 	/**
-	 * Logout button handler
+	 * onLogoutButtonClick function is Logout button handler.
 	 * Sends a logout request for the logged in user to the server.
 	 * @param event
 	 */
-	
 	public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();
@@ -184,11 +181,10 @@ public class BranchReportController implements IController, Initializable{
 		
 	}
 	
-	/**
-	 * Process reply from server function to Branch report controller
-	 *  @param reply
+	/*
+	 * The handle reply process the results of LOGOUT, GET_BRANCH_BY_USERNAME, MONTHLY_REPORT & WEEKLY_REPORT requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
-	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void handleReply(Reply reply) {
@@ -402,10 +398,12 @@ public class BranchReportController implements IController, Initializable{
 	}
 
 	
-	/**
-	 * Initialize controller and Branch Manager UI function
+	/*
+	 * 	The initialize function initializes the BranchManagerUI screen and class members.
+	 *  The function sends a GET_BRANCH_BY_USERNAME request to the server to allocate the branches list on start.
+	 *  The function initializes the days Hash-Map.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
-	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

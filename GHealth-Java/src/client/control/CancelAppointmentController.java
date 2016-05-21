@@ -28,11 +28,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /**
- * 
+ * CancelAppointmentController connects between the CancelAppointmentUI to the components logics.
  * @author shays
  *
  */
-
 public class CancelAppointmentController implements IController, Initializable{
 
 	@FXML private TextField fieldPersonID;
@@ -44,14 +43,12 @@ public class CancelAppointmentController implements IController, Initializable{
 	@FXML private TableColumn<Appointment, String> specialistClmn;
 	@FXML private TableColumn<Appointment, String> branchClmn;
 	
-	private ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();	
-	
-	private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
-
 	private int choosedID;
 	private String clientID;
 	private IUi thisUi;
-	
+	private ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();		
+	private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
+
 	public void setUser(String id){
 		clientID = id;
 		fieldPersonID.setText(id);
@@ -70,6 +67,11 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 	}
 	
+	/**
+	 * Appointments table observable
+	 * @param list Gets an ArrayList of Hour objects
+	 * @return ObservableList<Appointment>
+	 */
 	public ObservableList<Appointment> getAppointments(ArrayList<Appointment> list){
 		ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 		
@@ -80,6 +82,10 @@ public class CancelAppointmentController implements IController, Initializable{
 		return appointments;
 	}
 	
+	/**
+	 * This function updates the view of the appointments table elements.
+	 * @param list Gets an ArrayList of Appointment objects
+	 */
 	public void onUpdateTableView(ArrayList<Appointment> list){
 
 		Platform.runLater(new Runnable() {
@@ -90,6 +96,11 @@ public class CancelAppointmentController implements IController, Initializable{
 			}});
 	}
 	
+	/**
+	 * onCancelAppointmentButtonClick function handles a click on cancel appointment button.
+	 * The function creates a CANCEL_APPOINTMENT request message and send it to the server.
+	 * @param event
+	 */
 	public void onCancelAppointmentButtonClick(ActionEvent event){
 		
 		ArrayList<String> msg = new ArrayList<String>();
@@ -104,7 +115,12 @@ public class CancelAppointmentController implements IController, Initializable{
 		}			
 	}
 
-	
+	/*
+	 * onBackButtonClick function is back button handler. 
+	 * The function searches the last IUi instance in the UI stack and show the window.
+	 * The function removes the current from the stack.
+	 * @param event
+	 */
 	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();
@@ -117,6 +133,11 @@ public class CancelAppointmentController implements IController, Initializable{
 		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 	}
 	
+	/**
+	 * onMouseClick function handles a mouse click on a appointment row from the appointments table.
+	 * The function gets the appointment ID from the table.
+	 * @param event
+	 */
 	public void onMouseClick(MouseEvent event){
 		try{
 			if (tabelAppointments.getSelectionModel().getSelectedItem().getAppointmentID() != 0){
@@ -135,7 +156,13 @@ public class CancelAppointmentController implements IController, Initializable{
 		cancelBtn.setDisable(true);
 	}
 	}
-	
+
+	/*
+	 * 	The initialize function initializes the CacnelAppointmentUI screen and class members.
+	 *  The function initializes Hash-Maps for hours.
+	 *  The function initializes tables'es columns.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -181,6 +208,10 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 	}
 
+	/*
+	 * The handle reply process the results of FIND_APPOINTMENTS & CANCEL_APPOINTMENT requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleReply(Reply reply) {

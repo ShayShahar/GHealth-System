@@ -2,12 +2,16 @@ package client.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;
 import ocsf.client.AbstractClient;
 
+/**
+ * ClientController inherits from AbstractClient and creates the connection to server.
+ * @author shays
+ *
+ */
 public class ClientController extends AbstractClient{
 
 	public IController controller;
@@ -15,6 +19,12 @@ public class ClientController extends AbstractClient{
 	public String userPrivilege;
 	public String userName;
 	
+	/**
+	 * ClientController constructor
+	 * @param host Gets the IP Address of the server
+	 * @param port Gets the port.
+	 * @throws IOException
+	 */
 	public ClientController(String host, int port) throws IOException {
 		super(host, port);
 		openConnection();

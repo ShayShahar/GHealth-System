@@ -82,7 +82,6 @@ public class ExtendedReportController implements IController, Initializable{
 	 * The function creates a request to display a monthly report for a selected month and branch.
 	 * @param event
 	 */
-	 
 	public void onMonthlyReportButtonClick(ActionEvent event){
 
 		try{
@@ -125,7 +124,6 @@ public class ExtendedReportController implements IController, Initializable{
 	  * The function creates a request to display a weekly report for a selected month and branch.
 	  * @param event
 	  */
-	
 	public void onWeeklyReportButtonClick(ActionEvent event){
 
 		try{
@@ -162,13 +160,11 @@ public class ExtendedReportController implements IController, Initializable{
 		
 	}
 	
-	
 	/**
 	 * onLogoutButtonClick function is Logout button handler.
 	 * Sends a logout request for the logged in user to the server.
 	 * @param event
 	 */
-	
 	public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();
@@ -189,7 +185,6 @@ public class ExtendedReportController implements IController, Initializable{
 	 * The handle reply process the results of LOGOUT, GET_BRANCHES, MONTHLY_REPORT & WEEKLY_REPORT requests.
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
-	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void handleReply(Reply reply) {
