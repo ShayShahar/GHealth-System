@@ -14,13 +14,13 @@ public class InsertRecordDB {
 	public static Object handleMessage(Request request, Connection connection) {
 
 
-		String updateAppointment = "UPDATE ghealth.appointment SET ghealth.appointment.appReview=? WHERE ghealth.appointment.appID=?";
+		String updateAppointment = "UPDATE ghealth.appointments SET ghealth.appointments.appReview=? WHERE ghealth.appointments.appID=?";
 		
 		try{
 
     		PreparedStatement preparedStatement1 = connection.prepareStatement(updateAppointment);    				
 	
-    		preparedStatement1.setInt(1,Integer.parseInt(request.getList().get(0)));
+    		preparedStatement1.setString(1,request.getList().get(0));
     		preparedStatement1.setString(2,request.getList().get(1));
     		preparedStatement1.executeUpdate();
 
