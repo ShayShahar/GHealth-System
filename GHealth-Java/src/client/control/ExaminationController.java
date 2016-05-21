@@ -50,9 +50,11 @@ public class ExaminationController implements IController, Initializable{
 	private IUi thisUi;
 
 	/**
-	 * Logout to the login menu
+	 * Logout button handler
+	 * Sends a logout request for the logged in user to the server.
 	 * @param event
 	 */
+	
   public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();

@@ -61,6 +61,10 @@ public class BranchReportController implements IController, Initializable{
 	@FXML private TextField leftTotal;
 	@FXML private Label branchName;
 
+	/**
+	 * Class members
+	 */
+	
 	private IUi thisUi;
 	private HashMap<Integer,String> days = new HashMap<Integer,String>();
 	private double c_avg;
@@ -158,10 +162,11 @@ public class BranchReportController implements IController, Initializable{
 		
 	}
 	
-		/**
-		 * Logout button handler
-		 * @param event
-		 */
+	/**
+	 * Logout button handler
+	 * Sends a logout request for the logged in user to the server.
+	 * @param event
+	 */
 	
 	public void onLogoutButtonClick(ActionEvent event){
 		

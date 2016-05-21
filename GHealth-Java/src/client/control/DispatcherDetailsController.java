@@ -28,10 +28,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
+/**
+ * DispatcherDetailsController handles the logics of the Dispatcher screen.
+ * The class implements IController and Initializable interfaces.
+ * @author shays
+ *
+ */
 
 public class DispatcherDetailsController implements IController, Initializable{
 	
-	//FXML Components
+	
 	@FXML private Button dispLogoutBtn;
 	@FXML private Button createAppointmentBtn;
 	@FXML private Button cancelAppointmentBtn;
@@ -55,14 +61,16 @@ public class DispatcherDetailsController implements IController, Initializable{
 	@FXML private TextField fieldClientEmail;
 	@FXML private TextField SpClientIDTxt;
 
-	
-	//Members
 	public static String clientID;
 	public static int id;
 	private IUi thisUi;
 		
 	
-	//Components Handlers
+	/**
+	 * onLogoutButtonClick function is Logout button handler.
+	 * Sends a logout request for the logged in user to the server.
+	 * @param event
+	 */
 	public void onLogoutButtonClick(ActionEvent event){
 		
 		ArrayList<String> username = new ArrayList<String>();
@@ -78,6 +86,13 @@ public class DispatcherDetailsController implements IController, Initializable{
 		}
 		
 	}
+	
+	/**
+	 * validateID function checks if the entered ID of the client is valid.
+	 * An Israeli ID contains 9-digits.
+	 * @param id Get the text from the ID TexField
+	 * @return true if the validate success, false if the validation fails.
+	 */
 	
 	private boolean validateID(String id){
 		
@@ -95,6 +110,11 @@ public class DispatcherDetailsController implements IController, Initializable{
 		
 		return true;
 	}
+	
+	/**
+	 * onFindClientIDButtonClick function handles the logics of the search client button.
+	 * @param event
+	 */
 	
 	public void onFindClientIDButtonClick(ActionEvent event){
 		
@@ -146,56 +166,13 @@ public class DispatcherDetailsController implements IController, Initializable{
 		
 	}
 	
-	public void onFindClientIDButtonClickSpecialist(ActionEvent event){
-		
-		
-		fieldClientID.clear();
-		fieldClientName.clear();
-		fieldClientFamily.clear();
-		fieldClientJoin.clear();
-		fieldClientAddress.clear();
-		fieldClientPhone.clear();
-		fieldClientEmail.clear();
-		fieldClientClinic.clear();
-		
-		retreiveBtn.setVisible(false);
-		removeBtn.setVisible(false);
-		
-		SpClientIDTxt.setStyle("-fx-prompt-text-fill: gray");
+	/**
+	 * onCreateAppointmentButtonClick function handles the logics of create appointment button click
+	 * The function request an approved reference ID.
+	 * The function sends a validation request to the server.
+	 * @param event
+	 */
 
-		if (SpClientIDTxt.getText() == null || SpClientIDTxt.getText().trim().isEmpty()){
-			ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
-			
-			if (SpClientIDTxt.getText() == null || SpClientIDTxt.getText().trim().isEmpty()){
-				SpClientIDTxt.setStyle("-fx-prompt-text-fill: #ffa0a0");
-			}
-			
-			return;
-		}
-		
-		boolean check = validateID(SpClientIDTxt.getText());
-		
-		if (check == false){
-			return;
-		}
-
-		clientID = SpClientIDTxt.getText();
-		
-		ArrayList<String> client = new ArrayList<String>();
-
-		client.add(clientID);
-		
-		Request request = new Request(Command.FIND_CLIENT, client);
-
-		try {
-			ClientConnectionController.clientConnect.controller = this;
-			ClientConnectionController.clientConnect.sendToServer(request);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
 	public void onCreateAppointmentButtonClick(ActionEvent event){
 		
 				URL url = ClientConnectionController.class.getResource("/img/question.png");
@@ -257,12 +234,25 @@ public class DispatcherDetailsController implements IController, Initializable{
 		
 	}
 	
+	/**
+	 * onCancelAppointmentButtonClick function handles the logics of cancel appointment button click
+	 * The function creates a new CancelAppointmentUI instance and display the window on the screen.
+	 * @param event
+	 */
+	
 	public void onCancelAppointmentButtonClick(ActionEvent event){
 		CancelAppointmentUI cancel = new CancelAppointmentUI(dispClientIDTxt.getText());
 		ClientConnectionController.clientConnect.userInterface.get(1).hideWindow();
 		ClientConnectionController.clientConnect.userInterface.add(cancel);
 		cancel.displayUserWindow();	
 	}
+	
+	
+	/**
+	 * onRetrieveClientButtonClick function handles the logics of retrieve client button click
+	 * The function creates a Return client request and sends the request with the client's ID to the server.
+	 * @param event
+	 */
 	
 	public void onRetrieveClientButtonClick(ActionEvent event){
 		
@@ -283,6 +273,13 @@ public class DispatcherDetailsController implements IController, Initializable{
 		
 	}
 	
+	/**
+	 * onCreateClientButtonClick function handles the logics of create client button click
+	 * In case the requested client is not found in the DB the create client button is click-able
+	 * The function creates a new CreateClientUI instance and display the window on the screen.
+	 * @param event
+	 */
+	
 	public void onCreateClientButtonClick(ActionEvent event){
 		
 		CreateClientUI create = new CreateClientUI(dispClientIDTxt.getText());
@@ -290,7 +287,13 @@ public class DispatcherDetailsController implements IController, Initializable{
 		ClientConnectionController.clientConnect.userInterface.add(create);
 		create.displayUserWindow();		
 	}
+
 	
+	/**
+	 * onRemoveClientButtonClick function handles the logics of remove client button click
+	 * The function sends a request of Remove client to the server with the client's ID.
+	 * @param event
+	 */
 	public void onRemoveClientButtonClick(ActionEvent event){
 	
 		ArrayList<String> client = new ArrayList<String>();
@@ -309,6 +312,11 @@ public class DispatcherDetailsController implements IController, Initializable{
 		
 	}
 	
+/*
+ * The handle reply process the results of LOGOUT, FIND_CLIENT, REMOVE_CLIENT, RETURN_CLIENT & VALIDATE_REFERENCE requests.
+ * @see client.interfaces.IController#handleReply(common.entity.Reply)
+ */
+@Override
 	public void handleReply(Reply reply){
 		 
 		Object result =  reply.getResult();
@@ -443,7 +451,11 @@ public class DispatcherDetailsController implements IController, Initializable{
 	}
 
 
-	
+/*
+ * The initialize function initializes the DispatcherUI screen and class members.
+ * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+ */
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		removeBtn.setVisible(false);

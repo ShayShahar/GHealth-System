@@ -17,11 +17,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+/**
+ * CreateClientController handles the logics of the CreateClient screen.
+ * The class implements IController and Initializable interfaces.
+ * @author shays
+ *
+ */
 public class CreateClientController implements IController, Initializable{
 
 	
-	//FXML Components
-
 	@FXML private TextField fieldPersonID;
 	@FXML private TextField fieldClientName;
 	@FXML private TextField fieldClientFamily;
@@ -33,12 +37,17 @@ public class CreateClientController implements IController, Initializable{
 	@FXML private ComboBox<String> listPhone;
 	
 	
-	//Members
 	IUi thisUi = null;
 
 
 	ObservableList<String> list = FXCollections.observableArrayList("--","050","052","054","058","03","04","08");
 
+
+	/*
+	 * 	The initialize function initializes the CreateClientUI screen and class members.
+	 *  The function initializes the phones number prefixes.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		listPhone.setItems(list);		
@@ -52,6 +61,10 @@ public class CreateClientController implements IController, Initializable{
 		
 	}
 
+	/*
+	 * The handle reply process the results of CREATE_CLIENT request.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@Override
 	public void handleReply(Reply reply) {
 
@@ -76,13 +89,20 @@ public class CreateClientController implements IController, Initializable{
 			thisUi.displayMessage("Client Created", "New client registered successfuly to IHealth.");
 		}
 	}
-	
-	
+
 	public void setUser(String user_id){
 		fieldPersonID.setText(user_id);
 		fieldPersonID.setEditable(false);
 	}
 	
+	
+	
+	 /**
+	  * onCreateClientButtonClick function is create client button handler.
+	  * The function checks all the input fields.
+	  * If all the input fields are correct, the function sends a CREATE_CLIENT request to the server with the client details.
+	  * @param event
+	  */
 	public void onCreateClientButtonClick(ActionEvent event){
 				
 		fieldClientName.setStyle("-fx-prompt-text-fill: gray");
@@ -168,6 +188,12 @@ public class CreateClientController implements IController, Initializable{
 		 
 	}
 	
+	/*
+	 * onBackButtonClick function is back button handler. 
+	 * The function search the last IUi instance in the UI stack and show the window.
+	 * The function remove the current from the stack.
+	 * @param event
+	 */
 	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();

@@ -34,9 +34,6 @@ import javafx.scene.control.TextField;
 
 public class ExtendedReportController implements IController, Initializable{
 
-	 /**
-	  * FXML Components links
-	  */
 	
 	@FXML private ComboBox<String> selectBranchList;
 	@FXML private ComboBox<String> selectBranchList1;
@@ -65,8 +62,8 @@ public class ExtendedReportController implements IController, Initializable{
 	@FXML private TextField leftSd;
 	@FXML private TextField leftTotal;
 
-	private IUi thisUi;
 	private HashMap<Integer,String> days = new HashMap<Integer,String>();
+	private IUi thisUi;
 	private double c_avg;
 	private int c_total;
 	private double c_sd;
@@ -81,7 +78,8 @@ public class ExtendedReportController implements IController, Initializable{
 	private double l_sd;
 	
 	/**
-	 * Monthly report button handler
+	 * onMonthlyReportButtonClick function is view monthly report button handler.
+	 * The function creates a request to display a monthly report for a selected month and branch.
 	 * @param event
 	 */
 	 
@@ -123,7 +121,8 @@ public class ExtendedReportController implements IController, Initializable{
  
 	
 	 /**
-	  * Weekly report button handler
+	  * onWeeklyReportButtonClick function is view weekly report button handler.
+	  * The function creates a request to display a weekly report for a selected month and branch.
 	  * @param event
 	  */
 	
@@ -163,10 +162,12 @@ public class ExtendedReportController implements IController, Initializable{
 		
 	}
 	
-		/**
-		 * Logout button handler
-		 * @param event
-		 */
+	
+	/**
+	 * onLogoutButtonClick function is Logout button handler.
+	 * Sends a logout request for the logged in user to the server.
+	 * @param event
+	 */
 	
 	public void onLogoutButtonClick(ActionEvent event){
 		
@@ -184,9 +185,9 @@ public class ExtendedReportController implements IController, Initializable{
 		
 	}
 	
-	/**
-	 * Process reply from server function to Extended report controller
-	 *  @param reply
+	/*
+	 * The handle reply process the results of LOGOUT, GET_BRANCHES, MONTHLY_REPORT & WEEKLY_REPORT requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -385,11 +386,11 @@ public class ExtendedReportController implements IController, Initializable{
 		}
 	}
 
-	
-	/**
-	 * Initialize controller and General Manager UI function
+	/*
+	 * 	The initialize function initializes the GeneralManagerUI screen and class members.
+	 *  The function sends a GET_BRANCHES request to the server to allocate the branches list on start.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
-	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

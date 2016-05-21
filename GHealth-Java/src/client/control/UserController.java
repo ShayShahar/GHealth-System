@@ -12,14 +12,30 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * UserController class handles the logics of login screen.
+ * The class implements IController interface.
+ * @author shays
+ *
+ */
 
 public class UserController implements IController{
 		
-
-	//FXML variables
+	
 	@FXML private TextField userNameTxt;
 	@FXML private PasswordField passwordFld;
+	
+ 
 	private static String username;
+	
+	
+	
+	/**
+	 * onLoginButtonClick handles the login button click.
+	 * The function checks the input fields, in case there are missing fields an error is displayed on the screen.
+	 * In case all the fields are filled, the function sends a login request to the server.
+	 * @param event
+	 */
 	
 	public void onLoginButtonClick(ActionEvent event){
 				
@@ -46,6 +62,14 @@ public class UserController implements IController{
 		
 	}
 	
+	
+	/**
+	 * validateUser get the text input from username and password fields than creates a request message
+	 * the function sends the request message to the server
+	 * @param username Get the username TextField
+	 * @param password Get the password PasswordField
+	 */
+	
 	private void validateUser(String username, String password) {
 		
 		ArrayList<String> userDetails = new ArrayList<String>();
@@ -60,6 +84,12 @@ public class UserController implements IController{
 			e.printStackTrace();
 		}
 	}
+	
+	/*
+	 * Handle login message reply. 
+	 * Open the UI by the user privilege.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	
 	public void handleReply(Reply reply){
 		
@@ -151,7 +181,10 @@ public class UserController implements IController{
 							
 	}
 
-	
+	/**
+	 * This property returns the userName of the logged in user.
+	 * @return String userName
+	 */
 	public static String getUser(){
 		return username;
 	}
