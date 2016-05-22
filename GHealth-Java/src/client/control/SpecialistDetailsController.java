@@ -392,33 +392,7 @@ public class SpecialistDetailsController implements IController, Initializable{
 				}
 				
 				onUpdateTableView(hours);
-				
-				Platform.runLater(new Runnable() {
-					
-					@Override
-					public void run() {
-						
-						fieldClientID.clear();
-						fieldClientClinic.clear();
-						fieldClientName.clear();
-						fieldClientFamily.clear();
-						fieldClientAddress.clear();
-						fieldClientPhone.clear();
-						fieldClientEmail.clear();
-						SpClientIDTxt.clear();
-						
-						if (hours.size() == 0){
-							SpViewHistoryBtn.setDisable(true);
-							SpEndTreatmentBtn.setDisable(true);
-							SpViewExaminationsBtn.setDisable(true);
-							SpCreateRefernceBtn.setDisable(true);
-							SpRecordAppointmentBtn.setDisable(true);
-							SpReportMissingBtn.setDisable(true);
-						}
-												
-					}
-					
-				});
+
 			}
 			
 			else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){

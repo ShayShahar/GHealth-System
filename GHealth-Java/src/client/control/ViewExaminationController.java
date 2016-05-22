@@ -55,9 +55,13 @@ public class ViewExaminationController implements IController,Initializable{
 	@FXML private TableColumn<Examination, String> specialistClmn;
 	@FXML private TableColumn<Examination, String> specialistNameClmn;
 	@FXML private TableColumn<Examination, String> examinationNameClmn;
+	@FXML private TableColumn<Examination, String> serialClmn;
 	
 	private IUi thisUi;
 	private String personId;
+	private String serialNo;
+	private String examinationCode;
+	private int examinationId;
 	
 		
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email){
@@ -122,6 +126,8 @@ public class ViewExaminationController implements IController,Initializable{
 		specialistClmn.setCellValueFactory(new PropertyValueFactory<>("specialist"));
 		specialistNameClmn.setStyle( "-fx-alignment: CENTER;");
 		specialistNameClmn.setCellValueFactory(new PropertyValueFactory<>("specialistName"));
+		serialClmn.setStyle( "-fx-alignment: CENTER;");
+		serialClmn.setCellValueFactory(new PropertyValueFactory<>("serial"));
 		
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
@@ -149,10 +155,12 @@ public class ViewExaminationController implements IController,Initializable{
 	
 	public void onOpenButtonClick(ActionEvent event){
 		
+		if(examinationId != 0){
+			
 		ExaminationController.Curr_Ref = new Reference();
-		ExaminationController.Curr_Ref.setRefNum(1);
-		ExaminationController.Curr_Ref.setCode(1);
-		ExaminationController.Curr_Ref.setType(Integer.toString(2000));
+		ExaminationController.Curr_Ref.setRefNum(Integer.parseInt(serialNo));
+		ExaminationController.Curr_Ref.setCode(examinationId);
+		ExaminationController.Curr_Ref.setType(examinationCode);
 		
 		CreateExaminationUI create = new CreateExaminationUI();
 	      ClientConnectionController.clientConnect.userInterface.add(create);
@@ -164,20 +172,25 @@ public class ViewExaminationController implements IController,Initializable{
 	      }
 	      
 	      create.displayUserWindow();
+		}
+		else{
+			thisUi.displayErrorMessage("ERROR","This refrence didn't checked yet by lab worker" );
+		}
 		
 	}
 	
 	public void onMouseClick(MouseEvent event){
 		
 		try{
-				if (tabelExamination.getSelectionModel().getSelectedItem().getExaminationName() != null){
-				int hour = tabelAppointment.getSelectionModel().getSelectedItem().getHour();
-					
+				if (tabelExamination.getSelectionModel().getSelectedItem().getExaminationName() != null  && tabelExamination.getSelectionModel().getSelectedItem().getSerial() != null){
 			
+					String examinationName =  tabelExamination.getSelectionModel().getSelectedItem().getExaminationName();
+					 serialNo =  tabelExamination.getSelectionModel().getSelectedItem().getSerial();
+				
 					ArrayList<String> msg = new ArrayList<String>();
-					msg.add(Integer.toString(hour));
-					msg.add(userName);   
-					Request request = new Request(Command.GET_CLIENT_BY_APPOINTMET,msg);
+					msg.add(examinationName); 
+					msg.add(serialNo);
+					Request request = new Request(Command.GET_EXAMINATION_NUMBER,msg);
 					
 					try {
 						ClientConnectionController.clientConnect.controller = this;
@@ -227,12 +240,20 @@ public class ViewExaminationController implements IController,Initializable{
 	
 		 
 		 }
+		 else if (reply.getCommand() == Command.GET_EXAMINATION_NUMBER){
+			 
+			 if (result instanceof ArrayList<?>){
+					ArrayList<Integer> list = (ArrayList<Integer>)result;
+			 examinationCode = Integer.toString(list.get(0));
+			 examinationId = list.get(1);
+			 
+		 }
 				
 		
 	}
 
-}	
-
+	}	
+}
 
 
 

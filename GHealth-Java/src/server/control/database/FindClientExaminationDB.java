@@ -25,7 +25,7 @@ public class FindClientExaminationDB {
 
 		  String searchExamination =
 				  														"SELECT ghealth.reference.refDate, ghealth.examinationtype.typeName ,ghealth.specialists.specialistType "
-				  														+ " ,ghealth.person.personName ,ghealth.person.personFamily " +
+				  														+ " ,ghealth.person.personName ,ghealth.person.personFamily,ghealth.reference.refID " +
 				  														"FROM ghealth.reference ,ghealth.specialists ,ghealth.person ,ghealth.examinationtype " +
 				  														"WHERE ghealth.reference.client_id = ? AND ghealth.reference.specialist_id = ghealth.specialists.specialistID "
 				  														+ "AND ghealth.specialists.personID = ghealth.person.personID AND "
@@ -72,6 +72,7 @@ public class FindClientExaminationDB {
 			    		temp.setExaminationName(res.getString(2));
 			    		temp.setSpecialist(res.getString(3));
 			    		temp.setSpecialistName(res.getString(4) + " " +res.getString(5));
+			    		temp.setSerial(Integer.toString(res.getInt(6)));
 			    		list.add(temp);
 			    		
 			    }while(res.next());
