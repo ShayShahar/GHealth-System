@@ -13,6 +13,7 @@ public class Examination implements Serializable{
 	private String specialistName;
 	private String specialist;
 	private String examinationName;
+	private String serial;
 	private String details;
 	private ArrayList<byte[]> pictures;
 	
@@ -65,6 +66,12 @@ public class Examination implements Serializable{
 	}
 	public void setExaminationName(String examinationName) {
 		this.examinationName = examinationName;
+	}
+	public String getSerial() {
+		return serial;
+	}
+	public void setSerial(String serial) {
+		this.serial = serial;
 	}
 	
 }
