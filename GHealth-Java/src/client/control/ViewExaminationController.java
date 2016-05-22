@@ -170,7 +170,7 @@ public class ViewExaminationController implements IController,Initializable{
 	public void onMouseClick(MouseEvent event){
 		
 		try{
-				if (tabelExamination.getSelectionModel().getSelectedItem().getHour() != null){
+				if (tabelExamination.getSelectionModel().getSelectedItem().getExaminationName() != null){
 				int hour = tabelAppointment.getSelectionModel().getSelectedItem().getHour();
 					
 			
