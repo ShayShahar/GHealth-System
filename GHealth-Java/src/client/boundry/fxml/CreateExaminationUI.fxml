@@ -32,7 +32,7 @@
                   <TextField fx:id="examType" prefHeight="25.0" prefWidth="89.0" />
                </children>
             </HBox>
-            <Button layoutX="423.0" layoutY="518.0" mnemonicParsing="false" onAction="#OnSendClickButton" prefHeight="29.0" prefWidth="59.0" text="Send" />
+            <Button fx:id="sendBtn" layoutX="423.0" layoutY="518.0" mnemonicParsing="false" onAction="#OnSendClickButton" prefHeight="29.0" prefWidth="59.0" text="Send" />
             <Separator layoutX="40.0" layoutY="51.0" prefHeight="3.0" prefWidth="465.0" />
             <ImageView fx:id="ImagePick" fitHeight="110.0" fitWidth="121.0" layoutX="130.0" layoutY="268.0" onMouseClicked="#OnAddPictureClickButton1" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import client.boundry.CreateExaminationUI;
 import client.boundry.LabWorkerUI;
+import client.boundry.ViewExaminationUI;
 import client.entity.Examination;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -39,7 +40,7 @@ public class CreateExaminationController implements IController, Initializable{
 	@FXML private TextField CErefnum;
 	@FXML private TextField examType;
 	@FXML private ImageView ImagePick,ImagePick1,ImagePick2,ImagePick3;
-	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4;
+	@FXML private Button Xbtn1,Xbtn2,Xbtn3,Xbtn4, sendBtn;
 	@FXML private TextArea ExamTextArea;
 	
 	/**
@@ -112,7 +113,25 @@ public class CreateExaminationController implements IController, Initializable{
 					e.printStackTrace();
 				}
 		}
-	
+		
+		
+		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+			
+			if (ui instanceof ViewExaminationUI){
+				ImagePick.setDisable(true);
+				ImagePick1.setDisable(true);
+				ImagePick2.setDisable(true);
+				ImagePick3.setDisable(true);
+				sendBtn.setVisible(false);
+				
+				
+				
+				
+		     }
+			
+			
+			
+		}
 		
 		
 		
@@ -375,6 +394,26 @@ public class CreateExaminationController implements IController, Initializable{
 			
 			initializePictures(exam);
 			
+			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				
+				if (ui instanceof ViewExaminationUI){
+						
+					Xbtn1.setVisible(false);
+					Xbtn2.setVisible(false);
+					Xbtn3.setVisible(false);
+					Xbtn4.setVisible(false);
+	
+					Xbtn1.setDisable(true);
+					Xbtn2.setDisable(true);
+					Xbtn3.setDisable(true);
+					Xbtn4.setDisable(true);	
+			     }
+				
+				
+				
+			}
+			
 
 			
 			
@@ -435,6 +474,10 @@ public class CreateExaminationController implements IController, Initializable{
 				if (ui instanceof LabWorkerUI){
 						ui.showWindow();
 				}
+				
+				if (ui instanceof ViewExaminationUI){
+					ui.showWindow();
+			}
 			}
 			
 			ClientConnectionController.clientConnect.userInterface.remove(thisUi);
