@@ -123,6 +123,16 @@ public class CreateExaminationController implements IController, Initializable{
 				ImagePick2.setDisable(true);
 				ImagePick3.setDisable(true);
 				sendBtn.setVisible(false);
+				
+				Xbtn1.setDisable(true);
+				Xbtn2.setDisable(true);
+				Xbtn3.setDisable(true);
+				Xbtn4.setDisable(true);
+				
+				Xbtn1.setVisible(false);
+				Xbtn2.setVisible(false);
+				Xbtn3.setVisible(false);
+				Xbtn4.setVisible(false);
 		     }
 			
 			
