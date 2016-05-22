@@ -25,11 +25,11 @@ public class FindClientExaminationDB {
 
 		  String searchExamination =
 				  														"SELECT ghealth.reference.refDate, ghealth.examinationtype.typeName ,ghealth.specialists.specialistType "
-				  														+ " ,ghealth.person.personName ,ghealth.person.personFamily,ghealth.reference.refID " +
+				  														+ " ,ghealth.person.personName ,ghealth.person.personFamily,ghealth.reference.examination_id " +
 				  														"FROM ghealth.reference ,ghealth.specialists ,ghealth.person ,ghealth.examinationtype " +
 				  														"WHERE ghealth.reference.client_id = ? AND ghealth.reference.specialist_id = ghealth.specialists.specialistID "
 				  														+ "AND ghealth.specialists.personID = ghealth.person.personID AND "
-				  														+ "ghealth.reference.type_id = ghealth.examinationtype.typeID " +
+				  														+ "ghealth.reference.type_id = ghealth.examinationtype.typeID AND ghealth.reference.examination_id > 0 " +
 				  														"ORDER BY ghealth.reference.refDate ASC";
 		 
 		  String searchClientId = "SELECT ghealth.clients.clientID FROM ghealth.clients WHERE ghealth.clients.person = ?";
