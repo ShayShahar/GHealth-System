@@ -101,7 +101,7 @@ public class SpecialistDetailsController implements IController, Initializable{
 			Dialog<Pair<String, String>> dialog = new Dialog<>();
 			dialog.setTitle("End Medical Treatment");
 			dialog.setGraphic(new ImageView(url.toString()));
-			dialog.setHeaderText("Insert the price of the treatment and press OK to finish treatment.");
+			dialog.setHeaderText("Insert the price of the treatment.\nPress OK to finish treatment.");
 			
 	    // Set the button types.
 	    ButtonType finish = new ButtonType("OK", ButtonData.OK_DONE);
@@ -132,8 +132,8 @@ public class SpecialistDetailsController implements IController, Initializable{
 	        	else{
 	        		
 		        	ArrayList<String> msg = new ArrayList<String>();
-		        	msg.add(appId);
 		        	msg.add(refNumber.getText());
+		        	msg.add(appId);
 		        	 
 		    			Request request = new Request(Command.END_MEDICAL_TREATMENT, msg);
 
@@ -364,15 +364,19 @@ public class SpecialistDetailsController implements IController, Initializable{
 			}
 			
 			else if (reply.getCommand() == Command.FIND_TODAY_APPOINTMENT){
-				
+				ArrayList<Hour> hours = new ArrayList<Hour>();
+
+				if (result instanceof ArrayList<?>){
 					ArrayList<Integer> hoursRes = (ArrayList<Integer>)result;
-					ArrayList<Hour> hours = new ArrayList<Hour>();
 					for (int i = 0 ; i<hoursRes.size(); i++){
 						Hour hour  = new Hour();
 						hour.setHour(getHourByInteger.get(hoursRes.get(i)));
 						hours.add(hour);
 					}
-					onUpdateTableView(hours);
+				}
+				
+				onUpdateTableView(hours);
+
 			}
 			
 			else if (reply.getCommand() == Command.GET_CLIENT_BY_APPOINTMET){
@@ -447,18 +451,27 @@ public class SpecialistDetailsController implements IController, Initializable{
 		
 			else if (reply.getCommand() == Command.END_MEDICAL_TREATMENT){
 				
-
-				ArrayList<String> user = new ArrayList<String>();
-				user.add(ClientConnectionController.clientConnect.userName);
-				
-				Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
-				
-				try {
-					ClientConnectionController.clientConnect.controller = this;
-					ClientConnectionController.clientConnect.sendToServer(requst2);
-				} catch (IOException e) {
-					e.printStackTrace();
+				if ((Result)result == Result.OK)
+				{
+					thisUi.displayMessage("Appointment ended", "The appointment ended and saved in the client's medical file"
+							+ ".\nA bill has sent to the client's clinic and to the referencer doctor");
+					
+					ArrayList<String> user = new ArrayList<String>();
+					user.add(ClientConnectionController.clientConnect.userName);
+					
+					Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
+					
+					try {
+						ClientConnectionController.clientConnect.controller = this;
+						ClientConnectionController.clientConnect.sendToServer(requst2);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
+				else{
+					thisUi.displayErrorMessage("Error", "An error occured while trying to update appointment's information.");
+				}
+
 			}
 
 		

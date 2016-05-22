@@ -2,6 +2,8 @@ package client.entity;
 
 public class User extends Person{
 	
+
+	private static final long serialVersionUID = 1L;
 	protected enum Privilege {DISPATCHER, LAB_WORKER, GENERAL_MANAGER, BRANCH_MANAGER, SPECIALIST};
 	
 	//class variables

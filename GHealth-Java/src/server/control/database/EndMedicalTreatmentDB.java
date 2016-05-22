@@ -2,12 +2,15 @@ package server.control.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Calendar;
-
 import common.entity.Request;
 import common.enums.Result;
+
+
+/**
+ * EndMedicalTreatmentDB class updates the status of the appointment to finished and set the price of the appointment in the Data base.
+ * @author shays
+ *
+ */
 
 public class EndMedicalTreatmentDB {
 
@@ -21,9 +24,21 @@ public class EndMedicalTreatmentDB {
 	
     public static Object handleMessage (Request request, Connection connection) {
     	
-	
+    	String endTreatment = "UPDATE ghealth.appointments SET appointments.appPrice=?, appointments.appStatus=1 WHERE appointments.appID=?";
 
-		
+			try{
+			    PreparedStatement statement = connection.prepareStatement(endTreatment);    				
+					statement.setInt(1, Integer.parseInt(request.getList().get(0)));
+					statement.setInt(2, Integer.parseInt(request.getList().get(1)));
+					statement.executeUpdate();
+					
+					return Result.OK;
+
+
+			}catch(Exception e){
+				e.printStackTrace();
+				return Result.ERROR;
+			}
 	}
 	
 	

@@ -1,11 +1,8 @@
 package server.control.database;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import common.entity.Request;
 import common.enums.Result;
 
@@ -31,7 +28,7 @@ public class InsertRecordDB {
 					return Result.ERROR;
 			}
 		
-		return null;
+		return Result.OK;
 	}
 
 }

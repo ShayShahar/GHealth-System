@@ -1,17 +1,11 @@
 package client.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
-
-import javafx.scene.image.Image;
 
 public class Examination implements Serializable{
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	//class variables
 	private int id , Ref_id;
