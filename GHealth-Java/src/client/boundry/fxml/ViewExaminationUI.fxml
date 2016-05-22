@@ -26,6 +26,7 @@
             </ImageView>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Separator layoutX="70.0" layoutY="205.0" prefHeight="17.0" prefWidth="472.0" />
             <Accordion layoutX="35.0" layoutY="242.0" />
             <Separator layoutX="67.0" layoutY="528.0" prefHeight="17.0" prefWidth="464.0" />
@@ -46,6 +47,13 @@
             <Button layoutX="227.0" layoutY="492.0" mnemonicParsing="false" onAction="#onOpenButtonClick" prefHeight="33.0" prefWidth="158.0" text="Open" />
             <TableView fx:id="tabelExamination" layoutX="10.0" layoutY="188.0" prefHeight="297.0" prefWidth="592.0">
 >>>>>>> 01059b777576e88d9be7d21e63aa92657ef3fadc
+=======
+            <Separator layoutX="12.0" layoutY="175.0" prefHeight="17.0" prefWidth="592.0" />
+            <Accordion layoutX="35.0" layoutY="242.0" />
+            <Separator layoutX="9.0" layoutY="528.0" prefHeight="17.0" prefWidth="592.0" />
+            <Button layoutX="227.0" layoutY="492.0" mnemonicParsing="false" onAction="#onOpenButtonClick" prefHeight="33.0" prefWidth="158.0" text="Open" />
+            <TableView fx:id="tabelExamination" layoutX="10.0" layoutY="188.0" prefHeight="297.0" prefWidth="592.0">
+>>>>>>> origin/master
                <columns>
                   <TableColumn fx:id="dateClmn" prefWidth="106.0" text="Date" />
                   <TableColumn fx:id="specialistClmn" prefWidth="119.0" text="Specialist" />

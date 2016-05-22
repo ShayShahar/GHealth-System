@@ -140,6 +140,7 @@ public class DBController {
 				}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				case GET_EXAMINATION_NUMBER:{
 					return GetExaminatioNumberDB.handleMessage(request, connection);
 =======
@@ -152,6 +153,11 @@ public class DBController {
 				case GET_MEDICAL_FILE:{
 					return GetMedicalFileDB.handleMessage(request, connection);
 >>>>>>> 01059b777576e88d9be7d21e63aa92657ef3fadc
+=======
+				
+				case GET_MEDICAL_FILE:{
+					return GetMedicalFileDB.handleMessage(request, connection);
+>>>>>>> origin/master
 				}
 
 				default:

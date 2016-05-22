@@ -35,6 +35,7 @@ public enum Command {
     FIND_CLIENT_EXAMINATION,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     END_MEDICAL_TREATMENT, 
     GET_EXAMINATION_NUMBER;
 =======
@@ -45,4 +46,8 @@ public enum Command {
     END_MEDICAL_TREATMENT,
     GET_MEDICAL_FILE;
 >>>>>>> 01059b777576e88d9be7d21e63aa92657ef3fadc
+=======
+    END_MEDICAL_TREATMENT,
+    GET_MEDICAL_FILE;
+>>>>>>> origin/master
 }
