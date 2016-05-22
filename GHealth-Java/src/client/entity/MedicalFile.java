@@ -1,31 +1,41 @@
 package client.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class MedicalFile implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private List<Examination> examinations;
-	private List<Appointment> appointments;
+
+	private String name;
+	private String date;
+	private String type;
+	private String specialization;
 	
 	
-	public List<Examination> getExaminations() {
-		return examinations;
+	public String getName() {
+		return name;
 	}
-	public void setExaminations(List<Examination> examinations) {
-		this.examinations = examinations;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public List<Appointment> getAppointments() {
-		return appointments;
+	public String getDate() {
+		return date;
 	}
-	public void setAppointments(List<Appointment> appointments) {
-		this.appointments = appointments;
+	public void setDate(String date) {
+		this.date = date;
 	}
-	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getSpecialization() {
+		return specialization;
+	}
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
 	
 	
 }

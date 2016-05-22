@@ -78,17 +78,17 @@ public class ViewExaminationUI implements IUi {
 				  Parent root;
 					try {
 						root = (Parent) fxmlLoader.load();
-					    Stage stage = new Stage();
-					      stage.setTitle("View Examination");
-					      ViewExaminationController controller = fxmlLoader.getController();
-					      controller.setUser(pName,fName,personId,add,phoneNumber,email);
-						  URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
-						 stage.getIcons().add(new Image(url_32.toString()));
-					      Scene scene = new Scene(root);
-					      scene.getStylesheets().add("client/boundry/css/Style.css");
-					      stage.setScene(scene); 
-					      stage.setResizable(false);
-					      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					  Stage stage = new Stage();
+					  stage.setTitle("View Examination");
+					  ViewExaminationController controller = fxmlLoader.getController();
+					  controller.setUser(pName,fName,personId,add,phoneNumber,email);
+					  URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
+					  stage.getIcons().add(new Image(url_32.toString()));
+					  Scene scene = new Scene(root);
+					  scene.getStylesheets().add("client/boundry/css/Style.css");
+					  stage.setScene(scene); 
+					  stage.setResizable(false);
+					  stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 					            public void handle(WindowEvent we) {
 					            	
 					        		ArrayList<String> username = new ArrayList<String>();
