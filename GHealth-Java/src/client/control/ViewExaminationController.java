@@ -59,7 +59,7 @@ public class ViewExaminationController implements IController,Initializable{
 	
 	private IUi thisUi;
 	private String personId;
-	private String serialNo;
+	private int serialNo;
 	private String examinationCode;
 	private int examinationId;
 	
@@ -155,10 +155,9 @@ public class ViewExaminationController implements IController,Initializable{
 	
 	public void onOpenButtonClick(ActionEvent event){
 		
-		if(examinationId != 0){
-			
+
 		ExaminationController.Curr_Ref = new Reference();
-		ExaminationController.Curr_Ref.setRefNum(Integer.parseInt(serialNo));
+		ExaminationController.Curr_Ref.setRefNum(serialNo);
 		ExaminationController.Curr_Ref.setCode(examinationId);
 		ExaminationController.Curr_Ref.setType(examinationCode);
 		
@@ -172,10 +171,7 @@ public class ViewExaminationController implements IController,Initializable{
 	      }
 	      
 	      create.displayUserWindow();
-		}
-		else{
-			thisUi.displayErrorMessage("ERROR","This refrence didn't checked yet by lab worker" );
-		}
+		
 		
 	}
 	
@@ -185,11 +181,11 @@ public class ViewExaminationController implements IController,Initializable{
 				if (tabelExamination.getSelectionModel().getSelectedItem().getExaminationName() != null  && tabelExamination.getSelectionModel().getSelectedItem().getSerial() != null){
 			
 					String examinationName =  tabelExamination.getSelectionModel().getSelectedItem().getExaminationName();
-					 serialNo =  tabelExamination.getSelectionModel().getSelectedItem().getSerial();
+					examinationId =  Integer.parseInt(tabelExamination.getSelectionModel().getSelectedItem().getSerial());
 				
 					ArrayList<String> msg = new ArrayList<String>();
 					msg.add(examinationName); 
-					msg.add(serialNo);
+					msg.add(Integer.toString(examinationId));
 					Request request = new Request(Command.GET_EXAMINATION_NUMBER,msg);
 					
 					try {
@@ -245,7 +241,7 @@ public class ViewExaminationController implements IController,Initializable{
 			 if (result instanceof ArrayList<?>){
 					ArrayList<Integer> list = (ArrayList<Integer>)result;
 			 examinationCode = Integer.toString(list.get(0));
-			 examinationId = list.get(1);
+			 serialNo = list.get(1);
 			 
 		 }
 				

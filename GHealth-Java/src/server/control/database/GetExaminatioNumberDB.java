@@ -15,7 +15,7 @@ public class GetExaminatioNumberDB {
 		ArrayList<Integer> list = new ArrayList<>();
 		
 		String findReferenceNumber = "SELECT ghealth.examinationtype.typeID FROM ghealth.examinationtype WHERE ghealth.examinationtype.typeName = ? ";
-		String findExaminationNumber = "SELECT ghealth.reference.examination_id FROM ghealth.reference WHERE ghealth.reference.refID = ? ";
+		String findExaminationNumber = "SELECT ghealth.reference.refID FROM ghealth.reference WHERE ghealth.reference.examination_id = ? ";
 	   	try{
 
     		PreparedStatement preparedStatement1 = connection.prepareStatement(findReferenceNumber); 
