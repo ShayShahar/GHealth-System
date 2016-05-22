@@ -27,9 +27,9 @@
             <Separator layoutX="48.0" layoutY="206.0" prefHeight="17.0" prefWidth="472.0" />
             <Accordion layoutX="35.0" layoutY="242.0" />
             <Separator layoutX="67.0" layoutY="528.0" prefHeight="17.0" prefWidth="464.0" />
-            <Button layoutX="212.0" layoutY="480.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="158.0" text="Open" />
+            <Button layoutX="212.0" layoutY="480.0" mnemonicParsing="false" onAction="#onOpenButtonClick" prefHeight="48.0" prefWidth="158.0" text="Open" />
             <Separator layoutX="122.0" layoutY="463.0" prefHeight="17.0" prefWidth="324.0" />
-            <TableView fx:id="tabelExamination" layoutX="8.0" layoutY="246.0" prefHeight="219.0" prefWidth="577.0">
+            <TableView fx:id="tabelExamination" layoutX="8.0" layoutY="246.0" onMouseClicked="#onMouseClick" prefHeight="219.0" prefWidth="577.0">
                <columns>
                   <TableColumn fx:id="dateClmn" prefWidth="106.0" text="Date" />
                   <TableColumn fx:id="specialistClmn" prefWidth="119.0" text="Specialist" />

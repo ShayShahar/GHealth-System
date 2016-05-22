@@ -5,11 +5,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import client.boundry.CreateExaminationUI;
 import client.boundry.CreateLabReferenceUI;
 import client.boundry.SpecialistUI;
 import client.boundry.ViewExaminationUI;
 import client.entity.Examination;
 import client.entity.Hour;
+import client.entity.Reference;
 import client.entity.Specialist;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -29,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class ViewExaminationController implements IController,Initializable{
 
@@ -144,6 +147,54 @@ public class ViewExaminationController implements IController,Initializable{
 		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 	}
 	
+	public void onOpenButtonClick(ActionEvent event){
+		
+		ExaminationController.Curr_Ref = new Reference();
+		ExaminationController.Curr_Ref.setRefNum(1);
+		ExaminationController.Curr_Ref.setCode(1);
+		ExaminationController.Curr_Ref.setType(Integer.toString(2000));
+		
+		CreateExaminationUI create = new CreateExaminationUI();
+	      ClientConnectionController.clientConnect.userInterface.add(create);
+	      
+	      for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+	       if (ui instanceof ViewExaminationUI){
+	        ui.hideWindow();
+	       }
+	      }
+	      
+	      create.displayUserWindow();
+		
+	}
+	
+	public void onMouseClick(MouseEvent event){
+		
+		try{
+				if (tabelExamination.getSelectionModel().getSelectedItem().getHour() != null){
+				int hour = tabelAppointment.getSelectionModel().getSelectedItem().getHour();
+					
+			
+					ArrayList<String> msg = new ArrayList<String>();
+					msg.add(Integer.toString(hour));
+					msg.add(userName);   
+					Request request = new Request(Command.GET_CLIENT_BY_APPOINTMET,msg);
+					
+					try {
+						ClientConnectionController.clientConnect.controller = this;
+						ClientConnectionController.clientConnect.sendToServer(request);
+					} 
+					catch (IOException e) {
+						e.printStackTrace();
+					}					
+				}
+				
+		}catch(Exception e){
+		}
+	
+	}
+	
+	
+	
 	
 
 	
@@ -160,9 +211,17 @@ public class ViewExaminationController implements IController,Initializable{
 					onUpdateTableView(examination); 
 			 }
 			 else{
-				 thisUi.displayErrorMessage("Error", "sdfsdf");
-				
 				 
+				 thisUi.displayErrorMessage("Error", "There are no reference to show!");
+				
+				 thisUi.hideWindow();
+					
+					for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+						if (ui instanceof SpecialistUI){
+							ui.showWindow();
+						}
+					}
+					ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 			 }
 			 
 	
