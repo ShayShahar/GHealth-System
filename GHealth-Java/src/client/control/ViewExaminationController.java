@@ -49,9 +49,9 @@ public class ViewExaminationController implements IController,Initializable{
 	@FXML private TableView<Examination> tabelExamination;
 	@FXML private TableColumn<Examination, String> dateClmn;
 	
-	//@FXML private TableColumn<Examination, String> specialistClmn;
-	//@FXML private TableColumn<Examination, String> specialistNameClmn;
-	@FXML private TableColumn<Examination, String> examinationCodeClmn;
+	@FXML private TableColumn<Examination, String> specialistClmn;
+	@FXML private TableColumn<Examination, String> specialistNameClmn;
+	@FXML private TableColumn<Examination, String> examinationNameClmn;
 	
 	private IUi thisUi;
 	private String personId;
@@ -113,8 +113,13 @@ public class ViewExaminationController implements IController,Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		dateClmn.setStyle( "-fx-alignment: CENTER;");
 		dateClmn.setCellValueFactory(new PropertyValueFactory<>("date"));
-		examinationCodeClmn.setStyle( "-fx-alignment: CENTER;");
-		examinationCodeClmn.setCellValueFactory(new PropertyValueFactory<>("examinationCode"));
+		examinationNameClmn.setStyle( "-fx-alignment: CENTER;");
+		examinationNameClmn.setCellValueFactory(new PropertyValueFactory<>("examinationName"));
+		specialistClmn.setStyle( "-fx-alignment: CENTER;");
+		specialistClmn.setCellValueFactory(new PropertyValueFactory<>("specialist"));
+		specialistNameClmn.setStyle( "-fx-alignment: CENTER;");
+		specialistNameClmn.setCellValueFactory(new PropertyValueFactory<>("specialistName"));
+		
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof ViewExaminationUI){

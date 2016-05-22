@@ -18,7 +18,7 @@ public class Examination implements Serializable{
 	private String date;
 	private String specialistName;
 	private String specialist;
-	private String examinationCode;
+	private String examinationName;
 	private String details;
 	private ArrayList<byte[]> pictures;
 	
@@ -66,11 +66,11 @@ public class Examination implements Serializable{
 	public void setSpecialist(String specialist) {
 		this.specialist = specialist;
 	}
-	public String getExaminationCode() {
-		return examinationCode;
+	public String getExaminationName() {
+		return examinationName;
 	}
-	public void setExaminationCode(String examinationCode) {
-		this.examinationCode = examinationCode;
+	public void setExaminationName(String examinationName) {
+		this.examinationName = examinationName;
 	}
 	
 }

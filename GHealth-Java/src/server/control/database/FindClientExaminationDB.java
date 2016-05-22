@@ -24,9 +24,12 @@ public class FindClientExaminationDB {
 	   public static Object handleMessage (Request request, Connection connection) {
 
 		  String searchExamination =
-				  														"SELECT ghealth.reference.refDate, ghealth.reference.type_id " +
-				  														"FROM ghealth.reference " +
-				  														"WHERE ghealth.reference.client_id = ? " +
+				  														"SELECT ghealth.reference.refDate, ghealth.examinationtype.typeName ,ghealth.specialists.specialistType "
+				  														+ " ,ghealth.person.personName ,ghealth.person.personFamily " +
+				  														"FROM ghealth.reference ,ghealth.specialists ,ghealth.person ,ghealth.examinationtype " +
+				  														"WHERE ghealth.reference.client_id = ? AND ghealth.reference.specialist_id = ghealth.specialists.specialistID "
+				  														+ "AND ghealth.specialists.personID = ghealth.person.personID AND "
+				  														+ "ghealth.reference.type_id = ghealth.examinationtype.typeID " +
 				  														"ORDER BY ghealth.reference.refDate ASC";
 		 
 		  String searchClientId = "SELECT ghealth.clients.clientID FROM ghealth.clients WHERE ghealth.clients.person = ?";
@@ -66,7 +69,9 @@ public class FindClientExaminationDB {
 						String[] date = dateInString.split("-");
 						String setDate = date[2]+"-"+date[1]+"-"+date[0];
 			    		temp.setDate(setDate);
-			    		temp.setExaminationCode(res.getString(2));
+			    		temp.setExaminationName(res.getString(2));
+			    		temp.setSpecialist(res.getString(3));
+			    		temp.setSpecialistName(res.getString(4) + " " +res.getString(5));
 			    		list.add(temp);
 			    		
 			    }while(res.next());
