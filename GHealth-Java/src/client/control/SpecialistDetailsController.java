@@ -154,6 +154,22 @@ public class SpecialistDetailsController implements IController, Initializable{
 	    });
 		}
 		
+		public void onViewHistoryButtonClick (ActionEvent event){
+			
+			ClientHistoryUI history = new ClientHistoryUI(clientId);
+			ClientConnectionController.clientConnect.userInterface.add(history);
+			
+			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof SpecialistUI){
+					ui.hideWindow();
+				}
+			}
+			
+			history.displayUserWindow();
+			
+			
+		}
+		
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
 			//initialize hash tables
