@@ -29,7 +29,7 @@
             <Separator layoutX="67.0" layoutY="528.0" prefHeight="17.0" prefWidth="464.0" />
             <Button layoutX="212.0" layoutY="480.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="158.0" text="Open" />
             <Separator layoutX="122.0" layoutY="463.0" prefHeight="17.0" prefWidth="324.0" />
-            <TableView layoutX="26.0" layoutY="246.0" onSort="#tabelExamination" prefHeight="219.0" prefWidth="527.0">
+            <TableView fx:id="tabelExamination" layoutX="26.0" layoutY="246.0" prefHeight="219.0" prefWidth="527.0">
                <columns>
                   <TableColumn fx:id="dateClmn" prefWidth="264.0" text="Date" />
                   <TableColumn fx:id="examinationCodeClmn" prefWidth="262.0" text="Exmination" />

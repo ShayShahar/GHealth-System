@@ -7,13 +7,16 @@ import java.util.ResourceBundle;
 
 import client.boundry.CreateLabReferenceUI;
 import client.boundry.SpecialistUI;
+import client.boundry.ViewExaminationUI;
 import client.entity.Examination;
 import client.entity.Hour;
+import client.entity.Specialist;
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
+import common.enums.Result;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,7 +57,7 @@ public class ViewExaminationController implements IController,Initializable{
 	private String personId;
 	
 		
-	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email){
+	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email){
 		fieldClientName.setText(pName);
 		SpClientIDTxt.setText(personId);
 		fieldClientPhone.setText(phoneNumber);
@@ -69,24 +72,6 @@ public class ViewExaminationController implements IController,Initializable{
 		
 		this.personId = personId;
 
-	}
-	
-	public void onUpdateTableView(ArrayList<Examination> list){
-
-		Platform.runLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				tabelExamination.setItems(getHours(list));
-			}});
-	}
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		dateClmn.setStyle( "-fx-alignment: CENTER;");
-		dateClmn.setCellValueFactory(new PropertyValueFactory<>("examination"));
-		examinationCodeClmn.setStyle( "-fx-alignment: CENTER;");
-		examinationCodeClmn.setCellValueFactory(new PropertyValueFactory<>("examination"));
 		
 		ArrayList<String> list = new ArrayList<String>();
 		list.add(personId);
@@ -99,6 +84,44 @@ public class ViewExaminationController implements IController,Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ObservableList<Examination> getExamination(ArrayList<Examination> list){
+		ObservableList<Examination> examinations = FXCollections.observableArrayList();
+		
+		for (int i=0 ; i < list.size(); i++){
+			examinations.add(list.get(i));
+		}
+		
+		return examinations;
+	}
+	
+
+
+	
+	public void onUpdateTableView(ArrayList<Examination> list){
+
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				tabelExamination.setItems(getExamination(list));
+			}});
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		dateClmn.setStyle( "-fx-alignment: CENTER;");
+		dateClmn.setCellValueFactory(new PropertyValueFactory<>("date"));
+		examinationCodeClmn.setStyle( "-fx-alignment: CENTER;");
+		examinationCodeClmn.setCellValueFactory(new PropertyValueFactory<>("examinationCode"));
+		
+		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof ViewExaminationUI){
+				thisUi = ui;
+			}
+		}
+		
 	}
 	
 	
@@ -127,16 +150,19 @@ public class ViewExaminationController implements IController,Initializable{
 		
 		 if (reply.getCommand() == Command.FIND_CLIENT_EXAMINATION){
 			
-			ArrayList<String> examination = (ArrayList<String>)result;
-			ArrayList<Examination> list = new ArrayList<Examination>();
-			for (int i = 0 ; i<examination.size(); i++){
-				Examination ex  = new Examination();
-				ex.setDate(examination.get(i));
-				ex.setExaminationCode(examination.get(++i));
-				list.add(ex);
-			}
-			onUpdateTableView(list);
-	}
+			 if (result instanceof ArrayList<?>){
+					ArrayList<Examination> examination = (ArrayList<Examination>)result;
+					onUpdateTableView(examination); 
+			 }
+			 else{
+				 thisUi.displayErrorMessage("Error", "sdfsdf");
+				
+				 
+			 }
+			 
+	
+		 
+		 }
 				
 		
 	}

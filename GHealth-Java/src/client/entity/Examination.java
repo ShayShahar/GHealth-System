@@ -22,7 +22,6 @@ public class Examination implements Serializable{
 	private String details;
 	private ArrayList<byte[]> pictures;
 	
-	public String examination
 	
 	//class properties
 	public int getId() {
@@ -74,12 +73,5 @@ public class Examination implements Serializable{
 		this.examinationCode = examinationCode;
 	}
 	
-	public String getExamination() {
-		return examination;
-		
-		public void setExamination(String examination) {
-			this.examination = examination;
-		}
-	}
-	
 }
+	

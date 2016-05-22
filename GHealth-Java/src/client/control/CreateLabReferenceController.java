@@ -45,7 +45,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("Low","Normal","Critical");
 		
-	public void setUser(String pName,String fName,String phoneNumber,String add,String personId,String email,String clientId, String userName){
+	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId, String userName){
 		fieldClientName.setText(pName);
 		SpClientIDTxt.setText(personId);
 		fieldClientPhone.setText(phoneNumber);
@@ -115,6 +115,16 @@ public class CreateLabReferenceController implements IController,Initializable{
 			catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+			thisUi.hideWindow();
+			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof SpecialistUI){
+					ui.showWindow();
+				}
+			}
+			ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+			
 	 }
 	
 	public void onBackButtonClick(ActionEvent event){

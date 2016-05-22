@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import client.entity.Examination;
 import common.entity.Request;
 import common.enums.Result;
 
@@ -23,14 +24,14 @@ public class FindClientExaminationDB {
 	   public static Object handleMessage (Request request, Connection connection) {
 
 		  String searchExamination =
-				  														"SELECT ghealth.reference.refDate, ghealth.reference.type_id" +
+				  														"SELECT ghealth.reference.refDate, ghealth.reference.type_id " +
 				  														"FROM ghealth.reference " +
-				  														"WHERE ghealth.reference.client_id = ?" +
+				  														"WHERE ghealth.reference.client_id = ? " +
 				  														"ORDER BY ghealth.reference.refDate ASC";
 		 
 		  String searchClientId = "SELECT ghealth.clients.clientID FROM ghealth.clients WHERE ghealth.clients.person = ?";
 
-		   ArrayList<String> list = new ArrayList<String>();
+		   ArrayList<Examination> list = new ArrayList<Examination>();
 		   int clientId;
 		   
 		   	try{
@@ -38,10 +39,13 @@ public class FindClientExaminationDB {
 			    PreparedStatement preparedStatement2 = connection.prepareStatement(searchClientId);
 			    ResultSet res,res2;
 			    
+			    
+			 
 			    preparedStatement2.setString(1,request.getList().get(0));
 			    res2 = preparedStatement2.executeQuery();
 			    
 			    if (!res2.next()){
+			    	
 			    	return Result.ERROR;
 			    }
 			    
@@ -52,14 +56,19 @@ public class FindClientExaminationDB {
 			    
 			    
 			    if (!res.next()){
+			 
 			    	return Result.ERROR;
 			    }
 			    
 			    do {
-			    				    	
-			    	list.add(res.getString(1));
-			    	list.add(res.getString(2));
-			    	
+			    		Examination temp = new Examination();
+			    		String dateInString = res.getString(1);
+						String[] date = dateInString.split("-");
+						String setDate = date[2]+"-"+date[1]+"-"+date[0];
+			    		temp.setDate(setDate);
+			    		temp.setExaminationCode(res.getString(2));
+			    		list.add(temp);
+			    		
 			    }while(res.next());
 			    
 			    return list;

@@ -81,21 +81,22 @@ public class RecordAppointmentController implements IController,Initializable{
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		thisUi.hideWindow();
+		
+		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof SpecialistUI){
+				ui.showWindow();
+			}
+		}
+		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+		
 		}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
 
-		Request request = new Request(Command.GET_EXAMINATION_TYPE,null);
-		
-		try {
-			ClientConnectionController.clientConnect.controller = this;
-			ClientConnectionController.clientConnect.sendToServer(request);
-		} 
-		catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof RecordAppointmentUI){

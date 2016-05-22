@@ -413,6 +413,7 @@ public class SpecialistDetailsController implements IController, Initializable{
 							clientId = res.get(1);
 							appId = res.get(8);
 							
+							
 						}
 						
 					});
