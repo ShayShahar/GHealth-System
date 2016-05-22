@@ -116,14 +116,6 @@ public class CreateLabReferenceController implements IController,Initializable{
 				e.printStackTrace();
 			}
 			
-			thisUi.hideWindow();
-			
-			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-				if (ui instanceof SpecialistUI){
-					ui.showWindow();
-				}
-			}
-			ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 			
 	 }
 	
@@ -194,6 +186,21 @@ public class CreateLabReferenceController implements IController,Initializable{
 				});
 						  
 			}
+		}
+		
+		else if (reply.getCommand() == Command.INSERT_LAB_REFRENCE){
+			
+			thisUi.hideWindow();
+			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof SpecialistUI){
+					ui.showWindow();
+				}
+			}
+			
+			thisUi.displayMessage("Lab reference created", "Lab reference created successfuly and added to the client's medical file.");
+			ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+			
 		}
 		
 	}

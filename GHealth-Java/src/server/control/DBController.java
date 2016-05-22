@@ -138,6 +138,10 @@ public class DBController {
 				case END_MEDICAL_TREATMENT:{
 					return EndMedicalTreatmentDB.handleMessage(request, connection);
 				}
+				
+				case GET_MEDICAL_FILE:{
+					return GetMedicalFileDB.handleMessage(request, connection);
+				}
 
 				default:
 				break;

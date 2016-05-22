@@ -71,13 +71,13 @@ public class ClientHistoryUI implements IUi {
 			
 				@Override
 				public void run() {
-					URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/CreateAppointmentUI.fxml");
+					URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/ViewHistoryUI.fxml");
 				  FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
 				  Parent root;
 					try {
 								root = (Parent) fxmlLoader.load();
 								Stage stage = new Stage();
-								stage.setTitle("Create Appointment");
+								stage.setTitle("Medical File View");
 								ClientHistoryController controller = fxmlLoader.getController();
 								controller.setID(id);
 								URL url_32 = LoginUI.class.getResource("/img/icon_32.png");

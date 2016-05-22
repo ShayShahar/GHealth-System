@@ -19,17 +19,16 @@
    <children>
       <AnchorPane prefHeight="603.0" prefWidth="610.0">
          <children>
-            <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="429.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="460.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/header.png" />
                </image>
             </ImageView>
-            <Separator layoutX="48.0" layoutY="206.0" prefHeight="17.0" prefWidth="472.0" />
+            <Separator layoutX="12.0" layoutY="175.0" prefHeight="17.0" prefWidth="592.0" />
             <Accordion layoutX="35.0" layoutY="242.0" />
-            <Separator layoutX="67.0" layoutY="528.0" prefHeight="17.0" prefWidth="464.0" />
-            <Button layoutX="227.0" layoutY="480.0" mnemonicParsing="false" onAction="#onOpenButtonClick" prefHeight="48.0" prefWidth="158.0" text="Open" />
-            <Separator layoutX="137.0" layoutY="464.0" prefHeight="17.0" prefWidth="324.0" />
-            <TableView fx:id="tabelExamination" layoutX="10.0" layoutY="242.0" prefHeight="222.0" prefWidth="592.0">
+            <Separator layoutX="9.0" layoutY="528.0" prefHeight="17.0" prefWidth="592.0" />
+            <Button layoutX="227.0" layoutY="492.0" mnemonicParsing="false" onAction="#onOpenButtonClick" prefHeight="33.0" prefWidth="158.0" text="Open" />
+            <TableView fx:id="tabelExamination" layoutX="10.0" layoutY="188.0" prefHeight="297.0" prefWidth="592.0">
                <columns>
                   <TableColumn fx:id="dateClmn" prefWidth="106.0" text="Date" />
                   <TableColumn fx:id="specialistClmn" prefWidth="119.0" text="Specialist" />
@@ -68,8 +67,8 @@
                   <Insets bottom="10.0" right="5.0" top="10.0" />
                </padding>
             </GridPane>
+            <Button cancelButton="true" layoutX="25.0" layoutY="553.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />
          </children>
       </AnchorPane>
-      <Button cancelButton="true" layoutX="45.0" layoutY="562.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />
    </children>
 </AnchorPane>
