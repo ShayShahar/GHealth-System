@@ -6,29 +6,23 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import client.boundry.CreateExaminationUI;
-import client.boundry.CreateLabReferenceUI;
 import client.boundry.SpecialistUI;
 import client.boundry.ViewExaminationUI;
 import client.entity.Examination;
-import client.entity.Hour;
 import client.entity.Reference;
-import client.entity.Specialist;
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
-import common.enums.Result;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -58,7 +52,6 @@ public class ViewExaminationController implements IController,Initializable{
 	@FXML private TableColumn<Examination, String> serialClmn;
 	
 	private IUi thisUi;
-	private String personId;
 	private int serialNo;
 	private String examinationCode;
 	private int examinationId;
@@ -77,7 +70,6 @@ public class ViewExaminationController implements IController,Initializable{
 		fieldClientFamily.setEditable(false);
 		fieldClientAddress.setEditable(false);
 		
-		this.personId = personId;
 
 		
 		ArrayList<String> list = new ArrayList<String>();
