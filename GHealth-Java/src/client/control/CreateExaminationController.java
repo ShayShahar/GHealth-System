@@ -124,15 +124,9 @@ public class CreateExaminationController implements IController, Initializable{
 				ImagePick3.setDisable(true);
 				sendBtn.setVisible(false);
 				
-				Xbtn1.setDisable(true);
-				Xbtn2.setDisable(true);
-				Xbtn3.setDisable(true);
-				Xbtn4.setDisable(true);
 				
-				Xbtn1.setVisible(false);
-				Xbtn2.setVisible(false);
-				Xbtn3.setVisible(false);
-				Xbtn4.setVisible(false);
+				
+				
 		     }
 			
 			
@@ -399,6 +393,26 @@ public class CreateExaminationController implements IController, Initializable{
 			ExamTextArea.setText(exam.getDetails());
 			
 			initializePictures(exam);
+			
+			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				
+				if (ui instanceof ViewExaminationUI){
+						
+					Xbtn1.setVisible(false);
+					Xbtn2.setVisible(false);
+					Xbtn3.setVisible(false);
+					Xbtn4.setVisible(false);
+	
+					Xbtn1.setDisable(true);
+					Xbtn2.setDisable(true);
+					Xbtn3.setDisable(true);
+					Xbtn4.setDisable(true);	
+			     }
+				
+				
+				
+			}
 			
 
 			
