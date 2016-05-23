@@ -34,7 +34,7 @@ public class GetMedicalFileDB {
     	
     	ResultSet result = null;
     	    	
-    	String searchAppointments = "SELECT appointments.appDate, specialists.specialistType, person.personName, person.personFamily, appointments.appID"
+    	String searchAppointments = "SELECT appointments.appDate, specialists.specialistType, person.personName, person.personFamily, appointments.appID "
     			+  "FROM appointments, specialists, person "
     			+  "WHERE appointments.appDate < CURDATE() AND appointments.client=? AND appointments.specialist = specialists.specialistID AND specialists.personID = person.personID "
     			+  "ORDER BY appointments.appDate";
