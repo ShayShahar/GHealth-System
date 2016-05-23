@@ -18,19 +18,23 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class ClientHistoryController implements IController, Initializable{
 
-	@FXML private TextField fieldClientID;	
+	@FXML private TextField fieldClientID;
+	@FXML private Button openBtn;	
 	@FXML private TableView<MedicalFile> medicalTable;
 	@FXML private TableColumn<MedicalFile, String> clmnDate;
 	@FXML private TableColumn<MedicalFile, String> clmnSpecialization;
 	@FXML private TableColumn<MedicalFile, String> clmnName;
 	@FXML private TableColumn<MedicalFile, String> clmnType;
+	@FXML private TableColumn<MedicalFile, String> clmnId;
 	
 	private String clientID;
 	private IUi thisUi;
@@ -71,6 +75,64 @@ public class ClientHistoryController implements IController, Initializable{
 	}
 	
 	/**
+	 * Handles click on Open button.
+	 * Creates a new UI window depends on the type of the selected item from the table.
+	 * @param event
+	 */
+	public void onOpenButtonClick(ActionEvent event){
+		if (medicalTable.getSelectionModel().getSelectedItem().getType().equals("Appointment")){
+			
+			ArrayList<String> msg = new ArrayList<String>();
+			msg.add(medicalTable.getSelectionModel().getSelectedItem().getId());
+			
+			Request request = new Request(Command.GET_APPOINTMENT_REVIEW,msg);
+			
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}		
+			
+		}
+		else if (medicalTable.getSelectionModel().getSelectedItem().getType().equals("Reference")){
+			
+			ArrayList<String> msg = new ArrayList<String>();
+			msg.add(medicalTable.getSelectionModel().getSelectedItem().getId());
+			
+			Request request = new Request(Command.FIND_REFERENCE_BY_REFNUM,msg);
+			
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}				
+		}
+		
+	}
+	
+	/**
+	 * Handles mouse click on the client's history table.
+	 * @param event
+	 */
+	public void onMouseClick(MouseEvent event){
+		
+		try{
+			if (medicalTable.getSelectionModel().getSelectedItem() != null){
+					openBtn.setDisable(false);
+			}
+	
+			else{
+				openBtn.setDisable(true);
+			}	
+			
+			}catch(Exception e){
+				openBtn.setDisable(true);
+				}
+	}
+	
+	/**
 	 * This function updates the view of the medical file table elements.
 	 * @param list Gets an ArrayList of MedicalFile objects
 	 */
@@ -99,12 +161,16 @@ public class ClientHistoryController implements IController, Initializable{
 		clmnSpecialization.setStyle( "-fx-alignment: CENTER;");
 		clmnName.setStyle( "-fx-alignment: CENTER;");
 		clmnType.setStyle( "-fx-alignment: CENTER;");
+		clmnId.setStyle( "-fx-alignment: CENTER;");
 		
 		clmnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
 		clmnSpecialization.setCellValueFactory(new PropertyValueFactory<>("specialization"));	
 		clmnName.setCellValueFactory(new PropertyValueFactory<>("name"));	
 		clmnType.setCellValueFactory(new PropertyValueFactory<>("type"));
+		clmnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+
 		
+		openBtn.setDisable(true);
 	}
 
 	@SuppressWarnings({ "unchecked" })
@@ -117,23 +183,25 @@ public class ClientHistoryController implements IController, Initializable{
 			ArrayList<MedicalFile> info = new ArrayList<MedicalFile>(); 
 			
 			if (result instanceof ArrayList<?>){
-				ArrayList<Object> list = (ArrayList<Object>)result;
-				
-				for (int i = 0 ; i < list.size(); i++){
-					ArrayList<String> strings = (ArrayList<String>)list.get(i);
-					MedicalFile file = new MedicalFile();
-					String dateInString = strings.get(0);
-					String[] date = dateInString.split("-");
-					String setDate = date[2]+"-"+date[1]+"-"+date[0];	
-					file.setDate(setDate);
-					file.setSpecialization(strings.get(1));
-					file.setName(strings.get(2) + " " + strings.get(3));
-					file.setType(strings.get(4));
-					info.add(file);
+				ArrayList<MedicalFile> list = (ArrayList<MedicalFile>)result;
+				for(MedicalFile mf : list){
+					String[] date = mf.getDate().split("-");
+					mf.setDate(date[2]+"-"+date[1]+"-"+date[0]);
 				}
+				
+				info = list;
 			}
 			
 			onUpdateTableView(info);
+		}
+		
+		else if (reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM){
+			
+			
+		}
+		
+		else if (reply.getCommand() == Command.GET_APPOINTMENT_REVIEW){
+			
 			
 		}
 		

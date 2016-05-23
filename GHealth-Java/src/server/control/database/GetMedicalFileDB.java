@@ -5,6 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import client.entity.MedicalFile;
 import common.entity.Request;
 import common.enums.Result;
 
@@ -30,17 +34,17 @@ public class GetMedicalFileDB {
     	
     	ResultSet result = null;
     	    	
-    	String searchAppointments = "SELECT appointments.appDate, specialists.specialistType, person.personName, person.personFamily "
+    	String searchAppointments = "SELECT appointments.appDate, specialists.specialistType, person.personName, person.personFamily, appointments.appID"
     			+  "FROM appointments, specialists, person "
     			+  "WHERE appointments.appDate < CURDATE() AND appointments.client=? AND appointments.specialist = specialists.specialistID AND specialists.personID = person.personID "
     			+  "ORDER BY appointments.appDate";
     	
-    	String searchReferences = "SELECT reference.refDate, specialists.specialistType, person.personName, person.personFamily " +
+    	String searchReferences = "SELECT reference.refDate, specialists.specialistType, person.personName, person.personFamily, reference.refID " +
     																"FROM reference, specialists, person " + 
     																"WHERE reference.client_id=? AND reference.specialist_id = specialists.specialistID AND specialists.personID = person.personID "
     															+ "ORDER BY reference.refDate";
     	
-    	ArrayList<Object> list = new ArrayList<Object>();
+    	ArrayList<MedicalFile> list = new ArrayList<MedicalFile>();
     	
     	try{
     			    
@@ -50,14 +54,14 @@ public class GetMedicalFileDB {
 		    result = preparedStatement.executeQuery();
 		    
 		    while (result.next()){
-		    	ArrayList<String> object = new ArrayList<String>();
-		    	object.add(result.getDate(1).toString());
-		    	object.add(result.getString(2));
-		    	object.add(result.getString(3));
-		    	object.add(result.getString(4));
-		    	object.add("Appointment");
+		    	MedicalFile mf = new MedicalFile();
+		    	mf.setDate(result.getDate(1).toString());
+		    	mf.setSpecialization(result.getString(2));
+		    	mf.setName(result.getString(3) + " " + result.getString(4));
+		    	mf.setId(result.getString(5));
+		    	mf.setType("Appointment");
 
-		    	list.add(object);
+		    	list.add(mf);
 		    }
 		    
 		    PreparedStatement preparedStatement2 = connection.prepareStatement(searchReferences);
@@ -66,15 +70,21 @@ public class GetMedicalFileDB {
 		    result = preparedStatement2.executeQuery();
 		    
 		    while (result.next()){
-		    	ArrayList<String> object = new ArrayList<String>();
-		    	object.add(result.getDate(1).toString());
-		    	object.add(result.getString(2));
-		    	object.add(result.getString(3));
-		    	object.add(result.getString(4));
-		    	object.add("Reference");
+		    	MedicalFile mf = new MedicalFile();
+		    	mf.setDate(result.getDate(1).toString());
+		    	mf.setSpecialization(result.getString(2));
+		    	mf.setName(result.getString(3) + " " + result.getString(4));
+		    	mf.setId(result.getString(5));
+		    	mf.setType("Reference");
 
-		    	list.add(object);
+		    	list.add(mf);
 		    }
+		    
+		    Collections.sort(list, new Comparator<MedicalFile>() {
+		        public int compare(MedicalFile m1, MedicalFile m2) {
+		            return m2.getDate().compareTo(m1.getDate());
+		        }
+		    });		    
 		    
 		    return list;
 		    

@@ -14,23 +14,24 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ClientHistoryController">
    <children>
-      <AnchorPane prefHeight="603.0" prefWidth="591.0">
+      <AnchorPane prefHeight="603.0" prefWidth="634.0">
          <children>
-            <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="429.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="481.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/header.png" />
                </image>
             </ImageView>
-            <Separator layoutX="12.0" layoutY="39.0" prefHeight="17.0" prefWidth="568.0" />
+            <Separator layoutX="12.0" layoutY="39.0" prefHeight="17.0" prefWidth="612.0" />
             <Accordion layoutX="35.0" layoutY="242.0" />
-            <Separator layoutX="11.0" layoutY="528.0" prefHeight="17.0" prefWidth="568.0" />
-            <Button layoutX="213.0" layoutY="494.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="158.0" text="Open" />
-            <TableView fx:id="medicalTable" layoutX="14.0" layoutY="62.0" prefHeight="421.0" prefWidth="568.0">
+            <Separator layoutX="11.0" layoutY="528.0" prefHeight="17.0" prefWidth="612.0" />
+            <Button fx:id="openBtn" layoutX="213.0" layoutY="494.0" mnemonicParsing="false" onAction="#onOpenButtonClick" prefHeight="32.0" prefWidth="158.0" text="Open" />
+            <TableView fx:id="medicalTable" layoutX="14.0" layoutY="62.0" onMouseClicked="#onMouseClick" prefHeight="421.0" prefWidth="612.0">
               <columns>
                 <TableColumn fx:id="clmnDate" prefWidth="88.22222900390625" text="Date" />
                 <TableColumn fx:id="clmnSpecialization" prefWidth="138.77777099609375" text="Specialization" />
-                  <TableColumn fx:id="clmnName" prefWidth="218.5555419921875" text="Specialist Name" />
-                  <TableColumn fx:id="clmnType" prefWidth="106.4444580078125" text="Type" />
+                  <TableColumn fx:id="clmnName" prefWidth="184.77777099609375" text="Specialist Name" />
+                  <TableColumn fx:id="clmnType" prefWidth="112.2222900390625" text="Type" />
+                  <TableColumn prefWidth="75.0" text="No." />
               </columns>
             </TableView>
             <Button cancelButton="true" layoutX="26.0" layoutY="557.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />
