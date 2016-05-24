@@ -148,10 +148,10 @@ public class ViewExaminationController implements IController,Initializable{
 	public void onOpenButtonClick(ActionEvent event){
 		
 
-		ExaminationController.Curr_Ref = new Reference();
-		ExaminationController.Curr_Ref.setRefNum(serialNo);
-		ExaminationController.Curr_Ref.setCode(examinationId);
-		ExaminationController.Curr_Ref.setType(examinationCode);
+		ExaminationController.currentReference = new Reference();
+		ExaminationController.currentReference.setRefNum(serialNo);
+		ExaminationController.currentReference.setCode(examinationId);
+		ExaminationController.currentReference.setType(examinationCode);
 		
 		CreateExaminationUI create = new CreateExaminationUI();
 	      ClientConnectionController.clientConnect.userInterface.add(create);

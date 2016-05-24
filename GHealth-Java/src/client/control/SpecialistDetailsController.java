@@ -159,12 +159,7 @@ public class SpecialistDetailsController implements IController, Initializable{
 			ClientHistoryUI history = new ClientHistoryUI(clientId);
 			ClientConnectionController.clientConnect.userInterface.add(history);
 			
-			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
-				if (ui instanceof SpecialistUI){
-					ui.hideWindow();
-				}
-			}
-			
+			thisUi.hideWindow();
 			history.displayUserWindow();
 			
 			

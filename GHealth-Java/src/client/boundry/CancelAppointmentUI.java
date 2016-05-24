@@ -83,22 +83,22 @@ public class CancelAppointmentUI implements IUi{
 			
 				@Override
 				public void run() {
-					URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/CancelAppointmentUI.fxml");
-				  FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
-				  Parent root;
+					 URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/CancelAppointmentUI.fxml");
+					 FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
+					 Parent root;
 					try {
-								root = (Parent) fxmlLoader.load();
-					      Stage stage = new Stage();
-					      stage.setTitle("Cancel Appointment");
-					      CancelAppointmentController controller = fxmlLoader.getController();
-					      controller.setUser(user_id);
-								URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
-								stage.getIcons().add(new Image(url_32.toString()));
-					      Scene scene = new Scene(root);
-					      scene.getStylesheets().add("client/boundry/css/Style.css");
-					      stage.setScene(scene); 
-					      stage.setResizable(false);
-					      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+							root = (Parent) fxmlLoader.load();
+							Stage stage = new Stage();
+							stage.setTitle("Cancel Appointment");
+							CancelAppointmentController controller = fxmlLoader.getController();
+							controller.setUser(user_id);
+							URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
+							stage.getIcons().add(new Image(url_32.toString()));
+							Scene scene = new Scene(root);
+							scene.getStylesheets().add("client/boundry/css/Style.css");
+							stage.setScene(scene); 
+							stage.setResizable(false);
+							stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 					            public void handle(WindowEvent we) {
 					            	
 					        		ArrayList<String> username = new ArrayList<String>();

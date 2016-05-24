@@ -1,10 +1,9 @@
 package server.control.database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import client.entity.Reference;
 import common.entity.Request;
 import common.enums.Result;
@@ -22,45 +21,50 @@ public class FindReferenceByRefNum {
 	 public static Object handleMessage (Request request, Connection connection)
 	 {
 		 
-		 Reference reference1 = new Reference();
-		 String refNum = (String)request.getEntity();
+		 Reference reference = new Reference();
+		 String refNumber = (String)request.getEntity();
+		 
+		 String searchReference = "SELECT ghealth.reference.refID, ghealth.reference.refDate, ghealth.reference.refComments, ghealth.reference.refUrgency, " +
+		 											"ghealth.reference.refStatus, ghealth.reference.examination_id, ghealth.clients.person, " +
+		 											"ghealth.specialists.personID, ghealth.examinationtype.typeName " +
+				 									"FROM ghealth.reference,ghealth.clients, ghealth.specialists, ghealth.examinationtype " +
+				 									"WHERE reference.refID =? AND ghealth.reference.client_id = ghealth.clients.clientID " +
+				 									"AND ghealth.reference.specialist_id = ghealth.specialists.specialistID " +
+				 									"AND ghealth.reference.type_id = ghealth.examinationtype.typeID";
 		
 		 try {
-				Statement stmnt = connection.createStatement();
-				ResultSet res = stmnt.executeQuery("SELECT ghealth.reference.refID,ghealth.reference.refDate, ghealth.reference.refComments,ghealth.reference.refUrgency, ghealth.reference.refStatus,ghealth.reference.examination_id,ghealth.clients.person,ghealth.specialists.personID,ghealth.examinationtype.typeName FROM ghealth.reference,ghealth.clients,ghealth.specialists,ghealth.examinationtype WHERE reference.refID ="+Integer.parseInt(refNum)+" "
-						+ "AND ghealth.reference.client_id = ghealth.clients.clientID AND ghealth.reference.specialist_id = ghealth.specialists.specialistID AND ghealth.reference.type_id = ghealth.examinationtype.typeID   ");
-			   
+			 
+			  PreparedStatement preparedStatement1 = connection.prepareStatement(searchReference);
+			  preparedStatement1.setInt(1, Integer.parseInt(refNumber));
+
+			  ResultSet res = preparedStatement1.executeQuery();
+				
 				
 			    if (res.next()) {
 			    	 
-			    	//get details from the reference table
-			    	 reference1.setCId(res.getInt(7));  //
-					    reference1.setSId(res.getInt(8));  //
-					    reference1.setDate(res.getDate(2)); //
-					    reference1.setComments(res.getString(3));  //
-					    if(res.getString(6) == null)    //
-					    	reference1.setCode(0);      //
-					    reference1.setCode(res.getInt(6));     //
-					    reference1.setUrgency(res.getString(4));  //
-					    reference1.setStatus(res.getInt(5));  //
-					    reference1.setRefNum(res.getInt(1)); //
-					    reference1.setType(res.getString(9));
-					
-			     }
+			    	reference.setCId(res.getInt(7));  
+			    	reference.setSId(res.getInt(8));  
+			    	reference.setDate(res.getDate(2)); 
+			    	reference.setComments(res.getString(3));  
+					    if(res.getString(6) == null)    
+					    	reference.setCode(0);      
+					  reference.setCode(res.getInt(6));     
+					  reference.setUrgency(res.getString(4));  
+					  reference.setStatus(res.getInt(5)); 
+					  reference.setRefNum(res.getInt(1));
+					  reference.setType(res.getString(9));
+					  
+					  return reference;
+			    }
 			    
-			    else return Result.CLIENT_NOT_FOUND;
+			    else return Result.FAILED;
 			   
-		
 	 }
 		 
 		 catch (SQLException e) {
-			    // TODO Auto-generated catch block
 			    e.printStackTrace();
 			    return Result.ERROR;
 			}
-		 
-		 return reference1;
-    
   }
 	
 }

@@ -88,8 +88,8 @@ public class CreateExaminationController implements IController, Initializable{
 		Xbtn3.setDisable(true);
 		Xbtn4.setDisable(true);
 
-		examType.setText(ExaminationController.Curr_Ref.getType());
-		CErefnum.setText(Integer.toString(ExaminationController.Curr_Ref.getRefNum()));
+		examType.setText(ExaminationController.currentReference.getType());
+		CErefnum.setText(Integer.toString(ExaminationController.currentReference.getRefNum()));
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof CreateExaminationUI){
@@ -98,11 +98,11 @@ public class CreateExaminationController implements IController, Initializable{
 		}
 		
 		
-		if(ExaminationController.Curr_Ref.getCode() != 0)   // view Examination Details
+		if(ExaminationController.currentReference.getCode() != 0)   // view Examination Details
 		{
 			 Request request = null;
 			 exam = new Examination();
-			 exam.setId(ExaminationController.Curr_Ref.getCode());
+			 exam.setId(ExaminationController.currentReference.getCode());
 			 request = new Request(Command.CREATE_EXAMINATION_VIEW, exam);
 			
 			 
@@ -379,7 +379,7 @@ public class CreateExaminationController implements IController, Initializable{
 			
 			
 			
-			ExaminationController.Curr_Ref.setCode(((int)result));
+			ExaminationController.currentReference.setCode(((int)result));
 			onBackButtonClick();
 			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("CREATE", "Examination Successfully CREATED");
 		}
@@ -493,7 +493,7 @@ public class CreateExaminationController implements IController, Initializable{
 	 {
 		 Request request = null;
 		 
-		 if(ExaminationController.Curr_Ref.getCode() == 0)  //check if there is exist examination	 
+		 if(ExaminationController.currentReference.getCode() == 0)  //check if there is exist examination	 
 		 {
 			 
 			
@@ -501,7 +501,7 @@ public class CreateExaminationController implements IController, Initializable{
 			 
 			
 		 Examination exam = new Examination();
-		 exam.setRef_id(ExaminationController.Curr_Ref.getRefNum());
+		 exam.setRef_id(ExaminationController.currentReference.getRefNum());
          exam.setDetails(ExamTextArea.getText());
          exam.setPictures(pictures);
 		 request = new Request(Command.CREATE_EXAMINATION, exam);

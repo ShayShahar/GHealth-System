@@ -1,8 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="597.0" prefWidth="542.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ViewReferenceController">
+   <children>
+      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="389.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/header.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="21.0" layoutY="538.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />
+      <Separator layoutX="21.0" layoutY="524.0" prefHeight="3.0" prefWidth="499.0" />
+      <AnchorPane layoutX="9.0" layoutY="185.0" prefHeight="98.0" prefWidth="533.0">
+         <children>
+            <GridPane layoutX="8.0" layoutY="-116.0" prefHeight="179.0" prefWidth="509.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="172.22222900390625" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.77777099609375" minWidth="10.0" prefWidth="150.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="150.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="fieldType" editable="false" GridPane.columnIndex="1" />
+                  <TextField fx:id="fieldDate" editable="false" GridPane.columnIndex="3" />
+                  <TextField fx:id="fieldClientID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="fieldUrgency" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField fx:id="fieldSpecielistID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="fieldCode" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="fieldStatus" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label text="Date " GridPane.columnIndex="2" />
+                  <Label text="Specielist ID " GridPane.rowIndex="2" />
+                  <Label text="Type " />
+                  <Label text="Code " GridPane.rowIndex="3" />
+                  <Label text="Status " GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Client ID " GridPane.rowIndex="1" />
+                  <Label text="Urgency " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="fieldName" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label text="Specialist Name " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" right="5.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <Label layoutX="30.0" layoutY="88.0" text="Comments" />
+         </children>
+      </AnchorPane>
+      <VBox layoutX="19.0" layoutY="15.0" prefHeight="29.0" prefWidth="200.0" spacing="15.0" />
+      <HBox layoutX="17.0" layoutY="15.0" prefHeight="29.0" prefWidth="509.0" spacing="10.0">
+         <children>
+            <TextField fx:id="referenceNumber" editable="false" prefHeight="25.0" prefWidth="205.0" promptText="Reference Number" />
+            <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
+         </children>
+      </HBox>
+      <TextArea fx:id="fieldComments" editable="false" layoutX="39.0" layoutY="298.0" prefHeight="211.0" prefWidth="465.0" />
+      <Separator layoutX="21.0" layoutY="47.0" prefHeight="3.0" prefWidth="499.0" />
+   </children>
 </AnchorPane>
-

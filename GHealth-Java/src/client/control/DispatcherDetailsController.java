@@ -372,7 +372,7 @@ public class DispatcherDetailsController implements IController, Initializable{
 
 						}
 						else {
-							ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client Left", "This client has left IHealth, to retrive client please choose the option from the menu below.");
+							thisUi.displayErrorMessage ("Client Left", "This client has left IHealth, to retrive client please choose the option from the menu below.");
 							createAppointmentBtn.setDisable(true);
 							cancelAppointmentBtn.setDisable(true);
 							retreiveBtn.setVisible(true);
@@ -387,7 +387,7 @@ public class DispatcherDetailsController implements IController, Initializable{
 			}
 			
 			else {
-				ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Client not found", "You can add new client from the menu below.");
+				thisUi.displayErrorMessage ("Client not found", "You can add new client from the menu below.");
 				
 				Platform.runLater(new Runnable() {
 

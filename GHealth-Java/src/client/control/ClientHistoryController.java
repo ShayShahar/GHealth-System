@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import client.boundry.ClientHistoryUI;
 import client.boundry.SpecialistUI;
+import client.boundry.ViewReferenceUI;
 import client.entity.MedicalFile;
 import client.interfaces.IController;
 import client.interfaces.IUi;
@@ -82,34 +83,17 @@ public class ClientHistoryController implements IController, Initializable{
 	public void onOpenButtonClick(ActionEvent event){
 		if (medicalTable.getSelectionModel().getSelectedItem().getType().equals("Appointment")){
 			
-			ArrayList<String> msg = new ArrayList<String>();
-			msg.add(medicalTable.getSelectionModel().getSelectedItem().getId());
-			
-			Request request = new Request(Command.GET_APPOINTMENT_REVIEW,msg);
-			
-			try {
-				ClientConnectionController.clientConnect.controller = this;
-				ClientConnectionController.clientConnect.sendToServer(request);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}		
+					
 			
 		}
 		else if (medicalTable.getSelectionModel().getSelectedItem().getType().equals("Reference")){
 			
-			ArrayList<String> msg = new ArrayList<String>();
-			msg.add(medicalTable.getSelectionModel().getSelectedItem().getId());
-			
-			Request request = new Request(Command.FIND_REFERENCE_BY_REFNUM,msg);
-			
-			try {
-				ClientConnectionController.clientConnect.controller = this;
-				ClientConnectionController.clientConnect.sendToServer(request);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}				
+			ViewReferenceUI reference = new  ViewReferenceUI(medicalTable.getSelectionModel().getSelectedItem().getId(), 
+					medicalTable.getSelectionModel().getSelectedItem().getName());
+			ClientConnectionController.clientConnect.userInterface.add(reference);
+			thisUi.hideWindow();
+			reference.displayUserWindow();
 		}
-		
 	}
 	
 	/**
@@ -193,16 +177,6 @@ public class ClientHistoryController implements IController, Initializable{
 			}
 			
 			onUpdateTableView(info);
-		}
-		
-		else if (reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM){
-			
-			
-		}
-		
-		else if (reply.getCommand() == Command.GET_APPOINTMENT_REVIEW){
-			
-			
 		}
 		
 	}
