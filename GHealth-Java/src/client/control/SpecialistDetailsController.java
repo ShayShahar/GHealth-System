@@ -46,7 +46,7 @@ public class SpecialistDetailsController implements IController, Initializable{
 		@FXML private Button SpCreateRefernceBtn;
 		@FXML private Button SpRecordAppointmentBtn;
 		@FXML private Button SpReportMissingBtn;
-		@FXML private Button RequstDetailsBtn;
+		@FXML private Button TransferDetailsBtn;
 		@FXML private TextField fieldClientID;
 		@FXML private TextField fieldClientClinic;
 		@FXML private TextField fieldClientName;
@@ -290,8 +290,8 @@ public class SpecialistDetailsController implements IController, Initializable{
 			create.displayUserWindow();
 		}
 		
-		public void onCreateRequstDetailsButtonClick(ActionEvent event){
-			RequstDetailsUI create = new RequstDetailsUI(pName,fName,personId,add,phoneNumber,email,clientId,userName);
+		public void onTransferDetailsButtonClick(ActionEvent event){
+			TransferDetailsUI create = new TransferDetailsUI(pName,fName,personId,add,phoneNumber,email,clientId,userName);
 			ClientConnectionController.clientConnect.userInterface.add(create);
 			
 			for(IUi ui : ClientConnectionController.clientConnect.userInterface){
@@ -432,7 +432,7 @@ public class SpecialistDetailsController implements IController, Initializable{
 							SpViewExaminationsBtn.setDisable(false);
 							SpRecordAppointmentBtn.setDisable(false);
 							SpReportMissingBtn.setDisable(false);
-							RequstDetailsBtn.setDisable(false);
+							TransferDetailsBtn.setDisable(false);
 							pName = res.get(3);
 							fName = res.get(4);
 							personId = res.get(0);
@@ -504,14 +504,4 @@ public class SpecialistDetailsController implements IController, Initializable{
 	}
 		
 }
-/*
- try{
- Boolean result = bag.contains(new Money(2,"USD"));
- assertEquals(true,result);
- }
- catch{
- assertEquals(false,result);
- }
- 
- 
-*/
+
