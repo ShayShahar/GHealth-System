@@ -82,7 +82,7 @@
             <Button fx:id="SpViewExaminationsBtn" disable="true" mnemonicParsing="false" onAction="#onViewExaminationButtonClick" prefHeight="35.0" prefWidth="180.0" text="View Examinations" GridPane.rowIndex="2" />
             <Button fx:id="SpCreateRefernceBtn" disable="true" mnemonicParsing="false" onAction="#onCreateLabReferenceButtonClick" prefHeight="35.0" prefWidth="180.0" text="Create Reference" GridPane.columnIndex="1" />
             <Button fx:id="SpRecordAppointmentBtn" disable="true" layoutY="70.0" mnemonicParsing="false" onAction="#onRecordAppointmentButtonClick" prefHeight="35.0" prefWidth="180.0" text="Record Appointment" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="spRequestBtn" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Request Details" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="RequstDetailsBtn" disable="true" mnemonicParsing="false" onAction="#onCreateRequstDetailsButtonClick" prefHeight="35.0" prefWidth="180.0" text="Request Details" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="SpReportMissingBtn" disable="true" layoutX="575.0" layoutY="480.0" mnemonicParsing="false" onAction="#onReportMissingButtonClick" prefHeight="25.0" prefWidth="163.0" stylesheets="@../css/Style.css" text="Report Missing" textAlignment="JUSTIFY" textFill="WHITE" />
