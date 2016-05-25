@@ -9,7 +9,7 @@ public class Reference implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private enum Urgency {LOW, MEDIUM, HIGH, CRITICAL};
+	private enum Urgency {Low, Normal, Critical};
 	
 	//class variables
 	private int RefNum;
@@ -60,25 +60,21 @@ public class Reference implements Serializable{
 		this.code = code;
 	}
 	public String getUrgency() {
-		if(urgency == Urgency.LOW)
+		if(urgency == Urgency.Low)
 		return "LOW";
-		if(urgency == Urgency.MEDIUM)
+		if(urgency == Urgency.Normal)
 		 return "MEDIUM";
-		if(urgency == Urgency.HIGH)
-			 return "HIGH";
-		if(urgency == Urgency.CRITICAL)
+		if(urgency == Urgency.Critical)
 			 return "CRITICAL";
 		return null;
 	}
 	public void setUrgency(String urgency) {
-		if(urgency.equals("LOW"))
-			this.urgency = Urgency.LOW;
-		else if(urgency.equals("MEDIUM"))
-			this.urgency = Urgency.MEDIUM;
-		else if(urgency.equals("HIGH"))
-			this.urgency = Urgency.HIGH;
+		if(urgency.equals("Low"))
+			this.urgency = Urgency.Low;
+		else if(urgency.equals("Normal"))
+			this.urgency = Urgency.Normal;
 		else if(urgency.equals("CRITICAL"))
-			this.urgency = Urgency.CRITICAL;
+			this.urgency = Urgency.Critical;
 		else this.urgency = null;
 	}
 	public int isStatus() {
