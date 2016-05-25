@@ -1,10 +1,10 @@
-package client.boundry;
+package client.control;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import client.control.ClientConnectionController;
+import client.boundry.SpecialistUI;
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;

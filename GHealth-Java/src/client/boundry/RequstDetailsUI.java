@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import client.control.ClientConnectionController;
 import client.control.CreateLabReferenceController;
+import client.control.RequstDetailsController;
 import client.interfaces.IUi;
 import common.entity.Request;
 import common.enums.Command;
