@@ -36,7 +36,7 @@ public class GetMedicalFileDB {
     	    	
     	String searchAppointments = "SELECT appointments.appDate, specialists.specialistType, person.personName, person.personFamily, appointments.appID "
     			+  "FROM appointments, specialists, person "
-    			+  "WHERE appointments.appDate < CURDATE() AND appointments.client=? AND appointments.specialist = specialists.specialistID AND specialists.personID = person.personID "
+    			+  "WHERE appointments.appDate < CURDATE() AND appointments.appMissed = 0 AND appointments.client=? AND appointments.specialist = specialists.specialistID AND specialists.personID = person.personID "
     			+  "ORDER BY appointments.appDate";
     	
     	String searchReferences = "SELECT reference.refDate, specialists.specialistType, person.personName, person.personFamily, reference.refID " +

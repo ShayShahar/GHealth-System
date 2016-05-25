@@ -146,6 +146,10 @@ public class DBController {
 				case GET_MEDICAL_FILE:{
 					return GetMedicalFileDB.handleMessage(request, connection);
 				}
+				
+				case GET_APPOINTMENT_REVIEW:{
+					return GetAppointmentReview.handleMessage(request, connection);
+				}
 
 				default:
 				break;

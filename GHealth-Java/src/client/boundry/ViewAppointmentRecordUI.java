@@ -3,6 +3,7 @@ package client.boundry;
 import java.net.URL;
 
 import client.control.ClientConnectionController;
+import client.control.ViewAppointmentController;
 import client.interfaces.IUi;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,21 @@ import javafx.util.Pair;
 public class ViewAppointmentRecordUI implements IUi {
 	
 	private static Stage mainStage;
+	private String clientID;
+	private String name;
+	private String date;
+	private String appointmentID;
 
+	
+	public ViewAppointmentRecordUI(String clientID, String date, String name, String appointmentID){
+		this.clientID = clientID;
+		this.name = name;
+		this.date = date;
+		this.appointmentID = appointmentID;
+		
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * @see client.interfaces.IUi#displayUserWindow()
@@ -36,7 +51,9 @@ public class ViewAppointmentRecordUI implements IUi {
 					FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
 					Parent root = (Parent) fxmlLoader.load();
 					Stage stage = new Stage();
-					stage.setTitle("Record");
+					ViewAppointmentController controller = fxmlLoader.getController();
+					controller.setDetails(clientID, date, name, appointmentID);
+					stage.setTitle("Appointment Record");
 					URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
 					stage.getIcons().add(new Image(url_32.toString()));
 					Scene scene = new Scene(root);

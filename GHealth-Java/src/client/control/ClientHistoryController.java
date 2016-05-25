@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import client.boundry.ClientHistoryUI;
 import client.boundry.SpecialistUI;
+import client.boundry.ViewAppointmentRecordUI;
 import client.boundry.ViewReferenceUI;
 import client.entity.MedicalFile;
 import client.interfaces.IController;
@@ -83,7 +84,14 @@ public class ClientHistoryController implements IController, Initializable{
 	public void onOpenButtonClick(ActionEvent event){
 		if (medicalTable.getSelectionModel().getSelectedItem().getType().equals("Appointment")){
 			
-					
+			ViewAppointmentRecordUI record = new ViewAppointmentRecordUI(clientID,
+					medicalTable.getSelectionModel().getSelectedItem().getDate(),
+					medicalTable.getSelectionModel().getSelectedItem().getName(),
+					medicalTable.getSelectionModel().getSelectedItem().getId());
+			
+			ClientConnectionController.clientConnect.userInterface.add(record);
+			thisUi.hideWindow();
+			record.displayUserWindow();
 			
 		}
 		else if (medicalTable.getSelectionModel().getSelectedItem().getType().equals("Reference")){
