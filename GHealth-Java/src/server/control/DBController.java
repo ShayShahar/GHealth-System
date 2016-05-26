@@ -154,7 +154,9 @@ public class DBController {
 				case SEND_NOTIFICATION:{
 					return NotifyEmailDB.handleMessage(request, connection);
 				}
-
+				case FIND_MEDFILE:{
+					return FindMedFileDB.handleMessage(request, connection);
+				}
 
 				default:
 				break;
