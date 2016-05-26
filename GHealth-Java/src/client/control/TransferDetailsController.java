@@ -3,8 +3,10 @@ package client.control;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import client.boundry.CreateLabReferenceUI;
 import client.boundry.SpecialistUI;
 import client.boundry.TransferDetailsUI;
+import client.boundry.TransferTableUI;
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;
@@ -34,6 +36,7 @@ public class TransferDetailsController implements IController,Initializable{
 	
 	@FXML private ComboBox<String> specificationsCom;
 	
+	public Boolean isWholeFile;
 	public String clientId;
 	private IUi thisUi;
 	
@@ -76,6 +79,7 @@ public void onBackButtonClick(ActionEvent event){
 	}
 
 public void onSpecificFileClick(ActionEvent event){
+	isWholeFile = false;
 	transferBtn.setDisable(true);
 	specificationsCom.setDisable(false);
 	specificationsCom.setItems(specificationsList);
@@ -86,13 +90,63 @@ public void onMouseClick(ActionEvent event){
 	transferBtn.setDisable(false);
 }
 
+public void onTransferButtonClick(ActionEvent event){
+	
+	if(isWholeFile){
+		TransferTableUI create = new TransferTableUI(clientId,isWholeFile);
+		ClientConnectionController.clientConnect.userInterface.add(create);
+		
+		for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof SpecialistUI){
+				ui.hideWindow();
+			}
+		}
+		
+		create.displayUserWindow();
+	}else{
+		String specialist = specificationsCom.getSelectionModel().getSelectedItem().toString();
+		TransferTableUI create = new TransferTableUI(clientId,specialist);
+		ClientConnectionController.clientConnect.userInterface.add(create);
+		
+		for(IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof SpecialistUI){
+				ui.hideWindow();
+			}
+		}
+		
+		create.displayUserWindow();
+	}
+
+	
+}
+
 public void onWholeFileClick(ActionEvent event){
 	
+	isWholeFile = true;
 	specificationsCom.setDisable(true);
 	transferBtn.setDisable(false);
 	specificationsCom.setItems(null);
 }
 	
+
+
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+	
+	
+	
+	for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+		if (ui instanceof TransferDetailsUI){
+			thisUi = ui;
+		}
+	}		
+}
+
+
+
+
+
+
 	
 
 	
@@ -107,21 +161,7 @@ public void onWholeFileClick(ActionEvent event){
 		
 		
 	}
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-		
-		
-		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof TransferDetailsUI){
-				thisUi = ui;
-			}
-		}		
-	}
-
-}	
 
 
-
-
+}
 
