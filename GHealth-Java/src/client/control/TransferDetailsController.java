@@ -15,7 +15,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class TransferDetailsController implements IController,Initializable{
@@ -27,6 +29,8 @@ public class TransferDetailsController implements IController,Initializable{
 	@FXML private TextField fieldClientAddress;
 	@FXML private TextField fieldClientPhone;
 	@FXML private TextField fieldClientEmail;
+	@FXML private Label specificationsLabel;
+	@FXML private Button transferBtn;
 	
 	@FXML private ComboBox<String> specificationsCom;
 	
@@ -72,9 +76,21 @@ public void onBackButtonClick(ActionEvent event){
 	}
 
 public void onSpecificFileClick(ActionEvent event){
-	
+	transferBtn.setDisable(true);
 	specificationsCom.setDisable(false);
 	specificationsCom.setItems(specificationsList);
+}
+
+public void onMouseClick(ActionEvent event){
+
+	transferBtn.setDisable(false);
+}
+
+public void onWholeFileClick(ActionEvent event){
+	
+	specificationsCom.setDisable(true);
+	transferBtn.setDisable(false);
+	specificationsCom.setItems(null);
 }
 	
 	
