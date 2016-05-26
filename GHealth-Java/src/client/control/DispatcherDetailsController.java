@@ -458,6 +458,17 @@ public class DispatcherDetailsController implements IController, Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
+		Request request = new Request(Command.SEND_NOTIFICATION, null);
+
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		removeBtn.setVisible(false);
 		retreiveBtn.setVisible(false);
 		

@@ -150,6 +150,11 @@ public class DBController {
 				case GET_APPOINTMENT_REVIEW:{
 					return GetAppointmentReview.handleMessage(request, connection);
 				}
+				
+				case SEND_NOTIFICATION:{
+					return NotifyEmailDB.handleMessage(request, connection);
+				}
+
 
 				default:
 				break;
