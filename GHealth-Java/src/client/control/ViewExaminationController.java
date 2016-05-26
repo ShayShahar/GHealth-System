@@ -45,7 +45,6 @@ public class ViewExaminationController implements IController,Initializable{
 	@FXML private TextField fieldClientEmail;
 	@FXML private TableView<Examination> tabelExamination;
 	@FXML private TableColumn<Examination, String> dateClmn;
-	
 	@FXML private TableColumn<Examination, String> specialistClmn;
 	@FXML private TableColumn<Examination, String> specialistNameClmn;
 	@FXML private TableColumn<Examination, String> examinationNameClmn;

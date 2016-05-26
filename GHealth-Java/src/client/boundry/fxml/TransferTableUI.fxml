@@ -23,9 +23,9 @@
          <columns>
             <TableColumn fx:id="clmnSpecialization" prefWidth="138.77777099609375" text="Specialization" />
             <TableColumn fx:id="clmnType" prefWidth="112.2222900390625" text="Type" />
-            <TableColumn fx:id="clmnId" prefWidth="358.0" text="Info" />
+            <TableColumn fx:id="infoClmn" prefWidth="358.0" text="Info" />
          </columns>
       </TableView>
-      <Button cancelButton="true" layoutX="293.0" layoutY="560.0" mnemonicParsing="false" text="Close" />
+      <Button cancelButton="true" layoutX="293.0" layoutY="560.0" mnemonicParsing="false" onAction="#onCloseButtonClick" text="Close" />
    </children>
 </AnchorPane>

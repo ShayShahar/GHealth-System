@@ -16,7 +16,7 @@ public class FindMedFileDB {
 	ArrayList<MedicalFile> list = new ArrayList<MedicalFile>();
 		
 	if(request.getList().size() > 1){
-		String stmnt = "SELECT ghealth.medicalinfo.meType,ghealth.medicalinfo.meInfo  "
+		String stmnt = "SELECT ghealth.medicalinfo.meType , ghealth.medicalinfo.meInfo  "
 				+ " FROM ghealth.medicalinfo WHERE ghealth.medicalinfo.meClientID = ? "
 				+ "AND ghealth.medicalinfo.meSpecialist = ?";
 
@@ -58,7 +58,7 @@ public class FindMedFileDB {
 	}
 	else{
 		String stmnt = "SELECT ghealth.medicalinfo.meType,ghealth.medicalinfo.meInfo, ghealth.medicalinfo.meSpecialist  "
-				+ " FROM ghealth.medicalinfo WHERE ghealth.medicalinfo.meClientID = ? ";
+				+ " FROM ghealth.medicalinfo WHERE ghealth.medicalinfo.meClientID = 1 ";
 
 		try{
 			
@@ -69,7 +69,7 @@ public class FindMedFileDB {
     		
     		
     		
-    		preparedStatement1.setString(1,request.getList().get(0));
+    		//preparedStatement1.setString(1,request.getList().get(0));
     		result = preparedStatement1.executeQuery();
     		
 
