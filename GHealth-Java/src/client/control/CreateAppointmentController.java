@@ -375,17 +375,30 @@ public class CreateAppointmentController implements IController, Initializable{
 	
 	/**
 	 * onCreateAppointmentButtonClick function handles a click on create appointment button.
-	 * The function creates a CREATE_APPOINTMENT request message and send it to the server.
+	 * function calls createAppointment with the GUI components parameters
 	 * @param event
 	 */
 	public void onCreateAppointmentButtonClick(ActionEvent event){
 		
+		createAppointment(java.sql.Date.valueOf(appPicker.getValue()),choosedHour,choosedID,userID);
+
+	}
+	
+	/**
+	 * The function creates a CREATE_APPOINTMENT request message and send it to the server.
+	 * @param date Gets the appointment's date in sql.date format
+	 * @param hour Gets the appointment's hour <Integer number [1,18] 1->8:00, 18->16:30>
+	 * @param specialistID Gets the id of the specialist
+	 * @param clientID Gets the id of the client
+	 */
+	public void createAppointment(java.sql.Date date, int hour, int specialistID, int clientID){
+		
 		Appointment appointment = new Appointment();
 		
-		appointment.setDate(java.sql.Date.valueOf(appPicker.getValue()));
-		appointment.setTime(choosedHour);
-		appointment.setSpecialistID(choosedID);
-		appointment.setClientID(userID);
+		appointment.setDate(date);
+		appointment.setTime(hour);
+		appointment.setSpecialistID(specialistID);
+		appointment.setClientID(clientID);
 		
 		Request request = new Request(Command.CREATE_APPOINTMENT,appointment);
 		
@@ -395,6 +408,7 @@ public class CreateAppointmentController implements IController, Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+		
 	}
 	
 	/**

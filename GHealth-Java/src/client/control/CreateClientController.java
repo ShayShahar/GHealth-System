@@ -58,7 +58,6 @@ public class CreateClientController implements IController, Initializable{
 				thisUi = ui;
 			}
 		}
-		
 	}
 
 	/*
@@ -95,12 +94,10 @@ public class CreateClientController implements IController, Initializable{
 		fieldPersonID.setEditable(false);
 	}
 	
-	
-	
 	 /**
 	  * onCreateClientButtonClick function is create client button handler.
 	  * The function checks all the input fields.
-	  * If all the input fields are correct, the function sends a CREATE_CLIENT request to the server with the client details.
+	  * If all the input fields are correct, the function call createClient function with the person's details.
 	  * @param event
 	  */
 	public void onCreateClientButtonClick(ActionEvent event){
@@ -163,20 +160,37 @@ public class CreateClientController implements IController, Initializable{
 				return;
 			}
 		}
-		
-		Client client;
-		
+				
 		if (fieldClientEmailDomain.getText() == null   || fieldClientEmailDomain.getText().trim().isEmpty()){
-			client = new Client(fieldClientName.getText(), fieldClientFamily.getText(),
+			
+			createClient(fieldClientName.getText(), fieldClientFamily.getText(),
 					fieldPersonID.getText(), fieldClientAddress.getText(),
 					listPhone.getSelectionModel().getSelectedItem().toString()+"-"+fieldClientPhone.getText(), fieldClientClinic.getText(), "none");
 		}
 		else {
-			client = new Client(fieldClientName.getText(), fieldClientFamily.getText(),
+			createClient(fieldClientName.getText(), fieldClientFamily.getText(),
 					fieldPersonID.getText(), fieldClientAddress.getText(),
 					listPhone.getSelectionModel().getSelectedItem().toString()+"-"+fieldClientPhone.getText(), fieldClientClinic.getText(), fieldClientEmail.getText() +"@"+fieldClientEmailDomain.getText());
 		}
 
+	}
+	
+	/**
+	 * createClient creates a client instance and send  a CREATE_CLIENT request to the server.
+	 * @param name Gets person's name
+	 * @param familyName Gets person's family name
+	 * @param personID Gets person's ID
+	 * @param address Gets person's address
+	 * @param phone Gets person's phone number
+	 * @param clinic Gets person's clinic
+	 * @param email Gets person's email
+	 */
+	public void createClient(String name, String familyName, String personID, String address, String phone, String clinic, String email){
+		
+		Client client = new Client(name, familyName,
+				personID,	address,
+				phone, clinic, email);
+		
 		Request request = new Request(Command.CREATE_CLIENT,client);
 		
 		try {
@@ -185,7 +199,6 @@ public class CreateClientController implements IController, Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		 
 	}
 	
 	/*

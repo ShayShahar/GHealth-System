@@ -30,7 +30,7 @@ public class FindAppointmentsDB {
     		Statement stmnt = connection.createStatement();
     		ResultSet result = stmnt.executeQuery("SELECT ghealth.appointments.appID, ghealth.appointments.appDate, "
     				+ "ghealth.appointments.appTime, ghealth.person.personName, ghealth.person.personFamily, ghealth.specialists.branchName FROM ghealth.appointments, ghealth.clients, ghealth.specialists, ghealth.person"
-    				+ " WHERE clients.person='" + request.getList().get(0) + "' AND ghealth.appointments.appDate >= NOW() AND ghealth.clients.clientID=appointments.client AND "
+    				+ " WHERE clients.person='" + request.getList().get(0) + "' AND ghealth.appointments.appDate > CURDATE() AND ghealth.clients.clientID=appointments.client AND "
     						+ "ghealth.appointments.specialist=ghealth.specialists.specialistID AND ghealth.specialists.personID=ghealth.person.personID");
     		
     		if (!result.next()){

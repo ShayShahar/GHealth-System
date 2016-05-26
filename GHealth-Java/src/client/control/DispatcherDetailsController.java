@@ -151,9 +151,18 @@ public class DispatcherDetailsController implements IController, Initializable{
 
 		clientID = dispClientIDTxt.getText();
 		
+		findClient(clientID);
+	}
+	
+	
+	/**	
+	 * findClient function sends a FIND_CLIENT request to the server.
+	 * @param id Gets the person's ID to search
+	 */
+	public void findClient(String id){
 		ArrayList<String> client = new ArrayList<String>();
 
-		client.add(clientID);
+		client.add(id);
 		
 		Request request = new Request(Command.FIND_CLIENT, client);
 
@@ -163,7 +172,6 @@ public class DispatcherDetailsController implements IController, Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
@@ -250,15 +258,24 @@ public class DispatcherDetailsController implements IController, Initializable{
 	
 	/**
 	 * onRetrieveClientButtonClick function handles the logics of retrieve client button click
-	 * The function creates a Return client request and sends the request with the client's ID to the server.
+	 * The function calls returnClient function
 	 * @param event
 	 */
 	
 	public void onRetrieveClientButtonClick(ActionEvent event){
 		
+		returnClient(fieldClientID.getText());
+	}
+	
+	/**
+	 * The function creates a Return client request and sends the request with the client's ID to the server.
+	 * @param id Gets person's ID
+	 */
+	public void returnClient(String id){
+		
 		ArrayList<String> client = new ArrayList<String>();
 		
-		client.add(fieldClientID.getText());
+		client.add(id);
 		
 		Request request = new Request(Command.RETURN_CLIENT, client);
 
@@ -268,11 +285,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+				
 	}
-	
 	/**
 	 * onCreateClientButtonClick function handles the logics of create client button click
 	 * In case the requested client is not found in the DB the create client button is click-able
@@ -291,14 +305,22 @@ public class DispatcherDetailsController implements IController, Initializable{
 	
 	/**
 	 * onRemoveClientButtonClick function handles the logics of remove client button click
-	 * The function sends a request of Remove client to the server with the client's ID.
+	 * The function calls removeClient function
 	 * @param event
 	 */
 	public void onRemoveClientButtonClick(ActionEvent event){
+		removeClient(fieldClientID.getText());
+	}
 	
+	/**
+	 * The function sends a request of Remove client to the server with the client's ID.
+	 * @param id Gets person's ID
+	 */
+	public void removeClient(String id){
+		
 		ArrayList<String> client = new ArrayList<String>();
 		
-		client.add(fieldClientID.getText());
+		client.add(id);
 		
 		Request request = new Request(Command.REMOVE_CLIENT, client);
 
@@ -308,7 +330,6 @@ public class DispatcherDetailsController implements IController, Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 	

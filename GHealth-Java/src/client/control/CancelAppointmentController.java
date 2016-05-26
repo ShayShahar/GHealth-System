@@ -49,12 +49,26 @@ public class CancelAppointmentController implements IController, Initializable{
 	private ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();		
 	private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 
+	/**
+	 * Set client's ID to the current cancel appointment scenario
+	 * @param id Gets client's ID
+	 */
 	public void setUser(String id){
 		clientID = id;
 		fieldPersonID.setText(id);
 		
+		findClientAppointments(clientID);
+		
+	}
+	
+	/**
+	 * findClientAppointments function sends a request to the server for all upcoming client's appointments
+	 * @param id Gets client's ID
+	 */
+	public void findClientAppointments(String id){
+		
 		ArrayList<String> msg = new ArrayList<String>();
-		msg.add(clientID);
+		msg.add(id);
 		Request request = new Request(Command.FIND_APPOINTMENTS,msg);
 		
 		try {
@@ -64,7 +78,6 @@ public class CancelAppointmentController implements IController, Initializable{
 			e.printStackTrace();
 		}
 
-		
 	}
 	
 	/**
@@ -98,13 +111,22 @@ public class CancelAppointmentController implements IController, Initializable{
 	
 	/**
 	 * onCancelAppointmentButtonClick function handles a click on cancel appointment button.
-	 * The function creates a CANCEL_APPOINTMENT request message and send it to the server.
+	 * The function calls cancelAppoiontment with the selected appointment id from the table.
 	 * @param event
 	 */
 	public void onCancelAppointmentButtonClick(ActionEvent event){
 		
+			cancelAppointment(choosedID);
+	}
+	
+	/**
+   * cancelAppointment function creates a CANCEL_APPOINTMENT request message and send it to the server.
+	 * @param appID Gets the appointment's ID
+	 */
+	public void cancelAppointment(int appID){
+		
 		ArrayList<String> msg = new ArrayList<String>();
-		msg.add(Integer.toString(choosedID));
+		msg.add(Integer.toString(appID));
 		Request request = new Request(Command.CANCEL_APPOINTMENT,msg);
 		
 		try {
@@ -113,6 +135,7 @@ public class CancelAppointmentController implements IController, Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}			
+		
 	}
 
 	/*
