@@ -17,12 +17,27 @@ public class TransferTableController implements IController,Initializable{
 	public String clientId;
 	
 	public void setDetails(String clientId) {
-		this.clientId = clientId;		
+		askInfoForWholeFile(clientId);
 	}
 
 	public void setDetails(String clientId, String specialist) {		
 		askInfoForSpecificFile(clientId,specialist);
 	}
+	
+private void askInfoForWholeFile(String clientId) {
+		
+		ArrayList<String> list = new ArrayList<>();
+		list.add(clientId);
+Request requst = new Request(Command.FIND_MEDFILE,list);
+		
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(requst);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	private void askInfoForSpecificFile(String clientId, String specialist) {
 		

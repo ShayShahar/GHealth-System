@@ -9,8 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="client.control.TransferTableController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.TransferTableController">
    <children>
       <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="491.0" layoutY="536.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,10 +21,9 @@
       <Separator layoutX="21.0" layoutY="538.0" prefHeight="17.0" prefWidth="612.0" />
       <TableView fx:id="medicalTable" layoutX="16.0" layoutY="76.0" prefHeight="421.0" prefWidth="612.0">
          <columns>
-            <TableColumn fx:id="clmnDate" prefWidth="88.22222900390625" text="Date" />
             <TableColumn fx:id="clmnSpecialization" prefWidth="138.77777099609375" text="Specialization" />
             <TableColumn fx:id="clmnType" prefWidth="112.2222900390625" text="Type" />
-            <TableColumn fx:id="clmnId" prefWidth="270.0" text="Info" />
+            <TableColumn fx:id="clmnId" prefWidth="358.0" text="Info" />
          </columns>
       </TableView>
       <Button cancelButton="true" layoutX="293.0" layoutY="560.0" mnemonicParsing="false" text="Close" />

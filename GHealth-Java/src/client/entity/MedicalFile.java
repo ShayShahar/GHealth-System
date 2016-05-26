@@ -11,6 +11,8 @@ public class MedicalFile implements Serializable{
 	private String type;
 	private String specialization;
 	private String id;
+
+	private String info;
 	
 	
 	public String getId() {
@@ -42,6 +44,15 @@ public class MedicalFile implements Serializable{
 	}
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+		
+	}
+	
+	public String getInfo() {
+		return info;
+		
 	}
 	
 	
