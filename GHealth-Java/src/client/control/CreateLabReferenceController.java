@@ -52,7 +52,15 @@ public class CreateLabReferenceController implements IController,Initializable{
 	 * @return ObservableList<String> 
 	 */
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("LOW","NORMAL","CRITICAL");
-		
+	/**
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
+	 * @param id Gets client's ID
+	 * @param fieldClientName Gets personal Name
+	 * @param SpClientIDTxt Gets person Id
+	 * @param fieldClientFamily Gets Family name
+	 * @param fieldClientAddress Gets adderss
+	 * @param fieldClientEmail Gets email
+	 */
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId, String userName){
 		fieldClientName.setText(pName);
 		SpClientIDTxt.setText(personId);
@@ -71,13 +79,34 @@ public class CreateLabReferenceController implements IController,Initializable{
 		this.userName = userName;
 	}
 	
+	/*
+	 * 	The initialize function initializes the CreateLabReferenceUI screen and class members.
+	 *  The function initializes combobox
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
 		urgencyCom.setItems(urgencyList);	
+		getExaminationType(ClientConnectionController.clientConnect.userName);
 		
+		
+		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+			if (ui instanceof CreateLabReferenceUI){
+				thisUi = ui;
+			}
+		}	
+		
+	}
+	/**
+	 * Bring examination type from the DB to comboBox.
+	 * @param userName by using specialist user name
+	 */
+	
+	public void getExaminationType(String userName){
 		ArrayList<String> list = new ArrayList<String>();
-        list.add(ClientConnectionController.clientConnect.userName);
+        list.add(userName);
         
 		
 		Request request = new Request(Command.GET_EXAMINATION_TYPE,list);
@@ -89,22 +118,26 @@ public class CreateLabReferenceController implements IController,Initializable{
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof CreateLabReferenceUI){
-				thisUi = ui;
-			}
-		}	
-		
 	}
 	/**
 	 * Handles click on Create button.
-	 * Creates a new UI window depends on the type of the selected item from the ComboBoxes.
+	 * Calling to insertLabRefernceToDb by clicking Create button.
 	 * @param event
 	 */
 	
 	 public void onClickCreate(ActionEvent event){
-		 
+	 
+		 insertLabRefernceToDb();
+	
+	 }
+	 
+	 /**
+		 * Creates a new UI window depends on the type of the selected item from the ComboBoxes.
+		 * Insert the lab reference to db by taking them from the GUI.
+		 * @param event
+		 */
+	 
+	 public void insertLabRefernceToDb(){
 		 comments = commentsField.getText();
 		 choosedUrgency = urgencyCom.getSelectionModel().getSelectedItem().toString();
 		 choosedExaminationType = examinationTypeCom.getSelectionModel().getSelectedItem().toString();
@@ -127,11 +160,8 @@ public class CreateLabReferenceController implements IController,Initializable{
 			catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-		
-			
 	 }
-	 /*
+	 /**
 		 * onBackButtonClick function is back button handler. 
 		 * The function searches the last IUi instance in the UI stack and show the window.
 		 * The function removes the current from the stack.
@@ -151,7 +181,10 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	
 
-	
+	/*
+	 * The handle reply process the results of GET_EXAMINATION_TYPE & INSERT_LAB_REFRENCE & GET_CLIENT_BY_CLIENT_ID  requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleReply(Reply reply){

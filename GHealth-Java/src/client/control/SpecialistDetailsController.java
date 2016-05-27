@@ -177,10 +177,15 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			
 		}
-		
+		/*
+		 * 	The initialize function initializes SpeialistUI screen and class members.
+		 *  The function initializes Hash-Maps for hours.
+		 *  The function initializes tables'es columns.
+		 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+		 */
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-			//initialize hash tables
+		
 			getHourByInteger.put(1, "8:00");
 			getHourByInteger.put(2, "8:30");
 			getHourByInteger.put(3, "9:00");
@@ -219,12 +224,29 @@ public class SpecialistDetailsController implements IController, Initializable{
 			getIntegerByHour.put("16:00",17);
 			getIntegerByHour.put("16:30",18);
 				
-			ArrayList<String> user = new ArrayList<String>();
-			user.add(ClientConnectionController.clientConnect.userName);
+
+			findTodayAppointment(ClientConnectionController.clientConnect.userName);
 			
 			timeClmn.setStyle( "-fx-alignment: CENTER;");
 			timeClmn.setCellValueFactory(new PropertyValueFactory<>("hour"));
 
+			
+			
+			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				if (ui instanceof SpecialistUI){
+					thisUi = ui;
+				}
+			}
+			
+		}
+		/**
+		 * findTodayAppointment function sends a request to the server for searching specialist appointments by his user name.
+		 * @param userName Gets specialist user name.
+		 */
+		public void findTodayAppointment(String userName){
+			
+			ArrayList<String> user = new ArrayList<String>();
+			user.add(userName);
 			Request requst2 = new Request(Command.FIND_TODAY_APPOINTMENT,user);
 			
 			try {
@@ -232,13 +254,6 @@ public class SpecialistDetailsController implements IController, Initializable{
 				ClientConnectionController.clientConnect.sendToServer(requst2);
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			
-			
-			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-				if (ui instanceof SpecialistUI){
-					thisUi = ui;
-				}
 			}
 			
 		}
@@ -274,7 +289,7 @@ public class SpecialistDetailsController implements IController, Initializable{
 		}
 		
 		
-		//Components Handlers
+
 		public void onLogoutButtonClick(ActionEvent event){
 			
 			ArrayList<String> username = new ArrayList<String>();
@@ -290,7 +305,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 			}
 			
 		}
-		
+		/**
+		 * onCreateLabReferenceButtonClick function handles a click on CreateLabReference button.
+		 * The function transfer the Specialist to CreateLabReferenceUI.
+		 * @param event
+		 */ 
 				
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
 			CreateLabReferenceUI create = new CreateLabReferenceUI(pName,fName,personId,add,phoneNumber,email,clientId,userName);
@@ -304,7 +323,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			create.displayUserWindow();
 		}
-		
+		/**
+		 * onTransferDetailsButtonClick function handles a click on TransferDetails button.
+		 * The function transfer the Specialist to TransferDetailsUI.
+		 * @param event
+		 */ 
 		public void onTransferDetailsButtonClick(ActionEvent event){
 			TransferDetailsUI create = new TransferDetailsUI(pName,fName,personId,add,phoneNumber,email,clientId,userName);
 			ClientConnectionController.clientConnect.userInterface.add(create);
@@ -317,7 +340,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			create.displayUserWindow();
 		}
-		
+		/**
+		 * onRecordAppointmentButtonClick function handles a click on RecordAppointment button.
+		 * The function transfer the Specialist to RecordAppointmentUI.
+		 * @param event
+		 */ 
 		
 		public void onRecordAppointmentButtonClick(ActionEvent event){
 			RecordAppointmentUI create = new RecordAppointmentUI(pName,fName,personId,add,phoneNumber,email,clientId,userId,appId);
@@ -331,7 +358,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			create.displayUserWindow();
 		}
-		
+		/**
+		 * onViewExaminationButtonClick function handles a click on ViewExamination button.
+		 * The function transfer the Specialist to ViewExaminationUI.
+		 * @param event
+		 */ 
 		
 		public void onViewExaminationButtonClick(ActionEvent event){
 			ViewExaminationUI create = new ViewExaminationUI(pName,fName,personId,add,phoneNumber,email);
@@ -346,11 +377,25 @@ public class SpecialistDetailsController implements IController, Initializable{
 			create.displayUserWindow();
 		}
 		
+		/**
+		 * onReportMissingButtonClick function handles a click on ReportMissing button.
+		 * The function calls reportMissing.
+		 * @param event
+		 */ 
 		
 		public void onReportMissingButtonClick(ActionEvent event){
-			
+			int hour = getIntegerByHour.get(tabelAppointment.getSelectionModel().getSelectedItem().getHour());
+			reportMissing(hour,userName);
+
+		}
+		/**
+		 * insertreportMissing sends a request to the server about the client who missed an appointment.
+		 * @param hour Gets appointment's hour.
+		 * @param userName Gets specialist user name.
+		 */
+		public void reportMissing(int hour,String userName){
 			try{
-				int hour = getIntegerByHour.get(tabelAppointment.getSelectionModel().getSelectedItem().getHour());
+				
 				
 				ArrayList<String> msg = new ArrayList<String>();
 				msg.add(Integer.toString(hour));
@@ -369,8 +414,12 @@ public class SpecialistDetailsController implements IController, Initializable{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-
 		}
+		
+		/*
+		 * The handle reply process the results of FIND_USERID_BY_USERNAME & FIND_TODAY_APPOINTMENT & GET_CLIENT_BY_APPOINTMET & FIND_TODAY_APPOINTMENT requests.
+		 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+		 */
 
 		
 		@SuppressWarnings("unchecked")

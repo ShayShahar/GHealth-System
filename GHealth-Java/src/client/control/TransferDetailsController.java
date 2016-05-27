@@ -26,7 +26,7 @@ import javafx.scene.control.TextField;
  * @author asaf
  *
  */
-public class TransferDetailsController implements IController,Initializable{
+public class TransferDetailsController implements Initializable{
 	
 	
 	@FXML private TextField SpClientIDTxt;
@@ -44,11 +44,7 @@ public class TransferDetailsController implements IController,Initializable{
 	public String clientId;
 	private IUi thisUi;
 	
-	/**
-	 * MedicalFile table observable
-	 * @param list Gets an ArrayList of String objects
-	 * @return ObservableList<String> 
-	 */
+
 	ObservableList<String> specificationsList = FXCollections.observableArrayList("Allergology","Anaesthetics",
 			"Biological hematology","Cardiology","Child psychiatry","Clinical biology",
 			"Clinical chemistry","Clinical neurophysiology","Craniofacial surgery",
@@ -57,7 +53,15 @@ public class TransferDetailsController implements IController,Initializable{
 			"Geriatrics","Immunology","Infectious diseases","Internal medicine","Microbiology",
 			"Nephrology", "Neuro-psychiatry","Neurology","Neurosurgery","Orthopaedics","Pathology",
 			"Psychiatry","Radiology","Stomatology","Urology","Venereology");
-
+	/**
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
+	 * @param id Gets client's ID
+	 * @param fieldClientName Gets personal Name
+	 * @param SpClientIDTxt Gets person Id
+	 * @param fieldClientFamily Gets Family name
+	 * @param fieldClientAddress Gets adderss
+	 * @param fieldClientEmail Gets email
+	 */
 	public void setUser(String pName, String fName, String personId, String add, String phoneNumber, String email,
 			String clientId, String userName) {
 		fieldClientName.setText(pName);
@@ -106,8 +110,28 @@ public void onMouseClick(ActionEvent event){
 
 	transferBtn.setDisable(false);
 }
-
+/**
+	 * onTransferButtonClick function is Transfer button handler. 
+	 * The function searches specialist if there is any and call to transferFile.
+	 * @param event
+	 */
 public void onTransferButtonClick(ActionEvent event){
+	String specialist = new String();
+	try{
+	 specialist = specificationsCom.getSelectionModel().getSelectedItem().toString();
+	}
+	catch(Exception e){
+		specialist = null;
+	}
+	transferFile(clientId,specialist);
+	
+}
+/**
+	 * transferFile searching medical file form health maintenance organization on client for Specific file or the whole file.
+	 * @param event
+	 */
+
+public void transferFile(String clientId, String specialist){
 	
 	if(isWholeFile){
 		TransferTableUI create = new TransferTableUI(clientId,isWholeFile);
@@ -121,7 +145,7 @@ public void onTransferButtonClick(ActionEvent event){
 		
 		create.displayUserWindow();
 	}else{
-		String specialist = specificationsCom.getSelectionModel().getSelectedItem().toString();
+
 		TransferTableUI create = new TransferTableUI(clientId,specialist);
 		ClientConnectionController.clientConnect.userInterface.add(create);
 		
@@ -133,10 +157,7 @@ public void onTransferButtonClick(ActionEvent event){
 		
 		create.displayUserWindow();
 	}
-
-	
 }
-
 public void onWholeFileClick(ActionEvent event){
 	
 	isWholeFile = true;
@@ -145,7 +166,11 @@ public void onWholeFileClick(ActionEvent event){
 	specificationsCom.setItems(null);
 }
 	
-
+/*
+ * 	The initialize function initializes TransferDetailsUI screen and class members.
+ *  The function initializes tables'es columns.
+ * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+ */
 
 @Override
 public void initialize(URL location, ResourceBundle resources) {
@@ -166,18 +191,7 @@ public void initialize(URL location, ResourceBundle resources) {
 
 	
 
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void handleReply(Reply reply){
-		 
-		Object result =  reply.getResult();
-				
 
-		
-		
-		
-	}
 
 
 }

@@ -36,6 +36,15 @@ public class RecordAppointmentController implements IController,Initializable{
 	
 	private IUi thisUi;
 	private String appId;
+	/**
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
+	 * @param id Gets client's ID
+	 * @param fieldClientName Gets personal Name
+	 * @param SpClientIDTxt Gets person Id
+	 * @param fieldClientFamily Gets Family name
+	 * @param fieldClientAddress Gets adderss
+	 * @param fieldClientEmail Gets email
+	 */
 
 	public void setUser(String pName, String fName, String personId, String add, String phoneNumber, String email,
 			String clientId, int userId, String appId) {
@@ -77,13 +86,27 @@ public class RecordAppointmentController implements IController,Initializable{
 		
 	}
 	
+	/**
+	 * onSaveButtonClick function handles a click on save record button.
+	 * The function calls insertRecord with the appointment's record text and appointment id in a list.
+	 * @param event
+	 */
+	
 	public void onSaveButtonClick(ActionEvent event){
 		
 		ArrayList<String> list = new ArrayList<String>();
 		
 		list.add(fieldRecord.getText());
 		list.add(appId);
-			
+		insertRecord(list);
+
+	}
+	
+	/**
+	 * insertRecord function sends a request to the server for inserting client's appointments record.
+	 * @param list Gets appointment's record text and appointment id.
+	 */
+	public void insertRecord(ArrayList<String> list){
 		Request request = new Request(Command.INSERT_RECORD,list);
 		
 		try {
@@ -94,6 +117,11 @@ public class RecordAppointmentController implements IController,Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	/*
+	 * 	The initialize function initializes the RecordAppointmentUI screen and class members.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -108,6 +136,11 @@ public class RecordAppointmentController implements IController,Initializable{
 		
 		
 	}
+	
+	/*
+	 * The handle reply process the results of INSERT_RECORD & GET_CLIENT_BY_CLIENT_ID  requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	
 	@SuppressWarnings("unchecked")
 	@Override

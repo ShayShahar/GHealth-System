@@ -143,7 +143,11 @@ public class ClientHistoryController implements IController, Initializable{
 	}
 	
 	
-	
+	/*
+	 * 	The initialize function initializes the ClientHistoryUI screen and class members.
+	 *  The function initializes tables'es columns.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -168,7 +172,11 @@ public class ClientHistoryController implements IController, Initializable{
 		
 		openBtn.setDisable(true);
 	}
-
+	
+	/*
+	 * The handle reply process the results of GET_MEDICAL_FILE requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public void handleReply(Reply reply) {

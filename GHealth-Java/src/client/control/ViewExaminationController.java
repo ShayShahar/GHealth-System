@@ -58,7 +58,15 @@ public class ViewExaminationController implements IController,Initializable{
 	private int serialNo;
 	private String examinationCode;
 	private int examinationId;
-	
+	/**
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
+	 * @param id Gets client's ID
+	 * @param fieldClientName Gets personal Name
+	 * @param SpClientIDTxt Gets person Id
+	 * @param fieldClientFamily Gets Family name
+	 * @param fieldClientAddress Gets adderss
+	 * @param fieldClientEmail Gets email
+	 */
 		
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email){
 		fieldClientName.setText(pName);
@@ -117,7 +125,11 @@ public class ViewExaminationController implements IController,Initializable{
 				tabelExamination.setItems(getExamination(list));
 			}});
 	}
-	
+	/*
+	 * 	The initialize function initializes ViewExaminationUI screen and class members.
+	 *  The function initializes tables'es columns.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		dateClmn.setStyle( "-fx-alignment: CENTER;");
@@ -158,10 +170,25 @@ public class ViewExaminationController implements IController,Initializable{
 		}
 		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 	}
-	
+	/**
+	 * onOpenButtonClick function handles a click on open button.
+	 * The function calls openViewExamination to watch client examination.
+	 * @param event
+	 */
 	public void onOpenButtonClick(ActionEvent event){
 		
-
+		openViewExamination(serialNo,examinationId,examinationCode);
+		
+	}
+	/**
+	 * openViewExamination function open client examination.
+	 * @param serialNo Gets serial Number of the reference.
+	 * @param examinationId Gets serial Number of the examination.
+	 * @param examinationCode Gets type Number of the examination.
+	 */
+	
+	public void openViewExamination(int serialNo,int examinationId,String examinationCode){		
+		
 		ExaminationController.currentReference = new Reference();
 		ExaminationController.currentReference.setRefNum(serialNo);
 		ExaminationController.currentReference.setCode(examinationId);
@@ -210,7 +237,10 @@ public class ViewExaminationController implements IController,Initializable{
 	
 	
 	
-	
+	/*
+	 * The handle reply process the results of FIND_CLIENT_EXAMINATION & GET_EXAMINATION_NUMBER & GET_EXAMINATION_NUMBER requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 
 	
 	@SuppressWarnings("unchecked")

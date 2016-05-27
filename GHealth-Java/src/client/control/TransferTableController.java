@@ -44,10 +44,18 @@ public class TransferTableController implements IController,Initializable{
 	@FXML private TableColumn<MedicalFile, String> TypeClmn;
 	@FXML private TableColumn<MedicalFile, String> infoClmn;
 	
+	/**
+	 * Set client's ID to the current class with one parameter
+	 * @param clientId Gets client's ID
+	 */
 	public void setDetail(String clientId) {
 		askInfoForWholeFile(clientId);
 	}
-
+	/**
+	 * Set client's ID to the current class with two parameter
+	 * @param clientId Gets client's ID
+	 * @param specialist Gets specialist id
+	 */
 	public void setDetails(String clientId, String specialist) {		
 		askInfoForSpecificFile(clientId,specialist);
 	}
@@ -125,7 +133,11 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 				medicalTable.setItems(getMedicalFile(list));
 			}});
 	}
-	
+	/*
+	 * 	The initialize function initializes TransferTableUI screen and class members.
+	 *  The function initializes tables'es columns.
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -146,6 +158,11 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 		
 		
 	}
+	/*
+	 * The handle reply process the results of FIND_MEDFILE  requests.
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
+
 
 	@Override
 	public void handleReply(Reply reply) {
