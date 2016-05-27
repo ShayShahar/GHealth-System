@@ -11,6 +11,7 @@ import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
+import common.enums.Result;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -81,17 +82,7 @@ public class RecordAppointmentController implements IController,Initializable{
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		thisUi.hideWindow();
-		
-		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof SpecialistUI){
-				ui.showWindow();
-			}
-		}
-		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
-		
-		}
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -113,8 +104,25 @@ public class RecordAppointmentController implements IController,Initializable{
 		 
 		Object result =  reply.getResult();
 				
+if (reply.getCommand() == Command.INSERT_RECORD){
+			
+
+			if ((Result)result == Result.OK ){
+				
+				thisUi.hideWindow();
+				
+				for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+					if (ui instanceof SpecialistUI){
+						ui.showWindow();
+					}
+				}
+				ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+				
+				thisUi.displayMessage("Record successfully created", "Done" );
+			}
+}
 		
-		if (reply.getCommand() == Command.GET_CLIENT_BY_CLIENT_ID){
+		else if (reply.getCommand() == Command.GET_CLIENT_BY_CLIENT_ID){
 			
 
 			if (result instanceof ArrayList<?>){

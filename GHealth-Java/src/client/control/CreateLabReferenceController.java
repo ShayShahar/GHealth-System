@@ -43,7 +43,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	private IUi thisUi;
 	
-	ObservableList<String> urgencyList = FXCollections.observableArrayList("Low","Normal","Critical");
+	ObservableList<String> urgencyList = FXCollections.observableArrayList("LOW","NORMAL","CRITICAL");
 		
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId, String userName){
 		fieldClientName.setText(pName);
@@ -116,14 +116,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 				e.printStackTrace();
 			}
 			
-			thisUi.hideWindow();
-			
-			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-				if (ui instanceof SpecialistUI){
-					ui.showWindow();
-				}
-			}
-			ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+		
 			
 	 }
 	
@@ -167,6 +160,25 @@ public class CreateLabReferenceController implements IController,Initializable{
 				}
 				
 			});
+		}
+		else if (reply.getCommand() == Command.INSERT_LAB_REFRENCE){
+			
+			if (result instanceof ArrayList<?>){
+				result = (ArrayList<Integer>) result;
+				ArrayList<Integer> res = (ArrayList<Integer>) result;
+				
+				thisUi.hideWindow();
+				
+				for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+					if (ui instanceof SpecialistUI){
+						ui.showWindow();
+					}
+				}
+				ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+				
+				thisUi.displayMessage("Reference successfully created", "The reference number is: " + res.get(0));
+			}
+			
 		}
 		
 		else if (reply.getCommand() == Command.GET_CLIENT_BY_CLIENT_ID){
