@@ -18,7 +18,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
+/**
+ * RecordAppointmentController connects between the RecordAppointmentUI to the components logics.
+ * @author asaf
+ *
+ */
 public class RecordAppointmentController implements IController,Initializable{
 	
 	@FXML private TextField SpClientIDTxt;
@@ -52,6 +56,13 @@ public class RecordAppointmentController implements IController,Initializable{
 		// this.userId = userId;
 		
 	}
+	
+	/*
+	 * onBackButtonClick function is back button handler. 
+	 * The function searches the last IUi instance in the UI stack and show the window.
+	 * The function removes the current from the stack.
+	 * @param event
+	 */
 	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();

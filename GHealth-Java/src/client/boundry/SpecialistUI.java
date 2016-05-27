@@ -20,7 +20,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
-
+/**
+ * SpecialistUI class connects between the java code and the SpecialistUI FXML file
+* The class implements IUi interface
+* @author asaf
+*
+*/
 public class SpecialistUI implements IUi{
 	
 	private static Stage mainStage;
@@ -73,6 +78,10 @@ public class SpecialistUI implements IUi{
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -83,7 +92,10 @@ public class SpecialistUI implements IUi{
 			}
 			});		
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 
 	@Override
 	public void showWindow() {
@@ -96,8 +108,17 @@ public class SpecialistUI implements IUi{
 			});		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
+	
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
+	
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -115,6 +136,10 @@ public class SpecialistUI implements IUi{
 			}
 		});			
 	}
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	
 	@Override
 	public void displayMessage(String title, String information){
@@ -133,7 +158,6 @@ public class SpecialistUI implements IUi{
 				}
 		});
 	}
-
 
 
 

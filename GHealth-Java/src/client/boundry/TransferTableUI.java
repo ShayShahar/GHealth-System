@@ -16,18 +16,32 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
-
+/**
+ * TransferTableUI class connects between the java code and the TransferTableUI FXML file
+* The class implements IUi interface
+* @author asaf
+*
+*/
 public class TransferTableUI  implements IUi {
 
 	private static Stage mainStage;
 	private String clientId;
 	private Boolean isWholeFile = false;
 	private String specialist;
-
+	/**
+	 * TransferTableUI constructor
+	 * @param clientId Gets the client id
+	 * @param isWholeFile Gets the if specialist choose to transfer is Whole File
+	 */
 	public TransferTableUI(String clientId, Boolean isWholeFile) {
 		this.isWholeFile = isWholeFile;
 		this.clientId = clientId;
 	}
+	/**
+	 * TransferTableUI constructor
+	 * @param clientId Gets the client id
+	 * @param specialist Gets the specialist type
+	 */
 
 	public TransferTableUI(String clientId, String specialist) {
 		this.clientId = clientId;

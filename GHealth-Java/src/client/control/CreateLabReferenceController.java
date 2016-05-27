@@ -19,7 +19,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
+/**
+ * CreateLabReferenceController connects between the CreateLabReferenceUI to the components logics.
+ * @author asaf
+ *
+ */
 public class CreateLabReferenceController implements IController,Initializable{
 
 	public int userId;
@@ -42,7 +46,11 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	
 	private IUi thisUi;
-	
+	/**
+	 * MedicalFile table observable
+	 * @param list Gets an ArrayList of String objects
+	 * @return ObservableList<String> 
+	 */
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("LOW","NORMAL","CRITICAL");
 		
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId, String userName){
@@ -89,7 +97,11 @@ public class CreateLabReferenceController implements IController,Initializable{
 		}	
 		
 	}
-	
+	/**
+	 * Handles click on Create button.
+	 * Creates a new UI window depends on the type of the selected item from the ComboBoxes.
+	 * @param event
+	 */
 	
 	 public void onClickCreate(ActionEvent event){
 		 
@@ -119,7 +131,12 @@ public class CreateLabReferenceController implements IController,Initializable{
 		
 			
 	 }
-	
+	 /*
+		 * onBackButtonClick function is back button handler. 
+		 * The function searches the last IUi instance in the UI stack and show the window.
+		 * The function removes the current from the stack.
+		 * @param event
+		 */
 	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();
@@ -148,6 +165,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 			exType.remove(0);
 			
 			@SuppressWarnings("rawtypes")
+			
 			ObservableList examinationList = FXCollections.observableList(exType);
 			examinationTypeCom.setItems(examinationList);
 			

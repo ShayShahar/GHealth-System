@@ -21,7 +21,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+/**
+ * TransferDetailsController connects between the TransferDetailsUI to the components logics.
+ * @author asaf
+ *
+ */
 public class TransferDetailsController implements IController,Initializable{
 	
 	
@@ -40,6 +44,11 @@ public class TransferDetailsController implements IController,Initializable{
 	public String clientId;
 	private IUi thisUi;
 	
+	/**
+	 * MedicalFile table observable
+	 * @param list Gets an ArrayList of String objects
+	 * @return ObservableList<String> 
+	 */
 	ObservableList<String> specificationsList = FXCollections.observableArrayList("Allergology","Anaesthetics",
 			"Biological hematology","Cardiology","Child psychiatry","Clinical biology",
 			"Clinical chemistry","Clinical neurophysiology","Craniofacial surgery",
@@ -66,6 +75,14 @@ public class TransferDetailsController implements IController,Initializable{
 		this.clientId = clientId;
 		
 	}
+	
+	/*
+	 * onBackButtonClick function is back button handler. 
+	 * The function searches the last IUi instance in the UI stack and show the window.
+	 * The function removes the current from the stack.
+	 * @param event
+	 */
+	
 public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();

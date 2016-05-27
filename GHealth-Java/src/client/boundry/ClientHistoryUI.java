@@ -20,7 +20,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
-
+/**
+ * ClientHistoryUI class connects between the java code and the ClientHistoryUI FXML file
+* The class implements IUi interface
+* @author asaf
+*
+*/
 public class ClientHistoryUI implements IUi {
 
 	private String id;

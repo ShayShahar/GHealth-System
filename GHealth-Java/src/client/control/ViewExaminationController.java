@@ -26,7 +26,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
+/**
+ * ViewExaminationController connects between the ViewExaminationUI to the components logics.
+ * @author asaf
+ *
+ */
 public class ViewExaminationController implements IController,Initializable{
 
 	public int userId;
@@ -83,7 +87,11 @@ public class ViewExaminationController implements IController,Initializable{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * MedicalFile table observable
+	 * @param list Gets an ArrayList of Examination objects
+	 * @return ObservableList<Examination> 
+	 */
 	public ObservableList<Examination> getExamination(ArrayList<Examination> list){
 		ObservableList<Examination> examinations = FXCollections.observableArrayList();
 		
@@ -95,7 +103,10 @@ public class ViewExaminationController implements IController,Initializable{
 	}
 	
 
-
+	/**
+	 * This function updates the view of the medical file table elements.
+	 * @param list Gets an ArrayList of MedicalFile objects
+	 */
 	
 	public void onUpdateTableView(ArrayList<Examination> list){
 
@@ -129,9 +140,13 @@ public class ViewExaminationController implements IController,Initializable{
 		
 	}
 	
-	
+	/*
+	 * onBackButtonClick function is back button handler. 
+	 * The function searches the last IUi instance in the UI stack and show the window.
+	 * The function removes the current from the stack.
+	 * @param event
+	 */
 
-	
 	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();

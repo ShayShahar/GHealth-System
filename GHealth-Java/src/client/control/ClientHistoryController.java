@@ -26,7 +26,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
+/**
+ * ClientHistoryController connects between the ClientHistoryUI to the components logics.
+ * @author asaf
+ *
+ */
 public class ClientHistoryController implements IController, Initializable{
 
 	@FXML private TextField fieldClientID;

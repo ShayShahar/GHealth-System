@@ -27,7 +27,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+/**
+ * TransferTableController connects between the TransferTableUI to the components logics.
+ * @author asaf
+ *
+ */
 public class TransferTableController implements IController,Initializable{
 
 	public String specialist;
@@ -77,7 +81,11 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * MedicalFile table observable
+	 * @param list Gets an ArrayList of MedicalFile objects
+	 * @return ObservableList<MedicalFile> 
+	 */
 	public ObservableList<MedicalFile> getMedicalFile(ArrayList<MedicalFile> list){
 		ObservableList<MedicalFile> medicalFiles = FXCollections.observableArrayList();
 		
@@ -87,7 +95,12 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 		
 		return medicalFiles;
 	}
-	
+	/*
+	 * onCloseButtonClick function is back button handler. 
+	 * The function searches the last IUi instance in the UI stack and show the window.
+	 * The function removes the current from the stack.
+	 * @param event
+	 */
 	public void onCloseButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();
@@ -99,7 +112,10 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 		}
 		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 	}
-	
+	/**
+	 * This function updates the view of the medical file table elements.
+	 * @param list Gets an ArrayList of MedicalFile objects
+	 */
 	public void onUpdateTableView(ArrayList<MedicalFile> list){
 
 		Platform.runLater(new Runnable() {

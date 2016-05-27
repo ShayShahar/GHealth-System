@@ -34,7 +34,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
-
+/**
+ * SpecialistDetailsController connects between the SpecialistDetailsUI to the components logics.
+ * @author asaf
+ *
+ */
 public class SpecialistDetailsController implements IController, Initializable{
 
 		
@@ -75,7 +79,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 	  private HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
 	
-	 
+		/**
+		 * MedicalFile table observable
+		 * @param list Gets an ArrayList of Hour objects
+		 * @return ObservableList<Hour> 
+		 */
 		public ObservableList<Hour> getHours(ArrayList<Hour> list){
 			ObservableList<Hour> hours = FXCollections.observableArrayList();
 			
@@ -85,6 +93,10 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			return hours;
 		}
+		/**
+		 * This function updates the view of the medical file table elements.
+		 * @param list Gets an ArrayList of MedicalFile objects
+		 */
 		
 		public void onUpdateTableView(ArrayList<Hour> list){
 
@@ -230,7 +242,10 @@ public class SpecialistDetailsController implements IController, Initializable{
 			}
 			
 		}
-		
+		/**
+		 * Handles mouse click on the client's time schedule table.
+		 * @param event
+		 */
 		
 		public void onMouseClick(MouseEvent event){
 	

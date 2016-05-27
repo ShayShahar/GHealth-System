@@ -24,7 +24,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
-
+/**
+ * TransferDetailsUI class connects between the java code and the TransferDetailsUI FXML file
+* The class implements IUi interface
+* @author asaf
+*
+*/
 public class TransferDetailsUI implements IUi{
 	
 	private static Stage mainStage;
@@ -33,7 +38,17 @@ public class TransferDetailsUI implements IUi{
 	public int userId;
 	public String userName;
 	
-
+	/**
+	 * TransferDetailsUI constructor
+	 * @param clientId Gets the client id
+	 *  @param pName Gets the personal Name
+	 *  @param fName Gets the family Name
+	 *  @param personId Gets the personal Id
+	 *  @param add Gets the adders
+	 *  @param phoneNumber Gets the phone Number
+	 *  @param email Gets the email
+	 *  @param userName Gets the user Name
+	 */
 
 	public TransferDetailsUI(String pName, String fName, String personId, String add, String phoneNumber, String email,
 			String clientId, String userName) {
@@ -46,7 +61,10 @@ public class TransferDetailsUI implements IUi{
 		this.clientId = clientId;
 		this.userName = userName;
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -57,7 +75,10 @@ public class TransferDetailsUI implements IUi{
 			}
 			});		
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 
 	@Override
 	public void showWindow() {
@@ -69,6 +90,13 @@ public class TransferDetailsUI implements IUi{
 			}
 			});		
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
+	
+
 
 	@Override
 	public void displayUserWindow() {
@@ -120,6 +148,11 @@ public class TransferDetailsUI implements IUi{
 			});		
 		}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
+	
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -137,6 +170,10 @@ public class TransferDetailsUI implements IUi{
 			}
 		});			
 	}
+	/*
+	 * (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	
 	@Override
 	public void displayMessage(String title, String information){
@@ -159,5 +196,4 @@ public class TransferDetailsUI implements IUi{
 
 
 	
-
 }
