@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import client.boundry.SpecialistUI;
+import client.boundry.TransferDetailsUI;
+import client.boundry.TransferTableUI;
 import client.boundry.ViewExaminationUI;
 import client.entity.Examination;
 import client.entity.MedicalFile;
@@ -24,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TransferTableController implements IController,Initializable{
 
@@ -34,10 +37,10 @@ public class TransferTableController implements IController,Initializable{
 	
 	@FXML private TableView<MedicalFile> medicalTable;
 	@FXML private TableColumn<MedicalFile, String> specialistClmn;
-	@FXML private TableColumn<MedicalFile, String> clmnTypeClmn;
+	@FXML private TableColumn<MedicalFile, String> TypeClmn;
 	@FXML private TableColumn<MedicalFile, String> infoClmn;
 	
-	public void setDetails(String clientId) {
+	public void setDetail(String clientId) {
 		askInfoForWholeFile(clientId);
 	}
 
@@ -90,7 +93,7 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 		thisUi.hideWindow();
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof SpecialistUI){
+			if (ui instanceof TransferDetailsUI){
 				ui.showWindow();
 			}
 		}
@@ -110,8 +113,17 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		
+		TypeClmn.setStyle( "-fx-alignment: CENTER;");
+		TypeClmn.setCellValueFactory(new PropertyValueFactory<>("type"));
+		specialistClmn.setStyle( "-fx-alignment: CENTER;");
+		specialistClmn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
+		infoClmn.setStyle( "-fx-alignment: CENTER;");
+		infoClmn.setCellValueFactory(new PropertyValueFactory<>("info"));
+		
+		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-			if (ui instanceof ViewExaminationUI){
+			if (ui instanceof TransferTableUI){
 				thisUi = ui;
 			}
 		}	
@@ -135,12 +147,12 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 				
 				 thisUi.hideWindow();
 					
-					for (IUi ui : ClientConnectionController.clientConnect.userInterface){
+				/*	for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 						if (ui instanceof SpecialistUI){
 							ui.showWindow();
 						}
 					}
-					ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+					ClientConnectionController.clientConnect.userInterface.remove(thisUi);*/
 			 }
 			 
 			 

@@ -30,7 +30,7 @@ public class FindMedFileDB {
     		
     		
     		preparedStatement1.setString(1,request.getList().get(0));
-    		preparedStatement1.setString(1,request.getList().get(1));
+    		preparedStatement1.setString(2,request.getList().get(1));
     		result = preparedStatement1.executeQuery();
     		
 
@@ -48,7 +48,7 @@ public class FindMedFileDB {
     		   }while(result.next());
 
 
-    		return list;
+    		
 			  
     	} catch (SQLException e) {
 					e.printStackTrace();
@@ -58,7 +58,7 @@ public class FindMedFileDB {
 	}
 	else{
 		String stmnt = "SELECT ghealth.medicalinfo.meType,ghealth.medicalinfo.meInfo, ghealth.medicalinfo.meSpecialist  "
-				+ " FROM ghealth.medicalinfo WHERE ghealth.medicalinfo.meClientID = 1 ";
+				+ " FROM ghealth.medicalinfo WHERE ghealth.medicalinfo.meClientID = ? ";
 
 		try{
 			
@@ -69,7 +69,7 @@ public class FindMedFileDB {
     		
     		
     		
-    		//preparedStatement1.setString(1,request.getList().get(0));
+    		preparedStatement1.setString(1,request.getList().get(0));
     		result = preparedStatement1.executeQuery();
     		
 

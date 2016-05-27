@@ -52,7 +52,7 @@ public class TransferTableUI  implements IUi {
 					Parent root = (Parent) fxmlLoader.load();
 					TransferTableController controller = fxmlLoader.getController();
 					if(isWholeFile){
-					controller.setDetails(clientId);
+					controller.setDetail(clientId);
 					}
 					else{
 						controller.setDetails(clientId,specialist);

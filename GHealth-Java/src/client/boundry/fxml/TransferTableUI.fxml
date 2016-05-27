@@ -21,8 +21,8 @@
       <Separator layoutX="21.0" layoutY="538.0" prefHeight="17.0" prefWidth="612.0" />
       <TableView fx:id="medicalTable" layoutX="16.0" layoutY="76.0" prefHeight="421.0" prefWidth="612.0">
          <columns>
-            <TableColumn fx:id="clmnSpecialization" prefWidth="138.77777099609375" text="Specialization" />
-            <TableColumn fx:id="clmnType" prefWidth="112.2222900390625" text="Type" />
+            <TableColumn fx:id="specialistClmn" prefWidth="138.77777099609375" text="Specialization" />
+            <TableColumn fx:id="TypeClmn" prefWidth="112.2222900390625" text="Type" />
             <TableColumn fx:id="infoClmn" prefWidth="358.0" text="Info" />
          </columns>
       </TableView>
