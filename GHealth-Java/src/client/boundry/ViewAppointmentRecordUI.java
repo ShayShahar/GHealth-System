@@ -16,6 +16,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+/**
+ * ViewAppointmentRecordUI class connects between the java code and the ViewAppointmentRecordUI FXML file
+ * The class implements IUi interface
+ * @author shays
+ *
+ */
+
 public class ViewAppointmentRecordUI implements IUi {
 	
 	private static Stage mainStage;

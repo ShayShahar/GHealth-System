@@ -3,6 +3,11 @@ package client.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * Appointment class defines an appointments entity in GHealth System
+ * @author shays
+ *
+ */
 public class Appointment  implements Serializable{
 
 	

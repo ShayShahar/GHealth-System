@@ -20,6 +20,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+/**
+ * ViewReferenceController class handles the logics of ViewReferenceUI 
+ * @author shays
+ *
+ */
 public class ViewReferenceController implements IController, Initializable{
 
 	@FXML private TextField referenceNumber;
@@ -37,10 +42,26 @@ public class ViewReferenceController implements IController, Initializable{
 	
 	private IUi thisUi;
 	
+	/**
+	 * Initialize class parameters
+	 * 
+	 * @param id Gets the reference's ID
+	 * @param name Gets the specialist's name
+	 */
 	public void setDetails(String id, String name){
 		referenceNumber.setText(id);
 		fieldName.setText(name);
 
+		findReferenceByID(id);
+		
+	}
+	
+	/**
+	 * findReferenceByID creates a FIND_REFERENCE_BY_REFNUM request and send it to the server
+	 * @param id Gets the reference's ID
+	 */
+	public void findReferenceByID(String id){
+		
 		Request request = new Request(Command.FIND_REFERENCE_BY_REFNUM,id);
 		
 		try {
@@ -50,7 +71,6 @@ public class ViewReferenceController implements IController, Initializable{
 			e.printStackTrace();
 		}
 	}
-	
 
 	/*
 	 * onBackButtonClick function is back button handler. 

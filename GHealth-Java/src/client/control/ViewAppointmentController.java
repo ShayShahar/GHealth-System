@@ -18,6 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+/**
+ * ViewAppointmentController handles the logics of ViewAppointmentRecordUI
+ * @author shays
+ *
+ */
 public class ViewAppointmentController implements IController, Initializable {
 
 	@FXML private TextField fieldClientID;
@@ -31,7 +36,13 @@ public class ViewAppointmentController implements IController, Initializable {
 	
 	private IUi thisUi;
 
-
+		/**
+		 * Initialize class parameters
+		 * @param clientID Gets client's ID
+		 * @param date Gets the appointment's date
+		 * @param name Gets the Specialist name
+		 * @param appointmentID Gets the appointment's ID
+		 */
 	public void setDetails(String clientID, String date, String name, String appointmentID){
 		fieldClientID.setText(clientID);
 		fieldDate.setText(date);
@@ -42,6 +53,10 @@ public class ViewAppointmentController implements IController, Initializable {
 		
 	}
 	
+	/**
+	 * getAppointmentReview function creates a GET_APPOINTMENT_REVIEW request and send it to the server
+	 * @param appointmentID
+	 */
 	public void getAppointmentReview(String appointmentID)
 	{
 		ArrayList<String> list = new ArrayList<String>();

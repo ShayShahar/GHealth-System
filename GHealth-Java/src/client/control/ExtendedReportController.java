@@ -101,11 +101,28 @@ public class ExtendedReportController implements IController, Initializable{
 					return;
 				}
 					
+				displayMonthlyReport(selectBranchList.getSelectionModel().getSelectedItem().toString(), yearList1.getSelectionModel().getSelectedItem(), monthList.getSelectionModel().getSelectedItem());
+				
+				
+		}catch(Exception e){}
+		
+	}
+ 
+	
+	/**
+	 * displayMonthlyReport sends a request to the server that creates a monthly report
+	 * @param branch Gets the name of the branch
+	 * @param year Gets the year
+	 * @param month Gets the month
+	 */
+	
+	public void displayMonthlyReport(String branch, int year, int month){
+		
 				ArrayList<String> msg = new ArrayList<String>();
-				msg.add(selectBranchList.getSelectionModel().getSelectedItem().toString());
-				msg.add(yearList1.getSelectionModel().getSelectedItem().toString());
-				msg.add(monthList.getSelectionModel().getSelectedItem().toString());
-
+				msg.add(branch);
+				msg.add(Integer.toString(year));
+				msg.add(Integer.toString(month));
+		
 				Request request = new Request(Command.MONTHLY_REPORT,msg);
 				
 				try {
@@ -114,11 +131,8 @@ public class ExtendedReportController implements IController, Initializable{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}		
-		}catch(Exception e){}
-		
 	}
- 
-	
+
 	 /**
 	  * onWeeklyReportButtonClick function is view weekly report button handler.
 	  * The function creates a request to display a weekly report for a selected month and branch.
@@ -142,23 +156,35 @@ public class ExtendedReportController implements IController, Initializable{
 					thisUi.displayErrorMessage("Not available", "No available information for the selected week.");
 					return;
 				}
-				
-				ArrayList<String> msg = new ArrayList<String>();
-				msg.add(selectBranchList1.getSelectionModel().getSelectedItem().toString());
-				msg.add(yearList2.getSelectionModel().getSelectedItem().toString());
-				msg.add(weekList.getSelectionModel().getSelectedItem().toString());
-				
-				Request request = new Request(Command.WEEKLY_REPORT,msg);
-				
-				try {
-					ClientConnectionController.clientConnect.controller = this;
-					ClientConnectionController.clientConnect.sendToServer(request);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}		
+								
+				displayWeeklyReport(selectBranchList1.getSelectionModel().getSelectedItem().toString(),yearList2.getSelectionModel().getSelectedItem(), weekList.getSelectionModel().getSelectedItem());
 		}catch(Exception e){}
 		
 	}
+	
+	/**
+	 * displayWeeklyReport creates a weekly report by sending a request to the server
+	 * @param branch Gets the branch name
+	 * @param year Gets the year
+	 * @param week Gets the week of the year number
+	 */
+	public void displayWeeklyReport(String branch, int year, int week){
+		
+		ArrayList<String> msg = new ArrayList<String>();
+		msg.add(branch);
+		msg.add(Integer.toString(year));
+		msg.add(Integer.toString(week));
+		
+		Request request = new Request(Command.WEEKLY_REPORT,msg);
+		
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+	
 	
 	/**
 	 * onLogoutButtonClick function is Logout button handler.

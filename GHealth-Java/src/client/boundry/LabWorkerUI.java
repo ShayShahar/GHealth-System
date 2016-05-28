@@ -21,6 +21,14 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+/**
+ * LabWorkerUI class connects between the java code and the LabWorkerUI FXML file
+ * The class implements IUi interface
+ * @author raz
+ *
+ */
+
+
 public class LabWorkerUI implements IUi{
 	
 	private static Stage mainStage;

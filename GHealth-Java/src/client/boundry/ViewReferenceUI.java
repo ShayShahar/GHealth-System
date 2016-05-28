@@ -1,7 +1,6 @@
 package client.boundry;
 
 import java.net.URL;
-
 import client.control.ClientConnectionController;
 import client.control.ViewReferenceController;
 import client.interfaces.IUi;
@@ -15,6 +14,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+
+
+/**
+ * ViewReferenceUI class connects between the java code and the ViewReferenceUI FXML file
+ * The class implements IUi interface
+ * @author shays
+ *
+ */
 
 public class ViewReferenceUI implements IUi {
 

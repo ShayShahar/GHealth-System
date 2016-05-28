@@ -21,6 +21,13 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+/**
+ * CreateExaminationUI class connects between the java code and the CreateExaminationUI FXML file
+ * The class implements IUi interface
+ * @author raz
+ *
+ */
+
 public class CreateExaminationUI implements IUi{
 	
 	public static Stage mainStage;
