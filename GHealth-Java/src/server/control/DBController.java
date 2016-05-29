@@ -5,9 +5,21 @@ import common.entity.Request;
 import common.enums.Result;
 import server.control.database.*;
 
+/**
+ * DBController class handles requests from clients
+ * @author shays
+ *
+ */
 public class DBController {
 
-	//
+
+	/**
+	 * processRequest function classify the request message by reading the request's op-code (Command)
+	 *
+	 * @param request - Gets a Request object that sent by the client
+	 * @param connection - Gets the connection to server
+	 * @return Object - object type depends on the query.
+	 */
 	public static Object processRequest(Request request, Connection connection){
 
 		switch (request.getCommand()){

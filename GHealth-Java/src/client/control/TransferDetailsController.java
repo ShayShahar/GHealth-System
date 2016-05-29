@@ -2,16 +2,10 @@ package client.control;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import client.boundry.CreateLabReferenceUI;
 import client.boundry.SpecialistUI;
 import client.boundry.TransferDetailsUI;
 import client.boundry.TransferTableUI;
-import client.interfaces.IController;
 import client.interfaces.IUi;
-import common.entity.Reply;
-import common.enums.Command;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

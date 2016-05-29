@@ -14,9 +14,9 @@ import common.enums.*;
 
 public class Request implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 
-	private final Command command; 
+	  private final Command command; 
     private ArrayList<String> list = null;
     private Object entity = null, entity2 = null; 
 

@@ -61,8 +61,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 	@FXML private TextField fieldClientEmail;
 	@FXML private TextField SpClientIDTxt;
 
-	public static String clientID;
-	public static int id;
+	private static String clientID;
+	private static int id;
 	private IUi thisUi;
 		
 	

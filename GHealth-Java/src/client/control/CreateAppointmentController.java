@@ -61,7 +61,7 @@ public class CreateAppointmentController implements IController, Initializable{
 	@FXML private Button createAppBtn;
 
 
-	IUi thisUi = null;
+	private IUi thisUi;
   private int choosedID = 0;
   private String choosedSpeciality;
   private int choosedHour = 0;

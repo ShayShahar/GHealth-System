@@ -15,8 +15,18 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import server.control.ServerController;
 
+/**
+ * ServerUI extends JavaFX Application.
+ * This class handles the main entry for the server application and connects between the java-code to the ServerUI FXML file
+ * @author shays
+ *
+ */
 public class ServerUI extends Application{
-		
+	
+	/**
+	 * main program entry
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -33,6 +43,11 @@ public class ServerUI extends Application{
 		primaryStage.show();		
 	}
 	
+	/**
+	 * Display an information message
+	 * @param title - Gets the message's title
+	 * @param information - Gets the message's text
+	 */
 	public static void displayMessage (String title, String information){
 		Platform.runLater(new Runnable() {
 
@@ -50,6 +65,11 @@ public class ServerUI extends Application{
 		});
 	}
 	
+	/**
+	 * Display an error message
+	 * @param title - Gets the message's title
+	 * @param information - Gets the message's text
+	 */
 	public static void displayErrorMessage (String title, String information){
 		Platform.runLater(new Runnable() {
 

@@ -14,9 +14,26 @@ import ocsf.client.AbstractClient;
  */
 public class ClientController extends AbstractClient{
 
+	/**
+	 * Store an instance of a class that implements IController interface.
+	 * Usually used to save last used controller to handle server replies. 
+	 */
 	public IController controller;
+	
+	/**
+	 * ArrayList of IUi implements a stack of GUI windows.
+	 * Helps to manage the displayed windows and switch between screens.
+	 */
 	public ArrayList<IUi> userInterface = new ArrayList<IUi>();
+	
+	/**
+	 * Stores the connected user's privilege level.
+	 */
 	public String userPrivilege;
+	
+	/**
+	 * Stores the users's username
+	 */
 	public String userName;
 	
 	/**

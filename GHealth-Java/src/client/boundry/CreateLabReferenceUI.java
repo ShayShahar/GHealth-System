@@ -3,9 +3,7 @@ package client.boundry;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import client.control.ClientConnectionController;
-import client.control.CreateAppointmentController;
 import client.control.CreateLabReferenceController;
 import client.interfaces.IUi;
 import common.entity.Request;

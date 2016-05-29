@@ -16,9 +16,19 @@ public class ClientConnectionController{
 
 	@FXML private TextField ipAddress;
 	
+	/**
+	 * Set the default connection port
+	 */
 	final public static int DEFAULT_PORT = 5551;
+	
+	/**
+	 * Set the connection IP Address
+	 */
 	public static String IP_ADDR;
 
+	/**
+	 * Instance of the connection to the server
+	 */
 	public static ClientController clientConnect;
 	
 	/**

@@ -31,15 +31,9 @@ import javafx.scene.input.MouseEvent;
  * @author asaf
  *
  */
+@SuppressWarnings("unused")
 public class ViewExaminationController implements IController,Initializable{
 
-	public int userId;
-	public static int id;
-	public String clientId;
-	public String comments;
-	public String choosedUrgency;
-	public String choosedExaminationType;
-	public String userName;
 	
 	@FXML private TextField SpClientIDTxt;
 	@FXML private TextField fieldClientName;
@@ -58,6 +52,16 @@ public class ViewExaminationController implements IController,Initializable{
 	private int serialNo;
 	private String examinationCode;
 	private int examinationId;
+	private int userId;
+	private String clientId;
+	private String comments;
+	private String choosedUrgency;
+	private String choosedExaminationType;
+	private String userName;
+	
+	static int id;
+
+	
 	/**
 	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
 	 * @param id Gets client's ID

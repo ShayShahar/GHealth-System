@@ -3,21 +3,17 @@ package client.boundry;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import client.control.ClientConnectionController;
-import client.control.CreateLabReferenceController;
 import client.control.TransferDetailsController;
 import client.interfaces.IUi;
 import common.entity.Request;
 import common.enums.Command;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,13 +26,19 @@ import javafx.util.Pair;
 * @author asaf
 *
 */
+@SuppressWarnings("unused")
 public class TransferDetailsUI implements IUi{
 	
 	private static Stage mainStage;
-	public String pName; public String fName; public String personId; public String add; public String phoneNumber;
-	public String email; public String clientId;
-	public int userId;
-	public String userName;
+	private String pName;
+	private String fName;
+	private String personId;
+	private String add;
+	private String phoneNumber;
+	private String email;
+	private String clientId;
+	private int userId;
+	private String userName;
 	
 	/**
 	 * TransferDetailsUI constructor

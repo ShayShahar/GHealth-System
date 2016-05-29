@@ -1,6 +1,12 @@
 package common.enums;
 
+/**
+ * Command enumeration used as an op-code to classify the different requests from clients to the server.
+ * @author shays
+ *
+ */
 public enum Command {
+
 
     LOGIN,
     LOGOUT,

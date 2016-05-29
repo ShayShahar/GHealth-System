@@ -15,6 +15,12 @@ import ocsf.server.ConnectionToClient;
 import server.boundry.ServerUI;
 import common.entity.*;
 
+/**
+ * ServerController is the server controller of GHealth System application.
+ * The class extends OCSF Abstract server.
+ * @author shays
+ *
+ */
 public class ServerController extends AbstractServer{
 	
 	@FXML private TextField usernameTextbox;
@@ -25,18 +31,34 @@ public class ServerController extends AbstractServer{
 	@FXML private Tab notificationTab;
 	@FXML private TextArea notificationsFTxt;
 
+	/**
+	 * Default connection port
+	 */
 	final public static int DEFAULT_PORT = 5551;	
 	private static String DB_UserName;
 	private static String DB_Password;
 	
+	/**
+	 * ServerController default constructor
+	 */
 	public ServerController(){
 		super(DEFAULT_PORT);
 	}
-	
+
+	/**
+	 * ServerController constructor
+	 * @param port - Gets the server's port
+	 */
 	public ServerController(int port) {
 		super(port);
 	}
 
+	/**
+	 * onClickConnectButton handles the logics of Connect button.
+	 * Validates entered fields.
+	 * Opens a server socket.
+	 * @param event
+	 */
 	public void onClickConnectButton(ActionEvent event){
 		
 	if (loginBtn.getText().equals("Connect")){

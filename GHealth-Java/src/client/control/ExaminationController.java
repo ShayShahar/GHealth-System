@@ -47,7 +47,14 @@ public class ExaminationController implements IController, Initializable{
 		@FXML private CheckBox checkbox1;
 		@FXML private Button examBtn;	
 		
+		/**
+		 * Stores current reference instacnce
+		 */
 		static Reference currentReference;
+		
+		/**
+		 * Stores current reference's ID
+		 */
 		static String currentReferenceNumber;
 		private IUi thisUi;
 

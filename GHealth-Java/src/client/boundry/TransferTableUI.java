@@ -4,7 +4,6 @@ import java.net.URL;
 
 import client.control.ClientConnectionController;
 import client.control.TransferTableController;
-import client.control.ViewReferenceController;
 import client.interfaces.IUi;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

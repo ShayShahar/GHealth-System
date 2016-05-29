@@ -11,10 +11,9 @@ import java.io.Serializable;
  */
 public class Reply implements Serializable{
 
-		private static final long serialVersionUID = 1L;
-		
-		private final Object result;
-    private final Command command;
+	private static final long serialVersionUID = 1L;	
+	private final Object result;
+  private final Command command;
 
     /**
      * Reply class constructor

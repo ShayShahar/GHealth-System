@@ -1,6 +1,11 @@
 package common.enums;
 
-
+/**
+ * Result enumeration used as a result codes that the server generates in some cases.
+ * those codes usually used for different error types and DB updates.
+ * @author shays
+ *
+ */
 public enum Result {
 
     OK,

@@ -37,7 +37,7 @@ public class CreateClientController implements IController, Initializable{
 	@FXML private ComboBox<String> listPhone;
 	
 	
-	IUi thisUi = null;
+	private IUi thisUi;
 
 
 	ObservableList<String> list = FXCollections.observableArrayList("--","050","052","054","058","03","04","08");
