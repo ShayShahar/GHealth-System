@@ -7,6 +7,13 @@ import client.entity.Examination;
 import common.entity.Request;
 import common.enums.Result;
 
+/**
+ * CreateExaminationUpdateDB class updates an existed examination in the Data base.
+ * @author shays
+ *
+ */
+
+
 public class CreateExaminationUpdateDB {
 	
 	/**

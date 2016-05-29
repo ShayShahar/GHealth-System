@@ -10,6 +10,13 @@ import client.entity.Examination;
 import common.entity.Request;
 import common.enums.Result;
 
+
+/**
+ * CreateExaminationViewDB class gets an examination from the Data base.
+ * @author shays
+ *
+ */
+
 public class CreateExaminationViewDB {
 
 	/**
