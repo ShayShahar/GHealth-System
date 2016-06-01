@@ -21,6 +21,7 @@ import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
 import common.enums.Result;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +36,13 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 
+/**
+ * CreateExaminationController handle the Examinations by the labworker 
+ * from specific reference that the specacialist gave the Client , 
+ *  The LabWorker can add pictures and comments to the examinatiion
+ * @author Raz
+ *
+ */
 public class CreateExaminationController implements IController, Initializable{
 	
 	@FXML private TextField CErefnum;
@@ -389,6 +397,13 @@ public class CreateExaminationController implements IController, Initializable{
 		if (reply.getCommand() == Command.CREATE_EXAMINATION_VIEW )
 		{
 			
+			Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+					
+	
+			
 			Examination exam = (Examination)result;
 			ExamTextArea.setText(exam.getDetails());
 			
@@ -413,7 +428,8 @@ public class CreateExaminationController implements IController, Initializable{
 				
 				
 			}
-			
+				}
+			});		
 
 			
 			
