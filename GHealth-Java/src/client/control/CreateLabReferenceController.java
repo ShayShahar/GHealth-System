@@ -127,6 +127,11 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	 public void onClickCreate(ActionEvent event){
 	 
+		 if (urgencyCom.getSelectionModel().getSelectedItem() == null || examinationTypeCom.getSelectionModel().getSelectedItem() == null || 
+				 commentsField.getText().trim().isEmpty() ){
+			 thisUi.displayErrorMessage("Missing Required Fields", "Please check your input and try agin.");
+			 return;
+		 }
 		 insertLabRefernceToDb();
 	
 	 }

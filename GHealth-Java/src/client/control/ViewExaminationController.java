@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -47,6 +48,7 @@ public class ViewExaminationController implements IController,Initializable{
 	@FXML private TableColumn<Examination, String> specialistNameClmn;
 	@FXML private TableColumn<Examination, String> examinationNameClmn;
 	@FXML private TableColumn<Examination, String> serialClmn;
+	@FXML private Button openBtn;
 	
 	private IUi thisUi;
 	private int serialNo;
@@ -113,7 +115,6 @@ public class ViewExaminationController implements IController,Initializable{
 		
 		return examinations;
 	}
-	
 
 	/**
 	 * This function updates the view of the medical file table elements.
@@ -216,7 +217,7 @@ public class ViewExaminationController implements IController,Initializable{
 		
 		try{
 				if (tabelExamination.getSelectionModel().getSelectedItem().getExaminationName() != null  && tabelExamination.getSelectionModel().getSelectedItem().getSerial() != null){
-			
+					openBtn.setDisable(false);
 					String examinationName =  tabelExamination.getSelectionModel().getSelectedItem().getExaminationName();
 					examinationId =  Integer.parseInt(tabelExamination.getSelectionModel().getSelectedItem().getSerial());
 				
@@ -235,6 +236,8 @@ public class ViewExaminationController implements IController,Initializable{
 				}
 				
 		}catch(Exception e){
+			openBtn.setDisable(true);
+
 		}
 	
 	}
