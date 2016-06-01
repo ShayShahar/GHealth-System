@@ -3,15 +3,18 @@ package client.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Reference class defines the References information
+ * @author YAKIR
+ *
+ */
 public class Reference implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private enum Urgency {Low, Normal, Critical};
 	
-	//class variables
+	//Class Members
 	private int RefNum;
 	private int cid;
 	private int sid;
@@ -22,13 +25,13 @@ public class Reference implements Serializable{
 	private int status;
 	private String Type;
 	
-	
+	//Constructors
 	public Reference()
 	{
 		code = 0;
 	}
 	
-	//class properties
+	//Class Properties
 	public int getCId() {
 		return cid;
 	}
@@ -59,6 +62,7 @@ public class Reference implements Serializable{
 	public void setCode(int code) {
 		this.code = code;
 	}
+	//get the urgency level of the reference
 	public String getUrgency() {
 		if(urgency == Urgency.Low)
 		return "LOW";
@@ -68,6 +72,7 @@ public class Reference implements Serializable{
 			 return "CRITICAL";
 		return null;
 	}
+	//set the urgency level of the reference
 	public void setUrgency(String urgency) {
 		if(urgency.equals("Low"))
 			this.urgency = Urgency.Low;

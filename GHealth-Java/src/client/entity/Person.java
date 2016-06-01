@@ -2,16 +2,17 @@ package client.entity;
 
 import java.io.Serializable;
 
+/**
+ * Person class defines the persons information
+ * @author YAKIR
+ *
+ */
 public class Person implements Serializable{
 	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	
-	//class variables
+	//Class Members
 	protected String name;
 	protected String familyName;
 	protected String id;
@@ -20,7 +21,7 @@ public class Person implements Serializable{
 	protected String phone;
 	
 	
-	//class properties
+	//Class Properties
 	public String getName() {
 		return name;
 	}

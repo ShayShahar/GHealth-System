@@ -1,20 +1,27 @@
 package client.entity;
 
 import java.io.Serializable;
-
+/**
+ * MedicalFile class defines the Medical Files information
+ * @author YAKIR
+ *
+ */
 public class MedicalFile implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
 
+	
+	//Class Members
 	private String name;
 	private String date;
 	private String type;
 	private String specialization;
 	private String id;
-
 	private String info;
 	
 	
+	
+	//Class Properties
 	public String getId() {
 		return id;
 	}

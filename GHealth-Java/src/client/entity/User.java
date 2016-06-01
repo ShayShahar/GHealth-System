@@ -1,19 +1,25 @@
 package client.entity;
-
+/**
+ * User class defines the workers information including 
+ * their user names , passwords and privilege
+ * the class extends Person
+ * @author YAKIR
+ *
+ */
 public class User extends Person{
 	
 
 	private static final long serialVersionUID = 1L;
 	protected enum Privilege {DISPATCHER, LAB_WORKER, GENERAL_MANAGER, BRANCH_MANAGER, SPECIALIST};
 	
-	//class variables
+	//Class Members
 	protected String username;
 	protected String password;
 	protected long workerID;
 	protected boolean status;
 	protected Privilege userPrivilege;
 	
-	//class properties
+	//Class Properties
 	public String getUsername() {
 		return username;
 	}

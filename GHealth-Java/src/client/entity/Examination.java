@@ -3,11 +3,17 @@ package client.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Examination class defines the examination's details
+ * @author YAKIR
+ *
+ */
 public class Examination implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
-	//class variables
+	
+	//Class Members
 	private int id , Ref_id;
 	private String date;
 	private String specialistName;
@@ -18,7 +24,7 @@ public class Examination implements Serializable{
 	private ArrayList<byte[]> pictures;
 	
 	
-	//class properties
+	//Class Properties
 	public int getId() {
 		return id;
 	}
