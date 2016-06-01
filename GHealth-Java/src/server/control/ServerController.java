@@ -14,6 +14,7 @@ import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import server.boundry.ServerUI;
 import common.entity.*;
+import common.enums.Result;
 
 /**
  * ServerController is the server controller of GHealth System application.
@@ -88,13 +89,23 @@ public class ServerController extends AbstractServer{
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();		
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ghealth?autoReconnect=true&useSSL=true", DB_UserName ,DB_Password);
-			myConn.close();		
 			
 			try {
 				this.listen();
 			} catch (Exception ex) {
 				ServerUI.displayErrorMessage("Unknown server error","Try re-connect to server");
 				return;
+			}
+			
+			Statement stmt;
+			try {
+				stmt = myConn.createStatement();
+				stmt.executeUpdate("UPDATE ghealth.users SET userStatus=0");
+				myConn.close();		
+					
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				myConn.close();		
 			}
 			
 			ServerUI.displayMessage("MySQL Connected Successfully","View server information on console.");
@@ -145,7 +156,6 @@ public class ServerController extends AbstractServer{
 				notificationsFTxt.appendText("SQL connection succeed\n");
 			
 		    reply = new Reply(DBController.processRequest(request, myConn), request.getCommand());
-		    //System.out.println((String)reply.getResult());
 			try {
 			    client.sendToClient(reply);
 			} catch (IOException e) {
