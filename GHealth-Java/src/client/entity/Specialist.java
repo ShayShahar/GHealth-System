@@ -1,16 +1,22 @@
 package client.entity;
 
+
+/**
+ * Specialist class defines the specialists information including 
+ * his branch name and address
+ * the class extends Person
+ */
+
 public class Specialist extends Person{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	//class variables
+	
+	//Class Members
 	private String speciality;
 	private String branchName;
 	private String branchAddress;
 
+	//Constructors
 	public Specialist(String id, String name, String family, String speciality, String branchName, String branchAddress) {
 		this.id = id;
 		this.name = name;
@@ -21,7 +27,7 @@ public class Specialist extends Person{
 
 	}
 	
-	//class properties
+	//Class Properties
 	public String getSpeciality() {
 		return speciality;
 	}

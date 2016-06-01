@@ -201,6 +201,11 @@ public class ClientHistoryController implements IController, Initializable{
 		
 	}
 
+	/**
+	 * setID send to server request to get medical file according to the client id.  
+	 * @param Get client id
+	 */
+	
 	public void setID(String id) {
 		
 		clientID = id;

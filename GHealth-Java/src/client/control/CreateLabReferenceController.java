@@ -22,7 +22,6 @@ import javafx.scene.control.TextField;
 /**
  * CreateLabReferenceController connects between the CreateLabReferenceUI to the components logics.
  * @author asaf
- *
  */
 public class CreateLabReferenceController implements IController,Initializable{
 
@@ -58,7 +57,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	 * @param fieldClientName Gets personal Name
 	 * @param SpClientIDTxt Gets person Id
 	 * @param fieldClientFamily Gets Family name
-	 * @param fieldClientAddress Gets adderss
+	 * @param fieldClientAddress Gets address
 	 * @param fieldClientEmail Gets email
 	 */
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId, String userName){
@@ -81,7 +80,7 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	/*
 	 * 	The initialize function initializes the CreateLabReferenceUI screen and class members.
-	 *  The function initializes combobox
+	 *  The function initializes combo box
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
 	
@@ -126,19 +125,20 @@ public class CreateLabReferenceController implements IController,Initializable{
 	 */
 	
 	 public void onClickCreate(ActionEvent event){
-	 
+		 
 		 if (urgencyCom.getSelectionModel().getSelectedItem() == null || examinationTypeCom.getSelectionModel().getSelectedItem() == null || 
 				 commentsField.getText().trim().isEmpty() ){
 			 thisUi.displayErrorMessage("Missing Required Fields", "Please check your input and try agin.");
 			 return;
 		 }
+		 
 		 insertLabRefernceToDb();
 	
 	 }
 	 
 	 /**
 		 * Creates a new UI window depends on the type of the selected item from the ComboBoxes.
-		 * Insert the lab reference to db by taking them from the GUI.
+		 * Insert the lab reference to Data base by taking them from the GUI.
 		 * @param event
 		 */
 	 

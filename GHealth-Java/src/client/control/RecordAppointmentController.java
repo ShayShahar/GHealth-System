@@ -42,7 +42,7 @@ public class RecordAppointmentController implements IController,Initializable{
 	 * @param fieldClientName Gets personal Name
 	 * @param SpClientIDTxt Gets person Id
 	 * @param fieldClientFamily Gets Family name
-	 * @param fieldClientAddress Gets adderss
+	 * @param fieldClientAddress Gets address
 	 * @param fieldClientEmail Gets email
 	 */
 

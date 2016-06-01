@@ -53,7 +53,7 @@ public class TransferDetailsController implements Initializable{
 	 * @param fieldClientName Gets personal Name
 	 * @param SpClientIDTxt Gets person Id
 	 * @param fieldClientFamily Gets Family name
-	 * @param fieldClientAddress Gets adderss
+	 * @param fieldClientAddress Gets address
 	 * @param fieldClientEmail Gets email
 	 */
 	public void setUser(String pName, String fName, String personId, String add, String phoneNumber, String email,
@@ -93,12 +93,23 @@ public void onBackButtonClick(ActionEvent event){
 		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 	}
 
+/**
+ * onSpecificFileClick function handles a click on specific file button.
+ * The function allowed the combo box to choose specialization.
+ * @param event
+ */ 
+
 public void onSpecificFileClick(ActionEvent event){
 	isWholeFile = false;
 	transferBtn.setDisable(true);
 	specificationsCom.setDisable(false);
 	specificationsCom.setItems(specificationsList);
 }
+
+/**
+ * The function allowed the combo box .
+ * @param event
+ */ 
 
 public void onMouseClick(ActionEvent event){
 
@@ -152,6 +163,12 @@ public void transferFile(String clientId, String specialist){
 		create.displayUserWindow();
 	}
 }
+
+/**
+ * The function handle the selection of medical file.
+ * @param event
+ */ 
+
 public void onWholeFileClick(ActionEvent event){
 	
 	isWholeFile = true;

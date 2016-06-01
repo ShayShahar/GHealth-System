@@ -60,11 +60,15 @@ public class TransferTableController implements IController,Initializable{
 		askInfoForSpecificFile(clientId,specialist);
 	}
 	
-private void askInfoForWholeFile(String clientId) {
+	/**
+	 *  askInfoForWholeFile function send to server request to get the whole medical file according to the client id . 
+	 * @param  Gets client's ID
+	 */
+	private void askInfoForWholeFile(String clientId) {
 		
 		ArrayList<String> list = new ArrayList<>();
 		list.add(clientId);
-Request requst = new Request(Command.FIND_MEDFILE,list);
+		Request requst = new Request(Command.FIND_MEDFILE,list);
 		
 		try {
 			ClientConnectionController.clientConnect.controller = this;
@@ -74,13 +78,18 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 		}
 	}
 
-
+	/**
+	 *  askInfoForSpecificFile function send to server request to get specific medical file according to the
+	 *  client id and specific specialist . 
+	 * @param  Gets client's ID
+	 * @param  Gets specialist
+	 */
 	private void askInfoForSpecificFile(String clientId, String specialist) {
 		
 		ArrayList<String> list = new ArrayList<>();
 		list.add(clientId);
 		list.add(specialist);
-Request requst = new Request(Command.FIND_MEDFILE,list);
+		Request requst = new Request(Command.FIND_MEDFILE,list);
 		
 		try {
 			ClientConnectionController.clientConnect.controller = this;
@@ -163,7 +172,6 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
 
-
 	@Override
 	public void handleReply(Reply reply) {
 		Object result =  reply.getResult();
@@ -177,15 +185,8 @@ Request requst = new Request(Command.FIND_MEDFILE,list);
 			 else{
 				 
 				 thisUi.displayErrorMessage("Error", "There are no medical file to show!");
-				
 				 thisUi.hideWindow();
 					
-				/*	for (IUi ui : ClientConnectionController.clientConnect.userInterface){
-						if (ui instanceof SpecialistUI){
-							ui.showWindow();
-						}
-					}
-					ClientConnectionController.clientConnect.userInterface.remove(thisUi);*/
 			 }
 			 
 			 

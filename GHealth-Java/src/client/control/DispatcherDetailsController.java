@@ -206,7 +206,7 @@ public class DispatcherDetailsController implements IController, Initializable{
 
 		    dialog.getDialogPane().setContent(gridPane);
 
-		    // Request focus on the username field by default.
+		    // Request focus on the user name field by default.
 		    Platform.runLater(() -> refNumber.requestFocus());
 
 		    dialog.setResultConverter(dialogButton -> {

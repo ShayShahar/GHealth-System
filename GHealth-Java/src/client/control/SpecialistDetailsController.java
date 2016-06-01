@@ -107,7 +107,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 					tabelAppointment.setItems(getHours(list));
 				}});
 		}
-		
+		/**
+		 * Handles dialog window for the end of the treatment.
+		 * filed by the specialist
+		 * @param event
+		 */
 		public void onEndTreatmentButtonClick(ActionEvent event){
 			
 			URL url = ClientConnectionController.class.getResource("/img/question.png");
@@ -166,7 +170,10 @@ public class SpecialistDetailsController implements IController, Initializable{
 	    result.ifPresent(pair -> {
 	    });
 		}
-		
+		/**
+		 * Open the history windows of the current client
+		 * @param event
+		 */
 		public void onViewHistoryButtonClick (ActionEvent event){
 			
 			ClientHistoryUI history = new ClientHistoryUI(clientId);
