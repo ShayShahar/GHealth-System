@@ -28,7 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
  
-
+// TODO: Auto-generated Javadoc
 /**
  * BranchReportController connects between the BranchManagerUI to the components logics.
  * @author shays
@@ -37,53 +37,132 @@ import javafx.scene.chart.XYChart.Series;
 public class BranchReportController implements IController, Initializable{
 	
 
+	/** The number txt. */
 	@FXML private TextField numberTxt;
+	
+	/** The res chart. */
 	@FXML private BarChart<String, Integer> resChart;
+	
+	/** The clients avg1. */
 	@FXML private TextField clientsAvg1;
+	
+	/** The waiting avg1. */
 	@FXML private TextField waitingAvg1;
+	
+	/** The clients sd1. */
 	@FXML private TextField clientsSd1;
+	
+	/** The waiting sd1. */
 	@FXML private TextField waitingSd1;
+	
+	/** The clients total1. */
 	@FXML private TextField clientsTotal1;
+	
+	/** The waiting total1. */
 	@FXML private TextField waitingTotal1;
+	
+	/** The month list. */
 	@FXML private ComboBox<Integer> monthList;
+	
+	/** The year list1. */
 	@FXML private ComboBox<Integer> yearList1;
+	
+	/** The year list2. */
 	@FXML private ComboBox<Integer> yearList2;
+	
+	/** The week list. */
 	@FXML private ComboBox<Integer> weekList;
+	
+	/** The clients avg. */
 	@FXML private TextField clientsAvg;
+	
+	/** The waiting avg. */
 	@FXML private TextField waitingAvg;
+	
+	/** The clients sd. */
 	@FXML private TextField clientsSd;
+	
+	/** The waiting sd. */
 	@FXML private TextField waitingSd;
+	
+	/** The clients total. */
 	@FXML private TextField clientsTotal;
+	
+	/** The waiting total. */
 	@FXML private TextField waitingTotal;
+	
+	/** The missed avg. */
 	@FXML private TextField missedAvg;
+	
+	/** The missed sd. */
 	@FXML private TextField missedSd;
+	
+	/** The missed total. */
 	@FXML private TextField missedTotal;
+	
+	/** The left avg. */
 	@FXML private TextField leftAvg;
+	
+	/** The left sd. */
 	@FXML private TextField leftSd;
+	
+	/** The left total. */
 	@FXML private TextField leftTotal;
+	
+	/** The branch name. */
 	@FXML private Label branchName;
 
+	/** The days. */
 	private HashMap<Integer,String> days = new HashMap<Integer,String>();
+	
+	/** The this ui. */
 	private IUi thisUi;
+	
+	/** The c_avg. */
 	private double c_avg;
+	
+	/** The c_total. */
 	private int c_total;
+	
+	/** The c_sd. */
 	private double c_sd;
+	
+	/** The w_avg. */
 	private double w_avg;
+	
+	/** The w_total. */
 	private int w_total;
+	
+	/** The w_sd. */
 	private double w_sd;
+	
+	/** The m_avg. */
 	private double m_avg;
+	
+	/** The m_total. */
 	private int m_total;
+	
+	/** The m_sd. */
 	private double m_sd;
+	
+	/** The l_avg. */
 	private double l_avg;
+	
+	/** The l_total. */
 	private int l_total;
+	
+	/** The l_sd. */
 	private double l_sd;
+	
+	/** The user_branch. */
 	private String user_branch;
 	
 	
 	/**
 	 * onMonthlyReportButtonClick function is view monthly report button handler.
 	 * The function creates a request to display a monthly report for a selected month for the logged-in manager's branch.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onMonthlyReportButtonClick(ActionEvent event){
 
@@ -111,7 +190,8 @@ public class BranchReportController implements IController, Initializable{
 		
 	
 	/**
-	 * displayMonthlyReport sends a request to the server that creates a monthly report
+	 * displayMonthlyReport sends a request to the server that creates a monthly report.
+	 *
 	 * @param branch Gets the name of the branch
 	 * @param year Gets the year
 	 * @param month Gets the month
@@ -136,10 +216,11 @@ public class BranchReportController implements IController, Initializable{
 
 		
 	 /**
-	  * onWeeklyReportButtonClick function is view weekly report button handler.
-	  * The function creates a request to display a weekly report for a selected month for the logged-in manager's branch.
-	  * @param event
-	  */
+ 	 * onWeeklyReportButtonClick function is view weekly report button handler.
+ 	 * The function creates a request to display a weekly report for a selected month for the logged-in manager's branch.
+ 	 *
+ 	 * @param event the event
+ 	 */
 	public void onWeeklyReportButtonClick(ActionEvent event){
 
 		try{
@@ -164,8 +245,10 @@ public class BranchReportController implements IController, Initializable{
 		}catch(Exception e){}
 		
 	}
+	
 	/**
-	 * displayWeeklyReport creates a weekly report by sending a request to the server
+	 * displayWeeklyReport creates a weekly report by sending a request to the server.
+	 *
 	 * @param branch Gets the branch name
 	 * @param year Gets the year
 	 * @param week Gets the week of the year number
@@ -190,7 +273,8 @@ public class BranchReportController implements IController, Initializable{
 	/**
 	 * onLogoutButtonClick function is Logout button handler.
 	 * Sends a logout request for the logged in user to the server.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onLogoutButtonClick(ActionEvent event){
 		
@@ -208,6 +292,9 @@ public class BranchReportController implements IController, Initializable{
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	/*
 	 * The handle reply process the results of LOGOUT, GET_BRANCH_BY_USERNAME, MONTHLY_REPORT & WEEKLY_REPORT requests.
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
@@ -425,6 +512,9 @@ public class BranchReportController implements IController, Initializable{
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	/*
 	 * 	The initialize function initializes the BranchManagerUI screen and class members.
 	 *  The function sends a GET_BRANCH_BY_USERNAME request to the server to allocate the branches list on start.

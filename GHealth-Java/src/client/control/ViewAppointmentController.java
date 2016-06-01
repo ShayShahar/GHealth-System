@@ -18,26 +18,42 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+// TODO: Auto-generated Javadoc
 /**
- * ViewAppointmentController handles the logics of ViewAppointmentRecordUI
- * @author shays
+ * ViewAppointmentController handles the logics of ViewAppointmentRecordUI.
  *
+ * @author shays
  */
 public class ViewAppointmentController implements IController, Initializable {
 
+	/** The field client id. */
 	@FXML private TextField fieldClientID;
+	
+	/** The field specielist id. */
 	@FXML private TextField fieldSpecielistID;
+	
+	/** The field date. */
 	@FXML private TextField fieldDate;
+	
+	/** The field name. */
 	@FXML private TextField fieldName;
+	
+	/** The field price. */
 	@FXML private TextField fieldPrice;
+	
+	/** The appointment id field. */
 	@FXML private TextField appointmentIdField;
+	
+	/** The field review. */
 	@FXML private TextArea fieldReview;
 
 	
+	/** The this ui. */
 	private IUi thisUi;
 
 		/**
-		 * Initialize class parameters
+		 * Initialize class parameters.
+		 *
 		 * @param clientID Gets client's ID
 		 * @param date Gets the appointment's date
 		 * @param name Gets the Specialist name
@@ -54,8 +70,10 @@ public class ViewAppointmentController implements IController, Initializable {
 	}
 	
 	/**
-	 * getAppointmentReview function creates a GET_APPOINTMENT_REVIEW request and send it to the server
-	 * @param appointmentID
+	 * getAppointmentReview function creates a GET_APPOINTMENT_REVIEW request and send it to the server.
+	 *
+	 * @param appointmentID the appointment id
+	 * @return the appointment review
 	 */
 	public void getAppointmentReview(String appointmentID)
 	{
@@ -72,6 +90,11 @@ public class ViewAppointmentController implements IController, Initializable {
 		}
 	}
 	
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
@@ -92,6 +115,9 @@ public class ViewAppointmentController implements IController, Initializable {
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -102,6 +128,9 @@ public class ViewAppointmentController implements IController, Initializable {
 		}		
 	}
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleReply(Reply reply) {

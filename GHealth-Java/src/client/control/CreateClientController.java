@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+// TODO: Auto-generated Javadoc
 /**
  * CreateClientController handles the logics of the CreateClient screen.
  * The class implements IController and Initializable interfaces.
@@ -26,23 +27,45 @@ import javafx.scene.control.TextField;
 public class CreateClientController implements IController, Initializable{
 
 	
+	/** The field person id. */
 	@FXML private TextField fieldPersonID;
+	
+	/** The field client name. */
 	@FXML private TextField fieldClientName;
+	
+	/** The field client family. */
 	@FXML private TextField fieldClientFamily;
+	
+	/** The field client address. */
 	@FXML private TextField fieldClientAddress;
+	
+	/** The field client phone. */
 	@FXML private TextField fieldClientPhone;
+	
+	/** The field client email. */
 	@FXML private TextField fieldClientEmail;
+	
+	/** The field client clinic. */
 	@FXML private TextField fieldClientClinic;
+	
+	/** The field client email domain. */
 	@FXML private TextField fieldClientEmailDomain;
+	
+	/** The list phone. */
 	@FXML private ComboBox<String> listPhone;
 	
 	
+	/** The this ui. */
 	private IUi thisUi;
 
 
+	/** The list. */
 	ObservableList<String> list = FXCollections.observableArrayList("--","050","052","054","058","03","04","08");
 
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	/*
 	 * 	The initialize function initializes the CreateClientUI screen and class members.
 	 *  The function initializes the phones number prefixes.
@@ -60,6 +83,9 @@ public class CreateClientController implements IController, Initializable{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	/*
 	 * The handle reply process the results of CREATE_CLIENT request.
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
@@ -89,17 +115,23 @@ public class CreateClientController implements IController, Initializable{
 		}
 	}
 
+	/**
+	 * Sets the user.
+	 *
+	 * @param user_id the new user
+	 */
 	public void setUser(String user_id){
 		fieldPersonID.setText(user_id);
 		fieldPersonID.setEditable(false);
 	}
 	
 	 /**
-	  * onCreateClientButtonClick function is create client button handler.
-	  * The function checks all the input fields.
-	  * If all the input fields are correct, the function call createClient function with the person's details.
-	  * @param event
-	  */
+ 	 * onCreateClientButtonClick function is create client button handler.
+ 	 * The function checks all the input fields.
+ 	 * If all the input fields are correct, the function call createClient function with the person's details.
+ 	 *
+ 	 * @param event the event
+ 	 */
 	public void onCreateClientButtonClick(ActionEvent event){
 				
 		fieldClientName.setStyle("-fx-prompt-text-fill: gray");
@@ -201,6 +233,11 @@ public class CreateClientController implements IController, Initializable{
 		}
 	}
 	
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function search the last IUi instance in the UI stack and show the window.

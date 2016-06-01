@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
- * FindClientDB class search for client details in the Data base
- * @author shays
+ * FindClientDB class search for client details in the Data base.
  *
+ * @author shays
  */
 
 public class FindClientDB {

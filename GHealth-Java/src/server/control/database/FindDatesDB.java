@@ -11,10 +11,11 @@ import common.entity.Request;
 import common.enums.Result;
 
 
-	/**
-	 * FindDatesDB class search for blocked dates in the Data base
-	 * @author shays
+	// TODO: Auto-generated Javadoc
+/**
+	 * FindDatesDB class search for blocked dates in the Data base.
 	 *
+	 * @author shays
 	 */
 
 public class FindDatesDB {

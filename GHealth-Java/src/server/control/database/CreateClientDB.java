@@ -8,10 +8,11 @@ import client.entity.Client;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
- * CreateClientDB class creates a new client in the Data base
- * @author shays
+ * CreateClientDB class creates a new client in the Data base.
  *
+ * @author shays
  */
 
 public class CreateClientDB {

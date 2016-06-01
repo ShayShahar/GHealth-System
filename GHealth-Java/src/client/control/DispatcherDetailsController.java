@@ -28,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
+// TODO: Auto-generated Javadoc
 /**
  * DispatcherDetailsController handles the logics of the Dispatcher screen.
  * The class implements IController and Initializable interfaces.
@@ -38,38 +39,87 @@ import javafx.util.Pair;
 public class DispatcherDetailsController implements IController, Initializable{
 	
 	
+	/** The disp logout btn. */
 	@FXML private Button dispLogoutBtn;
+	
+	/** The create appointment btn. */
 	@FXML private Button createAppointmentBtn;
+	
+	/** The cancel appointment btn. */
 	@FXML private Button cancelAppointmentBtn;
+	
+	/** The disp create client btn. */
 	@FXML private Button dispCreateClientBtn;
+	
+	/** The Sp view history btn. */
 	@FXML private Button SpViewHistoryBtn;
+	
+	/** The Sp end treatment btn. */
 	@FXML private Button SpEndTreatmentBtn;
+	
+	/** The Sp view examinations btn. */
 	@FXML private Button SpViewExaminationsBtn;
+	
+	/** The Sp create refernce btn. */
 	@FXML private Button SpCreateRefernceBtn;
+	
+	/** The Sp record appointment btn. */
 	@FXML private Button SpRecordAppointmentBtn;
+	
+	/** The Sp report missing btn. */
 	@FXML private Button SpReportMissingBtn;
+	
+	/** The remove btn. */
 	@FXML private Button removeBtn;
+	
+	/** The retreive btn. */
 	@FXML private Button retreiveBtn;
+	
+	/** The disp client id txt. */
 	@FXML private TextField dispClientIDTxt;
+	
+	/** The field client id. */
 	@FXML private TextField fieldClientID;
+	
+	/** The field client clinic. */
 	@FXML private TextField fieldClientClinic;
+	
+	/** The field client name. */
 	@FXML private TextField fieldClientName;
+	
+	/** The field client family. */
 	@FXML private TextField fieldClientFamily;
+	
+	/** The field client join. */
 	@FXML private TextField fieldClientJoin;
+	
+	/** The field client address. */
 	@FXML private TextField fieldClientAddress;
+	
+	/** The field client phone. */
 	@FXML private TextField fieldClientPhone;
+	
+	/** The field client email. */
 	@FXML private TextField fieldClientEmail;
+	
+	/** The Sp client id txt. */
 	@FXML private TextField SpClientIDTxt;
 
+	/** The client id. */
 	private static String clientID;
+	
+	/** The id. */
 	private static int id;
+	
+	/** The this ui. */
 	private IUi thisUi;
 		
 	
 	/**
 	 * onLogoutButtonClick function is Logout button handler.
 	 * Sends a logout request for the logged in user to the server.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onLogoutButtonClick(ActionEvent event){
 		
@@ -113,7 +163,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 	
 	/**
 	 * onFindClientIDButtonClick function handles the logics of the search client button.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	
 	public void onFindClientIDButtonClick(ActionEvent event){
@@ -178,7 +229,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 	 * onCreateAppointmentButtonClick function handles the logics of create appointment button click
 	 * The function request an approved reference ID.
 	 * The function sends a validation request to the server.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 
 	public void onCreateAppointmentButtonClick(ActionEvent event){
@@ -245,7 +297,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 	/**
 	 * onCancelAppointmentButtonClick function handles the logics of cancel appointment button click
 	 * The function creates a new CancelAppointmentUI instance and display the window on the screen.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	
 	public void onCancelAppointmentButtonClick(ActionEvent event){
@@ -258,8 +311,9 @@ public class DispatcherDetailsController implements IController, Initializable{
 	
 	/**
 	 * onRetrieveClientButtonClick function handles the logics of retrieve client button click
-	 * The function calls returnClient function
-	 * @param event
+	 * The function calls returnClient function.
+	 *
+	 * @param event the event
 	 */
 	
 	public void onRetrieveClientButtonClick(ActionEvent event){
@@ -287,11 +341,13 @@ public class DispatcherDetailsController implements IController, Initializable{
 		}
 				
 	}
+	
 	/**
 	 * onCreateClientButtonClick function handles the logics of create client button click
 	 * In case the requested client is not found in the DB the create client button is click-able
 	 * The function creates a new CreateClientUI instance and display the window on the screen.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	
 	public void onCreateClientButtonClick(ActionEvent event){
@@ -305,8 +361,9 @@ public class DispatcherDetailsController implements IController, Initializable{
 	
 	/**
 	 * onRemoveClientButtonClick function handles the logics of remove client button click
-	 * The function calls removeClient function
-	 * @param event
+	 * The function calls removeClient function.
+	 *
+	 * @param event the event
 	 */
 	public void onRemoveClientButtonClick(ActionEvent event){
 		removeClient(fieldClientID.getText());
@@ -333,6 +390,9 @@ public class DispatcherDetailsController implements IController, Initializable{
 		
 	}
 	
+/* (non-Javadoc)
+ * @see client.interfaces.IController#handleReply(common.entity.Reply)
+ */
 /*
  * The handle reply process the results of LOGOUT, FIND_CLIENT, REMOVE_CLIENT, RETURN_CLIENT & VALIDATE_REFERENCE requests.
  * @see client.interfaces.IController#handleReply(common.entity.Reply)
@@ -477,7 +537,10 @@ public class DispatcherDetailsController implements IController, Initializable{
  * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
  */
 
-	@Override
+	/* (non-Javadoc)
+ * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+ */
+@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		

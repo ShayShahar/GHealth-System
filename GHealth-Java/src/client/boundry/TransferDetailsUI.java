@@ -20,36 +20,58 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
+// TODO: Auto-generated Javadoc
+
 /**
  * TransferDetailsUI class connects between the java code and the TransferDetailsUI FXML file
-* The class implements IUi interface
-* @author asaf
-*
-*/
+ * The class implements IUi interface.
+ *
+ * @author asaf
+ */
 @SuppressWarnings("unused")
 public class TransferDetailsUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
+	
+	/** The p name. */
 	private String pName;
+	
+	/** The name. */
 	private String fName;
+	
+	/** The person id. */
 	private String personId;
+	
+	/** The add. */
 	private String add;
+	
+	/** The phone number. */
 	private String phoneNumber;
+	
+	/** The email. */
 	private String email;
+	
+	/** The client id. */
 	private String clientId;
+	
+	/** The user id. */
 	private int userId;
+	
+	/** The user name. */
 	private String userName;
 	
 	/**
-	 * TransferDetailsUI constructor
+	 * TransferDetailsUI constructor.
+	 *
+	 * @param pName Gets the personal Name
+	 * @param fName Gets the family Name
+	 * @param personId Gets the personal Id
+	 * @param add Gets the adders
+	 * @param phoneNumber Gets the phone Number
+	 * @param email Gets the email
 	 * @param clientId Gets the client id
-	 *  @param pName Gets the personal Name
-	 *  @param fName Gets the family Name
-	 *  @param personId Gets the personal Id
-	 *  @param add Gets the adders
-	 *  @param phoneNumber Gets the phone Number
-	 *  @param email Gets the email
-	 *  @param userName Gets the user Name
+	 * @param userName Gets the user Name
 	 */
 
 	public TransferDetailsUI(String pName, String fName, String personId, String add, String phoneNumber, String email,

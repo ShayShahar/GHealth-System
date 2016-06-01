@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+// TODO: Auto-generated Javadoc
 /**
  * ClientConnectionUI class is the main entry for the GHealth System Application
  * The class inherits from Application class to implement JavaFX application.
@@ -22,10 +23,18 @@ import javafx.util.Pair;
  */
 public class ClientConnectionUI extends Application{
 
+		/**
+		 * The main method.
+		 *
+		 * @param args the arguments
+		 */
 		public static void main(String[] args) {
 			launch(args);
 		}
 
+		/* (non-Javadoc)
+		 * @see javafx.application.Application#start(javafx.stage.Stage)
+		 */
 		@Override
 		public void start(Stage primaryStage) throws Exception {
 		
@@ -41,7 +50,8 @@ public class ClientConnectionUI extends Application{
 		}
 
 		/**
-		 * display an error message on the screen
+		 * display an error message on the screen.
+		 *
 		 * @param title Gets the title of the message
 		 * @param information Gets extra information to display in the message
 		 */

@@ -19,46 +19,83 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+// TODO: Auto-generated Javadoc
 /**
  * CreateLabReferenceController connects between the CreateLabReferenceUI to the components logics.
  * @author asaf
  */
 public class CreateLabReferenceController implements IController,Initializable{
 
+	/** The user id. */
 	public int userId;
+	
+	/** The id. */
 	public static int id;
+	
+	/** The client id. */
 	public String clientId;
+	
+	/** The comments. */
 	public String comments;
+	
+	/** The choosed urgency. */
 	public String choosedUrgency;
+	
+	/** The choosed examination type. */
 	public String choosedExaminationType;
+	
+	/** The user name. */
 	public String userName;
 	
+	/** The Sp client id txt. */
 	@FXML private TextField SpClientIDTxt;
+	
+	/** The field client name. */
 	@FXML private TextField fieldClientName;
+	
+	/** The field client family. */
 	@FXML private TextField fieldClientFamily;
+	
+	/** The field client address. */
 	@FXML private TextField fieldClientAddress;
+	
+	/** The field client phone. */
 	@FXML private TextField fieldClientPhone;
+	
+	/** The field client email. */
 	@FXML private TextField fieldClientEmail;
+	
+	/** The examination type com. */
 	@FXML private ComboBox<String> examinationTypeCom;
+	
+	/** The urgency com. */
 	@FXML private ComboBox<String> urgencyCom;
+	
+	/** The comments field. */
 	@FXML private TextArea commentsField;
 	
 	
+	/** The this ui. */
 	private IUi thisUi;
+	
 	/**
-	 * MedicalFile table observable
-	 * @param list Gets an ArrayList of String objects
-	 * @return ObservableList<String> 
+	 * MedicalFile table observable.
+	 *
+	 * @return ObservableList<String>
 	 */
 	ObservableList<String> urgencyList = FXCollections.observableArrayList("LOW","NORMAL","CRITICAL");
+	
 	/**
-	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
-	 * @param id Gets client's ID
-	 * @param fieldClientName Gets personal Name
-	 * @param SpClientIDTxt Gets person Id
-	 * @param fieldClientFamily Gets Family name
-	 * @param fieldClientAddress Gets address
-	 * @param fieldClientEmail Gets email
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field.
+	 *
+	 * @param pName the name
+	 * @param fName the f name
+	 * @param personId the person id
+	 * @param add the add
+	 * @param phoneNumber the phone number
+	 * @param email the email
+	 * @param clientId the client id
+	 * @param userName the user name
 	 */
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId, String userName){
 		fieldClientName.setText(pName);
@@ -84,6 +121,9 @@ public class CreateLabReferenceController implements IController,Initializable{
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
 	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
@@ -98,9 +138,12 @@ public class CreateLabReferenceController implements IController,Initializable{
 		}	
 		
 	}
+	
 	/**
 	 * Bring examination type from the DB to comboBox.
+	 *
 	 * @param userName by using specialist user name
+	 * @return the examination type
 	 */
 	
 	public void getExaminationType(String userName){
@@ -118,10 +161,12 @@ public class CreateLabReferenceController implements IController,Initializable{
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * Handles click on Create button.
 	 * Calling to insertLabRefernceToDb by clicking Create button.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	
 	 public void onClickCreate(ActionEvent event){
@@ -137,10 +182,9 @@ public class CreateLabReferenceController implements IController,Initializable{
 	 }
 	 
 	 /**
-		 * Creates a new UI window depends on the type of the selected item from the ComboBoxes.
-		 * Insert the lab reference to Data base by taking them from the GUI.
-		 * @param event
-		 */
+ 	 * Creates a new UI window depends on the type of the selected item from the ComboBoxes.
+ 	 * Insert the lab reference to Data base by taking them from the GUI.
+ 	 */
 	 
 	 public void insertLabRefernceToDb(){
 		 comments = commentsField.getText();
@@ -166,12 +210,14 @@ public class CreateLabReferenceController implements IController,Initializable{
 				e.printStackTrace();
 			}
 	 }
-	 /**
-		 * onBackButtonClick function is back button handler. 
-		 * The function searches the last IUi instance in the UI stack and show the window.
-		 * The function removes the current from the stack.
-		 * @param event
-		 */
+	 
+ 	/**
+ 	 * onBackButtonClick function is back button handler. 
+ 	 * The function searches the last IUi instance in the UI stack and show the window.
+ 	 * The function removes the current from the stack.
+ 	 *
+ 	 * @param event the event
+ 	 */
 	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();
@@ -186,6 +232,9 @@ public class CreateLabReferenceController implements IController,Initializable{
 	
 	
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	/*
 	 * The handle reply process the results of GET_EXAMINATION_TYPE & INSERT_LAB_REFRENCE & GET_CLIENT_BY_CLIENT_ID  requests.
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)

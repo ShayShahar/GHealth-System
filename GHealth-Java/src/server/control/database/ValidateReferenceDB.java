@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
  * ValidateReferenceDB search for approved clinic's references in the Data base.
  * Checks if the person's ID is linked to the approved reference number.

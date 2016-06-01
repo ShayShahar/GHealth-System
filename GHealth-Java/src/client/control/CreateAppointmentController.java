@@ -38,6 +38,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
+// TODO: Auto-generated Javadoc
 /**
  * CreateAppointmentController connects between the CreateAppointmentUI to the components logics.
  * @author shays
@@ -45,35 +46,74 @@ import javafx.util.Callback;
  */
 public class CreateAppointmentController implements IController, Initializable{
 
+	/** The list specialization. */
 	@FXML private ComboBox<String> listSpecialization;
+	
+	/** The field person id. */
 	@FXML private TextField fieldPersonID;
+	
+	/** The tabel specialists. */
 	@FXML private TableView<Specialist> tabelSpecialists;
+	
+	/** The id clmn. */
 	@FXML private TableColumn<Specialist, String> idClmn;
+	
+	/** The name clmn. */
 	@FXML private TableColumn<Specialist, String> nameClmn;
+	
+	/** The family clmn. */
 	@FXML private TableColumn<Specialist, String> familyClmn;
+	
+	/** The branch clmn. */
 	@FXML private TableColumn<Specialist, String> branchClmn;
+	
+	/** The addr clmn. */
 	@FXML private TableColumn<Specialist, String> addrClmn;
+	
+	/** The hbox date. */
 	@FXML private HBox hboxDate;
+	
+	/** The app picker. */
 	@FXML private DatePicker appPicker;
+	
+	/** The select date btn. */
 	@FXML private Button selectDateBtn;
+	
+	/** The time table. */
 	@FXML private TableView<Hour> timeTable;
+	
+	/** The time clmn. */
 	@FXML private TableColumn<Hour, String> timeClmn;
+	
+	/** The create app btn. */
 	@FXML private Button createAppBtn;
 
 
+	/** The this ui. */
 	private IUi thisUi;
+  
+  /** The choosed id. */
   private int choosedID = 0;
+  
+  /** The choosed speciality. */
   private String choosedSpeciality;
+  
+  /** The choosed hour. */
   private int choosedHour = 0;
+  
+  /** The user id. */
   private int userID;
+  
+  /** The blocked dates. */
   private ArrayList<DateChecker> blockedDates = new ArrayList<DateChecker>();
   
+  /** The get hour by integer. */
   HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
+  
+  /** The get integer by hour. */
   HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
   
-  /**
-   * List of possible specializations that supported by IHealth
-   */
+  /** List of possible specializations that supported by IHealth. */
 	ObservableList<String> list = FXCollections.observableArrayList("Allergology","Anaesthetics",
 			"Biological hematology","Cardiology","Child psychiatry","Clinical biology",
 			"Clinical chemistry","Clinical neurophysiology","Craniofacial surgery",
@@ -83,6 +123,9 @@ public class CreateAppointmentController implements IController, Initializable{
 			"Nephrology", "Neuro-psychiatry","Neurology","Neurosurgery","Orthopaedics","Pathology",
 			"Psychiatry","Radiology","Stomatology","Urology","Venereology");
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	/*
 	 * 	The initialize function initializes the CreateAppointmentUI screen and class members.
 	 *  The function initializes Hash-Maps for hours.
@@ -198,7 +241,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	}
 	
 	/**
-	 * Hours table observable
+	 * Hours table observable.
+	 *
 	 * @param list Gets an ArrayList of Hour objects
 	 * @return ObservableList<Hour>
 	 */
@@ -213,9 +257,10 @@ public class CreateAppointmentController implements IController, Initializable{
 	}
 
 	/**
-	 * Specialists table observable
+	 * Specialists table observable.
+	 *
 	 * @param list Gets an ArrayList of Specialist objects
-	 * @return ObservableList<Specialist> 
+	 * @return ObservableList<Specialist>
 	 */
 	public ObservableList<Specialist> getSpecialist(ArrayList<Specialist> list){
 		ObservableList<Specialist> specialists = FXCollections.observableArrayList();
@@ -256,7 +301,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	}
 	
 	/**
-	 * This function initializes the field of the person ID
+	 * This function initializes the field of the person ID.
+	 *
 	 * @param user_id Get String of person ID.
 	 */
 	public void setUser(String user_id){
@@ -264,6 +310,11 @@ public class CreateAppointmentController implements IController, Initializable{
 		fieldPersonID.setEditable(false);
 	}
 	
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
@@ -287,7 +338,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	 * onSearchSpecialistButtonClick function handles the search specialist button.
 	 * The function gets the selected specialization from the Combobox.
 	 * The function creates a FIND_SPECIALIST request and sends it to the server. 
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onSearchSpecialistButtonClick(ActionEvent event){
 		
@@ -316,7 +368,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	 * onMouseClick function handles a mouse click on a specialist name from the specialists table.
 	 * The function gets the specialist ID from the table.
 	 * The function creates a request of FIND_FULL_DATES to block unavailable dates in the date picker.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onMouseClick(MouseEvent event){
 		
@@ -352,7 +405,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	/**
 	 * onMouseClickChooseHour function handles a mouse click on a hour from the hours table.
 	 * The function gets the hour from the table.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onMouseClickChooseHour(MouseEvent event){
 
@@ -376,7 +430,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	/**
 	 * onCreateAppointmentButtonClick function handles a click on create appointment button.
 	 * function calls createAppointment with the GUI components parameters
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onCreateAppointmentButtonClick(ActionEvent event){
 		
@@ -414,7 +469,8 @@ public class CreateAppointmentController implements IController, Initializable{
 	/**
 	 * onSelectDate function handles a click on the date picker.
 	 * The function creates a FIND_AVAILABLE_HOURS request and send it to the server.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onSelectDate(ActionEvent event){
 			
@@ -434,6 +490,9 @@ public class CreateAppointmentController implements IController, Initializable{
 			
 	}
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	/*
 	 * The handle reply process the results of FIND_SPECIALIST, FIND_FULL_DATES, FIND_AVAILABLE_HOURS & CREATE_APPOINTMENT requests.
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
@@ -531,7 +590,8 @@ public class CreateAppointmentController implements IController, Initializable{
 
 	/**
 	 * setID function set the client id field.
-	 * @param id
+	 *
+	 * @param id the new id
 	 */
 	public void setID(int id) {
 		this.userID = id;

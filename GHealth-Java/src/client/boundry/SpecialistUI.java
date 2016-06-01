@@ -20,16 +20,22 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
+// TODO: Auto-generated Javadoc
+
 /**
  * SpecialistUI class connects between the java code and the SpecialistUI FXML file
-* The class implements IUi interface
-* @author asaf
-*
-*/
+ * The class implements IUi interface.
+ *
+ * @author asaf
+ */
 public class SpecialistUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
 	@Override
 	public void displayUserWindow() {
 		

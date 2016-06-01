@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import common.enums.*;
 
+// TODO: Auto-generated Javadoc
 /**
  * An object that created to transfer data from client application to the server.
  * Server application processes client's requests by using the types in Request class.
@@ -14,14 +15,21 @@ import common.enums.*;
 
 public class Request implements Serializable{
 
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 
-	  private final Command command; 
+	  /** The command. */
+  	private final Command command; 
+    
+    /** The list. */
     private ArrayList<String> list = null;
+    
+    /** The entity2. */
     private Object entity = null, entity2 = null; 
 
     /**
-     * Request class constructor
+     * Request class constructor.
+     *
      * @param command Gets the request op-code
      * @param list Gets an array list of string that includes required information for the queries
      * @param entity Gets an entity to add to the mySQL database
@@ -36,7 +44,8 @@ public class Request implements Serializable{
     }
     
     /**
-     * Request class constructor
+     * Request class constructor.
+     *
      * @param command Gets the request op-code
      * @param list Gets an array list of string that includes required information for the queries
      */
@@ -48,7 +57,8 @@ public class Request implements Serializable{
     }
 
     /**
-     * Request class constructor
+     * Request class constructor.
+     *
      * @param command Gets the request op-code
      * @param list Gets an array list of string that includes required information for the queries
      * @param entity Gets an entity to add to the mySQL database
@@ -62,9 +72,10 @@ public class Request implements Serializable{
 		}
     
     /**
-     * Request class constructor
+     * Request class constructor.
+     *
      * @param command Gets the request op-code
-     * @param entity Gets an entity to add to the mySQL database   
+     * @param entity Gets an entity to add to the mySQL database
      */
 
     public Request(Command command, Object entity) {
@@ -73,7 +84,8 @@ public class Request implements Serializable{
     }
 
     /**
-     *  Get the object that stored in the entity property
+     *  Get the object that stored in the entity property.
+     *
      * @return Object type
      */
     
@@ -82,7 +94,8 @@ public class Request implements Serializable{
     }
 
     /**
-     * Load an entity to the property
+     * Load an entity to the property.
+     *
      * @param entity gets an Object type.
      */
     
@@ -92,7 +105,8 @@ public class Request implements Serializable{
 
     
     /**
-     * Get the second entity that stored in Request instance
+     * Get the second entity that stored in Request instance.
+     *
      * @return Object type
      */
     
@@ -101,7 +115,8 @@ public class Request implements Serializable{
     }
 
     /**
-     * Load a second entity to the Request instance
+     * Load a second entity to the Request instance.
+     *
      * @param entity2 gets an Object type.
      */
     
@@ -110,7 +125,8 @@ public class Request implements Serializable{
     }
     
     /**
-     * Get the string arraylist
+     * Get the string arraylist.
+     *
      * @return the stored arraylist of strings with the required information
      */
     public ArrayList<String> getList(){
@@ -118,7 +134,8 @@ public class Request implements Serializable{
     }
    
     /**
-     * Get the op-opcode from the request instance
+     * Get the op-opcode from the request instance.
+     *
      * @return Enum Command
      */
     public Command getCommand() {

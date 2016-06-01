@@ -16,22 +16,40 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+// TODO: Auto-generated Javadoc
 /**
  * ViewAppointmentRecordUI class connects between the java code and the ViewAppointmentRecordUI FXML file
- * The class implements IUi interface
- * @author shays
+ * The class implements IUi interface.
  *
+ * @author shays
  */
 
 public class ViewAppointmentRecordUI implements IUi {
 	
+	/** The main stage. */
 	private static Stage mainStage;
+	
+	/** The client id. */
 	private String clientID;
+	
+	/** The name. */
 	private String name;
+	
+	/** The date. */
 	private String date;
+	
+	/** The appointment id. */
 	private String appointmentID;
 
 	
+	/**
+	 * Instantiates a new view appointment record ui.
+	 *
+	 * @param clientID the client id
+	 * @param date the date
+	 * @param name the name
+	 * @param appointmentID the appointment id
+	 */
 	public ViewAppointmentRecordUI(String clientID, String date, String name, String appointmentID){
 		this.clientID = clientID;
 		this.name = name;

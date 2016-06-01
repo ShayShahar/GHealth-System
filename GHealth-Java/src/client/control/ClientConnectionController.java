@@ -7,35 +7,32 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 
+// TODO: Auto-generated Javadoc
 /**
- * ClientConnectionController handles the logics of the ClientConnectionUI
- * @author shays
+ * ClientConnectionController handles the logics of the ClientConnectionUI.
  *
+ * @author shays
  */
 public class ClientConnectionController{
 
+	/** The ip address. */
 	@FXML private TextField ipAddress;
 	
-	/**
-	 * Set the default connection port
-	 */
+	/** Set the default connection port. */
 	final public static int DEFAULT_PORT = 5551;
 	
-	/**
-	 * Set the connection IP Address
-	 */
+	/** Set the connection IP Address. */
 	public static String IP_ADDR;
 
-	/**
-	 * Instance of the connection to the server
-	 */
+	/** Instance of the connection to the server. */
 	public static ClientController clientConnect;
 	
 	/**
 	 * onConnectButtonClick handles the connect button click.
 	 * The function tries to create a connection to the server.
 	 * If the connection succeed, the function creates an instance of LoginUI and displays it on the screen.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onConnectButtonClick(ActionEvent event)
 	{

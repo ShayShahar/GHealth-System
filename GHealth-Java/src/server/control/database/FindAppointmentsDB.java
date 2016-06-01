@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
- * FindAppointmentsDB class search for the all coming appointments of a client in the Data base
- * @author shays
+ * FindAppointmentsDB class search for the all coming appointments of a client in the Data base.
  *
+ * @author shays
  */
 
 public class FindAppointmentsDB {

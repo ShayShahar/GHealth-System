@@ -21,35 +21,58 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
+// TODO: Auto-generated Javadoc
+
 /**
  * RecordAppointmentUI class connects between the java code and the RecordAppointmentUI FXML file
-* The class implements IUi interface
-* @author asaf
-*
-*/
+ * The class implements IUi interface.
+ *
+ * @author asaf
+ */
 public class RecordAppointmentUI implements IUi {
 	
+	/** The main stage. */
 	private static Stage mainStage;
+	
+	/** The p name. */
 	public String pName; 
+	
+	/** The name. */
 	public String fName; 
+	
+	/** The person id. */
 	public String personId; 
+	
+	/** The add. */
 	public String add; 
+	
+	/** The phone number. */
 	public String phoneNumber;
+	
+	/** The email. */
 	public String email; 
+	
+	/** The client id. */
 	public String clientId; 
+	
+	/** The app id. */
 	public String appId;
+	
+	/** The user id. */
 	public int userId;
 	
 	/**
-	 * RecordAppointmentUI constructor
+	 * RecordAppointmentUI constructor.
+	 *
+	 * @param pName Gets the personal Name
+	 * @param fName Gets the family Name
+	 * @param personId Gets the personal Id
+	 * @param add Gets the adders
+	 * @param phoneNumber Gets the phone Number
+	 * @param email Gets the email
 	 * @param clientId Gets the client id
-	 *  @param pName Gets the personal Name
-	 *  @param fName Gets the family Name
-	 *  @param personId Gets the personal Id
-	 *  @param add Gets the adders
-	 *  @param phoneNumber Gets the phone Number
-	 *  @param email Gets the email
-	 *  @param userName Gets the user Name
+	 * @param userId the user id
+	 * @param appId the app id
 	 */
 	public RecordAppointmentUI(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId,int userId, String appId){
 		this.pName = pName;

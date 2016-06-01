@@ -20,17 +20,27 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
+// TODO: Auto-generated Javadoc
+
 /**
  * ClientHistoryUI class connects between the java code and the ClientHistoryUI FXML file
-* The class implements IUi interface
-* @author asaf
-*
-*/
+ * The class implements IUi interface.
+ *
+ * @author asaf
+ */
 public class ClientHistoryUI implements IUi {
 
+	/** The id. */
 	private String id;
+	
+	/** The main stage. */
 	private static Stage mainStage;
 
+	/**
+	 * Instantiates a new client history ui.
+	 *
+	 * @param clientId the client id
+	 */
 	public ClientHistoryUI(String clientId) {
 		id = clientId;
 	}

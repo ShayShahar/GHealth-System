@@ -7,10 +7,11 @@ import common.entity.Request;
 import common.enums.Result;
 
 
-	/**
-	 * FindSpecialistDB class search for a specialists from specific specialization in the Data base
-	 * @author shays
+	// TODO: Auto-generated Javadoc
+/**
+	 * FindSpecialistDB class search for a specialists from specific specialization in the Data base.
 	 *
+	 * @author shays
 	 */
 
 public class FindSpecialistDB {

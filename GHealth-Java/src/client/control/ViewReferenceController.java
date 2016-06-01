@@ -20,31 +20,54 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+// TODO: Auto-generated Javadoc
 /**
- * ViewReferenceController class handles the logics of ViewReferenceUI 
- * @author shays
+ * ViewReferenceController class handles the logics of ViewReferenceUI .
  *
+ * @author shays
  */
 public class ViewReferenceController implements IController, Initializable{
 
+	/** The reference number. */
 	@FXML private TextField referenceNumber;
+	
+	/** The field name. */
 	@FXML private TextField fieldName;
+	
+	/** The field reference num. */
 	@FXML private TextField fieldReferenceNum;
+	
+	/** The field client id. */
 	@FXML private TextField fieldClientID;
+	
+	/** The field specielist id. */
 	@FXML private TextField fieldSpecielistID;
+	
+	/** The field code. */
 	@FXML private TextField fieldCode;
+	
+	/** The field date. */
 	@FXML private TextField fieldDate;
+	
+	/** The field urgency. */
 	@FXML private TextField fieldUrgency;
+	
+	/** The field status. */
 	@FXML private TextField fieldStatus;
+	
+	/** The field type. */
 	@FXML private TextField fieldType;
+	
+	/** The field comments. */
 	@FXML private TextArea fieldComments;
 
 	
+	/** The this ui. */
 	private IUi thisUi;
 	
 	/**
-	 * Initialize class parameters
-	 * 
+	 * Initialize class parameters.
+	 *
 	 * @param id Gets the reference's ID
 	 * @param name Gets the specialist's name
 	 */
@@ -57,7 +80,8 @@ public class ViewReferenceController implements IController, Initializable{
 	}
 	
 	/**
-	 * findReferenceByID creates a FIND_REFERENCE_BY_REFNUM request and send it to the server
+	 * findReferenceByID creates a FIND_REFERENCE_BY_REFNUM request and send it to the server.
+	 *
 	 * @param id Gets the reference's ID
 	 */
 	public void findReferenceByID(String id){
@@ -72,6 +96,11 @@ public class ViewReferenceController implements IController, Initializable{
 		}
 	}
 
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
@@ -90,6 +119,9 @@ public class ViewReferenceController implements IController, Initializable{
 		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 	}
 	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -102,6 +134,9 @@ public class ViewReferenceController implements IController, Initializable{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@Override
 	public void handleReply(Reply reply) {
 		

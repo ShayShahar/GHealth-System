@@ -9,8 +9,19 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetClientIdByClientIdDB.
+ */
 public class GetClientIdByClientIdDB {
 
+	/**
+	 * Handle message.
+	 *
+	 * @param request the request
+	 * @param connection the connection
+	 * @return the object
+	 */
 	public static Object handleMessage(Request request, Connection connection) {
 		String getClientDetails = "SELECT * FROM ghealth.person WHERE  ghealth.person.personID = ?";
 		ArrayList<String> list = new ArrayList<String>();

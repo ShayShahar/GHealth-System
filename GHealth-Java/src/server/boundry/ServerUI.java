@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import server.control.ServerController;
 
+// TODO: Auto-generated Javadoc
 /**
  * ServerUI extends JavaFX Application.
  * This class handles the main entry for the server application and connects between the java-code to the ServerUI FXML file
@@ -24,13 +25,17 @@ import server.control.ServerController;
 public class ServerUI extends Application{
 	
 	/**
-	 * main program entry
-	 * @param args
+	 * main program entry.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		URL url_32 = getClass().getResource("/img/icon_32.png");
@@ -44,7 +49,8 @@ public class ServerUI extends Application{
 	}
 	
 	/**
-	 * Display an information message
+	 * Display an information message.
+	 *
 	 * @param title - Gets the message's title
 	 * @param information - Gets the message's text
 	 */
@@ -66,7 +72,8 @@ public class ServerUI extends Application{
 	}
 	
 	/**
-	 * Display an error message
+	 * Display an error message.
+	 *
 	 * @param title - Gets the message's title
 	 * @param information - Gets the message's text
 	 */

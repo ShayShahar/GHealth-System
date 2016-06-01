@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
  * MonthlyReportDB creates a monthly report from the information that stored in mySQL database
  * Monthly0 report includes number of clients that got treatments, waiting time for appointments (from invite date),

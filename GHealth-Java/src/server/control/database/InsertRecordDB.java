@@ -6,8 +6,19 @@ import java.sql.SQLException;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InsertRecordDB.
+ */
 public class InsertRecordDB {
 
+	/**
+	 * Handle message.
+	 *
+	 * @param request the request
+	 * @param connection the connection
+	 * @return the object
+	 */
 	public static Object handleMessage(Request request, Connection connection) {
 
 

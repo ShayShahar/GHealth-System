@@ -13,10 +13,11 @@ import common.entity.Request;
 import common.enums.Result;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * GetMedicalFileDB class search for all medical information of a client in the Data base
- * @author shays
+ * GetMedicalFileDB class search for all medical information of a client in the Data base.
  *
+ * @author shays
  */
 
 public class GetMedicalFileDB {

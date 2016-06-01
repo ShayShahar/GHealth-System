@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetClientByAppointmentDB.
+ */
 public class GetClientByAppointmentDB {
 	
 	/**

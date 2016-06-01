@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+// TODO: Auto-generated Javadoc
 /**
  * UserController class handles the logics of login screen.
  * The class implements IController interface.
@@ -22,10 +23,14 @@ import javafx.scene.control.TextField;
 public class UserController implements IController{
 		
 	
+	/** The user name txt. */
 	@FXML private TextField userNameTxt;
+	
+	/** The password fld. */
 	@FXML private PasswordField passwordFld;
 	
  
+	/** The username. */
 	private static String username;
 	
 	
@@ -34,7 +39,8 @@ public class UserController implements IController{
 	 * onLoginButtonClick handles the login button click.
 	 * The function checks the input fields, in case there are missing fields an error is displayed on the screen.
 	 * In case all the fields are filled, the function sends a login request to the server.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	
 	public void onLoginButtonClick(ActionEvent event){
@@ -65,7 +71,8 @@ public class UserController implements IController{
 	
 	/**
 	 * validateUser get the text input from username and password fields than creates a request message
-	 * the function sends the request message to the server
+	 * the function sends the request message to the server.
+	 *
 	 * @param username Get the username TextField
 	 * @param password Get the password PasswordField
 	 */
@@ -91,6 +98,9 @@ public class UserController implements IController{
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	public void handleReply(Reply reply){
 		
 		Object result =  reply.getResult();

@@ -11,6 +11,7 @@ import common.entity.Request;
 import common.enums.Result;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * CreateExaminationViewDB class gets an examination from the Data base.
  * @author shays

@@ -27,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+// TODO: Auto-generated Javadoc
 /**
  * ViewExaminationController connects between the ViewExaminationUI to the components logics.
  * @author asaf
@@ -36,42 +37,88 @@ import javafx.scene.input.MouseEvent;
 public class ViewExaminationController implements IController,Initializable{
 
 	
+	/** The Sp client id txt. */
 	@FXML private TextField SpClientIDTxt;
+	
+	/** The field client name. */
 	@FXML private TextField fieldClientName;
+	
+	/** The field client family. */
 	@FXML private TextField fieldClientFamily;
+	
+	/** The field client address. */
 	@FXML private TextField fieldClientAddress;
+	
+	/** The field client phone. */
 	@FXML private TextField fieldClientPhone;
+	
+	/** The field client email. */
 	@FXML private TextField fieldClientEmail;
+	
+	/** The tabel examination. */
 	@FXML private TableView<Examination> tabelExamination;
+	
+	/** The date clmn. */
 	@FXML private TableColumn<Examination, String> dateClmn;
+	
+	/** The specialist clmn. */
 	@FXML private TableColumn<Examination, String> specialistClmn;
+	
+	/** The specialist name clmn. */
 	@FXML private TableColumn<Examination, String> specialistNameClmn;
+	
+	/** The examination name clmn. */
 	@FXML private TableColumn<Examination, String> examinationNameClmn;
+	
+	/** The serial clmn. */
 	@FXML private TableColumn<Examination, String> serialClmn;
+	
+	/** The open btn. */
 	@FXML private Button openBtn;
 	
+	/** The this ui. */
 	private IUi thisUi;
+	
+	/** The serial no. */
 	private int serialNo;
+	
+	/** The examination code. */
 	private String examinationCode;
+	
+	/** The examination id. */
 	private int examinationId;
+	
+	/** The user id. */
 	private int userId;
+	
+	/** The client id. */
 	private String clientId;
+	
+	/** The comments. */
 	private String comments;
+	
+	/** The choosed urgency. */
 	private String choosedUrgency;
+	
+	/** The choosed examination type. */
 	private String choosedExaminationType;
+	
+	/** The user name. */
 	private String userName;
 	
+	/** The id. */
 	static int id;
 
 	
 	/**
-	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
-	 * @param id Gets client's ID
-	 * @param fieldClientName Gets personal Name
-	 * @param SpClientIDTxt Gets person Id
-	 * @param fieldClientFamily Gets Family name
-	 * @param fieldClientAddress Gets adderss
-	 * @param fieldClientEmail Gets email
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field.
+	 *
+	 * @param pName the name
+	 * @param fName the f name
+	 * @param personId the person id
+	 * @param add the add
+	 * @param phoneNumber the phone number
+	 * @param email the email
 	 */
 		
 	public void setUser(String pName,String fName,String personId,String add,String phoneNumber,String email){
@@ -101,10 +148,12 @@ public class ViewExaminationController implements IController,Initializable{
 			e.printStackTrace();
 		}
 	}
+	
 	/**
-	 * MedicalFile table observable
+	 * MedicalFile table observable.
+	 *
 	 * @param list Gets an ArrayList of Examination objects
-	 * @return ObservableList<Examination> 
+	 * @return ObservableList<Examination>
 	 */
 	public ObservableList<Examination> getExamination(ArrayList<Examination> list){
 		ObservableList<Examination> examinations = FXCollections.observableArrayList();
@@ -130,6 +179,10 @@ public class ViewExaminationController implements IController,Initializable{
 				tabelExamination.setItems(getExamination(list));
 			}});
 	}
+	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	/*
 	 * 	The initialize function initializes ViewExaminationUI screen and class members.
 	 *  The function initializes tables'es columns.
@@ -164,6 +217,11 @@ public class ViewExaminationController implements IController,Initializable{
 	 * @param event
 	 */
 
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();
@@ -175,10 +233,12 @@ public class ViewExaminationController implements IController,Initializable{
 		}
 		ClientConnectionController.clientConnect.userInterface.remove(thisUi);
 	}
+	
 	/**
 	 * onOpenButtonClick function handles a click on open button.
 	 * The function calls openViewExamination to watch client examination.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onOpenButtonClick(ActionEvent event){
 		
@@ -213,6 +273,11 @@ public class ViewExaminationController implements IController,Initializable{
 		
 	}
 	
+	/**
+	 * On mouse click.
+	 *
+	 * @param event the event
+	 */
 	public void onMouseClick(MouseEvent event){
 		
 		try{
@@ -250,6 +315,9 @@ public class ViewExaminationController implements IController,Initializable{
 	 */
 
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleReply(Reply reply){

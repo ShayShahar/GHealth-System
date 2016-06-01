@@ -9,8 +9,19 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetExaminationTypeDB.
+ */
 public class GetExaminationTypeDB {
 
+	/**
+	 * Handle message.
+	 *
+	 * @param request the request
+	 * @param connection the connection
+	 * @return the object
+	 */
 	public static Object handleMessage(Request request, Connection connection) {
 		
 		ArrayList<String> list = new ArrayList<String>();

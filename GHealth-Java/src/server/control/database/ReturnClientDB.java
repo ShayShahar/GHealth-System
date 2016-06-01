@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ReturnClientDB.
+ */
 public class ReturnClientDB {
 
 	/**

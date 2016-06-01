@@ -29,6 +29,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+// TODO: Auto-generated Javadoc
 /**
  * ExaminationController is the Controller to the gui of the viewreference by the 
  * LabWorker , the Labworker can see all the details of any reference he chose by date,specialist id,
@@ -40,42 +41,68 @@ import javafx.scene.control.TextField;
 public class ExaminationController implements IController, Initializable{
 	
 	
+		/** The date picker. */
 		@FXML private DatePicker datePicker;
+		
+		/** The sid field. */
 		@FXML private TextField sidField;
+		
+		/** The cid field. */
 		@FXML private TextField cidField;
+		
+		/** The field reference num. */
 		@FXML private TextField fieldReferenceNum;
+		
+		/** The field client id. */
 		@FXML private TextField fieldClientID; 
+		
+		/** The field specielist id. */
 		@FXML private TextField fieldSpecielistID;
+		
+		/** The field code. */
 		@FXML private TextField fieldCode; 
+		
+		/** The field date. */
 		@FXML private TextField fieldDate; 
+		
+		/** The field urgency. */
 		@FXML private TextField fieldUrgency; 
+		
+		/** The field status. */
 		@FXML private TextField fieldStatus; 
+		
+		/** The reference_number. */
 		@FXML private TextField reference_number;
+		
+		/** The field type. */
 		@FXML private TextField fieldType;
+		
+		/** The field comments. */
 		@FXML private TextArea fieldComments;
+		
+		/** The checkbox1. */
 		@FXML private CheckBox checkbox1;
+		
+		/** The exam btn. */
 		@FXML private Button examBtn;	
 		
-		/**
-		 * Stores current reference instacnce
-		 */
+		/** Stores current reference instacnce. */
 		static Reference currentReference;
 		
-		/**
-		 * Stores current reference's ID
-		 */
+		/** Stores current reference's ID. */
 		static String currentReferenceNumber;
+		
+		/** The this ui. */
 		private IUi thisUi;
 		
-		/**
-		 * check fields
-		 */
+		/** check fields. */
 		private boolean check;
 
 		/**
 		 * onLogoutButtonClick function is Logout button handler.
 		 * Sends a logout request for the logged in user to the server.
-		 * @param event
+		 *
+		 * @param event the event
 		 */
 		public void onLogoutButtonClick(ActionEvent event){
 			
@@ -93,9 +120,10 @@ public class ExaminationController implements IController, Initializable{
 		}
 	
 		/**
-	 	*Search Reference by sid,cid,date or by reference number
-	 	* @param event
-  	*/
+		 * Search Reference by sid,cid,date or by reference number.
+		 *
+		 * @param event the event
+		 */
 	  public void OnSearchButtonClick(ActionEvent event){
 		  
 		  
@@ -143,8 +171,8 @@ public class ExaminationController implements IController, Initializable{
 	}
         
 	 /**
-	  * Open Create Examination Window
-	  */
+ 	 * Open Create Examination Window.
+ 	 */
 	 public void OnCreateExaminationClick()
 	 {
 	 	
@@ -165,9 +193,9 @@ public class ExaminationController implements IController, Initializable{
  
 
 	 /**
-	  * choose between cid,sid,date and reference number
-	  * disable the textfields that we dont need and enable the needed
-	  */
+ 	 * choose between cid,sid,date and reference number
+ 	 * disable the textfields that we dont need and enable the needed.
+ 	 */
 	 public void OnCheckBoxCheck()
 	 {
 	 	if(checkbox1.isSelected())
@@ -194,9 +222,11 @@ public class ExaminationController implements IController, Initializable{
  
  
 	 /**
-	  * handle reply from the server
-	  * get the reference from the server
-	  */
+ 	 * handle reply from the server
+ 	 * get the reference from the server.
+ 	 *
+ 	 * @param reply the reply
+ 	 */
 	@Override
 	public void handleReply(Reply reply) {
 	
@@ -250,6 +280,9 @@ public class ExaminationController implements IController, Initializable{
 				
 		}
 	
+	/**
+	 * Logout.
+	 */
 	/*
 	 * the function logout the labworker user
 	 */
@@ -262,7 +295,7 @@ public class ExaminationController implements IController, Initializable{
 	}
 	
 	/**
-	 * clear all fields
+	 * clear all fields.
 	 */
 	
 	public void clearFields()
@@ -287,7 +320,8 @@ public class ExaminationController implements IController, Initializable{
 	}
 	
 	/**
-	 * set the fields of the gui according to the Reference properties
+	 * set the fields of the gui according to the Reference properties.
+	 *
 	 * @param reference is the reference from the DB
 	 */
 	
@@ -337,6 +371,11 @@ public class ExaminationController implements IController, Initializable{
 	 * and display massage accordingly
 	 */
 	
+	/**
+	 * Check fields.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean checkFields()  //check if the user insert legal values to the fields
 	{
 		
@@ -439,6 +478,10 @@ public class ExaminationController implements IController, Initializable{
 	
 		return check;
 	}
+	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

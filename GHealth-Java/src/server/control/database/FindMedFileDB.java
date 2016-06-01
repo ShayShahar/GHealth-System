@@ -10,8 +10,19 @@ import client.entity.MedicalFile;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FindMedFileDB.
+ */
 public class FindMedFileDB {
 
+	/**
+	 * Handle message.
+	 *
+	 * @param request the request
+	 * @param connection the connection
+	 * @return the object
+	 */
 	public static Object handleMessage(Request request, Connection connection) {
 	ArrayList<MedicalFile> list = new ArrayList<MedicalFile>();
 		

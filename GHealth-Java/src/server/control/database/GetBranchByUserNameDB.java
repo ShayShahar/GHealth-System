@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
- * GetBranchByUserNameDB class search for a branch name by a manager's user name in the Data base
- * @author shays
+ * GetBranchByUserNameDB class search for a branch name by a manager's user name in the Data base.
  *
+ * @author shays
  */
 
 public class GetBranchByUserNameDB {

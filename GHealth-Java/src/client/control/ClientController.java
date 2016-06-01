@@ -7,6 +7,7 @@ import client.interfaces.IUi;
 import common.entity.Reply;
 import ocsf.client.AbstractClient;
 
+// TODO: Auto-generated Javadoc
 /**
  * ClientController inherits from AbstractClient and creates the connection to server.
  * @author shays
@@ -31,22 +32,24 @@ public class ClientController extends AbstractClient{
 	 */
 	public String userPrivilege;
 	
-	/**
-	 * Stores the users's username
-	 */
+	/** Stores the users's username. */
 	public String userName;
 	
 	/**
-	 * ClientController constructor
+	 * ClientController constructor.
+	 *
 	 * @param host Gets the IP Address of the server
 	 * @param port Gets the port.
-	 * @throws IOException
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public ClientController(String host, int port) throws IOException {
 		super(host, port);
 		openConnection();
 	}
 
+	/* (non-Javadoc)
+	 * @see ocsf.client.AbstractClient#handleMessageFromServer(java.lang.Object)
+	 */
 	@Override
 	protected void handleMessageFromServer(Object msg) {
 		Reply reply = (Reply) msg;

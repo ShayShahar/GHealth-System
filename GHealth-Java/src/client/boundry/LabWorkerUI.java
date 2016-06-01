@@ -21,18 +21,23 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+// TODO: Auto-generated Javadoc
 /**
  * LabWorkerUI class connects between the java code and the LabWorkerUI FXML file
- * The class implements IUi interface
- * @author raz
+ * The class implements IUi interface.
  *
+ * @author raz
  */
 
 
 public class LabWorkerUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IUi#displayUserWindow()
+	 */
 	@Override
 	public void displayUserWindow() {
 	
@@ -85,6 +90,9 @@ public class LabWorkerUI implements IUi{
 
 
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IUi#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		Platform.runLater(new Runnable() {
@@ -97,6 +105,9 @@ public class LabWorkerUI implements IUi{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IUi#showWindow()
+	 */
 	@Override
 	public void showWindow() {
 		Platform.runLater(new Runnable() {
@@ -109,6 +120,9 @@ public class LabWorkerUI implements IUi{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IUi#displayErrorMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayErrorMessage(String title, String information) {
 		Platform.runLater(new Runnable() {
@@ -127,6 +141,9 @@ public class LabWorkerUI implements IUi{
 		});			
 	}
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IUi#displayMessage(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void displayMessage(String title, String information){
 		Platform.runLater(new Runnable() {

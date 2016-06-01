@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
  * WeeklyReportDB creates a weekly report from the information that stored in mySQL database
  * Weekly report includes number of clients that got treatments and waiting time for appointments (from invite date)
- * All the information grouped by the days of the week
- * @author shays
+ * All the information grouped by the days of the week.
  *
+ * @author shays
  */
 public class WeeklyReportDB {
 

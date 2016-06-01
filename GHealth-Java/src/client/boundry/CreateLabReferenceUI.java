@@ -20,30 +20,52 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
+// TODO: Auto-generated Javadoc
+
 /**
  * CreateLabReferenceUI class connects between the java code and the CreateLabReferenceUI FXML file
-* The class implements IUi interface
-* @author asaf
-*
-*/
+ * The class implements IUi interface.
+ *
+ * @author asaf
+ */
 public class CreateLabReferenceUI implements IUi {
 	
+	/** The main stage. */
 	private static Stage mainStage;
-	public String pName; public String fName; public String personId; public String add; public String phoneNumber;
-	public String email; public String clientId;
+	
+	/** The p name. */
+	public String pName; 
+ /** The name. */
+ public String fName; 
+ /** The person id. */
+ public String personId; 
+ /** The add. */
+ public String add; 
+ /** The phone number. */
+ public String phoneNumber;
+	
+	/** The email. */
+	public String email; 
+ /** The client id. */
+ public String clientId;
+	
+	/** The user id. */
 	public int userId;
+	
+	/** The user name. */
 	public String userName;
 	
 	/**
-	 * CreateLabReferenceUI constructor
+	 * CreateLabReferenceUI constructor.
+	 *
+	 * @param pName Gets the personal Name
+	 * @param fName Gets the family Name
+	 * @param personId Gets the personal Id
+	 * @param add Gets the adders
+	 * @param phoneNumber Gets the phone Number
+	 * @param email Gets the email
 	 * @param clientId Gets the client id
-	 *  @param pName Gets the personal Name
-	 *  @param fName Gets the family Name
-	 *  @param personId Gets the personal Id
-	 *  @param add Gets the adders
-	 *  @param phoneNumber Gets the phone Number
-	 *  @param email Gets the email
-	 *  @param userName Gets the user Name
+	 * @param userName Gets the user Name
 	 */
 	
 	public CreateLabReferenceUI(String pName,String fName,String personId,String add,String phoneNumber,String email,String clientId,String  userName){

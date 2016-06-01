@@ -5,16 +5,17 @@ import common.entity.Request;
 import common.enums.Result;
 import server.control.database.*;
 
+// TODO: Auto-generated Javadoc
 /**
- * DBController class handles requests from clients
- * @author shays
+ * DBController class handles requests from clients.
  *
+ * @author shays
  */
 public class DBController {
 
 
 	/**
-	 * processRequest function classify the request message by reading the request's op-code (Command)
+	 * processRequest function classify the request message by reading the request's op-code (Command).
 	 *
 	 * @param request - Gets a Request object that sent by the client
 	 * @param connection - Gets the connection to server

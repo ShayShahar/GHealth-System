@@ -16,19 +16,31 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * ViewReferenceUI class connects between the java code and the ViewReferenceUI FXML file
- * The class implements IUi interface
- * @author shays
+ * The class implements IUi interface.
  *
+ * @author shays
  */
 
 public class ViewReferenceUI implements IUi {
 
+	/** The main stage. */
 	private static Stage mainStage;
+	
+	/** The id. */
 	private String id;
+	
+	/** The name. */
 	private String name;
 
+	/**
+	 * Instantiates a new view reference ui.
+	 *
+	 * @param id the id
+	 * @param name the name
+	 */
 	public ViewReferenceUI(String id, String name){
 			this.id = id;
 			this.name = name;

@@ -6,6 +6,7 @@ import common.entity.Request;
 import common.enums.Result;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * EndMedicalTreatmentDB class updates the status of the appointment to finished and set the price of the appointment in the Data base.
  * @author shays

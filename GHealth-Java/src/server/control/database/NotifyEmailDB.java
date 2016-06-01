@@ -13,13 +13,29 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotifyEmailDB.
+ */
 public class NotifyEmailDB {
 
+	/** The mail server properties. */
 	private static Properties mailServerProperties;
+	
+	/** The get mail session. */
 	private static Session getMailSession;
+	
+	/** The generate mail message. */
 	private static MimeMessage generateMailMessage;
 
 	
+ /**
+  * Handle message.
+  *
+  * @param request the request
+  * @param connection the connection
+  * @return the object
+  */
  public static Object handleMessage (Request request, Connection connection) {
 
 	
@@ -65,6 +81,14 @@ public class NotifyEmailDB {
 	
  }
  
+ /**
+  * Generate and send email.
+  *
+  * @param recipent the recipent
+  * @param name the name
+  * @throws AddressException the address exception
+  * @throws MessagingException the messaging exception
+  */
  public static void generateAndSendEmail(String recipent, String name) throws AddressException, MessagingException {
 	 
 		mailServerProperties = System.getProperties();

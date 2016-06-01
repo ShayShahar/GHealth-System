@@ -26,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+// TODO: Auto-generated Javadoc
 /**
  * ClientHistoryController connects between the ClientHistoryUI to the components logics.
  * @author asaf
@@ -33,19 +34,42 @@ import javafx.scene.input.MouseEvent;
  */
 public class ClientHistoryController implements IController, Initializable{
 
+	/** The field client id. */
 	@FXML private TextField fieldClientID;
+	
+	/** The open btn. */
 	@FXML private Button openBtn;	
+	
+	/** The medical table. */
 	@FXML private TableView<MedicalFile> medicalTable;
+	
+	/** The clmn date. */
 	@FXML private TableColumn<MedicalFile, String> clmnDate;
+	
+	/** The clmn specialization. */
 	@FXML private TableColumn<MedicalFile, String> clmnSpecialization;
+	
+	/** The clmn name. */
 	@FXML private TableColumn<MedicalFile, String> clmnName;
+	
+	/** The clmn type. */
 	@FXML private TableColumn<MedicalFile, String> clmnType;
+	
+	/** The clmn id. */
 	@FXML private TableColumn<MedicalFile, String> clmnId;
 	
+	/** The client id. */
 	private String clientID;
+	
+	/** The this ui. */
 	private IUi thisUi;
 	
 	
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
@@ -66,9 +90,10 @@ public class ClientHistoryController implements IController, Initializable{
 	}
 	
 	/**
-	 * MedicalFile table observable
+	 * MedicalFile table observable.
+	 *
 	 * @param list Gets an ArrayList of MedicalFile objects
-	 * @return ObservableList<MedicalFile> 
+	 * @return ObservableList<MedicalFile>
 	 */
 	public ObservableList<MedicalFile> getSpecialist(ArrayList<MedicalFile> list){
 		ObservableList<MedicalFile> info = FXCollections.observableArrayList();
@@ -83,7 +108,8 @@ public class ClientHistoryController implements IController, Initializable{
 	/**
 	 * Handles click on Open button.
 	 * Creates a new UI window depends on the type of the selected item from the table.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onOpenButtonClick(ActionEvent event){
 		if (medicalTable.getSelectionModel().getSelectedItem().getType().equals("Appointment")){
@@ -110,7 +136,8 @@ public class ClientHistoryController implements IController, Initializable{
 	
 	/**
 	 * Handles mouse click on the client's history table.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onMouseClick(MouseEvent event){
 		
@@ -143,6 +170,9 @@ public class ClientHistoryController implements IController, Initializable{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	/*
 	 * 	The initialize function initializes the ClientHistoryUI screen and class members.
 	 *  The function initializes tables'es columns.
@@ -173,6 +203,9 @@ public class ClientHistoryController implements IController, Initializable{
 		openBtn.setDisable(true);
 	}
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	/*
 	 * The handle reply process the results of GET_MEDICAL_FILE requests.
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
@@ -203,7 +236,8 @@ public class ClientHistoryController implements IController, Initializable{
 
 	/**
 	 * setID send to server request to get medical file according to the client id.  
-	 * @param Get client id
+	 *
+	 * @param id the new id
 	 */
 	
 	public void setID(String id) {

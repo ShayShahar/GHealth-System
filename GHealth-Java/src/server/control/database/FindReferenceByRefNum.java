@@ -8,6 +8,10 @@ import client.entity.Reference;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FindReferenceByRefNum.
+ */
 public class FindReferenceByRefNum {
 	
 	/**

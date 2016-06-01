@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
- * GetBranchesDB class search for all branches names that stored in the Data base
- * @author shays
+ * GetBranchesDB class search for all branches names that stored in the Data base.
  *
+ * @author shays
  */
 
 

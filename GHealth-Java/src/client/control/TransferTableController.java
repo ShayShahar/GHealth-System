@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+// TODO: Auto-generated Javadoc
 /**
  * TransferTableController connects between the TransferTableUI to the components logics.
  * @author asaf
@@ -34,25 +35,40 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class TransferTableController implements IController,Initializable{
 
+	/** The specialist. */
 	public String specialist;
+	
+	/** The client id. */
 	public String clientId;
+	
+	/** The this ui. */
 	private IUi thisUi;
 
 	
+	/** The medical table. */
 	@FXML private TableView<MedicalFile> medicalTable;
+	
+	/** The specialist clmn. */
 	@FXML private TableColumn<MedicalFile, String> specialistClmn;
+	
+	/** The Type clmn. */
 	@FXML private TableColumn<MedicalFile, String> TypeClmn;
+	
+	/** The info clmn. */
 	@FXML private TableColumn<MedicalFile, String> infoClmn;
 	
 	/**
-	 * Set client's ID to the current class with one parameter
+	 * Set client's ID to the current class with one parameter.
+	 *
 	 * @param clientId Gets client's ID
 	 */
 	public void setDetail(String clientId) {
 		askInfoForWholeFile(clientId);
 	}
+	
 	/**
-	 * Set client's ID to the current class with two parameter
+	 * Set client's ID to the current class with two parameter.
+	 *
 	 * @param clientId Gets client's ID
 	 * @param specialist Gets specialist id
 	 */
@@ -62,7 +78,8 @@ public class TransferTableController implements IController,Initializable{
 	
 	/**
 	 *  askInfoForWholeFile function send to server request to get the whole medical file according to the client id . 
-	 * @param  Gets client's ID
+	 *
+	 * @param clientId the client id
 	 */
 	private void askInfoForWholeFile(String clientId) {
 		
@@ -81,8 +98,9 @@ public class TransferTableController implements IController,Initializable{
 	/**
 	 *  askInfoForSpecificFile function send to server request to get specific medical file according to the
 	 *  client id and specific specialist . 
-	 * @param  Gets client's ID
-	 * @param  Gets specialist
+	 *
+	 * @param clientId the client id
+	 * @param specialist the specialist
 	 */
 	private void askInfoForSpecificFile(String clientId, String specialist) {
 		
@@ -98,10 +116,12 @@ public class TransferTableController implements IController,Initializable{
 			e.printStackTrace();
 		}
 	}
+	
 	/**
-	 * MedicalFile table observable
+	 * MedicalFile table observable.
+	 *
 	 * @param list Gets an ArrayList of MedicalFile objects
-	 * @return ObservableList<MedicalFile> 
+	 * @return ObservableList<MedicalFile>
 	 */
 	public ObservableList<MedicalFile> getMedicalFile(ArrayList<MedicalFile> list){
 		ObservableList<MedicalFile> medicalFiles = FXCollections.observableArrayList();
@@ -112,6 +132,12 @@ public class TransferTableController implements IController,Initializable{
 		
 		return medicalFiles;
 	}
+	
+	/**
+	 * On close button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onCloseButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
@@ -142,6 +168,10 @@ public class TransferTableController implements IController,Initializable{
 				medicalTable.setItems(getMedicalFile(list));
 			}});
 	}
+	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	/*
 	 * 	The initialize function initializes TransferTableUI screen and class members.
 	 *  The function initializes tables'es columns.
@@ -172,6 +202,9 @@ public class TransferTableController implements IController,Initializable{
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@Override
 	public void handleReply(Reply reply) {
 		Object result =  reply.getResult();

@@ -22,20 +22,25 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+// TODO: Auto-generated Javadoc
 /**
  * CreateClientUI class connects between the java code and the CreateClientUI FXML file
- * The class implements IUi interface
- * @author shays
+ * The class implements IUi interface.
  *
+ * @author shays
  */
 
 public class CreateClientUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
+	
+	/** The user_id. */
 	private final String user_id;
 	
 	/**
-	 * CreateClientUI constructor
+	 * CreateClientUI constructor.
+	 *
 	 * @param id Gets person's ID
 	 */
 	public CreateClientUI(String id){

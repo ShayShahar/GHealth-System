@@ -22,20 +22,27 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+// TODO: Auto-generated Javadoc
 /**
  * CreateAppointmentUI class connects between the java code and the CreateAppointmentUI FXML file
- * The class implements IUi interface
- * @author shays
+ * The class implements IUi interface.
  *
+ * @author shays
  */
 public class CreateAppointmentUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
+	
+	/** The user_id. */
 	private String user_id;
+	
+	/** The id. */
 	private int id;
 
 	/**
-	 * CreateAppointmentUI constructor
+	 * CreateAppointmentUI constructor.
+	 *
 	 * @param clientID get the person's id
 	 * @param id get the client's id
 	 */

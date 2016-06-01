@@ -34,6 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
+// TODO: Auto-generated Javadoc
 /**
  * SpecialistDetailsController connects between the SpecialistDetailsUI to the components logics.
  * @author asaf
@@ -44,45 +45,105 @@ public class SpecialistDetailsController implements IController, Initializable{
 		
 		//FXML Components
 
+		/** The Sp view history btn. */
 		@FXML private Button SpViewHistoryBtn;
+		
+		/** The Sp end treatment btn. */
 		@FXML private Button SpEndTreatmentBtn;
+		
+		/** The Sp view examinations btn. */
 		@FXML private Button SpViewExaminationsBtn;
+		
+		/** The Sp create refernce btn. */
 		@FXML private Button SpCreateRefernceBtn;
+		
+		/** The Sp record appointment btn. */
 		@FXML private Button SpRecordAppointmentBtn;
+		
+		/** The Sp report missing btn. */
 		@FXML private Button SpReportMissingBtn;
+		
+		/** The Transfer details btn. */
 		@FXML private Button TransferDetailsBtn;
+		
+		/** The field client id. */
 		@FXML private TextField fieldClientID;
+		
+		/** The field client clinic. */
 		@FXML private TextField fieldClientClinic;
+		
+		/** The field client name. */
 		@FXML private TextField fieldClientName;
+		
+		/** The field client family. */
 		@FXML private TextField fieldClientFamily;
+		
+		/** The field client address. */
 		@FXML private TextField fieldClientAddress;
+		
+		/** The field client phone. */
 		@FXML private TextField fieldClientPhone;
+		
+		/** The field client email. */
 		@FXML private TextField fieldClientEmail;
+		
+		/** The Sp client id txt. */
 		@FXML private TextField SpClientIDTxt;
+		
+		/** The tabel appointment. */
 		@FXML private TableView<Hour> tabelAppointment;
+		
+		/** The time clmn. */
 		@FXML private TableColumn<Hour, String> timeClmn;
 		
+		/** The user id. */
 		private static int userId;  
+		
+		/** The client id. */
 		@SuppressWarnings("unused")
 		private static String clientID;
+		
+		/** The user name. */
 		private static String userName = ClientConnectionController.clientConnect.userName;
+		
+		/** The p name. */
 		private String pName; 
+		
+		/** The name. */
 		private String fName; 
+		
+		/** The person id. */
 		private String personId; 
+		
+		/** The add. */
 		private String add; 
+		
+		/** The phone number. */
 		private String phoneNumber; 
+		
+		/** The email. */
 		private String email;
+		
+		/** The client id. */
 		private String clientId;
+		
+		/** The app id. */
 		private String appId;
+		
+		/** The this ui. */
 		private IUi thisUi;
 		
-	  private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
-	  private HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
+	  /** The get hour by integer. */
+  	private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
+	  
+  	/** The get integer by hour. */
+  	private HashMap<String,Integer> getIntegerByHour = new HashMap<String,Integer>();
 	
 		/**
-		 * MedicalFile table observable
+		 * MedicalFile table observable.
+		 *
 		 * @param list Gets an ArrayList of Hour objects
-		 * @return ObservableList<Hour> 
+		 * @return ObservableList<Hour>
 		 */
 		public ObservableList<Hour> getHours(ArrayList<Hour> list){
 			ObservableList<Hour> hours = FXCollections.observableArrayList();
@@ -107,10 +168,12 @@ public class SpecialistDetailsController implements IController, Initializable{
 					tabelAppointment.setItems(getHours(list));
 				}});
 		}
+		
 		/**
 		 * Handles dialog window for the end of the treatment.
 		 * filed by the specialist
-		 * @param event
+		 *
+		 * @param event the event
 		 */
 		public void onEndTreatmentButtonClick(ActionEvent event){
 			
@@ -170,9 +233,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 	    result.ifPresent(pair -> {
 	    });
 		}
+		
 		/**
-		 * Open the history windows of the current client
-		 * @param event
+		 * Open the history windows of the current client.
+		 *
+		 * @param event the event
 		 */
 		public void onViewHistoryButtonClick (ActionEvent event){
 			
@@ -184,6 +249,10 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			
 		}
+		
+		/* (non-Javadoc)
+		 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+		 */
 		/*
 		 * 	The initialize function initializes SpeialistUI screen and class members.
 		 *  The function initializes Hash-Maps for hours.
@@ -264,9 +333,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 			}
 			
 		}
+		
 		/**
 		 * Handles mouse click on the client's time schedule table.
-		 * @param event
+		 *
+		 * @param event the event
 		 */
 		
 		public void onMouseClick(MouseEvent event){
@@ -297,6 +368,11 @@ public class SpecialistDetailsController implements IController, Initializable{
 		
 		
 
+		/**
+		 * On logout button click.
+		 *
+		 * @param event the event
+		 */
 		public void onLogoutButtonClick(ActionEvent event){
 			
 			ArrayList<String> username = new ArrayList<String>();
@@ -312,10 +388,12 @@ public class SpecialistDetailsController implements IController, Initializable{
 			}
 			
 		}
+		
 		/**
 		 * onCreateLabReferenceButtonClick function handles a click on CreateLabReference button.
 		 * The function transfer the Specialist to CreateLabReferenceUI.
-		 * @param event
+		 *
+		 * @param event the event
 		 */ 
 				
 		public void onCreateLabReferenceButtonClick(ActionEvent event){
@@ -330,10 +408,12 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			create.displayUserWindow();
 		}
+		
 		/**
 		 * onTransferDetailsButtonClick function handles a click on TransferDetails button.
 		 * The function transfer the Specialist to TransferDetailsUI.
-		 * @param event
+		 *
+		 * @param event the event
 		 */ 
 		public void onTransferDetailsButtonClick(ActionEvent event){
 			TransferDetailsUI create = new TransferDetailsUI(pName,fName,personId,add,phoneNumber,email,clientId,userName);
@@ -347,10 +427,12 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			create.displayUserWindow();
 		}
+		
 		/**
 		 * onRecordAppointmentButtonClick function handles a click on RecordAppointment button.
 		 * The function transfer the Specialist to RecordAppointmentUI.
-		 * @param event
+		 *
+		 * @param event the event
 		 */ 
 		
 		public void onRecordAppointmentButtonClick(ActionEvent event){
@@ -365,10 +447,12 @@ public class SpecialistDetailsController implements IController, Initializable{
 			
 			create.displayUserWindow();
 		}
+		
 		/**
 		 * onViewExaminationButtonClick function handles a click on ViewExamination button.
 		 * The function transfer the Specialist to ViewExaminationUI.
-		 * @param event
+		 *
+		 * @param event the event
 		 */ 
 		
 		public void onViewExaminationButtonClick(ActionEvent event){
@@ -387,7 +471,8 @@ public class SpecialistDetailsController implements IController, Initializable{
 		/**
 		 * onReportMissingButtonClick function handles a click on ReportMissing button.
 		 * The function calls reportMissing.
-		 * @param event
+		 *
+		 * @param event the event
 		 */ 
 		
 		public void onReportMissingButtonClick(ActionEvent event){
@@ -429,6 +514,9 @@ public class SpecialistDetailsController implements IController, Initializable{
 		 */
 
 		
+		/* (non-Javadoc)
+		 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+		 */
 		@SuppressWarnings("unchecked")
 		public void handleReply(Reply reply){
 			 

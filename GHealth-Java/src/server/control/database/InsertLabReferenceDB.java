@@ -11,8 +11,19 @@ import java.util.Calendar;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InsertLabReferenceDB.
+ */
 public class InsertLabReferenceDB {
 
+	/**
+	 * Handle message.
+	 *
+	 * @param request the request
+	 * @param connection the connection
+	 * @return the object
+	 */
 	public static Object handleMessage(Request request, Connection connection) {
 		ArrayList<Integer> list = new ArrayList<>();
 		Date date = new Date(Calendar.getInstance().getTimeInMillis());

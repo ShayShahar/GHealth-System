@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+// TODO: Auto-generated Javadoc
 /**
  * RecordAppointmentController connects between the RecordAppointmentUI to the components logics.
  * @author asaf
@@ -25,25 +26,46 @@ import javafx.scene.control.TextField;
  */
 public class RecordAppointmentController implements IController,Initializable{
 	
+	/** The Sp client id txt. */
 	@FXML private TextField SpClientIDTxt;
+	
+	/** The field client name. */
 	@FXML private TextField fieldClientName;
+	
+	/** The field client family. */
 	@FXML private TextField fieldClientFamily;
+	
+	/** The field client address. */
 	@FXML private TextField fieldClientAddress;
+	
+	/** The field client phone. */
 	@FXML private TextField fieldClientPhone;
+	
+	/** The field client email. */
 	@FXML private TextField fieldClientEmail;
+	
+	/** The field record. */
 	@FXML private TextArea  fieldRecord;
 	
 	
+	/** The this ui. */
 	private IUi thisUi;
+	
+	/** The app id. */
 	private String appId;
+	
 	/**
-	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
-	 * @param id Gets client's ID
-	 * @param fieldClientName Gets personal Name
-	 * @param SpClientIDTxt Gets person Id
-	 * @param fieldClientFamily Gets Family name
-	 * @param fieldClientAddress Gets address
-	 * @param fieldClientEmail Gets email
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field.
+	 *
+	 * @param pName the name
+	 * @param fName the f name
+	 * @param personId the person id
+	 * @param add the add
+	 * @param phoneNumber the phone number
+	 * @param email the email
+	 * @param clientId the client id
+	 * @param userId the user id
+	 * @param appId the app id
 	 */
 
 	public void setUser(String pName, String fName, String personId, String add, String phoneNumber, String email,
@@ -66,6 +88,11 @@ public class RecordAppointmentController implements IController,Initializable{
 		
 	}
 	
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
@@ -89,7 +116,8 @@ public class RecordAppointmentController implements IController,Initializable{
 	/**
 	 * onSaveButtonClick function handles a click on save record button.
 	 * The function calls insertRecord with the appointment's record text and appointment id in a list.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	
 	public void onSaveButtonClick(ActionEvent event){
@@ -123,6 +151,9 @@ public class RecordAppointmentController implements IController,Initializable{
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
 	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
@@ -142,6 +173,9 @@ public class RecordAppointmentController implements IController,Initializable{
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
 	
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleReply(Reply reply){

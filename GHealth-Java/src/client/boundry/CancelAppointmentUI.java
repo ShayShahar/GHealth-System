@@ -23,19 +23,24 @@ import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
 
-	/**
+	// TODO: Auto-generated Javadoc
+/**
 	 * CancelAppointmentUI class connects between the java code and the CancelAppointmentUI FXML file
- * The class implements IUi interface
- * @author shays
- *
- */
+	 * The class implements IUi interface.
+	 *
+	 * @author shays
+	 */
 public class CancelAppointmentUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
+	
+	/** The user_id. */
 	private String user_id;
 
 	/**
-	 * CancelAppointmentUI constructor
+	 * CancelAppointmentUI constructor.
+	 *
 	 * @param clientID Gets the client id
 	 */
 	public CancelAppointmentUI(String clientID) {

@@ -11,6 +11,7 @@ import client.entity.Examination;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
  * CreateExaminationDB class creates a new examination to an opened reference in the Data base.
  * @author shays

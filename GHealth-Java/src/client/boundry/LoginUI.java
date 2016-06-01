@@ -17,14 +17,16 @@ import javafx.util.Pair;
 
 
 
+// TODO: Auto-generated Javadoc
 /**
  * LoginUI class connects between the java code and the LoginUI FXML file
- * The class implements IUi interface
- * @author shays
+ * The class implements IUi interface.
  *
+ * @author shays
  */
 public class LoginUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
 
 	/*

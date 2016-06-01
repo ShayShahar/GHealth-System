@@ -8,10 +8,11 @@ import client.entity.Appointment;
 import common.entity.Request;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
- * CreateAppointmentDB class creates an appointment in the Data base
- * @author shays
+ * CreateAppointmentDB class creates an appointment in the Data base.
  *
+ * @author shays
  */
 
 public class CreateAppointmentDB {

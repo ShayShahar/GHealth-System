@@ -16,6 +16,7 @@ import server.boundry.ServerUI;
 import common.entity.*;
 import common.enums.Result;
 
+// TODO: Auto-generated Javadoc
 /**
  * ServerController is the server controller of GHealth System application.
  * The class extends OCSF Abstract server.
@@ -24,30 +25,46 @@ import common.enums.Result;
  */
 public class ServerController extends AbstractServer{
 	
+	/** The username textbox. */
 	@FXML private TextField usernameTextbox;
+	
+	/** The pass field. */
 	@FXML private PasswordField passField;
+	
+	/** The login btn. */
 	@FXML private Button loginBtn;
+	
+	/** The tab pane. */
 	@FXML private TabPane tabPane;
+	
+	/** The connection tab. */
 	@FXML private Tab connectionTab;
+	
+	/** The notification tab. */
 	@FXML private Tab notificationTab;
+	
+	/** The notifications f txt. */
 	@FXML private TextArea notificationsFTxt;
 
-	/**
-	 * Default connection port
-	 */
+	/** Default connection port. */
 	final public static int DEFAULT_PORT = 5551;	
+	
+	/** The D b_ user name. */
 	private static String DB_UserName;
+	
+	/** The D b_ password. */
 	private static String DB_Password;
 	
 	/**
-	 * ServerController default constructor
+	 * ServerController default constructor.
 	 */
 	public ServerController(){
 		super(DEFAULT_PORT);
 	}
 
 	/**
-	 * ServerController constructor
+	 * ServerController constructor.
+	 *
 	 * @param port - Gets the server's port
 	 */
 	public ServerController(int port) {
@@ -58,7 +75,8 @@ public class ServerController extends AbstractServer{
 	 * onClickConnectButton handles the logics of Connect button.
 	 * Validates entered fields.
 	 * Opens a server socket.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onClickConnectButton(ActionEvent event){
 		
@@ -143,6 +161,9 @@ public class ServerController extends AbstractServer{
 	
  }
 
+	/* (non-Javadoc)
+	 * @see ocsf.server.AbstractServer#handleMessageFromClient(java.lang.Object, ocsf.server.ConnectionToClient)
+	 */
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
 		
@@ -172,6 +193,9 @@ public class ServerController extends AbstractServer{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see ocsf.server.AbstractServer#serverStarted()
+	 */
 	@Override
 	protected void serverStarted() {
 		
@@ -179,6 +203,9 @@ public class ServerController extends AbstractServer{
 				+ getPort()+"\n");
 	}
 
+	/* (non-Javadoc)
+	 * @see ocsf.server.AbstractServer#serverStopped()
+	 */
 	@Override
 	protected void serverStopped() {
 		

@@ -21,15 +21,17 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
+// TODO: Auto-generated Javadoc
 /**
  * GeneralManagerUI class connects between the java code and the GeneralManagerUI FXML file
- * The class implements IUi interface
- * @author shays
+ * The class implements IUi interface.
  *
+ * @author shays
  */
 
 public class GeneralManagerUI implements IUi{
 	
+	/** The main stage. */
 	private static Stage mainStage;
 	
 	/*

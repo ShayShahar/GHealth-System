@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+// TODO: Auto-generated Javadoc
 /**
  * TransferDetailsController connects between the TransferDetailsUI to the components logics.
  * @author asaf
@@ -23,22 +24,44 @@ import javafx.scene.control.TextField;
 public class TransferDetailsController implements Initializable{
 	
 	
+	/** The Sp client id txt. */
 	@FXML private TextField SpClientIDTxt;
+	
+	/** The field client name. */
 	@FXML private TextField fieldClientName;
+	
+	/** The field client family. */
 	@FXML private TextField fieldClientFamily;
+	
+	/** The field client address. */
 	@FXML private TextField fieldClientAddress;
+	
+	/** The field client phone. */
 	@FXML private TextField fieldClientPhone;
+	
+	/** The field client email. */
 	@FXML private TextField fieldClientEmail;
+	
+	/** The specifications label. */
 	@FXML private Label specificationsLabel;
+	
+	/** The transfer btn. */
 	@FXML private Button transferBtn;
 	
+	/** The specifications com. */
 	@FXML private ComboBox<String> specificationsCom;
 	
+	/** The is whole file. */
 	public Boolean isWholeFile;
+	
+	/** The client id. */
 	public String clientId;
+	
+	/** The this ui. */
 	private IUi thisUi;
 	
 
+	/** The specifications list. */
 	ObservableList<String> specificationsList = FXCollections.observableArrayList("Allergology","Anaesthetics",
 			"Biological hematology","Cardiology","Child psychiatry","Clinical biology",
 			"Clinical chemistry","Clinical neurophysiology","Craniofacial surgery",
@@ -47,14 +70,18 @@ public class TransferDetailsController implements Initializable{
 			"Geriatrics","Immunology","Infectious diseases","Internal medicine","Microbiology",
 			"Nephrology", "Neuro-psychiatry","Neurology","Neurosurgery","Orthopaedics","Pathology",
 			"Psychiatry","Radiology","Stomatology","Urology","Venereology");
+	
 	/**
-	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field
-	 * @param id Gets client's ID
-	 * @param fieldClientName Gets personal Name
-	 * @param SpClientIDTxt Gets person Id
-	 * @param fieldClientFamily Gets Family name
-	 * @param fieldClientAddress Gets address
-	 * @param fieldClientEmail Gets email
+	 * Set clientId ,Client Name,phone,family name, address,email to the current class scenario and text field.
+	 *
+	 * @param pName the name
+	 * @param fName the f name
+	 * @param personId the person id
+	 * @param add the add
+	 * @param phoneNumber the phone number
+	 * @param email the email
+	 * @param clientId the client id
+	 * @param userName the user name
 	 */
 	public void setUser(String pName, String fName, String personId, String add, String phoneNumber, String email,
 			String clientId, String userName) {
@@ -81,7 +108,12 @@ public class TransferDetailsController implements Initializable{
 	 * @param event
 	 */
 	
-public void onBackButtonClick(ActionEvent event){
+/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
+	public void onBackButtonClick(ActionEvent event){
 		
 		thisUi.hideWindow();
 		
@@ -96,7 +128,8 @@ public void onBackButtonClick(ActionEvent event){
 /**
  * onSpecificFileClick function handles a click on specific file button.
  * The function allowed the combo box to choose specialization.
- * @param event
+ *
+ * @param event the event
  */ 
 
 public void onSpecificFileClick(ActionEvent event){
@@ -108,18 +141,21 @@ public void onSpecificFileClick(ActionEvent event){
 
 /**
  * The function allowed the combo box .
- * @param event
+ *
+ * @param event the event
  */ 
 
 public void onMouseClick(ActionEvent event){
 
 	transferBtn.setDisable(false);
 }
+
 /**
-	 * onTransferButtonClick function is Transfer button handler. 
-	 * The function searches specialist if there is any and call to transferFile.
-	 * @param event
-	 */
+ * onTransferButtonClick function is Transfer button handler. 
+ * The function searches specialist if there is any and call to transferFile.
+ *
+ * @param event the event
+ */
 public void onTransferButtonClick(ActionEvent event){
 	String specialist = new String();
 	try{
@@ -131,10 +167,13 @@ public void onTransferButtonClick(ActionEvent event){
 	transferFile(clientId,specialist);
 	
 }
+
 /**
-	 * transferFile searching medical file form health maintenance organization on client for Specific file or the whole file.
-	 * @param event
-	 */
+ * transferFile searching medical file form health maintenance organization on client for Specific file or the whole file.
+ *
+ * @param clientId the client id
+ * @param specialist the specialist
+ */
 
 public void transferFile(String clientId, String specialist){
 	
@@ -166,7 +205,8 @@ public void transferFile(String clientId, String specialist){
 
 /**
  * The function handle the selection of medical file.
- * @param event
+ *
+ * @param event the event
  */ 
 
 public void onWholeFileClick(ActionEvent event){
@@ -183,6 +223,9 @@ public void onWholeFileClick(ActionEvent event){
  * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
  */
 
+/* (non-Javadoc)
+ * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+ */
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	

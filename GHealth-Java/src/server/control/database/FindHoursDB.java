@@ -8,10 +8,11 @@ import common.entity.Request;
 import common.enums.Result;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * FindHoursDB class search for available hours to create appointment in specific date in the Data base
- * @author shays
+ * FindHoursDB class search for available hours to create appointment in specific date in the Data base.
  *
+ * @author shays
  */
 
 public class FindHoursDB {

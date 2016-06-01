@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * CancelAppointmentController connects between the CancelAppointmentUI to the components logics.
  * @author shays
@@ -34,23 +35,48 @@ import javafx.scene.input.MouseEvent;
  */
 public class CancelAppointmentController implements IController, Initializable{
 
+	/** The field person id. */
 	@FXML private TextField fieldPersonID;
+	
+	/** The cancel btn. */
 	@FXML private Button cancelBtn;
+	
+	/** The tabel appointments. */
 	@FXML private TableView<Appointment> tabelAppointments;
+	
+	/** The id clmn. */
 	@FXML private TableColumn<Appointment, String> idClmn;
+	
+	/** The date clmn. */
 	@FXML private TableColumn<Appointment, String> dateClmn;
+	
+	/** The time clmn. */
 	@FXML private TableColumn<Appointment, String> timeClmn;
+	
+	/** The specialist clmn. */
 	@FXML private TableColumn<Appointment, String> specialistClmn;
+	
+	/** The branch clmn. */
 	@FXML private TableColumn<Appointment, String> branchClmn;
 	
+	/** The choosed id. */
 	private int choosedID;
+	
+	/** The client id. */
 	private String clientID;
+	
+	/** The this ui. */
 	private IUi thisUi;
+	
+	/** The appointmnets list. */
 	private ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();		
+	
+	/** The get hour by integer. */
 	private HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
 
 	/**
-	 * Set client's ID to the current cancel appointment scenario
+	 * Set client's ID to the current cancel appointment scenario.
+	 *
 	 * @param id Gets client's ID
 	 */
 	public void setUser(String id){
@@ -62,7 +88,8 @@ public class CancelAppointmentController implements IController, Initializable{
 	}
 	
 	/**
-	 * findClientAppointments function sends a request to the server for all upcoming client's appointments
+	 * findClientAppointments function sends a request to the server for all upcoming client's appointments.
+	 *
 	 * @param id Gets client's ID
 	 */
 	public void findClientAppointments(String id){
@@ -81,7 +108,8 @@ public class CancelAppointmentController implements IController, Initializable{
 	}
 	
 	/**
-	 * Appointments table observable
+	 * Appointments table observable.
+	 *
 	 * @param list Gets an ArrayList of Hour objects
 	 * @return ObservableList<Appointment>
 	 */
@@ -112,7 +140,8 @@ public class CancelAppointmentController implements IController, Initializable{
 	/**
 	 * onCancelAppointmentButtonClick function handles a click on cancel appointment button.
 	 * The function calls cancelAppoiontment with the selected appointment id from the table.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onCancelAppointmentButtonClick(ActionEvent event){
 		
@@ -138,6 +167,11 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 	}
 
+	/**
+	 * On back button click.
+	 *
+	 * @param event the event
+	 */
 	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
@@ -159,7 +193,8 @@ public class CancelAppointmentController implements IController, Initializable{
 	/**
 	 * onMouseClick function handles a mouse click on a appointment row from the appointments table.
 	 * The function gets the appointment ID from the table.
-	 * @param event
+	 *
+	 * @param event the event
 	 */
 	public void onMouseClick(MouseEvent event){
 		try{
@@ -180,6 +215,9 @@ public class CancelAppointmentController implements IController, Initializable{
 	}
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	/*
 	 * 	The initialize function initializes the CacnelAppointmentUI screen and class members.
 	 *  The function initializes Hash-Maps for hours.
@@ -231,6 +269,9 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
+	 */
 	/*
 	 * The handle reply process the results of FIND_APPOINTMENTS & CANCEL_APPOINTMENT requests.
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
