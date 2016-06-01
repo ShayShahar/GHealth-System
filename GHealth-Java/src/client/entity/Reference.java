@@ -67,16 +67,16 @@ public class Reference implements Serializable{
 		if(urgency == Urgency.Low)
 		return "LOW";
 		if(urgency == Urgency.Normal)
-		 return "MEDIUM";
+		 return "NORMAL";
 		if(urgency == Urgency.Critical)
 			 return "CRITICAL";
 		return null;
 	}
 	//set the urgency level of the reference
 	public void setUrgency(String urgency) {
-		if(urgency.equals("Low"))
+		if(urgency.equals("LOW"))
 			this.urgency = Urgency.Low;
-		else if(urgency.equals("Normal"))
+		else if(urgency.equals("NORMAL"))
 			this.urgency = Urgency.Normal;
 		else if(urgency.equals("CRITICAL"))
 			this.urgency = Urgency.Critical;

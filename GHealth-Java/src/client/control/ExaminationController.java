@@ -19,6 +19,7 @@ import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
 import common.enums.Result;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +28,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+/**
+ * ExaminationController is the Controller to the gui of the viewreference by the 
+ * LabWorker , the Labworker can see all the details of any reference he chose by date,specialist id,
+ * client id  or by reference number.
+ * @author Raz
+ *
+ */
 
 public class ExaminationController implements IController, Initializable{
 	
@@ -57,6 +66,11 @@ public class ExaminationController implements IController, Initializable{
 		 */
 		static String currentReferenceNumber;
 		private IUi thisUi;
+		
+		/**
+		 * check fields
+		 */
+		private boolean check;
 
 		/**
 		 * onLogoutButtonClick function is Logout button handler.
@@ -83,6 +97,8 @@ public class ExaminationController implements IController, Initializable{
 	 	* @param event
   	*/
 	  public void OnSearchButtonClick(ActionEvent event){
+		  
+		  
 		  
 		  Request request;
 		  
@@ -199,10 +215,7 @@ public class ExaminationController implements IController, Initializable{
 					System.exit(1);
 			}
 			else if ((Result)result == Result.LOGGEDOUT){
-							thisUi.hideWindow();	
-						 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
-							ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-							ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
+				logout();
 					}
 			}
 	}
@@ -220,20 +233,8 @@ public class ExaminationController implements IController, Initializable{
 					
 				
 						if((Result)result == Result.FAILED || (Result)result == Result.CLIENT_NOT_FOUND){
-							
-							thisUi.displayErrorMessage ("Error","Reference not found.");
-							examBtn.setDisable(true);
-							fieldComments.clear();
-							fieldReferenceNum.clear();
-							fieldClientID.clear();
-							fieldSpecielistID.clear();
-							fieldCode.clear();
-							fieldUrgency.clear();
-							fieldStatus.clear();
-							fieldDate.clear();
+							clearFields();
 						}
-				 
-				 
 				 
 				}
 				
@@ -241,7 +242,66 @@ public class ExaminationController implements IController, Initializable{
 			
 				Reference reference = new Reference();
 				reference = (Reference)reply.getResult();
-				ExaminationController.currentReference=reference;
+				setFields(reference);
+				
+				}
+				
+			}
+				
+		}
+	
+	/*
+	 * the function logout the labworker user
+	 */
+	public void logout()
+	{
+		thisUi.hideWindow();	
+	 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+		ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
+		ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
+	}
+	
+	/**
+	 * clear all fields
+	 */
+	
+	public void clearFields()
+	{
+		thisUi.displayErrorMessage ("Error","Reference not found.");
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				examBtn.setDisable(true);
+				fieldComments.clear();
+				fieldReferenceNum.clear();
+				fieldClientID.clear();
+				fieldSpecielistID.clear();
+				fieldCode.clear();
+				fieldUrgency.clear();
+				fieldStatus.clear();
+				fieldDate.clear();								}
+			});		
+		
+		
+	}
+	
+	/**
+	 * set the fields of the gui according to the Reference properties
+	 * @param reference is the reference from the DB
+	 */
+	
+	public void setFields(Reference reference)
+	{
+		ExaminationController.currentReference=reference;
+		
+		
+			
+		
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
 				
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
@@ -261,11 +321,13 @@ public class ExaminationController implements IController, Initializable{
 				fieldDate.setText(df.format(reference.getDate().getTime()));
 				fieldType.setText(reference.getType());
 				examBtn.setDisable(false);
-				}
 				
-			}
-				
-		}
+												}
+			});		
+			
+			
+		
+	}
 
 
 
@@ -277,8 +339,13 @@ public class ExaminationController implements IController, Initializable{
 	
 	public boolean checkFields()  //check if the user insert legal values to the fields
 	{
-		boolean check = true;
 		
+		check = true;
+		
+	
+				
+		
+				
 		//put all Textfiend to be gray style
 		cidField.setStyle("-fx-prompt-text-fill: gray");
 		sidField.setStyle("-fx-prompt-text-fill: gray");
@@ -368,6 +435,8 @@ public class ExaminationController implements IController, Initializable{
 			
 		}
 		
+		
+	
 		return check;
 	}
 	@Override

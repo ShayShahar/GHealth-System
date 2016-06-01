@@ -437,7 +437,7 @@ public class ExtendedReportController implements IController, Initializable{
 		yearList2.setItems(obYear);
 
 		ArrayList<Integer> weeks = new ArrayList<Integer>();
-		for (int i = 1; i<57; i++){
+		for (int i = 1; i<53; i++){
 			weeks.add(i);
 		}
 		ObservableList obWeeks = FXCollections.observableList(weeks);
