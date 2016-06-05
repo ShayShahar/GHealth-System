@@ -20,7 +20,7 @@
    <children>
       <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="438.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../img/header.png" />
+            <Image url="img/header.png" />
          </image>
       </ImageView>
       <Separator layoutX="23.0" layoutY="54.0" prefHeight="2.0" prefWidth="550.0" />

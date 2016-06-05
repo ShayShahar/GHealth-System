@@ -19,10 +19,10 @@
    <children>
       <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="389.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../img/header.png" />
+            <Image url="img/header.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="21.0" layoutY="538.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />
+      <Button layoutX="21.0" layoutY="538.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />
       <Separator layoutX="21.0" layoutY="524.0" prefHeight="3.0" prefWidth="499.0" />
       <AnchorPane layoutX="9.0" layoutY="185.0" prefHeight="98.0" prefWidth="533.0">
          <children>

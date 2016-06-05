@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="377.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../img/header.png" />
+                  <Image url="img/header.png" />
                </image>
             </ImageView>
             <Button fx:id="LabWorkerBackBtn" layoutX="25.0" layoutY="576.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="29.0" text="&lt;--Back" />

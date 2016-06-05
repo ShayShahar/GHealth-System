@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="429.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../img/header.png" />
+                  <Image url="img/header.png" />
                </image>
             </ImageView>
             <Button cancelButton="true" layoutX="35.0" layoutY="552.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="&lt;--Back" />

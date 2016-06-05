@@ -18,7 +18,7 @@
       <Separator layoutX="143.0" layoutY="309.0" prefWidth="200.0" />
       <ImageView fitHeight="130.0" fitWidth="250.0" layoutX="124.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../img/header.png" />
+            <Image url="img/header.png" />
          </image>
       </ImageView>
       <Separator layoutX="143.0" layoutY="129.0" prefWidth="200.0" />

@@ -532,6 +532,21 @@ public class CreateAppointmentController implements IController, Initializable{
 				blockedDates = new ArrayList<DateChecker>();
 			}
 			
+			
+			ArrayList<String> msg = new ArrayList<String>();
+			
+			msg.add(Integer.toString(choosedID));
+			msg.add(java.sql.Date.valueOf(appPicker.getValue()).toString()); //convert LocalDate to java.sql.Date format
+			
+			Request request = new Request(Command.FIND_AVAILABLE_HOURS,msg);
+			
+			try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}		
+			
 		}
 		
 		else if (reply.getCommand() == Command.FIND_AVAILABLE_HOURS){
