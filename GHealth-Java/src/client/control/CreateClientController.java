@@ -57,6 +57,9 @@ public class CreateClientController implements IController, Initializable{
 	
 	/** The this ui. */
 	private IUi thisUi;
+	
+	public String returnMsg;
+
 
 
 	/** The list. */
@@ -100,10 +103,16 @@ public class CreateClientController implements IController, Initializable{
 		}
 		
 		else if ((Result)result == Result.PERSON_EXISTS){
+			returnMsg = "ClientFound";
 			thisUi.displayErrorMessage ("Create Client Error", "A worker cannot be a client! check the entered id.");
 		}
 		
+		else if ((Result)result == Result.FAILED){
+			returnMsg = "Failed";
+		}
+		
 		else {
+			returnMsg = "MedicalFileCreated";
 			thisUi.hideWindow();
 			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 				if (ui instanceof DispatcherUI){

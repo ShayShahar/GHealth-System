@@ -8,7 +8,6 @@ import client.entity.Client;
 import common.entity.Request;
 import common.enums.Result;
 
-// TODO: Auto-generated Javadoc
 /**
  * CreateClientDB class creates a new client in the Data base.
  *
@@ -35,6 +34,10 @@ public class CreateClientDB {
 		String createPerson = "INSERT INTO ghealth.person (personID, personName, personFamily, personEmail, personPhone, personAddress) VALUES (?,?,?,?,?,?)";
 		String createClient = "INSERT INTO ghealth.clients (person, clientClinic, clientStatus, joinDate) VALUES (?,?,1,NOW())";
 
+		if (validateID(client.getId()) == false){
+			return Result.FAILED;
+		}
+		
 		
 		try {
 		    PreparedStatement preparedStatement1 = connection.prepareStatement(searchPerson);
@@ -71,4 +74,19 @@ public class CreateClientDB {
 		}
 	}
 	
+    
+	private static boolean validateID(String id){
+		
+		if (id.length() != 9){
+			return false;
+		}
+		
+		for (int i = 0 ; i < id.length(); i++){
+			if(id.charAt(i) < '0' || id.charAt(i) > '9'){
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

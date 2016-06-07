@@ -113,6 +113,9 @@ public class DispatcherDetailsController implements IController, Initializable{
 	
 	/** The this ui. */
 	private IUi thisUi;
+	
+	public String returnMsg;
+
 		
 	
 	/**
@@ -425,9 +428,10 @@ public class DispatcherDetailsController implements IController, Initializable{
 			
 			if (result instanceof ArrayList<?>){
 				
+				returnMsg = "ClientFound";
 				result = (ArrayList<?>) result;
-			  @SuppressWarnings("unchecked")
-			ArrayList<String> res = (ArrayList<String>) result;
+				@SuppressWarnings("unchecked")
+				ArrayList<String> res = (ArrayList<String>) result;
 			  
 				Platform.runLater(new Runnable() {
 
@@ -468,6 +472,8 @@ public class DispatcherDetailsController implements IController, Initializable{
 			}
 			
 			else {
+				returnMsg = "ClientNotFound";
+
 				thisUi.displayErrorMessage ("Client not found", "You can add new client from the menu below.");
 				
 				Platform.runLater(new Runnable() {

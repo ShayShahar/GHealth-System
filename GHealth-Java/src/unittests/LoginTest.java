@@ -44,7 +44,7 @@ public class LoginTest extends TestCase{
 		userController.validateUser(CorrectUserName, CorrectPassword);
 		
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +68,7 @@ public class LoginTest extends TestCase{
 		userController.validateUser(CorrectUserName, WrongPassword);
 		
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
