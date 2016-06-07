@@ -37,7 +37,7 @@ import javafx.scene.chart.XYChart.Series;
 public class BranchReportController implements IController, Initializable{
 	
 
-	/** The number txt. */
+	/** The number text. */
 	@FXML private TextField numberTxt;
 	
 	/** The res chart. */
@@ -73,10 +73,10 @@ public class BranchReportController implements IController, Initializable{
 	/** The week list. */
 	@FXML private ComboBox<Integer> weekList;
 	
-	/** The clients avg. */
+	/** The clients average. */
 	@FXML private TextField clientsAvg;
 	
-	/** The waiting avg. */
+	/** The waiting average. */
 	@FXML private TextField waitingAvg;
 	
 	/** The clients sd. */
@@ -91,7 +91,7 @@ public class BranchReportController implements IController, Initializable{
 	/** The waiting total. */
 	@FXML private TextField waitingTotal;
 	
-	/** The missed avg. */
+	/** The missed average. */
 	@FXML private TextField missedAvg;
 	
 	/** The missed sd. */
@@ -100,7 +100,7 @@ public class BranchReportController implements IController, Initializable{
 	/** The missed total. */
 	@FXML private TextField missedTotal;
 	
-	/** The left avg. */
+	/** The left average. */
 	@FXML private TextField leftAvg;
 	
 	/** The left sd. */
@@ -115,10 +115,10 @@ public class BranchReportController implements IController, Initializable{
 	/** The days. */
 	private HashMap<Integer,String> days = new HashMap<Integer,String>();
 	
-	/** The this ui. */
+	/** The this UI. */
 	private IUi thisUi;
 	
-	/** The c_avg. */
+	/** The c_average. */
 	private double c_avg;
 	
 	/** The c_total. */
@@ -127,7 +127,7 @@ public class BranchReportController implements IController, Initializable{
 	/** The c_sd. */
 	private double c_sd;
 	
-	/** The w_avg. */
+	/** The w_average. */
 	private double w_avg;
 	
 	/** The w_total. */
@@ -136,7 +136,7 @@ public class BranchReportController implements IController, Initializable{
 	/** The w_sd. */
 	private double w_sd;
 	
-	/** The m_avg. */
+	/** The m_average. */
 	private double m_avg;
 	
 	/** The m_total. */
@@ -145,7 +145,7 @@ public class BranchReportController implements IController, Initializable{
 	/** The m_sd. */
 	private double m_sd;
 	
-	/** The l_avg. */
+	/** The l_average. */
 	private double l_avg;
 	
 	/** The l_total. */

@@ -52,22 +52,22 @@ public class CreateAppointmentController implements IController, Initializable{
 	/** The field person id. */
 	@FXML private TextField fieldPersonID;
 	
-	/** The tabel specialists. */
+	/** The table specialists. */
 	@FXML private TableView<Specialist> tabelSpecialists;
 	
-	/** The id clmn. */
+	/** The id column. */
 	@FXML private TableColumn<Specialist, String> idClmn;
 	
-	/** The name clmn. */
+	/** The name column. */
 	@FXML private TableColumn<Specialist, String> nameClmn;
 	
-	/** The family clmn. */
+	/** The family column. */
 	@FXML private TableColumn<Specialist, String> familyClmn;
 	
-	/** The branch clmn. */
+	/** The branch column. */
 	@FXML private TableColumn<Specialist, String> branchClmn;
 	
-	/** The addr clmn. */
+	/** The address column. */
 	@FXML private TableColumn<Specialist, String> addrClmn;
 	
 	/** The hbox date. */
@@ -76,29 +76,29 @@ public class CreateAppointmentController implements IController, Initializable{
 	/** The app picker. */
 	@FXML private DatePicker appPicker;
 	
-	/** The select date btn. */
+	/** The select date button. */
 	@FXML private Button selectDateBtn;
 	
 	/** The time table. */
 	@FXML private TableView<Hour> timeTable;
 	
-	/** The time clmn. */
+	/** The time column. */
 	@FXML private TableColumn<Hour, String> timeClmn;
 	
-	/** The create app btn. */
+	/** The create app button. */
 	@FXML private Button createAppBtn;
 
 
-	/** The this ui. */
+	/** The this UI. */
 	private IUi thisUi;
   
-  /** The choosed id. */
+  /** The choose id. */
   private int choosedID = 0;
   
-  /** The choosed speciality. */
+  /** The choose speciality. */
   private String choosedSpeciality;
   
-  /** The choosed hour. */
+  /** The choose hour. */
   private int choosedHour = 0;
   
   /** The user id. */
@@ -336,7 +336,7 @@ public class CreateAppointmentController implements IController, Initializable{
 	
 	/**
 	 * onSearchSpecialistButtonClick function handles the search specialist button.
-	 * The function gets the selected specialization from the Combobox.
+	 * The function gets the selected specialization from the ComboBox.
 	 * The function creates a FIND_SPECIALIST request and sends it to the server. 
 	 *
 	 * @param event the event

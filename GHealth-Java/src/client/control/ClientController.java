@@ -32,7 +32,7 @@ public class ClientController extends AbstractClient{
 	 */
 	public String userPrivilege;
 	
-	/** Stores the users's username. */
+	/** Stores the users's userName. */
 	public String userName;
 	
 	/**

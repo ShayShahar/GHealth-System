@@ -38,25 +38,25 @@ public class CancelAppointmentController implements IController, Initializable{
 	/** The field person id. */
 	@FXML private TextField fieldPersonID;
 	
-	/** The cancel btn. */
+	/** The cancel button. */
 	@FXML private Button cancelBtn;
 	
-	/** The tabel appointments. */
+	/** The table appointments. */
 	@FXML private TableView<Appointment> tabelAppointments;
 	
-	/** The id clmn. */
+	/** The id column. */
 	@FXML private TableColumn<Appointment, String> idClmn;
 	
-	/** The date clmn. */
+	/** The date column. */
 	@FXML private TableColumn<Appointment, String> dateClmn;
 	
-	/** The time clmn. */
+	/** The time column. */
 	@FXML private TableColumn<Appointment, String> timeClmn;
 	
-	/** The specialist clmn. */
+	/** The specialist column. */
 	@FXML private TableColumn<Appointment, String> specialistClmn;
 	
-	/** The branch clmn. */
+	/** The branch column. */
 	@FXML private TableColumn<Appointment, String> branchClmn;
 	
 	/** The choosed id. */
@@ -65,10 +65,10 @@ public class CancelAppointmentController implements IController, Initializable{
 	/** The client id. */
 	private String clientID;
 	
-	/** The this ui. */
+	/** The this UI. */
 	private IUi thisUi;
 	
-	/** The appointmnets list. */
+	/** The appointments list. */
 	private ArrayList<Appointment> appointmnetsList = new ArrayList<Appointment>();		
 	
 	/** The get hour by integer. */

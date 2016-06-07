@@ -37,31 +37,31 @@ public class ClientHistoryController implements IController, Initializable{
 	/** The field client id. */
 	@FXML private TextField fieldClientID;
 	
-	/** The open btn. */
+	/** The open button. */
 	@FXML private Button openBtn;	
 	
 	/** The medical table. */
 	@FXML private TableView<MedicalFile> medicalTable;
 	
-	/** The clmn date. */
+	/** The column date. */
 	@FXML private TableColumn<MedicalFile, String> clmnDate;
 	
-	/** The clmn specialization. */
+	/** The column specialization. */
 	@FXML private TableColumn<MedicalFile, String> clmnSpecialization;
 	
-	/** The clmn name. */
+	/** The column name. */
 	@FXML private TableColumn<MedicalFile, String> clmnName;
 	
-	/** The clmn type. */
+	/** The column type. */
 	@FXML private TableColumn<MedicalFile, String> clmnType;
 	
-	/** The clmn id. */
+	/** The column id. */
 	@FXML private TableColumn<MedicalFile, String> clmnId;
 	
 	/** The client id. */
 	private String clientID;
 	
-	/** The this ui. */
+	/** The this UI. */
 	private IUi thisUi;
 	
 	

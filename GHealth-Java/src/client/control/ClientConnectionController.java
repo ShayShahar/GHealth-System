@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
  */
 public class ClientConnectionController{
 
-	/** The ip address. */
+	/** The IP address. */
 	@FXML private TextField ipAddress;
 	
 	/** Set the default connection port. */

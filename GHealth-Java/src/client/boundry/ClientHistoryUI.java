@@ -37,7 +37,7 @@ public class ClientHistoryUI implements IUi {
 	private static Stage mainStage;
 
 	/**
-	 * Instantiates a new client history ui.
+	 * Instantiates a new client history UI.
 	 *
 	 * @param clientId the client id
 	 */
