@@ -5,7 +5,6 @@ import java.sql.*;
 import common.entity.Request;
 import common.enums.Result;
 
-// TODO: Auto-generated Javadoc
 /**
  * LoginDB class validates login information and updates user status to logged-in in the Data base in case the details are correct.
  * @author shays
@@ -41,7 +40,7 @@ public class LoginDB {
     		if (status == 1)
     			return Result.ALREADY_LOGIN;
     		
-			  stmnt.executeUpdate("UPDATE ghealth.users SET userStatus=0 WHERE username='"+request.getList().get(0)+"'");
+			  stmnt.executeUpdate("UPDATE ghealth.users SET userStatus=1 WHERE username='"+request.getList().get(0)+"'");
 			  result.close();
 
 			  

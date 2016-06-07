@@ -118,7 +118,7 @@ public class ServerController extends AbstractServer{
 			Statement stmt;
 			try {
 				stmt = myConn.createStatement();
-				stmt.executeUpdate("UPDATE ghealth.users SET userStatus=0");
+				stmt.executeUpdate("UPDATE ghealth.users SET userStatus=0 WHERE userName <> 'dummy'");
 				myConn.close();		
 					
 			} catch (SQLException e1) {

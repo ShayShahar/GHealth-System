@@ -33,6 +33,8 @@ public class UserController implements IController{
 	/** The username. */
 	private static String username;
 	
+	public String returnMsg;
+	
 	
 	
 	/**
@@ -77,7 +79,7 @@ public class UserController implements IController{
 	 * @param password Get the password PasswordField
 	 */
 	
-	private void validateUser(String username, String password) {
+		public void validateUser(String username, String password) {
 		
 		ArrayList<String> userDetails = new ArrayList<String>();
 		userDetails.add(username);
@@ -108,6 +110,7 @@ public class UserController implements IController{
 		if (result instanceof String){
 			
 			result = (String) result;
+			returnMsg = "LoginSuccess";
 						
 				if (((String) result).equalsIgnoreCase("Dispatcher")){
 					
@@ -172,14 +175,19 @@ public class UserController implements IController{
 			result = (Result)result;
 					
 			if ((Result)result == Result.WRONG_USER){
+				returnMsg = "WrongUser";
+
 				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage ("Invalid username", "Check your input and try again.");
 					return;
 			}
 			else if ((Result)result == Result.WRONG_PASSWORD){
+				returnMsg = "WrongPassword";
 				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage ("Wrong password", "You have entered a wrong password, try again.");
 					return;
 			}
 			else if ((Result)result == Result.ALREADY_LOGIN){
+				returnMsg = "AlreadyLogin";
+
 				ClientConnectionController.clientConnect.userInterface.get(0).displayErrorMessage ("Login Error", "User already logged in.");
 					return;
 			}
