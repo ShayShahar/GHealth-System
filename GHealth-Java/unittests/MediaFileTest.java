@@ -1,6 +1,5 @@
-package unittests;
 
-import org.junit.Test;
+import org.junit.*;
 import client.control.ClientConnectionController;
 import client.control.CreateClientController;
 import junit.framework.TestCase;
@@ -23,12 +22,24 @@ public class MediaFileTest extends TestCase{
 	/**
 	 * Initialize client connection and create an instance of CreateClientController class.
 	 */
+	@Before
 	public void setUp(){
 		
 		clientCtrlr = new CreateClientController();
 		
 		ClientConnectionController.connectToServer(ClientConnectionController.DEFAULT_IP, ClientConnectionController.DEFAULT_PORT);
 			
+	}
+	
+	/**
+	 * Clean created client from db.
+	 */
+	@AfterClass
+	public void tearDown(){
+		
+		ClientConnectionController.connectToServer(ClientConnectionController.DEFAULT_IP, ClientConnectionController.DEFAULT_PORT);
+		clientCtrlr.deleteClient(notAvialableID);
+
 	}
 
 	/**
@@ -73,7 +84,7 @@ public class MediaFileTest extends TestCase{
  		String result = clientCtrlr.returnMsg;
 		
  		assertTrue(execpted.equalsIgnoreCase(result));
- 		
+ 		 		
 	}
 	
 	
@@ -119,5 +130,6 @@ public class MediaFileTest extends TestCase{
  		assertTrue(execpted.equalsIgnoreCase(result));
  		
 	}
+	
 	
 }

@@ -2,6 +2,7 @@ package client.control;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import client.boundry.*;
@@ -241,6 +242,22 @@ public class CreateClientController implements IController, Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	public void deleteClient(String personID){
+		
+		ArrayList<String> msg = new ArrayList<String>();
+		msg.add(personID);
+		
+		Request request = new Request(Command.DELETE_CLIENT,msg);
+		
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	/**
 	 * On back button click.

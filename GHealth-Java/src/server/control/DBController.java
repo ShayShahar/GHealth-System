@@ -170,6 +170,10 @@ public class DBController {
 				case FIND_MEDFILE:{
 					return FindMedFileDB.handleMessage(request, connection);
 				}
+				
+				case DELETE_CLIENT:{
+					return DeleteClientDB.handleMessage(request, connection);
+				}
 
 				default:
 				break;

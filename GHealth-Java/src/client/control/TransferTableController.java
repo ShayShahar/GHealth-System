@@ -4,30 +4,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import client.boundry.SpecialistUI;
 import client.boundry.TransferDetailsUI;
 import client.boundry.TransferTableUI;
-import client.boundry.ViewExaminationUI;
-import client.entity.Examination;
 import client.entity.MedicalFile;
 import client.interfaces.IController;
 import client.interfaces.IUi;
 import common.entity.Reply;
 import common.entity.Request;
 import common.enums.Command;
-import fitlibrary.traverse.Evaluator;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-// TODO: Auto-generated Javadoc
 /**
  * TransferTableController connects between the TransferTableUI to the components logics.
  * @author asaf
@@ -205,6 +198,7 @@ public class TransferTableController implements IController,Initializable{
 	/* (non-Javadoc)
 	 * @see client.interfaces.IController#handleReply(common.entity.Reply)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void handleReply(Reply reply) {
 		Object result =  reply.getResult();

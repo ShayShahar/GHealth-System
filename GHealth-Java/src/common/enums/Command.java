@@ -114,10 +114,13 @@ public enum Command {
     /** The get appointment review. */
     GET_APPOINTMENT_REVIEW,
 		
-		/** The send notification. */
-		SEND_NOTIFICATION, 
-		
-		/** The find medical file. */
-		FIND_MEDFILE;
+	/** The send notification. */
+	SEND_NOTIFICATION, 
+	
+	/** The find medical file. */
+	FIND_MEDFILE,
+	
+	/** The find delete client. */
+	DELETE_CLIENT;
 
 }

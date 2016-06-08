@@ -1,4 +1,3 @@
-package unittests;
 
 import org.junit.Test;
 import client.control.ClientConnectionController;
