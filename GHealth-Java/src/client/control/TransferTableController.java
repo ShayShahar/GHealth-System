@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 /**
  * TransferTableController connects between the TransferTableUI to the components logics.
  * @author asaf
