@@ -309,13 +309,17 @@ public class ExaminationController implements IController, Initializable{
 				fieldUrgency.setText(reference.getUrgency());
 				
 				
-				if(reference.getStatus() == 0)
+				if(reference.getStatus() == 0) {
 					fieldStatus.setText("Not Checked");
-				else 
-					fieldStatus.setText("Checked");
-				
-				
-				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");        //set the format of the date
+					examBtn.setText("Add Examination Result");
+
+				}
+				else {
+					fieldStatus.setText("Checked");			
+					examBtn.setText("Update Examination Result");
+				}
+
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");        //set the format of the date
 				fieldDate.setText(df.format(reference.getDate().getTime()));
 				fieldType.setText(reference.getType());
 				examBtn.setDisable(false);

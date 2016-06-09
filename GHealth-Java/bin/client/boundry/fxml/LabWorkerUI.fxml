@@ -52,7 +52,7 @@
                   <Label text="Date " GridPane.columnIndex="2" />
                   <Label text="Specielist ID " GridPane.rowIndex="2" />
                   <Label text="Type " GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Label text="Code " GridPane.rowIndex="3" />
+                  <Label text="Examination ID " GridPane.rowIndex="3" />
                   <Label text="Status " GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <Label text="Client ID " GridPane.rowIndex="1" />
                   <Label text="Urgency " GridPane.columnIndex="2" GridPane.rowIndex="1" />

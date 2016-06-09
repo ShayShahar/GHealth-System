@@ -44,7 +44,7 @@
             <TextField fx:id="fieldClientAddress" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <TextField fx:id="fieldClientPhone" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="fieldClientEmail" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Label text="personID" GridPane.rowIndex="1" />
+            <Label text="ID " GridPane.rowIndex="1" />
             <Label text="Address " GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Phone Number " GridPane.rowIndex="2" />
             <Label text="Email " GridPane.columnIndex="2" GridPane.rowIndex="2" />
