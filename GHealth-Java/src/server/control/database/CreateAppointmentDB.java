@@ -39,6 +39,8 @@ public class CreateAppointmentDB {
 		String searchAppointment = "SELECT * FROM ghealth.appointments " + 
 																	 "WHERE client = ? AND appDate = ? AND appTime = ?";
 
+		String searchAppointmentForSpec = "SELECT * FROM ghealth.appointments " + 
+				 "WHERE specialist = ? AND appDate = ? AND appTime = ?";
 		
 		try {
 			
@@ -56,6 +58,21 @@ public class CreateAppointmentDB {
 				    return Result.ERROR;
 		    	}
 		    }
+		    
+		    
+			  //check if the client have another appointment in same date and hour
+		    PreparedStatement preparedStatement5 = connection.prepareStatement(searchAppointmentForSpec);
+		    preparedStatement5.setInt(1,appointment.getSpecialistID());
+		    preparedStatement5.setDate(2,appointment.getDate());
+		    preparedStatement5.setInt(3,appointment.getTime());
+			
+		    res = preparedStatement5.executeQuery();
+		    
+		    if (res.next()){
+		    	return Result.FAILED;
+		    }
+		    
+		    
 		    
 		  //check if the client have another appointment in same date and hour
 		    PreparedStatement preparedStatement2 = connection.prepareStatement(searchAppointment);

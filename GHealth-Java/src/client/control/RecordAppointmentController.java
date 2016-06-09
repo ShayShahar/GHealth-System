@@ -212,7 +212,6 @@ if (reply.getCommand() == Command.INSERT_RECORD){
 
 					@Override
 					public void run() {
-						System.out.println(res.get(0));
 						SpClientIDTxt.setText(res.get(0));
 						fieldClientName.setText(res.get(1));
 						fieldClientFamily.setText(res.get(2));

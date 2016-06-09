@@ -1,5 +1,9 @@
 package Fixtures;
 
+import java.text.SimpleDateFormat;
+
+import client.control.ClientConnectionController;
+import client.control.CreateAppointmentController;
 import client.entity.Appointment;
 import fit.ActionFixture;
 
@@ -7,55 +11,35 @@ import fit.ActionFixture;
 public class CreateAppointmentTest extends ActionFixture{
 
 	private Appointment appointment = new Appointment();
-	
-	public void setClientId (int id){
-		appointment.setClientID(id);
+	private CreateAppointmentController appCtrl = new CreateAppointmentController();
+
+	public void setAppointmentDate(String dateStr){
+		SimpleDateFormat sdf;
+		java.util.Date date = null;
+		
+		try{
+			sdf = new SimpleDateFormat("yyyy-MM-dd");
+			date = sdf.parse(dateStr);
+			java.sql.Date parsed = new java.sql.Date(date.getTime());
+			appointment.setDate(parsed);
+			
+		}catch(Exception e){
+		}
 	}
 	
-	public int getClientId(){
-		return appointment.getClientID();
-	}
-	
-	public void setAppointmentId(int id){
-		appointment.setAppointmentID(id);
-	}
-	
-	public int getAppointmentId(){
-		return appointment.getAppointmentID();
-	}
-	
-	public void setDate(String date){
-		appointment.setDateString(date);
-	}
 	
 	public String getDate(){
-		return appointment.getDateString();
+		return appointment.getDate().toString();
 	}
 	
-	public void setInviteDate(String date){
-		appointment.setInviteDate(date);
+	public void setTime(int time){
+		appointment.setTime(time);
 	}
 	
-	public String getInviteDate(){
-		return appointment.getInviteDate();
+	public int getTime(){
+		return appointment.getTime();
 	}
 
-	public void setTime(String time){
-		appointment.setTimeString(time);
-	}
-	
-	public String getTime(){
-		return appointment.getTimeString();
-	}
-	
-	public void setBranch(String branch){
-		appointment.setBranchName(branch);
-	}
-	
-	public String getBranch(){
-		return appointment.getBranchName();
-	}
-	
 	public void setSpecialistId(int id){
 		appointment.setSpecialistID(id);
 	}
@@ -63,4 +47,29 @@ public class CreateAppointmentTest extends ActionFixture{
 	public int getSpecialistId(){
 		return appointment.getSpecialistID();
 	}
+	
+	public void setClientId(int id){
+		appointment.setClientID(id);
+	}
+	
+	
+	public int getClientId(){
+		return appointment.getClientID();
+	}
+	
+	
+	public String createAppointment(){
+		ClientConnectionController.connectToServer(ClientConnectionController.DEFAULT_IP, ClientConnectionController.DEFAULT_PORT);
+		appCtrl.createAppointment(appointment);
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		return appCtrl.returnMsg;
+
+	}
+	
 }

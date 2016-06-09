@@ -107,6 +107,8 @@ public class CreateAppointmentController implements IController, Initializable{
   /** The blocked dates. */
   private ArrayList<DateChecker> blockedDates = new ArrayList<DateChecker>();
   
+  public String returnMsg = "";
+  
   /** The get hour by integer. */
   HashMap<Integer,String> getHourByInteger = new HashMap<Integer,String>();
   
@@ -466,6 +468,24 @@ public class CreateAppointmentController implements IController, Initializable{
 		
 	}
 	
+	
+	/**
+	 * The function creates a CREATE_APPOINTMENT request message and send it to the server.
+	 * @param appointment Gets an Appointment instance
+	 */
+	public void createAppointment(Appointment appointment){
+				
+		Request request = new Request(Command.CREATE_APPOINTMENT,appointment);
+		
+		try {
+			ClientConnectionController.clientConnect.controller = this;
+			ClientConnectionController.clientConnect.sendToServer(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+		
+	}
+	
 	/**
 	 * onSelectDate function handles a click on the date picker.
 	 * The function creates a FIND_AVAILABLE_HOURS request and send it to the server.
@@ -581,15 +601,17 @@ public class CreateAppointmentController implements IController, Initializable{
 		else if (reply.getCommand() == Command.CREATE_APPOINTMENT){
 		
 			if ((Result)result == Result.ERROR){
+				returnMsg = "Specialist Busy";
 				thisUi.displayErrorMessage("Cannot Create Appointmnet", "Error occured while tried to create the appoinment, try again.");
 			}
 			else if ((Result)result == Result.FAILED){
+				returnMsg = "Duplicate Error";
 				thisUi.displayErrorMessage("Duplicate appointments error", "This client have another appointment at the same date and hour as you choosed.");
 
 			}
 			else{
+				returnMsg = "Succeed";
 				thisUi.hideWindow();
-				
 				for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 					if (ui instanceof DispatcherUI){
 						ui.showWindow();

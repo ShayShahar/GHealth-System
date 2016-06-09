@@ -39,7 +39,6 @@ public class GetBranchByUserNameDB {
 					   return Result.ERROR;
 				   }
 				   
-				   System.out.println(rs.getString(1));
 				   return rs.getString(1);
 				   
 		}catch(Exception e){

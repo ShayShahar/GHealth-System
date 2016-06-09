@@ -75,8 +75,8 @@ public class MonthlyReportDB {
 			}
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			java.util.Date date = sdf.parse(strDate);
-      java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-      stmnt1.setDate(1, sqlDate);
+			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+			stmnt1.setDate(1, sqlDate);
 			ResultSet week_number = stmnt1.executeQuery();
 			week_number.next();
 			int first_week = week_number.getInt(1);
@@ -219,7 +219,6 @@ public class MonthlyReportDB {
 			list.add(total_waiting);
 			list.add(total_missed);
 			list.add(total_left);
-			System.out.println(list);
 			return list;
 			
 		}catch(Exception e){

@@ -64,8 +64,6 @@ public class CreateExaminationUpdateDB {
 		
 
  catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	 System.out.println("FindReferenceByCidSidDate Error");
 	    e.printStackTrace();
 	    return Result.ERROR;
 	}

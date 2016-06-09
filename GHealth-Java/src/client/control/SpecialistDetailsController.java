@@ -543,7 +543,6 @@ public class SpecialistDetailsController implements IController, Initializable{
 
 			else if (reply.getCommand() == Command.FIND_USERID_BY_USERNAME){
 				userId = (Integer)result;
-				System.out.println(userId);
 				
 			}
 			

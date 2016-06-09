@@ -149,7 +149,7 @@ public class CancelAppointmentController implements IController, Initializable{
 	}
 	
 	/**
-   * cancelAppointment function creates a CANCEL_APPOINTMENT request message and send it to the server.
+	 * cancelAppointment function creates a CANCEL_APPOINTMENT request message and send it to the server.
 	 * @param appID Gets the appointment's ID
 	 */
 	public void cancelAppointment(int appID){

@@ -62,31 +62,32 @@ public class CancelAppointmentDB {
 		    res2 = preparedStatement2.executeQuery();
 			   
 			    
-	      if (!res2.next()) {
+		    if (!res2.next()) {
 			   	return Result.ERROR;
 			  }
+			   
+	      
 			    
-			    
-				String checkAppointments = res2.getString(3);
+			String checkAppointments = res2.getString(3);
 		  	int appointmentTime = res.getInt(4);
-			    				    	
+		    appointmentTime--;
 		  	StringBuilder builder = new StringBuilder(checkAppointments);
-		  	builder.setCharAt(appointmentTime - 1, '0');
+		  	builder.setCharAt(appointmentTime, '0');
 			    	
 			  if (builder.toString().equals("000000000000000000")){
 				  
 				  PreparedStatement preparedStatement3 = connection.prepareStatement(deleteDate);
 				  preparedStatement3.setDate(1, res.getDate(2));
-				  preparedStatement3.setInt(2, res.getInt(8));
+				  preparedStatement3.setInt(2, res.getInt(9));
 				  preparedStatement3.executeUpdate(); 	
 			  }
 			    	
 			  else{
 				  
-				  PreparedStatement preparedStatement4 = connection.prepareStatement(updateDate);
+				PreparedStatement preparedStatement4 = connection.prepareStatement(updateDate);
 			    preparedStatement4.setString(1, builder.toString());
 			    preparedStatement4.setDate(2,res.getDate(2));
-			    preparedStatement4.setInt(3, res.getInt(8));
+			    preparedStatement4.setInt(3, res.getInt(9));
 			    preparedStatement4.executeUpdate();
 	   	  		}		    
 		   

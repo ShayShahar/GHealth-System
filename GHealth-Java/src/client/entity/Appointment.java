@@ -93,6 +93,9 @@ public class Appointment  implements Serializable{
 	 * @param time the new time
 	 */
 	public void setTime(int time) {
+		if (time <=0 || time > 18)
+			return;
+		
 		this.time = time;
 	}
 	
@@ -201,6 +204,8 @@ public class Appointment  implements Serializable{
 	 * @param specialistID the new specialist id
 	 */
 	public void setSpecialistID(int specialistID) {
+		if (specialistID <=0)
+			return;
 		this.specialistID = specialistID;
 	}
 
@@ -221,6 +226,8 @@ public class Appointment  implements Serializable{
 	 * @param clientID the new client id
 	 */
 	public void setClientID(int clientID) {
+		if (clientID <= 0)
+			return;
 		this.clientID = clientID;
 	}
 	
