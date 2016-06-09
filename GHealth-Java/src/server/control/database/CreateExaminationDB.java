@@ -37,13 +37,26 @@ public class CreateExaminationDB {
 		pictures = exam.getPictures();
 		int num = pictures.size();
 		
+		String searchExamination = "SELECT * FROM ghealth.reference WHERE ghealth.reference.refID=? AND ghealth.reference.refStatus = 1";
 		String insertNewExamination = "INSERT INTO ghealth.examination (exDetails,exPicture0,exPicture1,exPicture2,exPicture3) VALUES (?,?,?,?,?)";
+		
 		
 		try {
 			
-			Statement stmnt = connection.createStatement();
+			/**
+			 * check if there is no examination for the reference
+			 */
+			 PreparedStatement preparedStatement0 = connection.prepareStatement(searchExamination);
+			 preparedStatement0.setInt(1, exam.getReferenceId());
+			 ResultSet res0 = preparedStatement0.executeQuery();
+			 
+			 if (res0.next()){
+				 return Result.FAILED;
+			 }
+
+			 Statement stmnt = connection.createStatement();
 			
-			//create new Examination
+			 //create new Examination
 			
 			 PreparedStatement preparedStatement = connection.prepareStatement(insertNewExamination);
 			 
@@ -55,10 +68,9 @@ public class CreateExaminationDB {
 		     preparedStatement.setBytes(i+2,exam.getPictures().get(i));
 			 
 			 
-			 for(int j=4;j>num;j--)
-			    {
+			 for(int j=4;j>num;j--){
 			    preparedStatement.setNull(j+1, java.sql.Types.BLOB);   
-			    }
+			 }
 				    
 			 
 			 preparedStatement.executeUpdate();
@@ -66,16 +78,14 @@ public class CreateExaminationDB {
 		    
 		   
 		   
-		 //Create new Exam id to the match reference and change the status to 1
+			 //Create new Exam id to the match reference and change the status to 1
 		    
 		    ResultSet res = stmnt.executeQuery("SELECT * FROM ghealth.examination WHERE ghealth.examination.exDetails ='"+exam.getDetails()+"'");
+		   
 		    if (res.next()) {
 		    	id = res.getInt(1);
-		    	
-		    	 stmnt.executeUpdate("UPDATE ghealth.reference SET ghealth.reference.examination_id ='"+id+"',ghealth.reference.refStatus ='1'  WHERE `refID`='"+exam.getRef_id()+"';");
-		    	 
-		    return id;	
-		 
+		    	stmnt.executeUpdate("UPDATE ghealth.reference SET ghealth.reference.examination_id ='"+id+"',ghealth.reference.refStatus ='1'  WHERE `refID`='"+exam.getReferenceId() +"';");
+		    	return id;	
 		     }
 		    
 		 

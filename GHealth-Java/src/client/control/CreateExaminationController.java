@@ -37,9 +37,9 @@ import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 
 /**
- * CreateExaminationController handle the Examinations by the labworker 
- * from specific reference that the specacialist gave the Client , 
- * The LabWorker can add pictures and comments to the examinatiion.
+ * CreateExaminationController handle the Examinations by the lab worker 
+ * from specific reference that the specialist gave the Client , 
+ * The LabWorker can add pictures and comments to the examination.
  * @author Raz
  */
 public class CreateExaminationController implements IController, Initializable{
@@ -68,11 +68,12 @@ public class CreateExaminationController implements IController, Initializable{
 	/** array of the pictures to database according the the position in the screen(to avoid to add pictures that we throwed out). */
 	private byte[][]  DBpic  = new  byte[4][];
 	
-	/** The this ui. */
-	/*
+	/**
 	 * UI variable for createExamination view.
 	 */
 	IUi thisUi = null;
+	
+	public String returnMsg = "";
 	
 	/**
 	 * the current handle examination.
@@ -103,7 +104,7 @@ public class CreateExaminationController implements IController, Initializable{
 		Xbtn4.setDisable(true);
 
 		examType.setText(ExaminationController.currentReference.getType());
-		CErefnum.setText(Integer.toString(ExaminationController.currentReference.getRefNum()));
+		CErefnum.setText(Integer.toString(ExaminationController.currentReference.getReferenceNumber()));
 		
 		for (IUi ui : ClientConnectionController.clientConnect.userInterface){
 			if (ui instanceof CreateExaminationUI){
@@ -368,30 +369,34 @@ public class CreateExaminationController implements IController, Initializable{
 		Object result =  reply.getResult();
 		
 		
-		if(result instanceof Result)
+		if (reply.getCommand() == Command.CREATE_EXAMINATION)
 		{
 			
-		if ((Result)result == Result.ERROR){
-			
-			ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
-				System.exit(1);
+			if(result instanceof Result) {
+					
+				if ((Result)result == Result.ERROR){
+					
+					thisUi.displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
+					System.exit(1);
+				}
+				
+				else if ((Result)result == Result.FAILED){
+					returnMsg = "Already created";
+					thisUi.displayErrorMessage ("Error", "Error occured while trying to create examination.");
+				}
+
+			}
+			else{
+				returnMsg = "Created";
+				ExaminationController.currentReference.setCode(((int)result));
+				onBackButtonClick();
+				thisUi.displayMessage ("Examination Created", "Examination successfully created.");
+				
+			}
+
 		}
 		
-		
-		}
-		
-		if (reply.getCommand() == Command.CREATE_EXAMINATION )
-		{
-			
-			
-			
-			ExaminationController.currentReference.setCode(((int)result));
-			onBackButtonClick();
-			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("Examination Created", "Examination successfully created.");
-		}
-		
-		
-		
+	
 		if (reply.getCommand() == Command.CREATE_EXAMINATION_VIEW )
 		{
 			
@@ -423,8 +428,6 @@ public class CreateExaminationController implements IController, Initializable{
 					Xbtn4.setDisable(true);	
 			     }
 				
-				
-				
 			}
 				}
 			});		
@@ -435,10 +438,7 @@ public class CreateExaminationController implements IController, Initializable{
 			onBackButtonClick();
 			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("Update", "Examination successfully updated");
 			
-		}
-		
-			 
-			 
+		}		 
 	}
 	
 	/**
@@ -491,7 +491,6 @@ public class CreateExaminationController implements IController, Initializable{
  	 */
 	 public void OnSendClickButton()
 	 {
-		 Request request = null;
 		 
 		 if (ExamTextArea.getText().trim().isEmpty() || ExamTextArea.getText() == null){
 			 thisUi.displayErrorMessage("Missing Required Fields", "Please add examination results in the text field");
@@ -503,15 +502,13 @@ public class CreateExaminationController implements IController, Initializable{
 			 
 			
 			 FileNameToArrayList();
-			 
+				 
+			 Examination exam = new Examination();
+			 exam.setReferenceId(ExaminationController.currentReference.getReferenceNumber());
+	         exam.setDetails(ExamTextArea.getText());
+	         exam.setPictures(pictures);
 			
-		 Examination exam = new Examination();
-		 exam.setRef_id(ExaminationController.currentReference.getRefNum());
-         exam.setDetails(ExamTextArea.getText());
-         exam.setPictures(pictures);
-		 request = new Request(Command.CREATE_EXAMINATION, exam);
-		
-		 
+	         createExamination(exam);
 		 
 		 }
 		 else
@@ -528,9 +525,22 @@ public class CreateExaminationController implements IController, Initializable{
 				 }
 			 
 			
-			this.exam.setPictures(pictures);
+			 this.exam.setPictures(pictures);
 			 this.exam.setDetails(ExamTextArea.getText());
-			 request = new Request(Command.CREATE_EXAMINATION_UPDATE, exam);
+			 updateExamination(exam);
+			 
+		 }
+		 
+	 }
+	 
+	 
+	 public void createExamination(Examination examination){
+		 
+		 Request request = new Request(Command.CREATE_EXAMINATION, examination);
+		 
+		 if (examination.getDetails().trim().isEmpty() || examination.getDetails() == null){
+			 returnMsg = "Missing Details";
+			 return;
 		 }
 		 
 		 try {
@@ -539,9 +549,20 @@ public class CreateExaminationController implements IController, Initializable{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
 	 }
 	 
+	 public void updateExamination(Examination examination){
+		 
+		 Request request = new Request(Command.CREATE_EXAMINATION_UPDATE, examination);
+		 
+		 try {
+				ClientConnectionController.clientConnect.controller = this;
+				ClientConnectionController.clientConnect.sendToServer(request);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		 
+	 }
 	 /**
  	 * configure the browse picture to filter images by diffrent formats.
  	 *

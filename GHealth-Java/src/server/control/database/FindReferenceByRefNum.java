@@ -46,8 +46,8 @@ public class FindReferenceByRefNum {
 				
 			    if (res.next()) {
 			    	 
-			    	reference.setCId(res.getInt(7));  
-			    	reference.setSId(res.getInt(8));  
+			    	reference.setClientId(res.getInt(7));  
+			    	reference.setSpecialistId(res.getInt(8));  
 			    	reference.setDate(res.getDate(2)); 
 			    	reference.setComments(res.getString(3));  
 					    if(res.getString(6) == null)    
@@ -55,7 +55,7 @@ public class FindReferenceByRefNum {
 					  reference.setCode(res.getInt(6));     
 					  reference.setUrgency(res.getString(4));  
 					  reference.setStatus(res.getInt(5)); 
-					  reference.setRefNum(res.getInt(1));
+					  reference.setReferenceNumber(res.getInt(1));
 					  reference.setType(res.getString(9));
 					  
 					  return reference;

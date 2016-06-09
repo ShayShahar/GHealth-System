@@ -1,11 +1,33 @@
-<html>
+<html><head><title>Suite CreateExaminationTest.fit run at: Thu Jun 09 21:24:47 IDT 2016</title>
+	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="screen"/>
+ 	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="print"/>
+<script language="JavaScript" type="text/javascript">
+var collapsableOpenCss = "collapsable"
+var collapsableClosedCss = "hidden"
+var collapsableOpenImg = "images/collapsableOpen.gif"
+var collapsableClosedImg = "images/collapsableClosed.gif"
+function toggleCollapsable(id){
+var div = document.getElementById(id);
+var img = document.getElementById("img" + id);
+if(div.className.indexOf(collapsableClosedCss) != -1) {
+div.className = collapsableOpenCss;
+img.src = collapsableOpenImg;
+} else {
+div.className = collapsableClosedCss;
+img.src = collapsableClosedImg;
+} }
+</script>
+
+</head>
+<body>
+<div> Suite is: C:/Users/shays/Documents/GitHub/GHealth-System/GHealth-Java/Tests/FitTests/CreateExaminationTest.fit</div><div class="test_output_name">Name: CreateExaminationTest.fit</div><div> Suite executed at: Thu Jun 09 21:24:47 IDT 2016 Elapsed time: 6 seconds 197 millseconds  </div><table><tr><td></td><td><a href="#43344eb4:1553668d175:-8000">CreateExaminationTest.fit</a></td><td class="pass">8 right, 0 wrong, 0 ignored, 0 exceptions</td></tr></table><div class="test_output_name"><a name="43344eb4:1553668d175:-8000"/><p>Test file: CreateExaminationTest.fit</p></div><html>
 <head>
 	<title></title>
 </head>
 <body>
 <p class="style1" style="color: rgb(0, 0, 205);"><em>Create examination operation&nbsp;- acceptance test.</em></p>
 
-<p class="style1">Lab worker can attach examination to a lab reference that created by a specialists via&nbsp;Ghealth system. The create examination operation start after the lab wotker logs in to the system and find the requested reference details.</p>
+<p class="style1">Lab worker can attach examination to a lab reference that created by a specialists via&nbsp;Ghealth system. The create examination operation start after the lab wotker logs in to the system and find the requested refernce details.</p>
 
 <p class="style1"><u><strong>NOTE:</strong></u> Remember to manualy remove the allocated examination for reference number 8 after running the test.</p>
 
@@ -89,7 +111,7 @@
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">getReferenceId</td>
-			<td class="style1">0</td>
+			<td class="style1" class="pass">0</td>
 		</tr>
 		<tr>
 			<td class="style1">enter</td>
@@ -99,7 +121,7 @@
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">getDetails</td>
-			<td class="style1">Test</td>
+			<td class="style1" class="pass">Test</td>
 		</tr>
 		<tr>
 			<td class="style1">enter</td>
@@ -109,12 +131,12 @@
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">getReferenceId</td>
-			<td class="style1">8</td>
+			<td class="style1" class="pass">8</td>
 		</tr>
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">createExamination</td>
-			<td class="style1">Created</td>
+			<td class="style1" class="pass">Created</td>
 		</tr>
 		<tr>
 			<td class="style1">enter</td>
@@ -124,12 +146,12 @@
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">getDetails</td>
-			<td class="style1">&nbsp;</td>
+			<td class="style1">&nbsp; <span class="fit_grey">blank</span></td>
 		</tr>
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">createExamination</td>
-			<td class="style1">Missing Details</td>
+			<td class="style1" class="pass">Missing Details</td>
 		</tr>
 		<tr>
 			<td class="style1">enter</td>
@@ -139,7 +161,7 @@
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">getDetails</td>
-			<td class="style1">Test</td>
+			<td class="style1" class="pass">Test</td>
 		</tr>
 		<tr>
 			<td class="style1">enter</td>
@@ -149,12 +171,12 @@
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">getReferenceId</td>
-			<td class="style1">9</td>
+			<td class="style1" class="pass">9</td>
 		</tr>
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">createExamination</td>
-			<td class="style1">Already created</td>
+			<td class="style1" class="pass">Already created</td>
 		</tr>
 	</tbody>
 </table>
@@ -162,3 +184,5 @@
 <p class="style1">Creating&nbsp;examination FIT Test G1</p>
 </body>
 </html>
+
+</body></html>

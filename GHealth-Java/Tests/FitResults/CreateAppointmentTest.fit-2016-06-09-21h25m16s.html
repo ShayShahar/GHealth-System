@@ -1,4 +1,4 @@
-<html><head><title>Suite CreateAppointmentTest.fit run at: Thu Jun 09 17:30:30 IDT 2016</title>
+<html><head><title>Suite CreateAppointmentTest.fit run at: Thu Jun 09 21:25:22 IDT 2016</title>
 	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="screen"/>
  	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="print"/>
 <script language="JavaScript" type="text/javascript">
@@ -20,7 +20,7 @@ img.src = collapsableClosedImg;
 
 </head>
 <body>
-<div> Suite is: C:/Users/shays/Documents/GitHub/GHealth-System/GHealth-Java/Tests/FitTests/CreateAppointmentTest.fit</div><div class="test_output_name">Name: CreateAppointmentTest.fit</div><div> Suite executed at: Thu Jun 09 17:30:30 IDT 2016 Elapsed time: 6 seconds 248 millseconds  </div><table><tr><td></td><td><a href="#-48687ee2:1553592537e:-8000">CreateAppointmentTest.fit</a></td><td class="pass">14 right, 0 wrong, 0 ignored, 0 exceptions</td></tr></table><div class="test_output_name"><a name="-48687ee2:1553592537e:-8000"/><p>Test file: CreateAppointmentTest.fit</p></div><html>
+<div> Suite is: C:/Users/shays/Documents/GitHub/GHealth-System/GHealth-Java/Tests/FitTests/CreateAppointmentTest.fit</div><div class="test_output_name">Name: CreateAppointmentTest.fit</div><div> Suite executed at: Thu Jun 09 21:25:22 IDT 2016 Elapsed time: 6 seconds 226 millseconds  </div><table><tr><td></td><td><a href="#-5ca076d4:15536695e03:-8000">CreateAppointmentTest.fit</a></td><td class="pass">15 right, 0 wrong, 0 ignored, 0 exceptions</td></tr></table><div class="test_output_name"><a name="-5ca076d4:15536695e03:-8000"/><p>Test file: CreateAppointmentTest.fit</p></div><html>
 <head>
 	<title></title>
 </head>
@@ -31,7 +31,9 @@ img.src = collapsableClosedImg;
 
 <p class="style1"><u><strong>NOTE: </strong></u>The third case occurs if two (or more) dispatchers are logged to the system and try to create appointments at the same date and time to the same specialist. In other cases the situation is prevented by the GUI components logics.</p>
 
-<p class="style1"><u><strong>NOTE:</strong></u> The hours in our system are presented by integers. for example 1 is referenced to 8:00,&nbsp; 2 for 8:30, 3 for 9:00, etc... <max: 18=""></max:></p>
+<p class="style1"><u><strong>NOTE:</strong></u> The hours in our system are presented by integers. for example 1 is referenced to 8:00,&nbsp; 2 for 8:30, 3 for 9:00, etc...</p>
+
+<p><u><strong>NOTE:</strong></u><strong> </strong>Remember to manualy remove the created appointment for client #1 to specialist #16 at 30/6/16, time 8:00 &lt;1&gt; after running the test.</p>
 
 <p class="style1"><strong><u>Use case description:</u></strong></p>
 
@@ -55,7 +57,7 @@ img.src = collapsableClosedImg;
 
 <p class="style1" style="margin-left: 40px;">2) Click on &quot;Search&quot; button.</p>
 
-<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Yossi Benayun&quot;. &lt;Speciclist ID: 1&gt;</p>
+<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Yossi Benayun&quot;. <speciclist 1=""></speciclist></p>
 
 <p class="style1" style="margin-left: 40px;">4) Choose an available date from the date picker, &quot;14/6/16&quot;.</p>
 
@@ -90,7 +92,7 @@ img.src = collapsableClosedImg;
 
 <p>&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
 
-<p class="style1">Existing Appointment in DB for test 2:&nbsp; &lt;Appointment ID: 62&gt;</p>
+<p class="style1">Existing Appointment in DB for test 2:&nbsp; <appointment 62=""></appointment></p>
 
 <p class="style1" style="margin-left: 40px;">Date: 3/7/16</p>
 
@@ -100,7 +102,7 @@ img.src = collapsableClosedImg;
 
 <p class="style1" style="margin-left: 40px;">Time: 12:00 &lt;9&gt;</p>
 
-<p>Existing Appointment in DB for test 3:&nbsp; &lt;Appointment ID: 63&gt;</p>
+<p>Existing Appointment in DB for test 3:&nbsp;&nbsp;</p>
 
 <p><br />
 &nbsp;&nbsp;&nbsp;&nbsp; Date: 3/7/16</p>
@@ -268,7 +270,7 @@ img.src = collapsableClosedImg;
 		<tr>
 			<td class="style1">check</td>
 			<td class="style1">createAppointment</td>
-			<td class="style1">&nbsp; <span class="fit_grey">Specialist Busy</span></td>
+			<td class="style1" class="pass">Specialist Busy</td>
 		</tr>
 	</tbody>
 </table>

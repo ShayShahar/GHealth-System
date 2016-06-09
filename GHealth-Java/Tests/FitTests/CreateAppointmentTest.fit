@@ -9,7 +9,9 @@
 
 <p class="style1"><u><strong>NOTE: </strong></u>The third case occurs if two (or more) dispatchers are logged to the system and try to create appointments at the same date and time to the same specialist. In other cases the situation is prevented by the GUI components logics.</p>
 
-<p class="style1"><u><strong>NOTE:</strong></u> The hours in our system are presented by integers. for example 1 is referenced to 8:00,&nbsp; 2 for 8:30, 3 for 9:00, etc... <max: 18=""></max:></p>
+<p class="style1"><u><strong>NOTE:</strong></u> The hours in our system are presented by integers. for example 1 is referenced to 8:00,&nbsp; 2 for 8:30, 3 for 9:00, etc...</p>
+
+<p><u><strong>NOTE:</strong></u><strong> </strong>Remember to manualy remove the created appointment for client #1 to specialist #16 at 30/6/16, time 8:00 &lt;1&gt; after running the test.</p>
 
 <p class="style1"><strong><u>Use case description:</u></strong></p>
 
@@ -78,7 +80,7 @@
 
 <p class="style1" style="margin-left: 40px;">Time: 12:00 &lt;9&gt;</p>
 
-<p>Existing Appointment in DB for test 3:&nbsp; <appointment 63=""></appointment></p>
+<p>Existing Appointment in DB for test 3:&nbsp;&nbsp;</p>
 
 <p><br />
 &nbsp;&nbsp;&nbsp;&nbsp; Date: 3/7/16</p>

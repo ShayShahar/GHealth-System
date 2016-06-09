@@ -255,7 +255,7 @@ public class ViewExaminationController implements IController,Initializable{
 	public void openViewExamination(int serialNo,int examinationId,String examinationCode){		
 		
 		ExaminationController.currentReference = new Reference();
-		ExaminationController.currentReference.setRefNum(serialNo);
+		ExaminationController.currentReference.setReferenceNumber(serialNo);
 		ExaminationController.currentReference.setCode(examinationId);
 		ExaminationController.currentReference.setType(examinationCode);
 		

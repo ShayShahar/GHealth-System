@@ -159,8 +159,8 @@ public class ViewReferenceController implements IController, Initializable{
 		
 					Reference reference = (Reference)result;
 					fieldComments.setText(reference.getComments());
-					fieldClientID.setText(Integer.toString(reference.getCId()));
-					fieldSpecielistID.setText(Integer.toString(reference.getSId()));
+					fieldClientID.setText(Integer.toString(reference.getClientId()));
+					fieldSpecielistID.setText(Integer.toString(reference.getSpecialistId()));
 					fieldCode.setText(Integer.toString(reference.getCode()));
 					fieldUrgency.setText(reference.getUrgency());
 					

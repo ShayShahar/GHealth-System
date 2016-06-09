@@ -141,8 +141,8 @@ public class ExaminationController implements IController, Initializable{
 			
 			Reference reference = new Reference();
 			reference.setDate(date);
-			reference.setCId(Integer.parseInt(cidField.getText()));
-			reference.setSId(Integer.parseInt(sidField.getText()));
+			reference.setClientId(Integer.parseInt(cidField.getText()));
+			reference.setSpecialistId(Integer.parseInt(sidField.getText()));
 			request = new Request(Command.FIND_REFERENCE_BY_SID_CID_DATE, (Object)reference);
 	
 	    }
@@ -302,9 +302,9 @@ public class ExaminationController implements IController, Initializable{
 				
 				//SetText to the fields
 				fieldComments.setText(reference.getComments());
-				fieldReferenceNum.setText(Integer.toString(reference.getRefNum()));
-				fieldClientID.setText(Integer.toString(reference.getCId()));
-				fieldSpecielistID.setText(Integer.toString(reference.getSId()));
+				fieldReferenceNum.setText(Integer.toString(reference.getReferenceNumber()));
+				fieldClientID.setText(Integer.toString(reference.getClientId()));
+				fieldSpecielistID.setText(Integer.toString(reference.getSpecialistId()));
 				fieldCode.setText(Integer.toString(reference.getCode()));
 				fieldUrgency.setText(reference.getUrgency());
 				

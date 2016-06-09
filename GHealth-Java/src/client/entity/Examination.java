@@ -15,9 +15,9 @@ public class Examination implements Serializable{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
-	/** The Ref_id. */
-	//Class Members
-	private int id , Ref_id;
+	private int id;
+	
+	private int referenceId;	
 	
 	/** The date. */
 	private String date;
@@ -101,8 +101,8 @@ public class Examination implements Serializable{
 	 *
 	 * @return the ref_id
 	 */
-	public int getRef_id() {
-		return Ref_id;
+	public int getReferenceId() {
+		return referenceId;
 	}
 	
 	/**
@@ -110,8 +110,10 @@ public class Examination implements Serializable{
 	 *
 	 * @param ref_id the new ref_id
 	 */
-	public void setRef_id(int ref_id) {
-		Ref_id = ref_id;
+	public void setReferenceId(int ref_id) {
+		if (ref_id <= 0)
+			return;
+		this.referenceId = ref_id;
 	}
 	
 	/**

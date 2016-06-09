@@ -19,22 +19,21 @@ public class Reference implements Serializable{
 	 * The Enum Urgency.
 	 */
 	private enum Urgency {
-/** The Low. */
-Low, 
- /** The Normal. */
- Normal, 
- /** The Critical. */
- Critical};
+	/** The Low. */
+	 Low, 
+	 /** The Normal. */
+	 Normal, 
+	 /** The Critical. */
+	 Critical};
 	
-	/** The Ref num. */
-	//Class Members
-	private int RefNum;
+	/** The reference number. */
+	private int referenceNumber;
 	
-	/** The cid. */
-	private int cid;
+	/** The client id. */
+	private int clientId;
 	
-	/** The sid. */
-	private int sid;
+	/** The specialist id. */
+	private int specialistID;
 	
 	/** The date. */
 	private Date date;
@@ -69,8 +68,8 @@ Low,
 	 * @return the c id
 	 */
 	//Class Properties
-	public int getCId() {
-		return cid;
+	public int getClientId() {
+		return clientId;
 	}
 	
 	/**
@@ -78,8 +77,8 @@ Low,
 	 *
 	 * @param cid the new c id
 	 */
-	public void setCId(int cid) {
-		this.cid = cid;
+	public void setClientId(int cid) {
+		this.clientId = cid;
 	}
 	
 	/**
@@ -87,8 +86,8 @@ Low,
 	 *
 	 * @return the s id
 	 */
-	public int getSId() {
-		return sid;
+	public int getSpecialistId() {
+		return specialistID;
 	}
 	
 	/**
@@ -96,8 +95,8 @@ Low,
 	 *
 	 * @param sid the new s id
 	 */
-	public void setSId(int sid) {
-		this.sid = sid;
+	public void setSpecialistId(int specialistId) {
+		this.specialistID = specialistId;
 	}
 	
 	/**
@@ -206,7 +205,6 @@ Low,
 	
 	/**
 	 * Gets the status.
-	 *
 	 * @return the status
 	 */
 	public int getStatus()
@@ -215,26 +213,23 @@ Low,
 	}
 	
 	/**
-	 * Gets the ref num.
-	 *
-	 * @return the ref num
+	 * Gets the reference number.
+	 * @return the reference number
 	 */
-	public int getRefNum() {
-		return RefNum;
+	public int getReferenceNumber() {
+		return referenceNumber;
 	}
 	
 	/**
-	 * Sets the ref num.
-	 *
-	 * @param refNum the new ref num
+	 * Sets the reference number.
+	 * @param refNum the new reference number
 	 */
-	public void setRefNum(int refNum) {
-		RefNum = refNum;
+	public void setReferenceNumber(int refNum) {
+		referenceNumber = refNum;
 	}
 	
 	/**
 	 * Gets the type.
-	 *
 	 * @return the type
 	 */
 	public String getType() {
@@ -242,8 +237,7 @@ Low,
 	}
 	
 	/**
-	 * Sets the type.
-	 *
+	 * Sets the type.	 
 	 * @param type the new type
 	 */
 	public void setType(String type) {
