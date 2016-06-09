@@ -36,12 +36,10 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 
-// TODO: Auto-generated Javadoc
 /**
  * CreateExaminationController handle the Examinations by the labworker 
  * from specific reference that the specacialist gave the Client , 
- *  The LabWorker can add pictures and comments to the examinatiion.
- *
+ * The LabWorker can add pictures and comments to the examinatiion.
  * @author Raz
  */
 public class CreateExaminationController implements IController, Initializable{
@@ -140,18 +138,8 @@ public class CreateExaminationController implements IController, Initializable{
 				ImagePick3.setDisable(true);
 				sendBtn.setVisible(false);
 				
-				
-				
-				
 		     }
-			
-			
-			
 		}
-		
-		
-		
-		
 	}
 		
 	/**
@@ -232,11 +220,7 @@ public class CreateExaminationController implements IController, Initializable{
                 }
 				
              }
-             
         
-            
-         
-         
 	}
 	
 	/**
@@ -403,7 +387,7 @@ public class CreateExaminationController implements IController, Initializable{
 			
 			ExaminationController.currentReference.setCode(((int)result));
 			onBackButtonClick();
-			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("CREATE", "Examination Successfully CREATED");
+			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("Examination Created", "Examination successfully created.");
 		}
 		
 		
@@ -444,16 +428,12 @@ public class CreateExaminationController implements IController, Initializable{
 			}
 				}
 			});		
-
-			
-			
-			
 		}
 		
 		if (reply.getCommand() == Command.CREATE_EXAMINATION_UPDATE )
 		{
 			onBackButtonClick();
-			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("UPDATE", "Examination Successfully Updated");
+			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("Update", "Examination successfully updated");
 			
 		}
 		
@@ -461,19 +441,8 @@ public class CreateExaminationController implements IController, Initializable{
 			 
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Logout to the Login window.
-	 *
 	 * @param event listen to action event
 	 */
 	
@@ -523,6 +492,11 @@ public class CreateExaminationController implements IController, Initializable{
 	 public void OnSendClickButton()
 	 {
 		 Request request = null;
+		 
+		 if (ExamTextArea.getText().trim().isEmpty() || ExamTextArea.getText() == null){
+			 thisUi.displayErrorMessage("Missing Required Fields", "Please add examination results in the text field");
+			 return;
+		 }
 		 
 		 if(ExaminationController.currentReference.getCode() == 0)  //check if there is exist examination	 
 		 {

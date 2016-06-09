@@ -64,38 +64,21 @@
 
 <p>&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
 
-<p class="style1">Existing Appointment in DB for test 2:&nbsp; <appointment 62=""></appointment></p>
+<p class="style1">Existing reference in DB for test 2:&nbsp; <appointment 62=""></appointment></p>
 
-<p class="style1" style="margin-left: 40px;">Date: 3/7/16</p>
+<p class="style1" style="margin-left: 40px;">Date: 13/6/16</p>
 
 <p class="style1" style="margin-left: 40px;">Client ID: 1</p>
 
 <p class="style1" style="margin-left: 40px;">Specialist ID: 16</p>
 
-<p class="style1" style="margin-left: 40px;">Time: 12:00 &lt;9&gt;</p>
+<p class="style1" style="margin-left: 40px;">Reference ID: 8</p>
 
-<p>Existing Appointment in DB for test 3:&nbsp; <appointment 63=""></appointment></p>
+<p class="style1">Existing lab worker in DB for tests:</p>
 
-<p><br />
-&nbsp;&nbsp;&nbsp;&nbsp; Date: 3/7/16</p>
+<p class="style1" style="margin-left: 40px;">UserName: &quot;raz&quot;.</p>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Client ID: 2</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Specialist ID: 16</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
-
-<p class="style1">Existing dispatcher in DB for tests:</p>
-
-<p class="style1" style="margin-left: 40px;">UserName: &quot;shay&quot;.</p>
-
-<p class="style1" style="margin-left: 40px;">Password: 11.</p>
-
-<p class="style1" style="margin-left: 40px;">Validated references:</p>
-
-<p class="style1" style="margin-left: 40px;"># 111111&nbsp;, ID: 123456789</p>
-
-<p class="style1" style="margin-left: 40px;"># 222222 , ID: 741852963</p>
+<p class="style1" style="margin-left: 40px;">Password: 1234.</p>
 
 <table border="1" cellpadding="5" cellspacing="0" width="765">
 	<tbody>

@@ -167,12 +167,8 @@ public class CancelAppointmentController implements IController, Initializable{
 		
 	}
 
+
 	/**
-	 * On back button click.
-	 *
-	 * @param event the event
-	 */
-	/*
 	 * onBackButtonClick function is back button handler. 
 	 * The function searches the last IUi instance in the UI stack and show the window.
 	 * The function removes the current from the stack.
@@ -193,7 +189,6 @@ public class CancelAppointmentController implements IController, Initializable{
 	/**
 	 * onMouseClick function handles a mouse click on a appointment row from the appointments table.
 	 * The function gets the appointment ID from the table.
-	 *
 	 * @param event the event
 	 */
 	public void onMouseClick(MouseEvent event){
