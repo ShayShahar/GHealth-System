@@ -14,7 +14,6 @@ import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import server.boundry.ServerUI;
 import common.entity.*;
-import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
