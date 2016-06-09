@@ -1,4 +1,4 @@
-<html><head><title>Suite CreateAppointmentTest.fit run at: Thu Jun 09 15:53:19 IDT 2016</title>
+<html><head><title>Suite CreateExaminationTest.fit run at: Thu Jun 09 19:03:11 IDT 2016</title>
 	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="screen"/>
  	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="print"/>
 <script language="JavaScript" type="text/javascript">
@@ -20,18 +20,14 @@ img.src = collapsableClosedImg;
 
 </head>
 <body>
-<div> Suite is: C:/Users/shays/Documents/GitHub/GHealth-System/GHealth-Java/Tests/FitTests/CreateAppointmentTest.fit</div><div class="test_output_name">Name: CreateAppointmentTest.fit</div><div> Suite executed at: Thu Jun 09 15:53:19 IDT 2016 Elapsed time: 180 millseconds  </div><table><tr><td></td><td><a href="#77eaf7f3:15535395d61:-8000">CreateAppointmentTest.fit</a></td><td class="error">7 right, 0 wrong, 0 ignored, 4 exceptions</td></tr></table><div class="test_output_name"><a name="77eaf7f3:15535395d61:-8000"/><p>Test file: CreateAppointmentTest.fit</p></div><html>
+<div> Suite is: C:/Users/shays/Documents/GitHub/GHealth-System/GHealth-Java/Tests/FitTests/CreateExaminationTest.fit</div><div class="test_output_name">Name: CreateExaminationTest.fit</div><div> Suite executed at: Thu Jun 09 19:03:11 IDT 2016 Elapsed time: 3 seconds 250 millseconds  </div><table><tr><td></td><td><a href="#-421144d7:15535e72ed1:-8000">CreateExaminationTest.fit</a></td><td class="error">12 right, 0 wrong, 0 ignored, 3 exceptions</td></tr></table><div class="test_output_name"><a name="-421144d7:15535e72ed1:-8000"/><p>Test file: CreateExaminationTest.fit</p></div><html>
 <head>
 	<title></title>
 </head>
 <body>
-<p class="style1" style="color: rgb(0, 0, 205);"><em>Create Appointment operation&nbsp;- acceptance test.</em></p>
+<p class="style1" style="color: rgb(0, 0, 205);"><em>Create examination operation&nbsp;- acceptance test.</em></p>
 
-<p class="style1">Dispatcher can create a new appointment to client in Ghealth system. The create appointment operation start after the dispatcher logs in to the system and the reference validation succeed.</p>
-
-<p class="style1"><u><strong>NOTE: </strong></u>The third case occurs if two (or more) dispatchers are logged to the system and try to create appointments at the same date and time to the same specialist. In other cases the situation is prevented by the GUI components logics.</p>
-
-<p class="style1"><u><strong>NOTE:</strong></u> The hours in our system are presented by integers. for example 1 is referenced to 8:00,&nbsp; 2 for 8:30, 3 for 9:00, etc... &lt;max: 18&gt;</p>
+<p class="style1">Lab worker can attach examination to a lab reference that created by a specialists via&nbsp;Ghealth system. The create appointment operation start after the lab wotker logs in to the system and find the requested refernce details.</p>
 
 <p class="style1"><strong><u>Use case description:</u></strong></p>
 
@@ -55,7 +51,7 @@ img.src = collapsableClosedImg;
 
 <p class="style1" style="margin-left: 40px;">2) Click on &quot;Search&quot; button.</p>
 
-<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Yossi Benayun&quot;.</p>
+<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Yossi Benayun&quot;. <speciclist 1=""></speciclist></p>
 
 <p class="style1" style="margin-left: 40px;">4) Choose an available date from the date picker, &quot;14/6/16&quot;.</p>
 
@@ -88,28 +84,28 @@ img.src = collapsableClosedImg;
 
 <p>&nbsp;&nbsp;&nbsp; Specialist ID: 16</p>
 
-<p>&nbsp;&nbsp;&nbsp;Time: 8:00</p>
+<p>&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
 
-<p class="style1">Existing Appointment in DB for test 2: &lt;Appointment ID: 47&gt;</p>
+<p class="style1">Existing Appointment in DB for test 2:&nbsp; <appointment 62=""></appointment></p>
 
-<p class="style1" style="margin-left: 40px;">Date: 14/6/16</p>
+<p class="style1" style="margin-left: 40px;">Date: 3/7/16</p>
 
 <p class="style1" style="margin-left: 40px;">Client ID: 1</p>
 
 <p class="style1" style="margin-left: 40px;">Specialist ID: 16</p>
 
-<p class="style1" style="margin-left: 40px;">Time: 12:00</p>
+<p class="style1" style="margin-left: 40px;">Time: 12:00 &lt;9&gt;</p>
 
-<p>Existing Appointment in DB for test 3: &lt;Appointment ID: 34&gt;</p>
+<p>Existing Appointment in DB for test 3:&nbsp; <appointment 63=""></appointment></p>
 
 <p><br />
-&nbsp;&nbsp;&nbsp;&nbsp; Date: 13/6/16</p>
+&nbsp;&nbsp;&nbsp;&nbsp; Date: 3/7/16</p>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Client ID: 6</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Client ID: 2</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp; Specialist ID: 16</p>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Time: 8:00</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
 
 <p class="style1">Existing dispatcher in DB for tests:</p>
 
@@ -206,8 +202,26 @@ img.src = collapsableClosedImg;
 			<td class="style1" class="pass">1</td>
 		</tr>
 		<tr>
-			<td class="style1" class="error">&nbsp;<hr><pre><div class="fit_stacktrace">java.lang.NoSuchMethodException: fit.ActionFixture.()
-	at java.lang.Class.getMethod(Unknown Source)
+			<td class="style1">check</td>
+			<td class="style1">createAppointment</td>
+			<td class="style1" class="error">Succeed<hr><pre><div class="fit_stacktrace">java.lang.NullPointerException
+	at client.control.CreateAppointmentController.createAppointment(CreateAppointmentController.java:481)
+	at Fixtures.CreateAppointmentTest.createAppointment(CreateAppointmentTest.java:63)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at fit.TypeAdapter.invoke(Unknown Source)
+	at fit.TypeAdapter.get(Unknown Source)
+	at fit.Fixture$CellComparator.compareCellToResult(Unknown Source)
+	at fit.Fixture$CellComparator.access$100(Unknown Source)
+	at fit.Fixture.compareCellToResult(Unknown Source)
+	at fit.Fixture.check(Unknown Source)
+	at fit.ActionFixture.check(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
 	at fit.ActionFixture.doCells(Unknown Source)
 	at fit.Fixture.doRow(Unknown Source)
 	at fit.Fixture.doRows(Unknown Source)
@@ -233,74 +247,58 @@ img.src = collapsableClosedImg;
 	at com.luxoft.fitpro.runner.TestCaseRunner.run(TestCaseRunner.java:100)
 	at com.luxoft.fitpro.runner.TestCaseRunner.main(TestCaseRunner.java:55)
 </div></pre></td>
-			<td class="style1">&nbsp;</td>
-			<td class="style1">&nbsp;</td>
 		</tr>
 		<tr>
-			<td class="style1" class="error">&nbsp;<hr><pre><div class="fit_stacktrace">java.lang.NoSuchMethodException: fit.ActionFixture.()
-	at java.lang.Class.getMethod(Unknown Source)
-	at fit.ActionFixture.doCells(Unknown Source)
-	at fit.Fixture.doRow(Unknown Source)
-	at fit.Fixture.doRows(Unknown Source)
-	at fit.Fixture.doTable(Unknown Source)
-	at fit.Fixture.interpretTables(Unknown Source)
-	at fit.Fixture.doTables(Unknown Source)
-	at fitlibrary.suite.IndependentSuiteRunner.runEachStorytest(IndependentSuiteRunner.java:53)
-	at fitlibrary.suite.IndependentSuiteRunner.runFirstStorytest(IndependentSuiteRunner.java:28)
-	at fitlibrary.suite.BatchFitLibrary.doTables(BatchFitLibrary.java:39)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.doTables(FitLibraryFitProvider.java:168)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.generateParseResult(FitLibraryFitProvider.java:96)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runSingleFITTest(FitLibraryFitProvider.java:78)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runValidTestFile(FitLibraryFitProvider.java:58)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runFIT(FitLibraryFitProvider.java:39)
-	at com.luxoft.fitpro.core.testcase.SequentialRunnerStrategy.run(SequentialRunnerStrategy.java:18)
-	at com.luxoft.fitpro.core.tester.RunnerVisitor.runTest(RunnerVisitor.java:59)
-	at com.luxoft.fitpro.core.tester.RunnerVisitor.visit(RunnerVisitor.java:51)
-	at com.luxoft.fitpro.core.testcase.TestFile.accept(TestFile.java:51)
-	at com.luxoft.fitpro.runner.TestCaseRunner.run(TestCaseRunner.java:100)
-	at com.luxoft.fitpro.runner.TestCaseRunner.main(TestCaseRunner.java:55)
-</div></pre></td>
-			<td class="style1">&nbsp;</td>
-			<td class="style1">&nbsp;</td>
+			<td class="style1">enter</td>
+			<td class="style1">setAppointmentDate</td>
+			<td class="style1">2016-07-03</td>
 		</tr>
 		<tr>
-			<td class="style1" class="error">&nbsp;<hr><pre><div class="fit_stacktrace">java.lang.NoSuchMethodException: fit.ActionFixture.()
-	at java.lang.Class.getMethod(Unknown Source)
-	at fit.ActionFixture.doCells(Unknown Source)
-	at fit.Fixture.doRow(Unknown Source)
-	at fit.Fixture.doRows(Unknown Source)
-	at fit.Fixture.doTable(Unknown Source)
-	at fit.Fixture.interpretTables(Unknown Source)
-	at fit.Fixture.doTables(Unknown Source)
-	at fitlibrary.suite.IndependentSuiteRunner.runEachStorytest(IndependentSuiteRunner.java:53)
-	at fitlibrary.suite.IndependentSuiteRunner.runFirstStorytest(IndependentSuiteRunner.java:28)
-	at fitlibrary.suite.BatchFitLibrary.doTables(BatchFitLibrary.java:39)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.doTables(FitLibraryFitProvider.java:168)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.generateParseResult(FitLibraryFitProvider.java:96)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runSingleFITTest(FitLibraryFitProvider.java:78)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runValidTestFile(FitLibraryFitProvider.java:58)
-	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runFIT(FitLibraryFitProvider.java:39)
-	at com.luxoft.fitpro.core.testcase.SequentialRunnerStrategy.run(SequentialRunnerStrategy.java:18)
-	at com.luxoft.fitpro.core.tester.RunnerVisitor.runTest(RunnerVisitor.java:59)
-	at com.luxoft.fitpro.core.tester.RunnerVisitor.visit(RunnerVisitor.java:51)
-	at com.luxoft.fitpro.core.testcase.TestFile.accept(TestFile.java:51)
-	at com.luxoft.fitpro.runner.TestCaseRunner.run(TestCaseRunner.java:100)
-	at com.luxoft.fitpro.runner.TestCaseRunner.main(TestCaseRunner.java:55)
-</div></pre></td>
-			<td class="style1">&nbsp;</td>
-			<td class="style1">&nbsp;</td>
+			<td class="style1">check</td>
+			<td class="style1">getDate</td>
+			<td class="style1" class="pass">2016-07-03</td>
 		</tr>
 		<tr>
-			<td class="style1" class="error">&nbsp;<hr><pre><div class="fit_stacktrace">java.lang.NoSuchMethodException: fit.ActionFixture.()
-	at java.lang.Class.getMethod(Unknown Source)
+			<td class="style1">enter</td>
+			<td class="style1">setTime</td>
+			<td class="style1">9</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getTime</td>
+			<td class="style1" class="pass">9</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setSpecialistId</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getSpecialistId</td>
+			<td class="style1" class="pass">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createAppointment</td>
+			<td class="style1" class="error">Duplicate Error<hr><pre><div class="fit_stacktrace">java.lang.NullPointerException
+	at client.control.CreateAppointmentController.createAppointment(CreateAppointmentController.java:481)
+	at Fixtures.CreateAppointmentTest.createAppointment(CreateAppointmentTest.java:63)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at fit.TypeAdapter.invoke(Unknown Source)
+	at fit.TypeAdapter.get(Unknown Source)
+	at fit.Fixture$CellComparator.compareCellToResult(Unknown Source)
+	at fit.Fixture$CellComparator.access$100(Unknown Source)
+	at fit.Fixture.compareCellToResult(Unknown Source)
+	at fit.Fixture.check(Unknown Source)
+	at fit.ActionFixture.check(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
 	at fit.ActionFixture.doCells(Unknown Source)
 	at fit.Fixture.doRow(Unknown Source)
 	at fit.Fixture.doRows(Unknown Source)
@@ -326,8 +324,73 @@ img.src = collapsableClosedImg;
 	at com.luxoft.fitpro.runner.TestCaseRunner.run(TestCaseRunner.java:100)
 	at com.luxoft.fitpro.runner.TestCaseRunner.main(TestCaseRunner.java:55)
 </div></pre></td>
-			<td class="style1">&nbsp;</td>
-			<td class="style1">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setTime</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getTime</td>
+			<td class="style1" class="pass">1</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setSpecialistId</td>
+			<td class="style1">16</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getSpecialistId</td>
+			<td class="style1" class="pass">16</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createAppointment</td>
+			<td class="style1" class="error">Specialist Busy<hr><pre><div class="fit_stacktrace">java.lang.NullPointerException
+	at client.control.CreateAppointmentController.createAppointment(CreateAppointmentController.java:481)
+	at Fixtures.CreateAppointmentTest.createAppointment(CreateAppointmentTest.java:63)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at fit.TypeAdapter.invoke(Unknown Source)
+	at fit.TypeAdapter.get(Unknown Source)
+	at fit.Fixture$CellComparator.compareCellToResult(Unknown Source)
+	at fit.Fixture$CellComparator.access$100(Unknown Source)
+	at fit.Fixture.compareCellToResult(Unknown Source)
+	at fit.Fixture.check(Unknown Source)
+	at fit.ActionFixture.check(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at fit.ActionFixture.doCells(Unknown Source)
+	at fit.Fixture.doRow(Unknown Source)
+	at fit.Fixture.doRows(Unknown Source)
+	at fit.Fixture.doTable(Unknown Source)
+	at fit.Fixture.interpretTables(Unknown Source)
+	at fit.Fixture.doTables(Unknown Source)
+	at fitlibrary.suite.IndependentSuiteRunner.runEachStorytest(IndependentSuiteRunner.java:53)
+	at fitlibrary.suite.IndependentSuiteRunner.runFirstStorytest(IndependentSuiteRunner.java:28)
+	at fitlibrary.suite.BatchFitLibrary.doTables(BatchFitLibrary.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.doTables(FitLibraryFitProvider.java:168)
+	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.generateParseResult(FitLibraryFitProvider.java:96)
+	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runSingleFITTest(FitLibraryFitProvider.java:78)
+	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runValidTestFile(FitLibraryFitProvider.java:58)
+	at com.luxoft.fitpro.adapters.fit.FitLibraryFitProvider.runFIT(FitLibraryFitProvider.java:39)
+	at com.luxoft.fitpro.core.testcase.SequentialRunnerStrategy.run(SequentialRunnerStrategy.java:18)
+	at com.luxoft.fitpro.core.tester.RunnerVisitor.runTest(RunnerVisitor.java:59)
+	at com.luxoft.fitpro.core.tester.RunnerVisitor.visit(RunnerVisitor.java:51)
+	at com.luxoft.fitpro.core.testcase.TestFile.accept(TestFile.java:51)
+	at com.luxoft.fitpro.runner.TestCaseRunner.run(TestCaseRunner.java:100)
+	at com.luxoft.fitpro.runner.TestCaseRunner.main(TestCaseRunner.java:55)
+</div></pre></td>
 		</tr>
 	</tbody>
 </table>
