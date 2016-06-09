@@ -64,7 +64,7 @@ public class CreateExaminationController implements IController, Initializable{
 	/** pictures array list that we send and get from server. */
 	private ArrayList<byte[]> pictures = new ArrayList<byte[]>();
 	
-	/** String of the pathes of the pictures we want to add. */
+	/** String of the paths of the pictures we want to add. */
 	private String[] filenameArr = new String[4];
 	
 	/** array of the pictures to database according the the position in the screen(to avoid to add pictures that we throwed out). */

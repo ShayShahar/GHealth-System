@@ -45,20 +45,23 @@ public class LabWorkerUI implements IUi{
 
 			@Override
 			public void run() {
-				URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/LabWorkerUI.fxml");
-			      FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
-			      Parent root;
+				
+					URL url_fxml = LoginUI.class.getResource("/client/boundry/fxml/LabWorkerUI.fxml");
+					FXMLLoader fxmlLoader = new FXMLLoader(url_fxml);
+					Parent root;
+			      
 				try {
-					root = (Parent) fxmlLoader.load();
-				      Stage stage = new Stage();
-				      stage.setTitle("Lab Worker Menu");
-							URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
-							stage.getIcons().add(new Image(url_32.toString()));
-				      Scene scene = new Scene(root);
-				      scene.getStylesheets().add("client/boundry/css/Style.css");
-				      stage.setScene(scene); 
-				      stage.setResizable(false);
-				      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					
+						root = (Parent) fxmlLoader.load();
+						Stage stage = new Stage();
+						stage.setTitle("Lab Worker Menu");
+						URL url_32 = LoginUI.class.getResource("/img/icon_32.png");
+						stage.getIcons().add(new Image(url_32.toString()));
+						Scene scene = new Scene(root);
+					    scene.getStylesheets().add("client/boundry/css/Style.css");
+					    stage.setScene(scene); 
+					    stage.setResizable(false);
+					    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				    	  
 				            public void handle(WindowEvent we) {
 				            	

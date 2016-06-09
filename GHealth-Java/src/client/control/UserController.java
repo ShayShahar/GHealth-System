@@ -137,7 +137,7 @@ public class UserController implements IController{
 				
         else if (((String) result).equalsIgnoreCase("LabWorker")){
 					
-					ClientConnectionController.clientConnect.userPrivilege =  "LabWorker";
+					ClientConnectionController.clientConnect.userPrivilege = "LabWorker";
 					ClientConnectionController.clientConnect.userInterface.get(0).hideWindow();
 					LabWorkerUI LabWorker = new LabWorkerUI();
 					LabWorker.displayUserWindow();

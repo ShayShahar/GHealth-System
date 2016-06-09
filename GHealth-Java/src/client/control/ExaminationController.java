@@ -29,15 +29,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-// TODO: Auto-generated Javadoc
 /**
- * ExaminationController is the Controller to the gui of the viewreference by the 
- * LabWorker , the Labworker can see all the details of any reference he chose by date,specialist id,
- * client id  or by reference number.
+ * ExaminationController is the Controller to the GUI of the view reference by the 
+ * Lab worker, the Lab worker can see all the details of any reference he chose by date, specialist id,
+ * client id or by reference number.
  * @author Raz
  *
  */
-
 public class ExaminationController implements IController, Initializable{
 	
 	
@@ -50,13 +48,13 @@ public class ExaminationController implements IController, Initializable{
 		/** The cid field. */
 		@FXML private TextField cidField;
 		
-		/** The field reference num. */
+		/** The field reference number. */
 		@FXML private TextField fieldReferenceNum;
 		
 		/** The field client id. */
 		@FXML private TextField fieldClientID; 
 		
-		/** The field specielist id. */
+		/** The field specialist id. */
 		@FXML private TextField fieldSpecielistID;
 		
 		/** The field code. */
@@ -83,16 +81,16 @@ public class ExaminationController implements IController, Initializable{
 		/** The checkbox1. */
 		@FXML private CheckBox checkbox1;
 		
-		/** The exam btn. */
+		/** The exam button. */
 		@FXML private Button examBtn;	
 		
-		/** Stores current reference instacnce. */
+		/** Stores current reference instance. */
 		static Reference currentReference;
 		
 		/** Stores current reference's ID. */
 		static String currentReferenceNumber;
 		
-		/** The this ui. */
+		/** The this UI. */
 		private IUi thisUi;
 		
 		/** check fields. */
@@ -101,7 +99,6 @@ public class ExaminationController implements IController, Initializable{
 		/**
 		 * onLogoutButtonClick function is Logout button handler.
 		 * Sends a logout request for the logged in user to the server.
-		 *
 		 * @param event the event
 		 */
 		public void onLogoutButtonClick(ActionEvent event){
@@ -120,15 +117,12 @@ public class ExaminationController implements IController, Initializable{
 		}
 	
 		/**
-		 * Search Reference by sid,cid,date or by reference number.
-		 *
+		 * Search Reference by specialist ID, client ID  & date or by reference number.
 		 * @param event the event
 		 */
-	  public void OnSearchButtonClick(ActionEvent event){
-		  
-		  
-		  
-		  Request request;
+	  public void onSearchButtonClick(ActionEvent event){
+		 
+		Request request;
 		  
 	    if(!checkFields()){
 	    	examBtn.setDisable(true);
@@ -137,7 +131,6 @@ public class ExaminationController implements IController, Initializable{
 	    }
 	        	
 	    if(!checkbox1.isSelected()){
-			//Get Values cid,sid,date from textfields and date picker
 			
 			LocalDate ldate;
 			//cast to date from the date picker
@@ -154,27 +147,24 @@ public class ExaminationController implements IController, Initializable{
 	
 	    }
 	    
-	    else
-	    request = new Request(Command.FIND_REFERENCE_BY_REFNUM,(Object)reference_number.getText());
-	    
+	    else{
+	    	request = new Request(Command.FIND_REFERENCE_BY_REFNUM,(Object)reference_number.getText());
+	    }
 	    
 	    //Send the request to server
 	    try {
-	    	
 	    	ClientConnectionController.clientConnect.controller = this;
 	    	ClientConnectionController.clientConnect.sendToServer(request);
 	    } catch (IOException e) {
 	    	e.printStackTrace();
 	    }
-	           	
-	        	
+	    
 	}
         
 	 /**
  	 * Open Create Examination Window.
  	 */
-	 public void OnCreateExaminationClick()
-	 {
+	 public void onCreateExaminationClick(ActionEvent event){
 	 	
 	 	CreateExaminationUI create = new CreateExaminationUI();
 		ClientConnectionController.clientConnect.userInterface.add(create);
@@ -185,35 +175,25 @@ public class ExaminationController implements IController, Initializable{
 			}
 		}
 		
-		create.displayUserWindow();
-		 
-	   
-		
+		create.displayUserWindow();			
 	 }
  
 
 	 /**
- 	 * choose between cid,sid,date and reference number
- 	 * disable the textfields that we dont need and enable the needed.
+ 	 * Choose between client ID , specialist ID  & date to reference number
+ 	 * Disable the text fields that we don't need and enable the needed.
  	 */
-	 public void OnCheckBoxCheck()
-	 {
-	 	if(checkbox1.isSelected())
-	 	{   
-	 		//Ref_Num on
-	 		reference_number.setDisable(false);
+	 public void onCheckBoxCheck(ActionEvent event){
+	 	if(checkbox1.isSelected()){   
 	 		
-	 		//cid,sid,date off
+	 		reference_number.setDisable(false);
 	 		datePicker.setDisable(true);
 	 		sidField.setDisable(true);
 	 		cidField.setDisable(true);
 	 	}
-	 	else
-	 	{
-	 		//Ref_Num off
-	 		reference_number.setDisable(true);
+	 	else{
 	 		
-	 		//cid,sid,date off on
+	 		reference_number.setDisable(true);
 	 		datePicker.setDisable(false);
 	 		sidField.setDisable(false);
 	 		cidField.setDisable(false);
@@ -242,23 +222,26 @@ public class ExaminationController implements IController, Initializable{
 					
 			if ((Result)result == Result.ERROR){
 				ClientConnectionController.clientConnect.userInterface.get(1).displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
-					System.exit(1);
+				System.exit(1);
 			}
 			else if ((Result)result == Result.LOGGEDOUT){
-				logout();
+							thisUi.hideWindow();	
+						 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
+							ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
+							ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
 					}
 			}
 	}
 			
 			else if (reply.getCommand() == Command.FIND_REFERENCE_BY_SID_CID_DATE || 
-					reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM ){
+						reply.getCommand() == Command.FIND_REFERENCE_BY_REFNUM){
 						
 					if(result instanceof Result){
 						
 						if ((Result)result == Result.ERROR){
 							
 							thisUi.displayErrorMessage ("Fatal error", "Error occured in system. Exit program.");
-								System.exit(1);
+							System.exit(1);
 						}
 					
 				
@@ -270,34 +253,17 @@ public class ExaminationController implements IController, Initializable{
 				
 				else { 
 			
-				Reference reference = new Reference();
-				reference = (Reference)reply.getResult();
-				setFields(reference);
-				
+					Reference reference = new Reference();
+					reference = (Reference)reply.getResult();
+					setFields(reference);
 				}
-				
 			}
-				
 		}
 	
+
 	/**
-	 * Logout.
+	 * Clear all fields.
 	 */
-	/*
-	 * the function logout the labworker user
-	 */
-	public void logout()
-	{
-		thisUi.hideWindow();	
-	 	ClientConnectionController.clientConnect.userInterface.remove(thisUi);
-		ClientConnectionController.clientConnect.userInterface.get(0).showWindow();
-		ClientConnectionController.clientConnect.userInterface.get(0).displayMessage("Logged out", "Your user is logged out from Ghealth system.");
-	}
-	
-	/**
-	 * clear all fields.
-	 */
-	
 	public void clearFields()
 	{
 		thisUi.displayErrorMessage ("Error","Reference not found.");
@@ -313,24 +279,21 @@ public class ExaminationController implements IController, Initializable{
 				fieldCode.clear();
 				fieldUrgency.clear();
 				fieldStatus.clear();
-				fieldDate.clear();								}
+				fieldDate.clear();								
+				}
 			});		
 		
 		
 	}
 	
 	/**
-	 * set the fields of the gui according to the Reference properties.
-	 *
+	 * set the fields of the GUI according to the reference properties.
 	 * @param reference is the reference from the DB
 	 */
 	
 	public void setFields(Reference reference)
 	{
-		ExaminationController.currentReference=reference;
-		
-		
-			
+		ExaminationController.currentReference = reference;
 		
 		Platform.runLater(new Runnable() {
 
@@ -348,7 +311,8 @@ public class ExaminationController implements IController, Initializable{
 				
 				if(reference.getStatus() == 0)
 					fieldStatus.setText("Not Checked");
-				else fieldStatus.setText("Checked");
+				else 
+					fieldStatus.setText("Checked");
 				
 				
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");        //set the format of the date
@@ -356,24 +320,14 @@ public class ExaminationController implements IController, Initializable{
 				fieldType.setText(reference.getType());
 				examBtn.setDisable(false);
 				
-												}
-			});		
-			
-			
-		
+			}
+		});		
+
 	}
-
-
-
 
 	/*
 	 * check if the input in the field are fine or not
 	 * and display massage accordingly
-	 */
-	
-	/**
-	 * Check fields.
-	 *
 	 * @return true, if successful
 	 */
 	public boolean checkFields()  //check if the user insert legal values to the fields
@@ -381,101 +335,92 @@ public class ExaminationController implements IController, Initializable{
 		
 		check = true;
 		
-	
-				
-		
-				
-		//put all Textfiend to be gray style
+		//put all Text field to be gray style
 		cidField.setStyle("-fx-prompt-text-fill: gray");
 		sidField.setStyle("-fx-prompt-text-fill: gray");
 		datePicker.setStyle("-fx-prompt-text-fill: gray");
 		reference_number.setStyle("-fx-prompt-text-fill: gray");
 		
 		
-		if(!checkbox1.isSelected())  //check id cid,sid,date are ok
+		if(!checkbox1.isSelected())
 		{
 		
-		//check if there is empty Textfield
+			//check if there is empty Text field
 			
-	 	if (cidField.getText() == null || cidField.getText().trim().isEmpty()){
-	 		thisUi.displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
-			cidField.clear();
-			cidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
-			check = false;
-		}
+		 	if (cidField.getText() == null || cidField.getText().trim().isEmpty()){
+		 		thisUi.displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+				cidField.clear();
+				cidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
 	 	
-	 	if (sidField.getText() == null || sidField.getText().trim().isEmpty()){
-	 		if(check)
-	 			thisUi.displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
-	 		sidField.clear();
-			sidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
-			check = false;
-			
-		}
+		 	if (sidField.getText() == null || sidField.getText().trim().isEmpty()){
+		 		if(check)
+		 			thisUi.displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+		 		sidField.clear();
+				sidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+				
+			}
 	    
 	 	
-	 	if (datePicker.getValue() == null){
-	 		if(check)
-	 			thisUi.displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
-			datePicker.setStyle("-fx-prompt-text-fill: #ffa0a0");
-			check = false;
-		}
+		 	if (datePicker.getValue() == null){
+		 		if(check)
+		 			thisUi.displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
+				datePicker.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
 	 	
 	 	
 	 	
-	 	//check if the input is 9 digits and numbers only
+	 		//check if the input is 9 digits and numbers only
 	 
-	 	if ((!cidField.getText().matches("[0-9]+")))
-		{
-	 		if(check)
-	 			thisUi.displayErrorMessage("Search Error", "id must contain only 9 digits number");
-	 		cidField.clear();
-			cidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
-			check = false;
-		}
+		 	if ((!cidField.getText().matches("[0-9]+")))
+			{
+		 		if(check){
+			 		thisUi.displayErrorMessage("Search Error", "id must contain only 9 digits number");
+		 		}
+		 		cidField.clear();
+				cidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
 	 	
-	 	if ((!sidField.getText().matches("[0-9]+")))
-		{
-	 		if(check)
-	 			thisUi.displayErrorMessage("Search Error", "id must contain only 9 digits number");
-	 		sidField.clear();
-			sidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
-			check = false;
+		 	if ((!sidField.getText().matches("[0-9]+")))
+			{
+		 		if(check){
+			 		thisUi.displayErrorMessage("Search Error", "id must contain only 9 digits number");
+		 		}
+			 	sidField.clear();
+				sidField.setStyle("-fx-prompt-text-fill: #ffa0a0");
+				check = false;
+			}
 		}
-		
-		}
-		
-		
-		
+
 		else  //check the reference only input
 		{
 			
-			//check if there is empty Textfield
+			//check if there is empty Text field
 			
 			if (reference_number.getText() == null || reference_number.getText().trim().isEmpty()){
 				if(check)
 					thisUi.displayErrorMessage("Search Error", "Missing required fields. Check your input and try again.");
 				reference_number.clear();
-	 			reference_number.setStyle("-fx-prompt-text-fill: #ffa0a0");
-	 			check = false;
+		 		reference_number.setStyle("-fx-prompt-text-fill: #ffa0a0");
+		 		check = false;
 	 		}
 			
 			//check if the input is 9 digits and numbers only
 			
-			if ((!reference_number.getText().matches("[0-9]+")))      //Ereference_number.getText().length() != 9
+			if ((!reference_number.getText().matches("[0-9]+")))
 			{
 				if(check)
-				thisUi.displayErrorMessage("Search Error", "id must contain only 9 digits number");
+					thisUi.displayErrorMessage("Search Error", "id must contain only 9 digits number");
 				reference_number.clear();
 				reference_number.setStyle("-fx-prompt-text-fill: #ffa0a0");
 				check = false;
 			}
-			
-			
 		}
 		
-		
-	
 		return check;
 	}
 	
@@ -490,7 +435,6 @@ public class ExaminationController implements IController, Initializable{
 				thisUi = ui;
 			}
 		}			
-	
 	}
 	
 }

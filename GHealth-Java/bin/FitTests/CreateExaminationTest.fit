@@ -1,163 +1,252 @@
 <html>
-	<head>
-		<title>Creating a group FIT Test</title>
-		<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
-		<style type="text/css">
-<!--{cke_protected}{C}%3C!%2D%2D.style1%20%7Bfont-family%3A%20Arial%2C%20Helvetica%2C%20sans-serif%7D%2D%2D%3E-->		</style>
-		<meta content="MSHTML 11.00.9600.17842" name="GENERATOR" />
-	</head>
-	<body>
-		<p class="style1" style="color: rgb(0, 0, 205);">
-			<em>Creating group operation&nbsp;- acceptance test.</em></p>
-		<p class="style1">
-			System Admin can&nbsp;create new group&nbsp;to MyBox system. The creat group operation should start after user login as admin</p>
-		<p class="style1">
-			<strong><u>Use case description:</u></strong></p>
-		<p class="style1">
-			Tests 1 order: Group does not exist in DB.</p>
-		<p class="style1" style="margin-left: 40px;">
-			1) Click on &quot;Manage Groups&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			2) Click on &quot;Create group&quot; tab.</p>
-		<p class="style1" style="margin-left: 40px;">
-			3) Enter group name that does exists in DB &quot;CreateGruopTestNotInDB&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			4) Click on &quot;Apply&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			5) Check in DB for changes for this test.</p>
-		<p class="style1">
-			Tests 2 order: Group exist in DB.</p>
-		<p class="style1" style="margin-left: 40px;">
-			1) Click on &quot;Manage Groups&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			2) Click on &quot;Create Group&quot; tab.</p>
-		<p class="style1" style="margin-left: 40px;">
-			3) Enter group name that exists in DB &quot;CreateGruopTestInDB&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			4)&nbsp;Click on &quot;Apply&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			5) Check in DB for changes for this test.</p>
-		<p class="style1">
-			Tests 3 order: Group name is Empty.</p>
-		<p class="style1" style="margin-left: 40px;">
-			1) Click on &quot;Manage Groups&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			2) Click on &quot;Create group&quot; tab.</p>
-		<p class="style1" style="margin-left: 40px;">
-			3) Click on &quot;Apply&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			5) Check in DB that no new group is added.</p>
-		<p class="style1">
-			<u><strong>Definition of the system objects necessary for the test:</strong></u></p>
-		<p class="style1">
-			Existing Group in DB for test 1:</p>
-		<p class="style1" style="margin-left: 40px;">
-			Group with name &quot;CreateGroupTestInDB&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			Not Existing Group in DB for test 2:</p>
-		<p class="style1" style="margin-left: 40px;">
-			Group with name &quot;CreateGroupTestNotInDB&quot;.</p>
-		<p class="style1">
-			Existing admin in DB for test 2:</p>
-		<p class="style1" style="margin-left: 40px;">
-			UserName: &quot;admin&quot;.</p>
-		<p class="style1" style="margin-left: 40px;">
-			Password: 123.</p>
-		<p class="style1">
-			Java Objects:</p>
-		<p class="style1" style="margin-left: 40px;">
-			ManageGroupsGUI GroupsGUI .</p>
-		<table border="1" cellpadding="5" cellspacing="0" width="765">
-			<tbody>
-				<tr>
-					<td class="style1" colspan="3">
-						<p style="margin-left: 40px;">
-							fit.ActionFixture</p>
-					</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						start</td>
-					<td class="style1">
-						Fixtures.CreateGroupTest</td>
-					<td class="style1">
-						&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						press</td>
-					<td class="style1">
-						start group</td>
-					<td class="style1">
-						&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						enter</td>
-					<td class="style1">
-						group name</td>
-					<td class="style1">
-						CreateGroupTestNotInDB</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						check</td>
-					<td class="style1">
-						create group</td>
-					<td class="style1">
-						true</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						press</td>
-					<td class="style1">
-						start group</td>
-					<td class="style1">
-						&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						enter</td>
-					<td class="style1">
-						group name</td>
-					<td class="style1">
-						CreateGroupTestInDB</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						check</td>
-					<td class="style1">
-						create group</td>
-					<td class="style1">
-						false</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						press</td>
-					<td class="style1">
-						start group</td>
-					<td class="style1">
-						&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						enter</td>
-					<td class="style1">
-						group name</td>
-					<td class="style1">
-						&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="style1">
-						check</td>
-					<td class="style1">
-						create group</td>
-					<td class="style1">
-						false</td>
-				</tr>
-			</tbody>
-		</table>
-		<p class="style1">
-			Creating a group FIT Test G1</p>
-	</body>
+<head>
+	<title></title>
+</head>
+<body>
+<p class="style1" style="color: rgb(0, 0, 205);"><em>Create examination operation&nbsp;- acceptance test.</em></p>
+
+<p class="style1">Lab worker can attach examination to a lab reference that created by a specialists via&nbsp;Ghealth system. The create appointment operation start after the lab wotker logs in to the system and find the requested refernce details.</p>
+
+<p class="style1"><strong><u>Use case description:</u></strong></p>
+
+<p class="style1">Tests 1 order: Creation succeed.</p>
+
+<p class="style1" style="margin-left: 40px;">1) Click on &quot;Choose Specialization&quot; combobox and choose the specialization, choose &quot;Dermatology&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">2) Click on &quot;Search&quot; button.</p>
+
+<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Assaf Tzar&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">4) Choose an available&nbsp;date from the date picker, &quot;30/6/16&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">5) Select an available hour from the list, &quot;8:00&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">6) Click on &quot;Create Appoointment&quot; button.</p>
+
+<p class="style1">Tests 2 order: Client has another appointment in the same date an hour.&nbsp; (Using ID: 123456789)</p>
+
+<p class="style1" style="margin-left: 40px;">1) Click on &quot;Choose Specialization&quot; combobox and choose the specialization, choose &quot;Cardiology&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">2) Click on &quot;Search&quot; button.</p>
+
+<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Yossi Benayun&quot;. <speciclist 1=""></speciclist></p>
+
+<p class="style1" style="margin-left: 40px;">4) Choose an available date from the date picker, &quot;14/6/16&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">5) Select an available hour from the list, &quot;12:00&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">6) Click on &quot;Create Appoointment&quot; button.</p>
+
+<p class="style1">Tests 3 order: Specialist has another appointment in the same date and hour.</p>
+
+<p class="style1" style="margin-left: 40px;">&nbsp;1) Click on &quot;Choose Specialization&quot; combobox and choose the specialization, choose &quot;Dermatology&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">&nbsp;2) Click on &quot;Search&quot; button.</p>
+
+<p class="style1" style="margin-left: 40px;">&nbsp;3) Select a specialist from the list, &quot;Assaf Tzar&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">4) Choose an available date from the date picker, &quot;13/6/16&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">5) Select an available hour from the list, &quot;8:00&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">6) Click on &quot;Create Appoointment&quot; button.</p>
+
+<p>&nbsp;</p>
+
+<p class="style1"><u><strong>Definition of the system objects necessary for the test:</strong></u></p>
+
+<p>Not Existing Appointment in DB for test 1:</p>
+
+<p>&nbsp;&nbsp;&nbsp; Date: 30/6/16<br />
+&nbsp;&nbsp;&nbsp; Client ID: 1</p>
+
+<p>&nbsp;&nbsp;&nbsp; Specialist ID: 16</p>
+
+<p>&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
+
+<p class="style1">Existing Appointment in DB for test 2:&nbsp; <appointment 62=""></appointment></p>
+
+<p class="style1" style="margin-left: 40px;">Date: 3/7/16</p>
+
+<p class="style1" style="margin-left: 40px;">Client ID: 1</p>
+
+<p class="style1" style="margin-left: 40px;">Specialist ID: 16</p>
+
+<p class="style1" style="margin-left: 40px;">Time: 12:00 &lt;9&gt;</p>
+
+<p>Existing Appointment in DB for test 3:&nbsp; <appointment 63=""></appointment></p>
+
+<p><br />
+&nbsp;&nbsp;&nbsp;&nbsp; Date: 3/7/16</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Client ID: 2</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Specialist ID: 16</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
+
+<p class="style1">Existing dispatcher in DB for tests:</p>
+
+<p class="style1" style="margin-left: 40px;">UserName: &quot;shay&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">Password: 11.</p>
+
+<p class="style1" style="margin-left: 40px;">Validated references:</p>
+
+<p class="style1" style="margin-left: 40px;"># 111111&nbsp;, ID: 123456789</p>
+
+<p class="style1" style="margin-left: 40px;"># 222222 , ID: 741852963</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="765">
+	<tbody>
+		<tr>
+			<td class="style1" colspan="3">
+			<p style="margin-left: 40px;">fit.ActionFixture</p>
+			</td>
+		</tr>
+		<tr>
+			<td class="style1">start</td>
+			<td class="style1">Fixtures.CreateAppointmentTest</td>
+			<td class="style1">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setAppointmentDate</td>
+			<td class="style1">2016-06-30</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getDate</td>
+			<td class="style1">2016-06-30</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setTime</td>
+			<td class="style1">19</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getTime</td>
+			<td class="style1">0</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setTime</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getTime</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setSpecialistId</td>
+			<td class="style1">-2</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getSpecialistId</td>
+			<td class="style1">0</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setSpecialistId</td>
+			<td class="style1">16</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getSpecialistId</td>
+			<td class="style1">16</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setClientId</td>
+			<td class="style1">-8</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getClientId</td>
+			<td class="style1">0</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setClientId</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getClientId</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createAppointment</td>
+			<td class="style1">Succeed</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setAppointmentDate</td>
+			<td class="style1">2016-07-03</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getDate</td>
+			<td class="style1">2016-07-03</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setTime</td>
+			<td class="style1">9</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getTime</td>
+			<td class="style1">9</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setSpecialistId</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getSpecialistId</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createAppointment</td>
+			<td class="style1">Duplicate Error</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setTime</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getTime</td>
+			<td class="style1">1</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setSpecialistId</td>
+			<td class="style1">16</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getSpecialistId</td>
+			<td class="style1">16</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createAppointment</td>
+			<td class="style1">Specialist Busy</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="style1">Creating&nbsp;appointment FIT Test G1</p>
+</body>
 </html>

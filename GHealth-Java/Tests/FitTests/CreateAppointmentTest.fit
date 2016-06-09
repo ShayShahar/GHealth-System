@@ -33,7 +33,7 @@
 
 <p class="style1" style="margin-left: 40px;">2) Click on &quot;Search&quot; button.</p>
 
-<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Yossi Benayun&quot;. &lt;Speciclist ID: 1&gt;</p>
+<p class="style1" style="margin-left: 40px;">3) Select a specialist from the list, &quot;Yossi Benayun&quot;. <speciclist 1=""></speciclist></p>
 
 <p class="style1" style="margin-left: 40px;">4) Choose an available date from the date picker, &quot;14/6/16&quot;.</p>
 
@@ -68,7 +68,7 @@
 
 <p>&nbsp;&nbsp;&nbsp; Time: 8:00 &lt;1&gt;</p>
 
-<p class="style1">Existing Appointment in DB for test 2:&nbsp; &lt;Appointment ID: 62&gt;</p>
+<p class="style1">Existing Appointment in DB for test 2:&nbsp; <appointment 62=""></appointment></p>
 
 <p class="style1" style="margin-left: 40px;">Date: 3/7/16</p>
 
@@ -78,7 +78,7 @@
 
 <p class="style1" style="margin-left: 40px;">Time: 12:00 &lt;9&gt;</p>
 
-<p>Existing Appointment in DB for test 3:&nbsp; &lt;Appointment ID: 63&gt;</p>
+<p>Existing Appointment in DB for test 3:&nbsp; <appointment 63=""></appointment></p>
 
 <p><br />
 &nbsp;&nbsp;&nbsp;&nbsp; Date: 3/7/16</p>

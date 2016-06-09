@@ -238,12 +238,11 @@ public class DispatcherDetailsController implements IController, Initializable{
 
 	public void onCreateAppointmentButtonClick(ActionEvent event){
 		
-				URL url = ClientConnectionController.class.getResource("/img/question.png");
-				Dialog<Pair<String, String>> dialog = new Dialog<>();
-				dialog.setTitle("Insert Reference");
-				dialog.setGraphic(new ImageView(url.toString()));
-				dialog.setHeaderText("Validate reference number");
-				//dialog.setContentText(information);
+			URL url = ClientConnectionController.class.getResource("/img/question.png");
+			Dialog<Pair<String, String>> dialog = new Dialog<>();
+			dialog.setTitle("Insert Reference");
+			dialog.setGraphic(new ImageView(url.toString()));
+			dialog.setHeaderText("Validate reference number");
 		    // Set the button types.
 		    ButtonType validate = new ButtonType("OK", ButtonData.OK_DONE);
 		    dialog.getDialogPane().getButtonTypes().addAll(validate, ButtonType.CANCEL);
