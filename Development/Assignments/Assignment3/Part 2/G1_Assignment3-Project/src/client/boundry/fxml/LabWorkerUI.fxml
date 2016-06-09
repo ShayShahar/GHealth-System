@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="693.0" prefWidth="542.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.control.ExaminationController">
+   <children>
+      <ImageView fitHeight="95.0" fitWidth="153.0" layoutX="389.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="img/header.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="LabWorkerLogoutBtn" layoutX="14.0" layoutY="672.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Logout" />
+      <Separator layoutX="90.0" layoutY="648.0" prefHeight="2.0" prefWidth="363.0" />
+      <AnchorPane layoutX="9.0" layoutY="185.0" prefHeight="295.0" prefWidth="533.0">
+         <children>
+            <GridPane layoutX="1.0" layoutY="52.0" prefHeight="230.0" prefWidth="526.0" style="-fx-background-color: #ebebeb;" vgap="10.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="172.22222900390625" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.77777099609375" minWidth="10.0" prefWidth="150.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="150.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="fieldReferenceNum" editable="false" GridPane.columnIndex="1" />
+                  <TextField fx:id="fieldDate" editable="false" GridPane.columnIndex="3" />
+                  <TextField fx:id="fieldClientID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="fieldUrgency" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField fx:id="fieldSpecielistID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="fieldCode" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="fieldStatus" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label text="Date " GridPane.columnIndex="2" />
+                  <Label text="Specielist ID " GridPane.rowIndex="2" />
+                  <Label text="Type " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="Examination ID " GridPane.rowIndex="3" />
+                  <Label text="Status " GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Client ID " GridPane.rowIndex="1" />
+                  <Label text="Urgency " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="fieldType" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label text="Reference ID " />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" right="5.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <Label layoutX="220.0" layoutY="24.0" prefHeight="25.0" prefWidth="141.0" text="Reference Details" />
+         </children>
+      </AnchorPane>
+      <Separator layoutX="19.0" layoutY="137.0" prefWidth="200.0" />
+      <VBox layoutX="19.0" layoutY="15.0" prefHeight="113.0" prefWidth="200.0" spacing="15.0">
+         <children>
+            <DatePicker fx:id="datePicker" editable="false" prefHeight="29.0" prefWidth="200.0" promptText="Select Date" />
+            <TextField fx:id="sidField" promptText="Specialist ID" />
+            <TextField fx:id="cidField" promptText="Client ID" />
+         </children>
+      </VBox>
+      <HBox layoutX="18.0" layoutY="145.0" prefHeight="29.0" prefWidth="509.0" spacing="10.0">
+         <children>
+            <TextField fx:id="reference_number" disable="true" prefHeight="25.0" prefWidth="205.0" promptText="Reference Number" />
+            <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
+            <CheckBox fx:id="checkbox1" mnemonicParsing="false" onAction="#onCheckBoxCheck" text="Search By Reference Number" />
+            <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="0.0" />
+            <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="29.0" prefWidth="74.0" text="Search" />
+         </children>
+      </HBox>
+      <Button fx:id="examBtn" disable="true" layoutX="151.0" layoutY="600.0" mnemonicParsing="false" onAction="#onCreateExaminationClick" prefHeight="29.0" prefWidth="219.0" text="Add Examination Result" />
+      <Label layoutX="44.0" layoutY="478.0" text="Comments" />
+      <TextArea fx:id="fieldComments" editable="false" layoutX="43.0" layoutY="497.0" prefHeight="89.0" prefWidth="465.0" />
+   </children>
+</AnchorPane>

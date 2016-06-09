@@ -1,0 +1,188 @@
+<html><head><title>Suite CreateExaminationTest.fit run at: Thu Jun 09 21:24:47 IDT 2016</title>
+	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="screen"/>
+ 	<link rel="stylesheet" type="text/css" href="css/fitnesse.css" media="print"/>
+<script language="JavaScript" type="text/javascript">
+var collapsableOpenCss = "collapsable"
+var collapsableClosedCss = "hidden"
+var collapsableOpenImg = "images/collapsableOpen.gif"
+var collapsableClosedImg = "images/collapsableClosed.gif"
+function toggleCollapsable(id){
+var div = document.getElementById(id);
+var img = document.getElementById("img" + id);
+if(div.className.indexOf(collapsableClosedCss) != -1) {
+div.className = collapsableOpenCss;
+img.src = collapsableOpenImg;
+} else {
+div.className = collapsableClosedCss;
+img.src = collapsableClosedImg;
+} }
+</script>
+
+</head>
+<body>
+<div> Suite is: C:/Users/shays/Documents/GitHub/GHealth-System/GHealth-Java/Tests/FitTests/CreateExaminationTest.fit</div><div class="test_output_name">Name: CreateExaminationTest.fit</div><div> Suite executed at: Thu Jun 09 21:24:47 IDT 2016 Elapsed time: 6 seconds 197 millseconds  </div><table><tr><td></td><td><a href="#43344eb4:1553668d175:-8000">CreateExaminationTest.fit</a></td><td class="pass">8 right, 0 wrong, 0 ignored, 0 exceptions</td></tr></table><div class="test_output_name"><a name="43344eb4:1553668d175:-8000"/><p>Test file: CreateExaminationTest.fit</p></div><html>
+<head>
+	<title></title>
+</head>
+<body>
+<p class="style1" style="color: rgb(0, 0, 205);"><em>Create examination operation&nbsp;- acceptance test.</em></p>
+
+<p class="style1">Lab worker can attach examination to a lab reference that created by a specialists via&nbsp;Ghealth system. The create examination operation start after the lab wotker logs in to the system and find the requested refernce details.</p>
+
+<p class="style1"><u><strong>NOTE:</strong></u> Remember to manualy remove the allocated examination for reference number 8 after running the test.</p>
+
+<p class="style1"><strong><u>Use case description:</u></strong></p>
+
+<p class="style1">Tests 1 order: Creation succeed.</p>
+
+<p class="style1" style="margin-left: 40px;">1) Search for reference ID #8</p>
+
+<p class="style1" style="margin-left: 40px;">2) Click on &quot;Add Examination Result&quot;</p>
+
+<p class="style1" style="margin-left: 40px;">3) Type &quot;Test&quot; in the text area.</p>
+
+<p class="style1" style="margin-left: 40px;">4) Click on &quot;Send&quot; button.</p>
+
+<p class="style1">Tests 2 order:&nbsp;Creation failed,&nbsp;reference has been checked.</p>
+
+<p class="style1" style="margin-left: 40px;">1) Search for reference ID #9</p>
+
+<p class="style1" style="margin-left: 40px;">2) Click on &quot;Add Examination Result&quot;</p>
+
+<p class="style1" style="margin-left: 40px;">3) Type &quot;Test&quot; in the text area.</p>
+
+<p class="style1" style="margin-left: 40px;">4) Click on &quot;Send&quot; button.</p>
+
+<p class="style1">Tests&nbsp;3 order:&nbsp;Creation failed,&nbsp;missing text information.</p>
+
+<p class="style1" style="margin-left: 40px;">1) Search for reference ID #8</p>
+
+<p class="style1" style="margin-left: 40px;">2) Click on &quot;Add Examination Result&quot;</p>
+
+<p class="style1" style="margin-left: 40px;">3) Click on &quot;Send&quot; button.</p>
+
+<p class="style1"><u><strong>Definition of the system objects necessary for the test:</strong></u></p>
+
+<p>Existing&nbsp;reference in DB for test 1:</p>
+
+<p>&nbsp; Date: 13/6/16<br />
+&nbsp; Client ID: 1<br />
+&nbsp; Specialist ID: 16</p>
+
+<p>&nbsp; Reference ID: 8</p>
+
+<p>&nbsp;&nbsp;Status: Not Checked</p>
+
+<p class="style1">Existing reference in DB for test 2:&nbsp; <appointment 62=""></appointment></p>
+
+<p class="style1" style="margin-left: 40px;">Date: 9/6/16</p>
+
+<p class="style1" style="margin-left: 40px;">Client ID: 1</p>
+
+<p class="style1" style="margin-left: 40px;">Specialist ID: 16</p>
+
+<p class="style1" style="margin-left: 40px;">Reference ID: 9</p>
+
+<p class="style1" style="margin-left: 40px;">Status: Checked</p>
+
+<p class="style1">Existing lab worker in DB for tests:</p>
+
+<p class="style1" style="margin-left: 40px;">UserName: &quot;raz&quot;.</p>
+
+<p class="style1" style="margin-left: 40px;">Password: 1234.</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="765">
+	<tbody>
+		<tr>
+			<td class="style1" colspan="3">
+			<p style="margin-left: 40px;">fit.ActionFixture</p>
+			</td>
+		</tr>
+		<tr>
+			<td class="style1">start</td>
+			<td class="style1">Fixtures.CreateExaminationTest</td>
+			<td class="style1">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setReferenceId</td>
+			<td class="style1">-9</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getReferenceId</td>
+			<td class="style1" class="pass">0</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setDetails</td>
+			<td class="style1">Test</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getDetails</td>
+			<td class="style1" class="pass">Test</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setReferenceId</td>
+			<td class="style1">8</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getReferenceId</td>
+			<td class="style1" class="pass">8</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createExamination</td>
+			<td class="style1" class="pass">Created</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setDetails</td>
+			<td class="style1">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getDetails</td>
+			<td class="style1">&nbsp; <span class="fit_grey">blank</span></td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createExamination</td>
+			<td class="style1" class="pass">Missing Details</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setDetails</td>
+			<td class="style1">Test</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getDetails</td>
+			<td class="style1" class="pass">Test</td>
+		</tr>
+		<tr>
+			<td class="style1">enter</td>
+			<td class="style1">setReferenceId</td>
+			<td class="style1">9</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">getReferenceId</td>
+			<td class="style1" class="pass">9</td>
+		</tr>
+		<tr>
+			<td class="style1">check</td>
+			<td class="style1">createExamination</td>
+			<td class="style1" class="pass">Already created</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="style1">Creating&nbsp;examination FIT Test G1</p>
+</body>
+</html>
+
+</body></html>
