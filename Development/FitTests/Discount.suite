@@ -1,3 +1,0 @@
-<fitsuite name="Discount" desc="Discount suite">
-    <testref>ColumnFixture-Discount.fit</testref>
-</fitsuite>

@@ -10,7 +10,7 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class FindReferenceByCidSidDateDB.
+ * The Class FindReferenceByCidSidDateDB search for reference by client's id, specialist id & date.
  */
 public class FindReferenceByCidSidDateDB {
 	

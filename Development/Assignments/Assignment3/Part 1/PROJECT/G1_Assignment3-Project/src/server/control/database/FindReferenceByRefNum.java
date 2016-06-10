@@ -10,7 +10,7 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class FindReferenceByRefNum.
+ * The Class FindReferenceByRefNum search for reference by reference id.
  */
 public class FindReferenceByRefNum {
 	

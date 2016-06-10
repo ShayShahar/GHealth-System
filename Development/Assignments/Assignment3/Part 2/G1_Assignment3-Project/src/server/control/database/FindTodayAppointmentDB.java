@@ -11,7 +11,7 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class FindTodayAppointmentDB.
+ * The Class FindTodayAppointmentDB get all the appointments that occur today for the logged in specialist.
  */
 public class FindTodayAppointmentDB {
 	

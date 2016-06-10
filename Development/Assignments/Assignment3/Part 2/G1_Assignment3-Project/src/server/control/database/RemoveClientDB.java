@@ -8,7 +8,7 @@ import common.entity.Request;
 import common.enums.Result;
 
 /**
- * The Class RemoveClientDB.
+ * The Class RemoveClientDB removes client form Ghealth System and set the client's status as "left client".
  */
 public class RemoveClientDB {
 	

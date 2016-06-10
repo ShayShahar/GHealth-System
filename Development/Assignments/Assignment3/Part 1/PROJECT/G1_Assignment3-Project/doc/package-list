@@ -1,0 +1,11 @@
+client.boundry
+client.control
+client.entity
+client.interfaces
+common.entity
+common.enums
+ocsf.client
+ocsf.server
+server.boundry
+server.control
+server.control.database

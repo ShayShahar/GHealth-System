@@ -9,7 +9,7 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ReportMissingDB.
+ * The Class ReportMissingDB set an appointment as missed.
  */
 public class ReportMissingDB {
 

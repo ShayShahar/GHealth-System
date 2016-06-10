@@ -11,16 +11,17 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class GetExaminationTypeDB.
+ * The Class GetExaminationTypeDB search for the examination types that available in db.
  */
 public class GetExaminationTypeDB {
 
+
 	/**
-	 * Handle message.
-	 *
-	 * @param request the request
-	 * @param connection the connection
-	 * @return the object
+	 * HandleMessage function process the request from client, sends SQL queries to mySQL database by using JDBC connector
+	 * The function process the queries results then return a message to the client with the requested details.
+	 * @param request The request object that send by the client
+	 * @param connection JDBC connection parameter
+	 * @return return Object type. each result may return different type of objects.
 	 */
 	public static Object handleMessage(Request request, Connection connection) {
 		

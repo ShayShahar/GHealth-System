@@ -11,7 +11,7 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class GetClientByAppointmentDB.
+ * The Class GetClientByAppointmentDB get client's details from the appointment id.
  */
 public class GetClientByAppointmentDB {
 	

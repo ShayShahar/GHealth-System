@@ -9,7 +9,7 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ReturnClientDB.
+ * The Class ReturnClientDB restore client that left IHealth and now wants to return.
  */
 public class ReturnClientDB {
 

@@ -9,7 +9,7 @@ import common.enums.Result;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class FindUserIdByUserNameDB.
+ * The Class FindUserIdByUserNameDB search for the user id by the user name. 
  */
 public class FindUserIdByUserNameDB {
 	

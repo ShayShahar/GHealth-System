@@ -10,10 +10,11 @@ import client.entity.Examination;
 import common.entity.Request;
 import common.enums.Result;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FindClientExaminationDB.
+ * FindClientExaminationDB class search for all client's examinations in db.
+ * @author shays
  */
+
 public class FindClientExaminationDB {
 	
 	/**
