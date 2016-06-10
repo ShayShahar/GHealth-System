@@ -36,7 +36,7 @@
             <Separator layoutX="40.0" layoutY="51.0" prefHeight="3.0" prefWidth="465.0" />
             <ImageView fx:id="ImagePick" fitHeight="110.0" fitWidth="121.0" layoutX="130.0" layoutY="268.0" onMouseClicked="#OnAddPictureClickButton1" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../img/imagehere.png" />
+                  <Image url="img/imagehere.png" />
                </image>
                <viewport>
                   <Rectangle2D />
@@ -45,7 +45,7 @@
             <Button fx:id="Xbtn1" layoutX="216.0" layoutY="268.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
             <ImageView fx:id="ImagePick1" fitHeight="110.0" fitWidth="357.0" layoutX="291.0" layoutY="268.0" onMouseClicked="#OnAddPictureClickButton2" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../img/imagehere.png" />
+                  <Image url="img/imagehere.png" />
                </image>
                <viewport>
                   <Rectangle2D />
@@ -54,7 +54,7 @@
             <Button fx:id="Xbtn2" layoutX="377.0" layoutY="268.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton1" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
             <ImageView fx:id="ImagePick2" fitHeight="110.0" fitWidth="121.0" layoutX="130.0" layoutY="407.0" onMouseClicked="#OnAddPictureClickButton3" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../img/imagehere.png" />
+                  <Image url="img/imagehere.png" />
                </image>
                <viewport>
                   <Rectangle2D />
@@ -63,7 +63,7 @@
             <Button fx:id="Xbtn3" layoutX="216.0" layoutY="407.0" mnemonicParsing="false" onAction="#OnClosePictureClickButton2" prefHeight="25.0" prefWidth="22.0" text="X" visible="false" />
             <ImageView fx:id="ImagePick3" fitHeight="110.0" fitWidth="121.0" layoutX="291.0" layoutY="407.0" onMouseClicked="#OnAddPictureClickButton4" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../img/imagehere.png" />
+                  <Image url="img/imagehere.png" />
                </image>
                <viewport>
                   <Rectangle2D />
