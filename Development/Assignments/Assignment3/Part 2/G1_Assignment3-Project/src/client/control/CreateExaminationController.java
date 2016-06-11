@@ -113,8 +113,7 @@ public class CreateExaminationController implements IController, Initializable{
 		}
 		
 		
-		if(ExaminationController.currentReference.getCode() != 0)   // view Examination Details
-		{
+		if(ExaminationController.currentReference.getCode() != 0){
 			 Request request = null;
 			 exam = new Examination();
 			 exam.setId(ExaminationController.currentReference.getCode());
@@ -148,8 +147,7 @@ public class CreateExaminationController implements IController, Initializable{
 	 *
 	 * @param i - number of picture
 	 */
-	public void OnAddPictureClickButton(int i)
-	{
+	public void OnAddPictureClickButton(int i){
 		InputStream is = null;
 		Image pic = null;
 		configureFileChooser(fileChooser);
@@ -168,10 +166,9 @@ public class CreateExaminationController implements IController, Initializable{
 					e.printStackTrace();
 				}
 				 
-                switch(i)
-                {
-                	case 1:
-                	{
+                switch(i){
+                
+                	case 1:{
                 		filenameArr[0] = file.getPath();
                 		 ImagePick.setImage(pic);
                 		 Xbtn1.setDisable(false);
@@ -181,9 +178,8 @@ public class CreateExaminationController implements IController, Initializable{
                 		 
                 		return;
                 	}
-                	case 2:
-                	{
-                		filenameArr[1] = file.getPath();
+                	case 2:{
+                		 filenameArr[1] = file.getPath();
                 		 ImagePick1.setImage(pic);
                 		 Xbtn2.setDisable(false);
                 		 Xbtn2.setVisible(true);
@@ -192,8 +188,7 @@ public class CreateExaminationController implements IController, Initializable{
                 		 
                 		return;
                 	}
-                	case 3:
-                	{
+                	case 3:{
                 		filenameArr[2] = file.getPath();
                 		 ImagePick2.setImage(pic);
                 		 Xbtn3.setDisable(false);
@@ -203,8 +198,7 @@ public class CreateExaminationController implements IController, Initializable{
                 		 
                 		return;
                 	}
-                	case 4:
-                	{
+                	case 4:{
                 		filenameArr[3] = file.getPath();
                 		 ImagePick3.setImage(pic);
                 		 Xbtn4.setDisable(false);
@@ -227,34 +221,28 @@ public class CreateExaminationController implements IController, Initializable{
 	/**
 	 * Add picture to Location1.
 	 */
-	public void OnAddPictureClickButton1()
-	{
+	public void OnAddPictureClickButton1(){
 		 OnAddPictureClickButton(1);
-		
-		 
 	}
 	
 	/**
 	 * Add picture to Location2.
 	 */
-	public void OnAddPictureClickButton2()
-	{
+	public void OnAddPictureClickButton2(){
 		 OnAddPictureClickButton(2);
 	}
 	
 	/**
 	 * Add picture to Location3.
 	 */
-	public void OnAddPictureClickButton3()
-	{
+	public void OnAddPictureClickButton3(){
 		 OnAddPictureClickButton(3);
 	}
 	
 	/**
 	 * Add picture to Location4.
 	 */
-	public void OnAddPictureClickButton4()
-	{
+	public void OnAddPictureClickButton4(){
 		 OnAddPictureClickButton(4);
 	}
 	
@@ -262,21 +250,12 @@ public class CreateExaminationController implements IController, Initializable{
 	/**
 	 * Remove picture in Location1.
 	 */
-	public void OnClosePictureClickButton()
-	{
-		InputStream is = null;
-		Image pic = null;
-		try {
-			is = new FileInputStream("src/img/imagehere.png");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}  // get the file path
-		 pic = new Image(is,100,100,false,false);  // resize the picture
+	public void OnClosePictureClickButton(){
 		 filenameArr[0] = null;
-		 ImagePick.setImage(pic);
+		 ImagePick.setImage(new Image("img/imagehere.png"));
 		 Xbtn1.setDisable(true);
 		 Xbtn1.setVisible(false);
-		 
+		
 		 ImagePick.setDisable(false);
 		 DBpic[0] = null;
 	}
@@ -284,19 +263,10 @@ public class CreateExaminationController implements IController, Initializable{
     /**
      * Remove picture in Location2.
      */
-	public void OnClosePictureClickButton1()
-	{
-		InputStream is = null;
-		Image pic = null;
-		try {
-			is = new FileInputStream("src/img/imagehere.png");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  // get the file path
-		 pic = new Image(is,100,100,false,false);  // resize the picture
+	public void OnClosePictureClickButton1(){
+
 		 filenameArr[1] = null;
-		 ImagePick1.setImage(pic);
+		 ImagePick1.setImage(new Image("img/imagehere.png"));
 		 Xbtn2.setDisable(true);
 		 Xbtn2.setVisible(false);
 		 
@@ -307,18 +277,10 @@ public class CreateExaminationController implements IController, Initializable{
     /**
      * Remove picture in Location3.
      */
-	public void OnClosePictureClickButton2()
-	{
-		InputStream is = null;
-		Image pic = null;
-		try {
-			is = new FileInputStream("src/img/imagehere.png");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}  // get the file path
-		 pic = new Image(is,100,100,false,false);  // resize the picture
+	public void OnClosePictureClickButton2(){
+
 		 filenameArr[2] = null;
-		 ImagePick2.setImage(pic);
+		 ImagePick2.setImage(new Image("img/imagehere.png"));
 		 Xbtn3.setDisable(true);
 		 Xbtn3.setVisible(false);
 		 
@@ -329,29 +291,17 @@ public class CreateExaminationController implements IController, Initializable{
 	/**
 	 * Remove picture in Location4.
 	 */
-	public void OnClosePictureClickButton3()
-	{
-		InputStream is = null;
-		Image pic = null;
-		try {
-			is = new FileInputStream("src/img/imagehere.png");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  // get the file path
-		 pic = new Image(is,100,100,false,false);  // resize the picture
+	public void OnClosePictureClickButton3(){
 		 filenameArr[3] = null;
-		 ImagePick3.setImage(pic);
+		 ImagePick3.setImage(new Image("img/imagehere.png"));
 		 Xbtn4.setDisable(true);
 		 Xbtn4.setVisible(false);
 		 
 		 ImagePick3.setDisable(false);
-		 DBpic[3] = null;
-		 
+		 DBpic[3] = null;	 
 	}
 	
-	
-	
+
 	/**
 	 * Handle Reply from the server
 	 * Command.CREATE_EXAMINATION_VIEW is for the initialize
@@ -363,14 +313,11 @@ public class CreateExaminationController implements IController, Initializable{
     
 	@Override
 	public void handleReply(Reply reply) {
-		// TODO Auto-generated method stub
-		
 		
 		Object result =  reply.getResult();
 		
 		
-		if (reply.getCommand() == Command.CREATE_EXAMINATION)
-		{
+		if (reply.getCommand() == Command.CREATE_EXAMINATION){
 			
 			if(result instanceof Result) {
 					
@@ -397,8 +344,7 @@ public class CreateExaminationController implements IController, Initializable{
 		}
 		
 	
-		if (reply.getCommand() == Command.CREATE_EXAMINATION_VIEW )
-		{
+		if (reply.getCommand() == Command.CREATE_EXAMINATION_VIEW){
 			
 			Platform.runLater(new Runnable() {
 
@@ -433,7 +379,7 @@ public class CreateExaminationController implements IController, Initializable{
 			});		
 		}
 		
-		if (reply.getCommand() == Command.CREATE_EXAMINATION_UPDATE )
+		if (reply.getCommand() == Command.CREATE_EXAMINATION_UPDATE)
 		{
 			onBackButtonClick();
 			ClientConnectionController.clientConnect.userInterface.get(1).displayMessage ("Update", "Examination successfully updated");
@@ -466,8 +412,7 @@ public class CreateExaminationController implements IController, Initializable{
  	 * going back to the prev page.
  	 */
 	 
-	 public void onBackButtonClick()
-	 {
+	 public void onBackButtonClick(){
 		 thisUi.hideWindow();
 			
 			for (IUi ui : ClientConnectionController.clientConnect.userInterface){
@@ -489,8 +434,7 @@ public class CreateExaminationController implements IController, Initializable{
 	 /**
  	 *  Update or Create The Examination according to the details and pictures inserted.
  	 */
-	 public void OnSendClickButton()
-	 {
+	 public void OnSendClickButton(){
 		 
 		 if (ExamTextArea.getText().trim().isEmpty() || ExamTextArea.getText() == null){
 			 thisUi.displayErrorMessage("Missing Required Fields", "Please add examination results in the text field");
